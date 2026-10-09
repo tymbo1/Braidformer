@@ -1,0 +1,21 @@
+{
+  "name": "braidnano_phase0_planning",
+  "stage": "A0",
+  "seed": 17,
+  "context_length": 512,
+  "vocab_size": 32000,
+  "hidden_size": 512,
+  "num_layers": 8,
+  "num_attention_heads": 8,
+  "intermediate_size": 2048,
+  "micro_batch_size": 2,
+  "gradient_accumulation_steps": 8,
+  "precision": "fp16",
+  "gradient_checkpointing": true,
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "target_parameters_min": 40000000,
+  "target_parameters_max": 60000000,
+  "max_steps": 0,
+  "planned_only": true
+}

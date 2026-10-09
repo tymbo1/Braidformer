@@ -1,0 +1,154 @@
+{
+  "cpu": {
+    "architecture": "x86_64",
+    "logical_cpus": 16,
+    "model": "AMD Ryzen 7 5700X 8-Core Processor",
+    "physical_cores": 8,
+    "raw_command": {
+      "command": [
+        "lscpu"
+      ],
+      "ok": true,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 7 5700X 8-Core Processor\nCPU family:                              25\nModel:                                   33\nThread(s) per core:                      2\nCore(s) per socket:                      8\nSocket(s):                               1\nStepping:                                2\nFrequency boost:                         enabled\nCPU(s) scaling MHz:                      82%\nCPU max MHz:                             4665.8350\nCPU min MHz:                             562.1490\nBogoMIPS:                                6800.34\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpb cat_l3 cdp_l3 hw_pstate ssbd mba ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk clzero irperf xsaveerptr rdpru wbnoinvd arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif v_spec_ctrl umip pku ospke vaes vpclmulqdq rdpid overflow_recov succor smca fsrm debug_swap\nVirtualization:                          AMD-V\nL1d cache:                               256 KiB (8 instances)\nL1i cache:                               256 KiB (8 instances)\nL2 cache:                                4 MiB (8 instances)\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Mitigation; Safe RET\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Mitigation; Clear CPU buffers\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace\n"
+    },
+    "sockets": 1,
+    "threads_per_core": 2
+  },
+  "cuda_toolkit": {
+    "nvcc_available": false,
+    "nvcc_version": null,
+    "raw_command": {
+      "command": [
+        "nvcc",
+        "--version"
+      ],
+      "ok": false,
+      "returncode": null,
+      "stderr": "[Errno 2] No such file or directory: 'nvcc'",
+      "stdout": ""
+    }
+  },
+  "disk": {
+    "free_bytes": 549708677120,
+    "path": "/home/timbushnell/braidformer_lab",
+    "total_bytes": 1958315118592,
+    "used_bytes": 1309054009344
+  },
+  "generated_at_utc": "2026-10-09T23:57:40.593595+00:00",
+  "gpu": {
+    "detected": true,
+    "devices": [
+      {
+        "description": "NVIDIA Corporation GA104 [GeForce RTX 3060 Ti GDDR6X] [10de:24c9] (rev a1)",
+        "driver_in_use": "snd_hda_intel",
+        "driver_version": "580.126.18",
+        "model": "GeForce RTX 3060 Ti GDDR6X",
+        "pci_address": "24:00.0",
+        "vram": {
+          "measured": false,
+          "reported": null,
+          "status": "not measured: nvidia-smi query failed",
+          "total_bytes": null
+        }
+      }
+    ],
+    "driver_version": "580.126.18",
+    "driver_version_raw": "NVIDIA UNIX Open Kernel Module for x86_64  580.126.18  Release Build  (dvs-builder@U22-I3-H04-01-6)  Wed Feb 11 18:33:27 UTC 2026",
+    "nvidia_smi_error": null,
+    "nvidia_smi_ok": false,
+    "raw_commands": {
+      "lspci": {
+        "command": [
+          "lspci",
+          "-nnk"
+        ],
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "00:00.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse Root Complex [1022:1480]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse Root Complex [1462:7c96]\n00:00.2 IOMMU [0806]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse IOMMU [1022:1481]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse IOMMU [1462:7c96]\n00:01.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:01.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse GPP Bridge [1022:1483]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse GPP Bridge [1462:7c96]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:01.2 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse GPP Bridge [1022:1483]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse GPP Bridge [1462:7c96]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:02.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:03.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:03.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse GPP Bridge [1022:1483]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse GPP Bridge [1462:7c96]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:04.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:05.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:07.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:07.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B] [1022:1484]\n\tSubsystem: Device [7c96:1462]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:08.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Host Bridge [1022:1482]\n00:08.1 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse Internal PCIe GPP Bridge 0 to bus[E:B] [1022:1484]\n\tSubsystem: Device [7c96:1462]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n00:14.0 SMBus [0c05]: Advanced Micro Devices, Inc. [AMD] FCH SMBus Controller [1022:790b] (rev 61)\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] FCH SMBus Controller [1462:7c96]\n\tKernel driver in use: piix4_smbus\n\tKernel modules: i2c_piix4, sp5100_tco\n00:14.3 ISA bridge [0601]: Advanced Micro Devices, Inc. [AMD] FCH LPC Bridge [1022:790e] (rev 51)\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] FCH LPC Bridge [1462:7c96]\n00:18.0 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 0 [1022:1440]\n00:18.1 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 1 [1022:1441]\n00:18.2 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 2 [1022:1442]\n00:18.3 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 3 [1022:1443]\n\tKernel driver in use: k10temp\n\tKernel modules: k10temp\n00:18.4 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 4 [1022:1444]\n00:18.5 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 5 [1022:1445]\n00:18.6 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 6 [1022:1446]\n00:18.7 Host bridge [0600]: Advanced Micro Devices, Inc. [AMD] Matisse/Vermeer Data Fabric: Device 18h; Function 7 [1022:1447]\n01:00.0 Non-Volatile memory controller [0108]: Samsung Electronics Co Ltd NVMe SSD Controller S4LV008[Pascal] [144d:a80c]\n\tSubsystem: Samsung Electronics Co Ltd NVMe SSD Controller S4LV008[Pascal] [144d:a801]\n\tKernel driver in use: nvme\n\tKernel modules: nvme\n02:00.0 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] 500 Series Chipset USB 3.1 XHCI Controller [1022:43ee]\n\tSubsystem: ASMedia Technology Inc. ASM1042A USB 3.0 Host Controller [1b21:1142]\n\tKernel driver in use: xhci_hcd\n\tKernel modules: xhci_pci\n02:00.1 SATA controller [0106]: Advanced Micro Devices, Inc. [AMD] 500 Series Chipset SATA Controller [1022:43eb]\n\tSubsystem: ASMedia Technology Inc. ASM1062 Serial ATA Controller [1b21:1062]\n\tKernel driver in use: ahci\n\tKernel modules: ahci\n02:00.2 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] 500 Series Chipset Switch Upstream Port [1022:43e9]\n\tSubsystem: ASMedia Technology Inc. 500 Series Chipset Switch Upstream Port [1b21:0201]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n03:01.0 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:43ea]\n\tSubsystem: ASMedia Technology Inc. Device [1b21:3308]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n03:02.0 PCI bridge [0604]: Advanced Micro Devices, Inc. [AMD] Device [1022:43ea]\n\tSubsystem: ASMedia Technology Inc. Device [1b21:3308]\n\tKernel driver in use: pcieport\n\tKernel modules: shpchp\n22:00.0 Ethernet controller [0200]: Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller [10ec:8168] (rev 15)\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller [1462:7c96]\n\tKernel driver in use: r8169\n\tKernel modules: r8169\n23:00.0 Network controller [0280]: Intel Corporation Wi-Fi 6 AX200 [8086:2723] (rev 1a)\n\tSubsystem: Intel Corporation Wi-Fi 6 AX200NGW [8086:0084]\n\tKernel driver in use: iwlwifi\n\tKernel modules: iwlwifi\n24:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA104 [GeForce RTX 3060 Ti GDDR6X] [10de:24c9] (rev a1)\n\tSubsystem: ASUSTeK Computer Inc. GA104 [GeForce RTX 3060 Ti GDDR6X] [1043:88ae]\n\tKernel driver in use: nvidia\n\tKernel modules: nvidiafb, nouveau, nvidia_drm, nvidia\n24:00.1 Audio device [0403]: NVIDIA Corporation GA104 High Definition Audio Controller [10de:228b] (rev a1)\n\tSubsystem: ASUSTeK Computer Inc. GA104 High Definition Audio Controller [1043:88ae]\n\tKernel driver in use: snd_hda_intel\n\tKernel modules: snd_hda_intel\n25:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse PCIe Dummy Function [1022:148a]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse PCIe Dummy Function [1462:7c96]\n26:00.0 Non-Essential Instrumentation [1300]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse Reserved SPP [1022:1485]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse Reserved SPP [1462:7c96]\n26:00.1 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse Cryptographic Coprocessor PSPCPP [1022:1486]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse Cryptographic Coprocessor PSPCPP [1462:7c96]\n\tKernel driver in use: ccp\n\tKernel modules: ccp\n26:00.3 USB controller [0c03]: Advanced Micro Devices, Inc. [AMD] Matisse USB 3.0 Host Controller [1022:149c]\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Matisse USB 3.0 Host Controller [1462:7c96]\n\tKernel driver in use: xhci_hcd\n\tKernel modules: xhci_pci\n26:00.4 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse HD Audio Controller [1022:1487]\n\tDeviceName: Realtek ALC1220\n\tSubsystem: Micro-Star International Co., Ltd. [MSI] Starship/Matisse HD Audio Controller [1462:9c96]\n\tKernel driver in use: snd_hda_intel\n\tKernel modules: snd_hda_intel\n"
+      },
+      "nvidia_smi": {
+        "command": [
+          "nvidia-smi",
+          "--query-gpu=name,memory.total,driver_version",
+          "--format=csv,noheader"
+        ],
+        "ok": false,
+        "returncode": 9,
+        "stderr": "",
+        "stdout": "NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.\n\n"
+      },
+      "proc_driver_version": {
+        "command": [
+          "cat",
+          "/proc/driver/nvidia/version"
+        ],
+        "ok": true,
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "NVRM version: NVIDIA UNIX Open Kernel Module for x86_64  580.126.18  Release Build  (dvs-builder@U22-I3-H04-01-6)  Wed Feb 11 18:33:27 UTC 2026\nGCC version:  gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1) \n"
+      }
+    }
+  },
+  "nvidia_driver": {
+    "proc_version_available": true
+  },
+  "operating_system": {
+    "distribution": {
+      "BUG_REPORT_URL": "https://github.com/pop-os/pop/issues",
+      "HOME_URL": "https://pop.system76.com",
+      "ID": "pop",
+      "ID_LIKE": "ubuntu debian",
+      "LOGO": "distributor-logo-pop-os",
+      "NAME": "Pop!_OS",
+      "PRETTY_NAME": "Pop!_OS 24.04 LTS",
+      "PRIVACY_POLICY_URL": "https://system76.com/privacy",
+      "SUPPORT_URL": "https://support.system76.com",
+      "UBUNTU_CODENAME": "noble",
+      "VERSION": "24.04 LTS",
+      "VERSION_CODENAME": "noble",
+      "VERSION_ID": "24.04"
+    },
+    "release": "6.18.7-76061807-generic",
+    "system": "Linux",
+    "version": "#202601231045~1769703228~24.04~cb87b5b SMP PREEMPT_DYNAMIC Thu J"
+  },
+  "python": {
+    "current_executable": "/usr/bin/python3",
+    "current_version": "3.12.3",
+    "interpreters": [
+      {
+        "path": "/usr/bin/python3",
+        "raw_command": {
+          "command": [
+            "/usr/bin/python3",
+            "--version"
+          ],
+          "ok": true,
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "Python 3.12.3\n"
+        },
+        "version": "Python 3.12.3"
+      }
+    ]
+  },
+  "pytorch": {
+    "cuda_available": false,
+    "cuda_build": "13.0",
+    "cuda_device_count": 0,
+    "devices": [],
+    "import_error": null,
+    "installed": true,
+    "version": "2.12.0+cu130"
+  },
+  "report_schema_version": 1,
+  "repository": "/home/timbushnell/braidformer_lab",
+  "system_memory": {
+    "available_bytes": 23446364160,
+    "swap_total_bytes": 21474299904,
+    "total_bytes": 33571491840
+  }
+}

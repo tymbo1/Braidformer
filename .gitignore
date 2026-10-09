@@ -1,0 +1,60 @@
+# Python bytecode, caches, and local tooling state
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environments and environment-specific configuration
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# Secrets and local machine state
+*.pem
+*.key
+*.token
+*.secret
+secrets/
+
+# Datasets, checkpoints, and large generated artifacts
+data/*
+!data/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.onnx
+*.npz
+*.parquet
+*.tar
+*.tar.gz
+*.zip
+
+# Experiment runs and raw logs. Concise result summaries/configurations may be tracked.
+results/raw/
+results/runs/
+results/logs/
+results/*.log
+results/*.jsonl
+results/*.pt
+results/*.pth
+results/*.ckpt
+results/*.safetensors
+
+# General local logs and editor state
+*.log
+.DS_Store
+.idea/
+.vscode/
