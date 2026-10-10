@@ -11,6 +11,7 @@ from braidformer.training.runner import (
     TrainingConfigurationError,
     build_model,
     cosine_warmup_learning_rate,
+    cosine_warmup_learning_rate_at_progress,
 )
 
 
@@ -58,6 +59,19 @@ def test_cosine_warmup_schedule_is_bounded_and_reaches_zero() -> None:
     assert values[1] == pytest.approx(3e-4)
     assert 0.0 < values[2] < 3e-4
     assert values[3] == pytest.approx(0.0)
+
+
+def test_progress_referenced_cosine_schedule_is_bounded() -> None:
+    values = [
+        cosine_warmup_learning_rate_at_progress(3e-4, progress, 0.01)
+        for progress in (0.0, 0.005, 0.01, 0.5, 1.0)
+    ]
+
+    assert values[0] == pytest.approx(0.0)
+    assert values[1] == pytest.approx(1.5e-4)
+    assert values[2] == pytest.approx(3e-4)
+    assert 0.0 < values[3] < 3e-4
+    assert values[4] == pytest.approx(0.0)
 
 
 def test_packed_token_stream_reads_little_endian_windows(tmp_path: Path) -> None:

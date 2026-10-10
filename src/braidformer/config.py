@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
@@ -42,7 +43,10 @@ class ExperimentConfig:
     optimizer_epsilon: float = 1e-8
     weight_decay: float = 0.1
     lr_schedule: str = "cosine"
+    lr_progress_reference: str = "optimizer_steps"
     warmup_ratio: float = 0.01
+    schedule_target_cuda_seconds: float = 0.0
+    schedule_step_cuda_seconds: float = 0.0
     gradient_clip_norm: float = 1.0
     target_parameters_min: int = 40_000_000
     target_parameters_max: int = 60_000_000
@@ -98,8 +102,27 @@ class ExperimentConfig:
             errors.append("weight_decay must be non-negative")
         if not self.lr_schedule.strip():
             errors.append("lr_schedule must not be empty")
+        if self.lr_progress_reference not in {"optimizer_steps", "cuda_seconds"}:
+            errors.append("lr_progress_reference must be optimizer_steps or cuda_seconds")
         if not 0 <= self.warmup_ratio < 1:
             errors.append("warmup_ratio must be in the range [0, 1)")
+        if not math.isfinite(self.schedule_target_cuda_seconds) or self.schedule_target_cuda_seconds < 0:
+            errors.append("schedule_target_cuda_seconds must be finite and non-negative")
+        if not math.isfinite(self.schedule_step_cuda_seconds) or self.schedule_step_cuda_seconds < 0:
+            errors.append("schedule_step_cuda_seconds must be finite and non-negative")
+        if self.lr_progress_reference == "cuda_seconds":
+            if self.schedule_target_cuda_seconds <= 0:
+                errors.append(
+                    "cuda_seconds schedules require schedule_target_cuda_seconds > 0"
+                )
+            if self.schedule_step_cuda_seconds <= 0:
+                errors.append(
+                    "cuda_seconds schedules require schedule_step_cuda_seconds > 0"
+                )
+        elif self.schedule_target_cuda_seconds or self.schedule_step_cuda_seconds:
+            errors.append(
+                "CUDA schedule calibration fields require lr_progress_reference=cuda_seconds"
+            )
         if self.gradient_clip_norm <= 0:
             errors.append("gradient_clip_norm must be positive")
         if not 0 <= self.dropout < 1:

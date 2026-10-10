@@ -87,6 +87,27 @@ def cosine_warmup_learning_rate(
     return base_learning_rate * 0.5 * (1.0 + math.cos(math.pi * progress))
 
 
+def cosine_warmup_learning_rate_at_progress(
+    base_learning_rate: float,
+    progress: float,
+    warmup_fraction: float,
+) -> float:
+    """Return cosine warmup decay for a normalized external progress value."""
+
+    if base_learning_rate <= 0 or not math.isfinite(progress):
+        raise ValueError("learning-rate progress arguments must be finite and positive")
+    if not 0 <= warmup_fraction < 1:
+        raise ValueError("warmup_fraction must be in the range [0, 1)")
+    normalized_progress = min(1.0, max(0.0, progress))
+    if warmup_fraction == 0:
+        decay_progress = normalized_progress
+    elif normalized_progress <= warmup_fraction:
+        return base_learning_rate * normalized_progress / warmup_fraction
+    else:
+        decay_progress = (normalized_progress - warmup_fraction) / (1.0 - warmup_fraction)
+    return base_learning_rate * 0.5 * (1.0 + math.cos(math.pi * decay_progress))
+
+
 class PackedTokenStream:
     """Read little-endian uint16 token windows without loading a full corpus."""
 
@@ -387,6 +408,10 @@ class TrainingRunner:
                 "runtime warmup_steps must be positive and no greater than runtime max_steps"
             )
         self.cuda_timing = cuda_timing
+        if self.config.lr_progress_reference == "cuda_seconds" and not self.cuda_timing:
+            raise TrainingConfigurationError(
+                "CUDA-referenced learning-rate schedules require --cuda-timing"
+            )
 
         _model_class(self.config)
         if self.config.planned_only and not self.execute_approved:
@@ -421,6 +446,9 @@ class TrainingRunner:
             "seed": self.seed,
             "tokens_per_step": self.tokens_per_step,
             "warmup_steps": self.warmup_steps,
+            "lr_progress_reference": self.config.lr_progress_reference,
+            "schedule_target_cuda_seconds": self.config.schedule_target_cuda_seconds,
+            "schedule_step_cuda_seconds": self.config.schedule_step_cuda_seconds,
             "max_steps": self.max_steps,
             "configured_max_steps": self.config.max_steps,
             "runtime_overrides": {
@@ -473,6 +501,13 @@ class TrainingRunner:
                 "window_start_token": 0,
             },
             "initial_step": initial_step,
+            "learning_rate_schedule": {
+                "name": self.config.lr_schedule,
+                "progress_reference": self.config.lr_progress_reference,
+                "warmup_ratio": self.config.warmup_ratio,
+                "target_cuda_seconds": self.config.schedule_target_cuda_seconds,
+                "reference_step_cuda_seconds": self.config.schedule_step_cuda_seconds,
+            },
             "checkpoint_policy": {
                 "interval_steps": self.config.checkpoint_interval_steps,
                 "atomic": True,
@@ -502,6 +537,7 @@ class TrainingRunner:
         tokens_processed: int,
         checkpoint_path: Path,
         kind: str,
+        cumulative_cuda_seconds: float = 0.0,
     ) -> dict[str, Any]:
         payload = {
             "checkpoint_schema_version": 1,
@@ -510,7 +546,10 @@ class TrainingRunner:
             "step": step,
             "tokens_processed": tokens_processed,
             "seed": self.seed,
-            "scheduler_state": {"last_step": step},
+            "scheduler_state": {
+                "last_step": step,
+                "cumulative_cuda_seconds": cumulative_cuda_seconds,
+            },
             "rng_state": _rng_state(),
             "gradient_checkpointing": False,
         }
@@ -531,9 +570,9 @@ class TrainingRunner:
         *,
         model: LanguageModel,
         optimizer: torch.optim.Optimizer,
-    ) -> tuple[int, int, dict[str, Any]]:
+    ) -> tuple[int, int, dict[str, Any], float]:
         if self.resume_path is None:
-            return 0, 0, {}
+            return 0, 0, {}, 0.0
         record = verify_checkpoint(self.resume_path)
         if record.get("config_sha256") != self.config_hash:
             raise TrainingConfigurationError("resume checkpoint config hash does not match current config")
@@ -555,7 +594,28 @@ class TrainingRunner:
                 if torch.is_tensor(value):
                     state[key] = value.to(next(model.parameters()).device)
         _restore_rng_state(payload["rng_state"])
-        return step, tokens_processed, record
+        scheduler_state = payload.get("scheduler_state", {})
+        cumulative_cuda_seconds = float(scheduler_state.get("cumulative_cuda_seconds", 0.0))
+        if not math.isfinite(cumulative_cuda_seconds) or cumulative_cuda_seconds < 0:
+            raise TrainingConfigurationError("resume checkpoint CUDA schedule state is invalid")
+        return step, tokens_processed, record, cumulative_cuda_seconds
+
+    def _learning_rate(self, step: int, cumulative_cuda_seconds: float) -> float:
+        if self.config.lr_progress_reference == "optimizer_steps":
+            return cosine_warmup_learning_rate(
+                self.config.learning_rate,
+                step,
+                self.warmup_steps,
+                self.max_steps,
+            )
+        progress = (
+            cumulative_cuda_seconds + self.config.schedule_step_cuda_seconds
+        ) / self.config.schedule_target_cuda_seconds
+        return cosine_warmup_learning_rate_at_progress(
+            self.config.learning_rate,
+            progress,
+            self.config.warmup_ratio,
+        )
 
     def _evaluate(
         self,
@@ -611,18 +671,13 @@ class TrainingRunner:
             eps=self.config.optimizer_epsilon,
             weight_decay=self.config.weight_decay,
         )
-        initial_step, tokens_processed, resume_record = self._load_resume(
+        initial_step, tokens_processed, resume_record, total_cuda_elapsed = self._load_resume(
             model=model,
             optimizer=optimizer,
         )
         _set_optimizer_learning_rate(
             optimizer,
-            cosine_warmup_learning_rate(
-                self.config.learning_rate,
-                max(1, initial_step + 1),
-                self.warmup_steps,
-                self.max_steps,
-            )
+            self._learning_rate(max(1, initial_step + 1), total_cuda_elapsed)
             if initial_step < self.max_steps
             else 0.0,
         )
@@ -659,7 +714,6 @@ class TrainingRunner:
         last_train_loss: float | None = None
         last_validation_loss: float | None = None
         total_training_wall = 0.0
-        total_cuda_elapsed = 0.0
         total_step_tokens = tokens_processed
         try:
             with (
@@ -674,12 +728,7 @@ class TrainingRunner:
             ):
                 for step in range(initial_step + 1, self.max_steps + 1):
                     step_start = time.perf_counter()
-                    learning_rate = cosine_warmup_learning_rate(
-                        self.config.learning_rate,
-                        step,
-                        self.warmup_steps,
-                        self.max_steps,
-                    )
+                    learning_rate = self._learning_rate(step, total_cuda_elapsed)
                     _set_optimizer_learning_rate(optimizer, learning_rate)
                     device_batches: list[torch.Tensor] = []
                     if self.cuda_timing:
@@ -801,6 +850,7 @@ class TrainingRunner:
                             tokens_processed=tokens_processed,
                             checkpoint_path=self.run_dir / f"checkpoint_step_{step:06d}.pt",
                             kind="interval_or_final",
+                            cumulative_cuda_seconds=total_cuda_elapsed,
                         )
                     if stop_requested:
                         status = "interrupted"
@@ -811,6 +861,7 @@ class TrainingRunner:
                             tokens_processed=tokens_processed,
                             checkpoint_path=self.run_dir / "checkpoint_interrupt.pt",
                             kind="interrupt_recovery",
+                            cumulative_cuda_seconds=total_cuda_elapsed,
                         )
                         break
         except KeyboardInterrupt:
@@ -823,6 +874,7 @@ class TrainingRunner:
                     tokens_processed=total_step_tokens,
                     checkpoint_path=self.run_dir / "checkpoint_interrupt.pt",
                     kind="interrupt_recovery",
+                    cumulative_cuda_seconds=total_cuda_elapsed,
                 )
             except Exception as checkpoint_error:  # pragma: no cover - failure path
                 failure = {"type": type(checkpoint_error).__name__, "message": str(checkpoint_error)}
@@ -838,6 +890,7 @@ class TrainingRunner:
                     tokens_processed=total_step_tokens,
                     checkpoint_path=self.run_dir / "checkpoint_failure.pt",
                     kind="failure_recovery",
+                    cumulative_cuda_seconds=total_cuda_elapsed,
                 )
             except Exception as checkpoint_error:  # pragma: no cover - failure path
                 failure["checkpoint_error"] = str(checkpoint_error)
@@ -871,6 +924,14 @@ class TrainingRunner:
             "warmup_steps": self.warmup_steps,
             "learning_rate": self.config.learning_rate,
             "lr_schedule": self.config.lr_schedule,
+            "lr_progress_reference": self.config.lr_progress_reference,
+            "schedule_target_cuda_seconds": self.config.schedule_target_cuda_seconds,
+            "schedule_step_cuda_seconds": self.config.schedule_step_cuda_seconds,
+            "schedule_warmup_cuda_seconds": (
+                self.config.schedule_target_cuda_seconds * self.config.warmup_ratio
+                if self.config.lr_progress_reference == "cuda_seconds"
+                else None
+            ),
             "effective_batch_size": self.config.micro_batch_size * self.config.gradient_accumulation_steps,
             "micro_batch_size": self.config.micro_batch_size,
             "context_length": self.config.context_length,
@@ -989,6 +1050,7 @@ __all__ = [
     "TrainingConfigurationError",
     "build_model",
     "cosine_warmup_learning_rate",
+    "cosine_warmup_learning_rate_at_progress",
     "main",
 ]
 

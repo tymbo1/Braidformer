@@ -256,3 +256,20 @@ machine-readable results are `docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md` and
 `results/a0_a1_eight_equal_cuda_replications.json`. No A2, scaling,
 persistent-memory, or unrelated architecture work started, and nothing was
 pushed to GitHub.
+
+## 2026-10-11 — D025: freeze the schedule-disentanglement protocol
+
+The 8× forensic analysis found that A1's advantage widens progressively across
+the later CUDA-time regions in all three seeds, while also identifying a
+learning-rate trajectory confound. A token-normalized and optimizer-step-
+normalized schedule are not independent under the frozen 8,192-token-per-step
+geometry. The bounded follow-up therefore defines three conditions: the
+completed native 8× reference, a fresh 8× CUDA-fraction schedule control, and
+a fresh equal-token/equal-step 4,020-step shared schedule control.
+
+The new CUDA-referenced scheduler and four planned-only configs are recorded in
+`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md`. It preserves both
+architectures and all approved data/training controls. The protocol is frozen
+for review, but no new training has started; execution requires explicit
+authorization after the exact conditions are presented. No 16×, A2, scaling,
+persistent-memory, or unrelated architecture work is included.

@@ -39,6 +39,18 @@ def test_a1_proposal_selects_the_verified_parallel_scan() -> None:
     assert config.recurrent_path == "parallel_scan"
 
 
+def test_cuda_referenced_schedule_requires_calibration() -> None:
+    config = ExperimentConfig(
+        lr_progress_reference="cuda_seconds",
+        schedule_target_cuda_seconds=100.0,
+        schedule_step_cuda_seconds=0.2,
+    )
+    config.validate()
+
+    with pytest.raises(ConfigError, match="schedule_target_cuda_seconds"):
+        ExperimentConfig(lr_progress_reference="cuda_seconds").validate()
+
+
 def test_invalid_attention_shape_is_rejected() -> None:
     config = ExperimentConfig(hidden_size=513, num_attention_heads=8)
 
