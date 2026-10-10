@@ -1,0 +1,114 @@
+{
+  "experiment_id": "a1_seed17_pilot",
+  "status": "completed",
+  "training_started": true,
+  "git_commit": "4ff8379",
+  "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+  "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+  "architecture": {
+    "stage": "A1",
+    "model_type": "gated_diagonal_state_space_recurrent",
+    "recurrent_path": "parallel_scan",
+    "parameters": 41870336,
+    "layers": 8,
+    "hidden_size": 512,
+    "state_size": 512,
+    "retained_attention_layers": 0,
+    "intermediate_size": 2048,
+    "vocabulary_size": 32000,
+    "context_length": 512
+  },
+  "data": {
+    "dataset": "roneneldan/TinyStories",
+    "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "data_manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+    "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+    "train_stream_sha256": "f4e63ba08e9fc8e94b351fdeb23ffd879abf10de68837fc23c0e720aaa9abcf2",
+    "validation_stream_sha256": "35c5821fcf5926fddc86ecaeb7a6bc6aaf7bf9fbd0e276cc328e24ec2b9d4d8c"
+  },
+  "configuration": {
+    "seed": 17,
+    "micro_batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "effective_batch_size": 16,
+    "training_token_budget": 8192000,
+    "optimizer_steps": 1000,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.1,
+    "lr_schedule": "cosine",
+    "warmup_steps": 10,
+    "validation_interval_steps": 100,
+    "validation_token_budget": 131072,
+    "precision": "fp16_autocast_with_fp32_parameters",
+    "gradient_checkpointing": {
+      "configured": true,
+      "implemented": false,
+      "enabled": false
+    }
+  },
+  "measurements": {
+    "tokens_processed": 8192000,
+    "elapsed_wall_seconds": 436.4114669270002,
+    "training_wall_seconds": 404.41101384494686,
+    "average_tokens_per_second": 20256.61942812678,
+    "peak_allocated_vram_bytes": 1657214976,
+    "peak_reserved_vram_bytes": 1931476992,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "torch_version": "2.12.0+cu130",
+    "torch_cuda_build": "13.0",
+    "first_train_loss": 10.540332317352295,
+    "final_train_loss": 3.1820479333400726,
+    "first_validation_loss": 4.330752849578857,
+    "final_validation_loss": 3.2635231502354145,
+    "minimum_train_loss": 2.859485447406769,
+    "maximum_gradient_norm": 5.794464111328125
+  },
+  "validation_curve": [
+    {"step": 100, "train_loss": 4.151416629552841, "validation_loss": 4.330752849578857},
+    {"step": 200, "train_loss": 3.6468666791915894, "validation_loss": 3.849188817664981},
+    {"step": 300, "train_loss": 3.4399859607219696, "validation_loss": 3.741604385897517},
+    {"step": 400, "train_loss": 3.762637436389923, "validation_loss": 3.5979977268725634},
+    {"step": 500, "train_loss": 3.2721856236457825, "validation_loss": 3.5095924269407988},
+    {"step": 600, "train_loss": 3.6684861183166504, "validation_loss": 3.4081671722233295},
+    {"step": 700, "train_loss": 3.0970943570137024, "validation_loss": 3.350907338783145},
+    {"step": 800, "train_loss": 2.9338859915733337, "validation_loss": 3.2849407829344273},
+    {"step": 900, "train_loss": 2.933326482772827, "validation_loss": 3.2718349434435368},
+    {"step": 1000, "train_loss": 3.1820479333400726, "validation_loss": 3.2635231502354145}
+  ],
+  "equal_token_comparison_to_a0_seed17": {
+    "a0_final_validation_loss": 3.7512181103229523,
+    "a1_final_validation_loss": 3.2635231502354145,
+    "a1_minus_a0_validation_loss": -0.48769496008753777,
+    "relative_validation_loss_change": -0.13000975836234455,
+    "shared_tokens_processed": 8192000,
+    "interpretation": "A1 reached lower validation loss in this single matched-token pilot; this is not a general superiority claim."
+  },
+  "equal_compute_comparison_to_a0_seed17": {
+    "status": "not_directly_measured",
+    "a0_training_wall_seconds": 208.55354419600008,
+    "a1_training_wall_seconds": 404.41101384494686,
+    "a1_over_a0_training_wall_ratio": 1.9391231897017227,
+    "a0_average_tokens_per_second": 39320.88487980695,
+    "a1_average_tokens_per_second": 20256.61942812678,
+    "interpretation": "The pilots matched token budget, not wall time or measured FLOPs; no equal-compute quality claim is made."
+  },
+  "integrity": {
+    "nonfinite_loss": false,
+    "nonfinite_gradients": false,
+    "cuda_error": false,
+    "out_of_memory": false,
+    "step_log_records": 1000,
+    "checkpoint_sidecar_verified": true,
+    "checkpoint_path": "results/runs/a1_seed17_pilot/checkpoint_step_001000.pt",
+    "checkpoint_sha256": "0cac9f52b532f9edb44bffb11051843b4423877b28615cb3378bd73965a69a1d",
+    "checkpoint_bytes": 568119899,
+    "checkpoint_contains_optimizer_and_rng_state": true
+  },
+  "runtime_notes": [
+    "The A1 pilot used the committed parallel_scan path and the approved TinyStories/tokenizer artifacts.",
+    "Gradient checkpointing was configured but is not implemented and was not enabled.",
+    "The raw steps log, run metadata, summary, checkpoint, and sidecar remain locally under results/runs/a1_seed17_pilot/ and are excluded from Git.",
+    "This is a single-seed TinyStories pilot; A2, scaling, and persistent-memory work were not started."
+  ]
+}

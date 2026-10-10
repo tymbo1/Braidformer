@@ -98,3 +98,21 @@ ten-update run, with separate peak allocated VRAM of `1,392,904,192` and
 `parallel_scan`; the sequential loop remains available for diagnostics. This
 was a bounded stability check, not A1 training, and final pilot authorization
 remains outstanding.
+
+## 2026-10-10 — D015: complete the authorized A1 seed-17 pilot
+
+The explicitly authorized A1 pilot used the committed `parallel_scan` path,
+the approved TinyStories revision and tokenizer, seed 17, context 512,
+micro-batch 2, accumulation 8, AdamW, cosine learning rate with 10 warmup
+steps, and 1,000 optimizer steps. It processed exactly 8,192,000 token
+positions in `404.41` seconds of training time (`20,256.62 tokens/sec`) and
+`436.41` seconds elapsed. Final training loss was `3.1820`; final validation
+loss was `3.2635`. Peak allocated/reserved VRAM was `1,657,214,976 /
+1,931,476,992` bytes. No non-finite values, CUDA failures, or OOM events
+occurred. The final checkpoint and optimizer/RNG state were SHA-256 verified.
+
+At equal tokens, A1's validation loss was `0.4877` below A0's seed-17 result,
+but A1 took `1.94x` the training wall time and had `51.5%` of A0's measured
+throughput. The result therefore supports only a single-seed equal-token
+observation; no equal-compute efficiency claim is made. A0 artifacts remain
+unchanged, and A2, scaling, and persistent-memory work remain deferred.

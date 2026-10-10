@@ -28,7 +28,8 @@ A1 recurrent/state-space-majority proposal is implemented in
 `src/braidformer/models/recurrent.py` and has passed CPU construction, causal
 loss, backward, and parameter-accounting tests. Its associative scan has also
 passed a bounded host-GPU smoke and ten-update numerical-stability check. A1
-has not been trained. Later mechanisms remain unimplemented.
+has completed its authorized seed-17 pilot; the measured result does not
+establish equal-compute superiority. Later mechanisms remain unimplemented.
 
 ## Initial model scale
 
@@ -41,7 +42,7 @@ The initial planning configuration uses a 512-dimensional representation, 8 laye
 The architecture ladder introduces one major capability at a time:
 
 - A0 establishes the conventional Transformer control.
-- A1 changes the majority sequence-processing path to recurrent/state-space processing; its implementation is complete but training remains gated.
+- A1 changes the majority sequence-processing path to recurrent/state-space processing; its seed-17 pilot is complete and later stages remain gated.
 - A2 adds periodic/selective attention for retrieval and correction.
 - A3 adds a small sparse latent MoE.
 - A4 adds conditional depth.

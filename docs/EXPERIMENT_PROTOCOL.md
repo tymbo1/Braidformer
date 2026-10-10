@@ -8,8 +8,8 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 
 | Stage | Planned change | Current status |
 | --- | --- | --- |
-| A0 | Conventional Transformer control | Implemented; synthetic smoke-tested only |
-| A1 | Recurrent/state-space majority backbone | Implemented; CPU-verified; not trained |
+| A0 | Conventional Transformer control | Implemented; seed-17 pilot complete |
+| A1 | Recurrent/state-space majority backbone | Implemented; seed-17 pilot complete; equal-token result recorded |
 | A2 | A1 plus periodic/selective attention | Planned |
 | A3 | A2 plus a small sparse latent MoE | Planned |
 | A4 | A3 plus conditional depth | Planned |
@@ -18,9 +18,9 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 | A7 | Later multi-token prediction | Later |
 | A8 | Later conditional/static memory | Later |
 
-The Phase 0 bootstrap did not begin training. The A0 control was subsequently
-trained only in its separately authorized seed-17 pilot; the A1 pilot remains
-unstarted.
+The Phase 0 bootstrap did not begin training. The A0 and A1 controls were
+subsequently trained only in their separately authorized seed-17 pilots. The
+results do not establish broad capability or equal-compute superiority.
 
 The A0 smoke boundary is deliberately small: validate configuration, construct
 the model, check causal logits and parameter count, and run one synthetic
@@ -28,11 +28,11 @@ forward/backward pass on CPU. A real experiment still requires a versioned
 dataset/tokenizer choice, matched optimizer settings, a working device memory
 smoke test, and an experiment record.
 
-The A1 architecture boundary is similarly limited: construct the recurrent
-model, verify causal logits and shifted loss, run a synthetic CPU backward pass,
-and verify its parameter count against the proposal. The generalized runner's
-A1 dry-run and the one-update host CUDA smoke test have now passed. This still
-does not authorize the 1,000-step pilot.
+The A1 architecture boundary was similarly limited before its pilot:
+construct the recurrent model, verify causal logits and shifted loss, run a
+synthetic CPU backward pass, verify its parameter count, validate the scan, and
+complete the host CUDA smoke test. The seed-17 pilot has now completed; its
+equal-token and measured-cost comparison is recorded separately.
 
 ## Required matching
 

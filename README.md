@@ -18,8 +18,10 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
   checkpoint; see [`docs/A0_TRAINING_RESULT.md`](docs/A0_TRAINING_RESULT.md).
 - The host GPU is an NVIDIA GeForce RTX 3060 Ti with working CUDA access. A1
   architecture implementation, CPU verification, one-update CUDA smoke test,
-  and bounded ten-update scan stability check are complete; the verified
-  parallel scan is selected explicitly for A1; A1 training has not started.
+  bounded ten-update scan stability check, and the authorized seed-17 pilot
+  are complete; see [`docs/A1_TRAINING_RESULT.md`](docs/A1_TRAINING_RESULT.md).
+  The measured result is an equal-token pilot comparison, not an equal-compute
+  claim.
 
 ## Repository guide
 
@@ -28,6 +30,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_BASELINE.md`](docs/A0_BASELINE.md): verified A0 accounting, test coverage, and proposed experiment protocol.
 - [`docs/A0_READINESS.md`](docs/A0_READINESS.md): pre-training gate matrix and current hardware blocker.
 - [`docs/A1_PROPOSAL.md`](docs/A1_PROPOSAL.md): bounded recurrent/state-space-majority A1 proposal and training blockers.
+- [`docs/A1_TRAINING_RESULT.md`](docs/A1_TRAINING_RESULT.md): measured A1 seed-17 pilot and explicit equal-token/equal-compute comparison.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.

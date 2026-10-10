@@ -1,8 +1,9 @@
 # A1 recurrent/state-space-majority proposal
 
 Status: the A1 architecture is implemented and CPU-verified. Its approved
-host-GPU smoke test and bounded ten-update recurrence stability check passed,
-but it has not been trained or compared empirically with A0.
+host-GPU smoke test, bounded ten-update recurrence stability check, and
+authorized seed-17 1,000-step pilot are complete. The measured result is
+recorded in [`docs/A1_TRAINING_RESULT.md`](A1_TRAINING_RESULT.md).
 
 ## Research question
 
@@ -234,14 +235,14 @@ result. Seeds 23 and 29 remain necessary before a stronger claim.
 | Finding | Classification | State |
 | --- | --- | --- |
 | A1 model construction, causal loss, backward pass, and parameter accounting | RECOMMENDED | Verified by CPU tests |
-| A1 runner selection and shared checkpoint/recovery/logging behavior | RECOMMENDED | Generalized and A1 dry-run passed; no pilot run |
+| A1 runner selection and shared checkpoint/recovery/logging behavior | RECOMMENDED | Generalized, dry-run passed, and pilot completed with verified checkpoint |
 | Host CUDA smoke test for A1 at micro-batch 2 / context 512 | RECOMMENDED | Passed: finite loss/gradients, one AdamW update, no OOM |
-| A1 fixed-prompt evaluation wiring | RECOMMENDED | Generalized; no A1 checkpoint exists to evaluate |
+| A1 fixed-prompt evaluation wiring | RECOMMENDED | Generalized; fixed-prompt evaluation remains separate from this training pilot |
 | Associative scan validity, path benchmark, and ten-update stability | RECOMMENDED | Verified; no non-finite values, 0.141% final parameter relative-L2 difference, and explicit parallel-path selection |
-| Final A1 pilot authorization | BLOCKER | Intentionally awaiting review |
+| Final A1 pilot authorization | COMPLETE | Explicitly authorized; seed-17 1,000-step pilot completed |
 | Gradient checkpointing | DEFERRED | Not implemented or enabled; unchanged from A0 |
 | Attention, MoE, conditional depth, controller, persistent memory | DEFERRED | Explicitly outside A1 |
 
-No A1 training is authorized by this proposal. The implementation and hardware
-readiness evidence are complete for review; the 1,000-step pilot remains
-stopped.
+The seed-17 A1 pilot is complete. No A2, scaling, persistent-memory, or other
+architectural extension is authorized by this result; those remain separate
+future experiments.
