@@ -31,9 +31,11 @@ def test_seed_report_and_monitor_record_verified_progress(tmp_path) -> None:
         gradient_norm=0.8,
         learning_rate=3e-4,
         tokens_per_second=1000.0,
+        cuda_elapsed_seconds=0.2,
     )
 
     assert record["tokens_processed"] == 8192
+    assert record["cuda_elapsed_seconds"] == pytest.approx(0.2)
     lines = (tmp_path / "run" / "steps.jsonl").read_text(encoding="utf-8").splitlines()
     assert json.loads(lines[0])["event"] == "step"
 

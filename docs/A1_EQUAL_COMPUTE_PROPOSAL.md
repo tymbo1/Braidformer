@@ -1,7 +1,8 @@
 # Bounded A0/A1 equal-compute comparison proposal
 
-Status: **protocol prepared; approval required before additional training**.
-No additional training is authorized by this document.
+Status: **executed under explicit authorization; protocol rules unchanged**.
+Measured results are recorded in
+[`docs/A0_A1_EQUAL_CUDA_RESULT.md`](A0_A1_EQUAL_CUDA_RESULT.md).
 
 The completed A0 and A1 pilots matched 8,192,000 training token positions, but
 they did not match wall-clock time, GPU execution time, or measured FLOPs:
@@ -62,8 +63,10 @@ training result.
   were `208.55 s` for A0 and `404.41 s` for A1, excluding validation/checkpoint
   overhead as recorded by the pilot summaries.
 - **Estimated FLOPs** are an analytical lower-bound counter, not measured GPU
-  work. Under the record's convention, the lower bound is `2.248415379456e15`
-  training FLOPs per A0 optimizer step and `2.042256949248e15` per A1 step.
+  work. Under the record's convention, the lower bound is `2.248415379456e12`
+  training FLOPs per A0 optimizer step and `2.042256949248e12` per A1 step
+  (approximately `2.2484e15` and `1.0252e15` respectively across the proposed
+  1,000-step and 502-step runs).
   It excludes embedding, normalization, nonlinearities, softmax/masking,
   optimizer work, memory traffic, kernel overhead, and A1 recurrence/scan
   elementwise operations. It is not used to set the budget or acceptance

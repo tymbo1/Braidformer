@@ -188,6 +188,7 @@ class IntegrityMonitor:
         gradient_norm: float | None = None,
         learning_rate: float | None = None,
         tokens_per_second: float | None = None,
+        cuda_elapsed_seconds: float | None = None,
         peak_allocated_vram_bytes: int | None = None,
         peak_reserved_vram_bytes: int | None = None,
     ) -> dict[str, Any]:
@@ -214,9 +215,12 @@ class IntegrityMonitor:
             ("gradient_norm", gradient_norm),
             ("learning_rate", learning_rate),
             ("tokens_per_second", tokens_per_second),
+            ("cuda_elapsed_seconds", cuda_elapsed_seconds),
         ):
             if value is not None and (not isinstance(value, (int, float)) or not math.isfinite(value)):
                 self._failure(f"non_finite_{name}", {"value": value})
+        if cuda_elapsed_seconds is not None and cuda_elapsed_seconds < 0:
+            self._failure("negative_cuda_elapsed_seconds", {"value": cuda_elapsed_seconds})
         if validation_loss is not None and validation_loss > self.loss_ceiling:
             self._failure(
                 "validation_loss_ceiling_exceeded",
@@ -238,6 +242,9 @@ class IntegrityMonitor:
             "gradient_norm": None if gradient_norm is None else float(gradient_norm),
             "learning_rate": None if learning_rate is None else float(learning_rate),
             "tokens_per_second": None if tokens_per_second is None else float(tokens_per_second),
+            "cuda_elapsed_seconds": (
+                None if cuda_elapsed_seconds is None else float(cuda_elapsed_seconds)
+            ),
             "peak_allocated_vram_bytes": peak_allocated_vram_bytes,
             "peak_reserved_vram_bytes": peak_reserved_vram_bytes,
             "wall_clock_seconds": time.monotonic() - self._started_at,

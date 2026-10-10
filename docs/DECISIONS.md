@@ -148,3 +148,19 @@ checkpoints plus each final step, and record actual CUDA time, host time,
 estimated FLOPs, and checkpoint integrity separately. Estimated FLOPs are not
 the budget, and energy was not measured. Existing A0/A1 pilots, checkpoints,
 configurations, and results remain unchanged; no additional training began.
+
+## 2026-10-10 — D018: complete the authorized equal-CUDA-time comparison
+
+The committed protocol `de41ef2` was executed with fresh seed-17 A0 and A1
+initialization in isolated run directories. A0 completed 1,000 steps and
+8,192,000 token positions; A1 completed 502 steps and 4,112,384 positions.
+Accumulated CUDA-event time was `209.3490` seconds for A0 and `205.3696`
+seconds for A1, both within the predeclared ±5% of the `202.1069`-second
+target. Final validation loss was `3.7396816` for A0 and `3.5777884` for A1,
+giving `Delta = -0.1618933`. A1 therefore meets the predeclared exploratory
+advantage rule for this single-seed TinyStories equal-CUDA-time comparison.
+
+Both runs completed with finite values, no CUDA/OOM failures, and verified final
+checkpoints. The original A0/A1 pilots and checkpoints remain unchanged. This
+does not establish statistical significance or general architectural
+superiority; replication and broader evaluation remain separate future work.

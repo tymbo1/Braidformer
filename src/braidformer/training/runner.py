@@ -338,6 +338,9 @@ class TrainingRunner:
         execute_approved: bool = False,
         resume: str | Path | None = None,
         device: str = "cuda",
+        max_steps: int | None = None,
+        warmup_steps: int | None = None,
+        cuda_timing: bool = False,
     ) -> None:
         self.repo_root = Path(repo_root).resolve()
         self.config_path = Path(config_path)
@@ -365,7 +368,21 @@ class TrainingRunner:
             * self.config.gradient_accumulation_steps
             * self.config.context_length
         )
-        self.warmup_steps = max(1, math.ceil(self.config.warmup_ratio * self.config.max_steps))
+        self.max_steps = self.config.max_steps if max_steps is None else max_steps
+        if self.max_steps <= 0 or self.max_steps > self.config.max_steps:
+            raise TrainingConfigurationError(
+                "runtime max_steps must be positive and no greater than the approved config max_steps"
+            )
+        self.warmup_steps = (
+            max(1, math.ceil(self.config.warmup_ratio * self.max_steps))
+            if warmup_steps is None
+            else warmup_steps
+        )
+        if self.warmup_steps <= 0 or self.warmup_steps > self.max_steps:
+            raise TrainingConfigurationError(
+                "runtime warmup_steps must be positive and no greater than runtime max_steps"
+            )
+        self.cuda_timing = cuda_timing
 
         _model_class(self.config)
         if self.config.planned_only and not self.execute_approved:
@@ -400,7 +417,13 @@ class TrainingRunner:
             "seed": self.config.seed,
             "tokens_per_step": self.tokens_per_step,
             "warmup_steps": self.warmup_steps,
-            "max_steps": self.config.max_steps,
+            "max_steps": self.max_steps,
+            "configured_max_steps": self.config.max_steps,
+            "runtime_overrides": {
+                "max_steps": self.max_steps,
+                "warmup_steps": self.warmup_steps,
+                "cuda_timing": self.cuda_timing,
+            },
         }
 
     def _metadata(self, model: LanguageModel, device: torch.device, initial_step: int) -> dict[str, Any]:
@@ -410,6 +433,11 @@ class TrainingRunner:
             "config_path": str(self.config_path.relative_to(self.repo_root)),
             "config_sha256": self.config_hash,
             "config": self.config.to_dict(),
+            "runtime_overrides": {
+                "max_steps": self.max_steps,
+                "warmup_steps": self.warmup_steps,
+                "cuda_timing": self.cuda_timing,
+            },
             "integrity_policy": self.policy,
             "seed": self.config.seed,
             "seed_report": {
@@ -446,6 +474,13 @@ class TrainingRunner:
                 "resume_supported": True,
                 "interrupt_recovery_supported": True,
             },
+            "cuda_timing_scope": (
+                "default CUDA stream from optimizer.zero_grad through optimizer.step; "
+                "training batches are device-resident before event start; host input preparation, "
+                "validation, checkpoint I/O, and unrelated synchronization are excluded"
+                if self.cuda_timing
+                else None
+            ),
         }
         metadata.update(self.artifacts.metadata(self.repo_root))
         if self.resume_path is not None:
@@ -505,8 +540,8 @@ class TrainingRunner:
         tokens_processed = int(payload["tokens_processed"])
         if step < 0 or tokens_processed != step * self.tokens_per_step:
             raise TrainingConfigurationError("resume checkpoint progress is inconsistent")
-        if step > self.config.max_steps:
-            raise TrainingConfigurationError("resume checkpoint is beyond configured max_steps")
+        if step > self.max_steps:
+            raise TrainingConfigurationError("resume checkpoint is beyond runtime max_steps")
         model.load_state_dict(payload["model_state_dict"])
         optimizer.load_state_dict(payload["optimizer_state_dict"])
         for state in optimizer.state.values():
@@ -580,9 +615,9 @@ class TrainingRunner:
                 self.config.learning_rate,
                 max(1, initial_step + 1),
                 self.warmup_steps,
-                self.config.max_steps,
+                self.max_steps,
             )
-            if initial_step < self.config.max_steps
+            if initial_step < self.max_steps
             else 0.0,
         )
         torch.cuda.reset_peak_memory_stats(device)
@@ -618,6 +653,7 @@ class TrainingRunner:
         last_train_loss: float | None = None
         last_validation_loss: float | None = None
         total_training_wall = 0.0
+        total_cuda_elapsed = 0.0
         total_step_tokens = tokens_processed
         try:
             with (
@@ -630,27 +666,55 @@ class TrainingRunner:
                     expected_tokens=self.artifacts.validation_tokens,
                 ) as validation_stream,
             ):
-                for step in range(initial_step + 1, self.config.max_steps + 1):
+                for step in range(initial_step + 1, self.max_steps + 1):
                     step_start = time.perf_counter()
                     learning_rate = cosine_warmup_learning_rate(
                         self.config.learning_rate,
                         step,
                         self.warmup_steps,
-                        self.config.max_steps,
+                        self.max_steps,
                     )
                     _set_optimizer_learning_rate(optimizer, learning_rate)
+                    device_batches: list[torch.Tensor] = []
+                    if self.cuda_timing:
+                        for accumulation_index in range(self.config.gradient_accumulation_steps):
+                            batch_start = tokens_processed + accumulation_index * (
+                                self.config.micro_batch_size * self.config.context_length
+                            )
+                            device_batches.append(
+                                train_stream.read_tokens(
+                                    batch_start,
+                                    self.config.micro_batch_size * self.config.context_length,
+                                )
+                                .view(self.config.micro_batch_size, self.config.context_length)
+                                .to(device)
+                            )
+                        # Match the calibration scope: host input preparation and copies finish
+                        # before the CUDA event starts.
+                        torch.cuda.synchronize(device)
+                    cuda_start_event = (
+                        torch.cuda.Event(enable_timing=True) if self.cuda_timing else None
+                    )
+                    cuda_end_event = (
+                        torch.cuda.Event(enable_timing=True) if self.cuda_timing else None
+                    )
+                    if cuda_start_event is not None:
+                        cuda_start_event.record()
                     optimizer.zero_grad(set_to_none=True)
                     losses: list[torch.Tensor] = []
                     amp_enabled = self.config.precision != "fp32"
                     amp_dtype = torch.float16 if self.config.precision == "fp16" else torch.bfloat16
                     for accumulation_index in range(self.config.gradient_accumulation_steps):
-                        batch_start = tokens_processed + accumulation_index * (
-                            self.config.micro_batch_size * self.config.context_length
-                        )
-                        batch = train_stream.read_tokens(
-                            batch_start,
-                            self.config.micro_batch_size * self.config.context_length,
-                        ).view(self.config.micro_batch_size, self.config.context_length).to(device)
+                        if self.cuda_timing:
+                            batch = device_batches[accumulation_index]
+                        else:
+                            batch_start = tokens_processed + accumulation_index * (
+                                self.config.micro_batch_size * self.config.context_length
+                            )
+                            batch = train_stream.read_tokens(
+                                batch_start,
+                                self.config.micro_batch_size * self.config.context_length,
+                            ).view(self.config.micro_batch_size, self.config.context_length).to(device)
                         with torch.autocast(device_type="cuda", dtype=amp_dtype, enabled=amp_enabled):
                             output = model(batch, labels=batch)
                             loss = output.loss
@@ -681,13 +745,20 @@ class TrainingRunner:
                         monitor.fail("non_finite_gradient_norm", {"step": step, "value": gradient_norm})
 
                     optimizer.step()
-                    torch.cuda.synchronize(device)
+                    cuda_elapsed_seconds: float | None = None
+                    if cuda_end_event is not None:
+                        cuda_end_event.record()
+                        cuda_end_event.synchronize()
+                        cuda_elapsed_seconds = cuda_start_event.elapsed_time(cuda_end_event) / 1_000.0
+                        total_cuda_elapsed += cuda_elapsed_seconds
+                    else:
+                        torch.cuda.synchronize(device)
                     step_elapsed = time.perf_counter() - step_start
                     total_training_wall += step_elapsed
                     train_loss = sum(float(loss.item()) for loss in losses) / len(losses)
                     next_tokens = tokens_processed + self.tokens_per_step
                     validation_loss = None
-                    if step % self.config.eval_interval_steps == 0 or step == self.config.max_steps:
+                    if step % self.config.eval_interval_steps == 0 or step == self.max_steps:
                         validation_loss = self._evaluate(
                             model=model,
                             stream=validation_stream,
@@ -705,6 +776,7 @@ class TrainingRunner:
                         gradient_norm=gradient_norm,
                         learning_rate=learning_rate,
                         tokens_per_second=self.tokens_per_step / step_elapsed,
+                        cuda_elapsed_seconds=cuda_elapsed_seconds,
                         peak_allocated_vram_bytes=torch.cuda.max_memory_allocated(device),
                         peak_reserved_vram_bytes=torch.cuda.max_memory_reserved(device),
                     )
@@ -715,7 +787,7 @@ class TrainingRunner:
                     if validation_loss is not None:
                         last_validation_loss = validation_loss
 
-                    if step % self.config.checkpoint_interval_steps == 0 or step == self.config.max_steps:
+                    if step % self.config.checkpoint_interval_steps == 0 or step == self.max_steps:
                         self._checkpoint(
                             model=model,
                             optimizer=optimizer,
@@ -787,7 +859,12 @@ class TrainingRunner:
             "optimizer_steps": last_completed_step - initial_step,
             "final_step": last_completed_step,
             "tokens_processed": total_step_tokens,
-            "training_token_budget": self.config.training_token_budget,
+            "training_token_budget": self.max_steps * self.tokens_per_step,
+            "configured_training_token_budget": self.config.training_token_budget,
+            "planned_max_steps": self.max_steps,
+            "warmup_steps": self.warmup_steps,
+            "learning_rate": self.config.learning_rate,
+            "lr_schedule": self.config.lr_schedule,
             "effective_batch_size": self.config.micro_batch_size * self.config.gradient_accumulation_steps,
             "micro_batch_size": self.config.micro_batch_size,
             "context_length": self.config.context_length,
@@ -795,6 +872,18 @@ class TrainingRunner:
             "validation_loss": last_validation_loss,
             "elapsed_wall_seconds": elapsed_wall,
             "training_wall_seconds": total_training_wall,
+            "cuda_timing": {
+                "enabled": self.cuda_timing,
+                "scope": (
+                    "default CUDA stream from optimizer.zero_grad through optimizer.step; "
+                    "device-resident batches; excludes host input preparation, validation, "
+                    "checkpoint I/O, and unrelated synchronization"
+                    if self.cuda_timing
+                    else None
+                ),
+                "total_cuda_elapsed_seconds": total_cuda_elapsed if self.cuda_timing else None,
+                "budget_measurement_complete": self.cuda_timing and status == "completed",
+            },
             "average_tokens_per_second": (
                 total_step_tokens - initial_step * self.tokens_per_step
             )
@@ -837,6 +926,23 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--run-dir", type=Path, default=None)
     parser.add_argument("--resume", type=Path, default=None)
+    parser.add_argument(
+        "--max-steps",
+        type=int,
+        default=None,
+        help="runtime step budget; does not modify the approved JSON configuration",
+    )
+    parser.add_argument(
+        "--warmup-steps",
+        type=int,
+        default=None,
+        help="runtime warm-up length; does not modify the approved JSON configuration",
+    )
+    parser.add_argument(
+        "--cuda-timing",
+        action="store_true",
+        help="record accumulated CUDA-event time with device-resident training batches",
+    )
     parser.add_argument("--execute-approved", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
@@ -848,6 +954,9 @@ def main(argv: list[str] | None = None) -> int:
         run_dir=run_dir,
         execute_approved=args.execute_approved,
         resume=args.resume,
+        max_steps=args.max_steps,
+        warmup_steps=args.warmup_steps,
+        cuda_timing=args.cuda_timing,
     )
     if args.dry_run:
         print(json.dumps(runner.dry_run_report(), indent=2, sort_keys=True))

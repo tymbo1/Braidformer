@@ -1,0 +1,119 @@
+{
+  "status": "completed",
+  "protocol_commit": "de41ef2",
+  "seed": 17,
+  "comparison": {
+    "cuda_budget_target_seconds": 202.10689544677734,
+    "cuda_budget_tolerance_percent": 5.0,
+    "a0_total_cuda_seconds": 209.34900686645503,
+    "a1_total_cuda_seconds": 205.36962911987328,
+    "a0_budget_delta_percent": 3.5833074391985873,
+    "a1_budget_delta_percent": 1.614360393732901,
+    "actual_total_difference_seconds_a1_minus_a0": -3.979377746581747,
+    "actual_total_difference_percent_of_target": -1.9689470454656868,
+    "matched_cuda_time": true,
+    "decision_rule": "A1 validation loss minus A0 validation loss <= -0.05",
+    "validation_loss_delta_a1_minus_a0": -0.16189326532185078,
+    "classification": "A1 advantage under the predeclared exploratory rule",
+    "claim_scope": "single seed-17 TinyStories equal-CUDA-time result; not a general superiority claim"
+  },
+  "configuration": {
+    "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+    "data_manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+    "context_length": 512,
+    "micro_batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "effective_batch_size": 16,
+    "precision": "fp16 autocast",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "lr_schedule": "cosine",
+    "a0_steps": 1000,
+    "a0_warmup_steps": 10,
+    "a1_steps": 502,
+    "a1_warmup_steps": 6,
+    "validation_checkpoints_a0": [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "validation_checkpoints_a1": [100, 200, 300, 400, 500, 502],
+    "a1_recurrent_path": "parallel_scan",
+    "gradient_checkpointing": "not implemented and not enabled"
+  },
+  "estimated_flops": {
+    "convention": "analytical lower bound; 2 FLOPs per counted multiply-add and backward approximated as 2x forward",
+    "a0_lower_bound_flops_per_optimizer_step": 2248415379456,
+    "a1_lower_bound_flops_per_optimizer_step": 2042256949248,
+    "a0_lower_bound_flops_total": 2248415379456000,
+    "a1_lower_bound_flops_total": 1025212988522496,
+    "used_for_budget": false,
+    "omitted": "embedding, normalization, nonlinearities, softmax/masking, optimizer work, memory traffic, kernel overhead, and A1 recurrence/scan elementwise operations"
+  },
+  "energy": {
+    "status": "not_measured",
+    "used_for_decision": false,
+    "reason": "No synchronized power telemetry was collected."
+  },
+  "arms": {
+    "A0": {
+      "config_sha256": "6dd6b619be65c50437121235a0a9ae0a0493e5d210cc2f512a45d5079818d7e4",
+      "parameters": 41866240,
+      "optimizer_steps": 1000,
+      "tokens_processed": 8192000,
+      "final_train_loss": 3.6099217534065247,
+      "final_validation_loss": 3.739681616425514,
+      "training_wall_seconds": 210.40625031798118,
+      "elapsed_wall_seconds": 233.69884341599936,
+      "wall_tokens_per_second": 38934.20460475702,
+      "cuda_seconds": 209.34900686645503,
+      "cuda_tokens_per_second": 39130.828097148,
+      "peak_allocated_vram_bytes": 1329467904,
+      "peak_reserved_vram_bytes": 1593835520,
+      "numerical_instability": false,
+      "checkpoint": "results/runs/a0_seed17_equal_cuda/checkpoint_step_001000.pt",
+      "checkpoint_sha256": "59b3dd03095bd37487423c93b2d958323b9679bd321fc4661f47dc9c5a5b3152",
+      "validation_curve": [
+        {"step": 100, "train_loss": 4.889550447463989, "validation_loss": 4.981105405837297, "learning_rate": 0.0002939239460421746},
+        {"step": 200, "train_loss": 4.209243655204773, "validation_loss": 4.375018581748009, "learning_rate": 0.0002735514872144749},
+        {"step": 300, "train_loss": 4.042194306850433, "validation_loss": 4.2953774612396955, "learning_rate": 0.00024084145307064997},
+        {"step": 400, "train_loss": 4.241106331348419, "validation_loss": 4.097024468705058, "learning_rate": 0.00019906019449761325},
+        {"step": 500, "train_loss": 3.7425306737422943, "validation_loss": 4.015619749203324, "learning_rate": 0.00015237989457522118},
+        {"step": 600, "train_loss": 4.154185771942139, "validation_loss": 3.904844207689166, "learning_rate": 0.00010546194370075881},
+        {"step": 700, "train_loss": 3.6523367762565613, "validation_loss": 3.8498940989375114, "learning_rate": 6.299146356432029e-05},
+        {"step": 800, "train_loss": 3.4144568145275116, "validation_loss": 3.7642651107162237, "learning_rate": 0.00002920946137034124},
+        {"step": 900, "train_loss": 3.4024478793144226, "validation_loss": 3.7459790892899036, "learning_rate": 0.000007489332338858201},
+        {"step": 1000, "train_loss": 3.6099217534065247, "validation_loss": 3.739681616425514, "learning_rate": 0.0}
+      ]
+    },
+    "A1": {
+      "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+      "parameters": 41870336,
+      "optimizer_steps": 502,
+      "tokens_processed": 4112384,
+      "final_train_loss": 3.7728949189186096,
+      "final_validation_loss": 3.5777883511036634,
+      "training_wall_seconds": 205.90294520899988,
+      "elapsed_wall_seconds": 225.16022876900024,
+      "wall_tokens_per_second": 19972.438936343347,
+      "cuda_seconds": 205.36962911987328,
+      "cuda_tokens_per_second": 20024.304555761,
+      "peak_allocated_vram_bytes": 1657272320,
+      "peak_reserved_vram_bytes": 1931476992,
+      "numerical_instability": false,
+      "checkpoint": "results/runs/a1_seed17_equal_cuda/checkpoint_step_000502.pt",
+      "checkpoint_sha256": "10ca50c2aa30cb856eeb63c9a3feccc9943ddfd4f74723d129f0157ec3221fea",
+      "validation_curve": [
+        {"step": 100, "train_loss": 4.14828434586525, "validation_loss": 4.333431590348482, "learning_rate": 0.0002741901083411432},
+        {"step": 200, "train_loss": 3.6559412479400635, "validation_loss": 3.867698634043336, "learning_rate": 0.00020030977957426457},
+        {"step": 300, "train_loss": 3.4811094403266907, "validation_loss": 3.748787146061659, "learning_rate": 0.00010691210018885329},
+        {"step": 400, "train_loss": 3.7977487444877625, "validation_loss": 3.618164472281933, "learning_rate": 0.000030230090304417976},
+        {"step": 500, "train_loss": 3.403256207704544, "validation_loss": 3.5777913369238377, "learning_rate": 1.2035159200712852e-08},
+        {"step": 502, "train_loss": 3.7728949189186096, "validation_loss": 3.5777883511036634, "learning_rate": 0.0}
+      ]
+    }
+  },
+  "preservation": {
+    "original_a0_checkpoint_sha256": "23314261cd0a3efd5eeea2d461268d43908d51c62bcce553dd59a2ad4be38ca3",
+    "original_a1_checkpoint_sha256": "0cac9f52b532f9edb44bffb11051843b4423877b28615cb3378bd73965a69a1d",
+    "original_runs_modified": false,
+    "raw_logs_and_new_checkpoints": "kept in ignored results/runs paths"
+  }
+}
