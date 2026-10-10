@@ -1,7 +1,8 @@
 # A1 recurrent/state-space-majority proposal
 
-Status: the A1 architecture is implemented and CPU-verified. It has not been
-trained, GPU-smoke-tested, or compared empirically with A0.
+Status: the A1 architecture is implemented and CPU-verified. Its single
+approved host-GPU smoke test passed, but it has not been trained or compared
+empirically with A0.
 
 ## Research question
 
@@ -90,11 +91,13 @@ therefore reuses:
 - 1,000 optimizer steps / 8,192,000 token positions;
 - validation every 100 steps and the existing integrity policy.
 
-The proposal remains `planned_only: true`. The existing training runner is
-intentionally A0-only and rejects this A1 configuration, so no training can
-start accidentally. A future A1 runner change must reuse its checkpoint,
-validation, logging, and circuit-breaker behavior without changing the
-approved comparison budget.
+The proposal remains `planned_only: true`. The generalized training runner now
+selects A0 or A1 only from the explicit stage/model-type pair, and its A1
+dry-run passed the pinned data, tokenizer, validation, logging, checkpoint, and
+recovery checks. The execution gate still prevents training unless an explicit
+pilot authorization is supplied. The fixed-prompt evaluator uses the same
+prompts and decoding settings for either architecture and chooses separate
+result paths.
 
 Gradient checkpointing remains not implemented and not enabled, as in A0.
 
@@ -114,6 +117,15 @@ Therefore A1 may reduce activation/attention-memory growth at longer context,
 but it may be slower on a GPU because the recurrence limits time-dimension
 parallelism. No throughput, FLOP, or memory advantage is assumed; all three
 must be measured.
+
+The approved smoke test exposed the expected implementation risk: one
+accumulated optimizer update processed 8,192 synthetic token positions in
+11.5694 seconds, or **708.08 tokens/sec**, with 1,294,976,512 allocated and
+1,526,726,656 reserved bytes on the RTX 3060 Ti. The Python timestep loop is a
+likely bottleneck, but this preparation deliberately does not optimize or
+redesign it. The measurement is a readiness result, not an A1 training result
+or a matched A0 benchmark; the full comparison must use the same runner and
+measurement method.
 
 ## Falsifiable comparison hypotheses
 
@@ -139,12 +151,14 @@ result. Seeds 23 and 29 remain necessary before a stronger claim.
 
 | Finding | Classification | State |
 | --- | --- | --- |
-| A1 model construction, causal loss, backward pass, and parameter accounting | REQUIRED | Verified by CPU tests |
-| A1 training entrypoint with shared checkpoint/recovery/logging behavior | BLOCKER for training | Not implemented; current runner is A0-only |
-| Host CUDA smoke test for A1 at micro-batch 2 / context 512 | BLOCKER for training | Not run; must precede authorization |
-| A1 fixed-prompt evaluation wiring | RECOMMENDED | Existing evaluator is A0-specific; extend only before A1 training |
+| A1 model construction, causal loss, backward pass, and parameter accounting | RECOMMENDED | Verified by CPU tests |
+| A1 runner selection and shared checkpoint/recovery/logging behavior | RECOMMENDED | Generalized and A1 dry-run passed; no pilot run |
+| Host CUDA smoke test for A1 at micro-batch 2 / context 512 | RECOMMENDED | Passed: finite loss/gradients, one AdamW update, no OOM |
+| A1 fixed-prompt evaluation wiring | RECOMMENDED | Generalized; no A1 checkpoint exists to evaluate |
+| Final A1 pilot authorization | BLOCKER | Intentionally awaiting review |
 | Gradient checkpointing | DEFERRED | Not implemented or enabled; unchanged from A0 |
 | Attention, MoE, conditional depth, controller, persistent memory | DEFERRED | Explicitly outside A1 |
 
-No A1 training is authorized by this proposal. Review is required before the
-training entrypoint or GPU smoke test is extended for A1.
+No A1 training is authorized by this proposal. The implementation and hardware
+readiness evidence are complete for review; the 1,000-step pilot remains
+stopped.

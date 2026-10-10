@@ -4,7 +4,39 @@ import pytest
 
 torch = pytest.importorskip("torch")
 
-from braidformer.training.runner import PackedTokenStream, cosine_warmup_learning_rate
+from braidformer.config import ExperimentConfig
+from braidformer.models import A0TransformerLM, A1RecurrentStateSpaceLM
+from braidformer.training.runner import (
+    PackedTokenStream,
+    TrainingConfigurationError,
+    build_model,
+    cosine_warmup_learning_rate,
+)
+
+
+def _model_config(stage: str, model_type: str) -> ExperimentConfig:
+    return ExperimentConfig(
+        name=f"{stage.lower()}_runner_test",
+        stage=stage,
+        model_type=model_type,
+        context_length=8,
+        vocab_size=17,
+        hidden_size=16,
+        num_layers=1,
+        num_attention_heads=4,
+        intermediate_size=32,
+    )
+
+
+def test_model_factory_selects_only_explicit_a0_or_a1() -> None:
+    a0 = build_model(_model_config("A0", "transformer"))
+    a1 = build_model(_model_config("A1", "recurrent_state_space"))
+
+    assert isinstance(a0, A0TransformerLM)
+    assert isinstance(a1, A1RecurrentStateSpaceLM)
+
+    with pytest.raises(TrainingConfigurationError, match="unsupported model selection"):
+        build_model(_model_config("A2", "transformer"))
 
 
 def test_cosine_warmup_schedule_is_bounded_and_reaches_zero() -> None:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run a small fixed-prompt qualitative evaluation from the A0 checkpoint."""
+"""Run a small fixed-prompt qualitative evaluation from an A0/A1 checkpoint."""
 
 from __future__ import annotations
 
@@ -16,8 +16,14 @@ if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from braidformer.config import load_config
-from braidformer.models import A0TransformerLM
 from braidformer.training.integrity import sha256_file, set_reproducible_seed, verify_checkpoint
+from braidformer.training.runner import LanguageModel, build_model
+
+
+EXPECTED_PARAMETER_COUNTS = {
+    "A0": 41_866_240,
+    "A1": 41_870_336,
+}
 
 
 FIXED_PROMPTS = (
@@ -29,7 +35,7 @@ FIXED_PROMPTS = (
 
 
 def generate_greedy(
-    model: A0TransformerLM,
+    model: LanguageModel,
     tokenizer: object,
     prompt: str,
     *,
@@ -77,14 +83,21 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=REPO_ROOT / "results" / "runs" / "a0_seed17_pilot" / "checkpoint_step_001000.pt",
     )
-    parser.add_argument("--output", type=Path, default=REPO_ROOT / "results" / "a0_prompt_eval.json")
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Output JSON path (defaults to results/<stage>_prompt_eval.json).",
+    )
     parser.add_argument("--max-new-tokens", type=int, default=64)
     args = parser.parse_args(argv)
 
     config_path = args.config if args.config.is_absolute() else REPO_ROOT / args.config
     checkpoint_path = args.checkpoint if args.checkpoint.is_absolute() else REPO_ROOT / args.checkpoint
-    output_path = args.output if args.output.is_absolute() else REPO_ROOT / args.output
     config = load_config(config_path)
+    output_path = args.output or (REPO_ROOT / "results" / f"{config.stage.lower()}_prompt_eval.json")
+    if not output_path.is_absolute():
+        output_path = REPO_ROOT / output_path
     if not torch.cuda.is_available():
         raise RuntimeError("host CUDA is unavailable")
     if args.max_new_tokens <= 0:
@@ -113,9 +126,12 @@ def main(argv: list[str] | None = None) -> int:
 
     set_reproducible_seed(config.seed, deterministic=True)
     device = torch.device("cuda")
-    model = A0TransformerLM(config)
-    if model.parameter_count() != 41_866_240:
-        raise RuntimeError("unexpected A0 parameter count")
+    model = build_model(config)
+    expected_parameter_count = EXPECTED_PARAMETER_COUNTS.get(config.stage)
+    if expected_parameter_count is None or model.parameter_count() != expected_parameter_count:
+        raise RuntimeError(
+            f"unexpected {config.stage} parameter count: {model.parameter_count()}"
+        )
     payload = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     model.load_state_dict(payload["model_state_dict"])
     model.to(device).eval()
@@ -140,6 +156,9 @@ def main(argv: list[str] | None = None) -> int:
         "status": "completed",
         "evaluation": "fixed_prompt_greedy_generation",
         "training_started": False,
+        "stage": config.stage,
+        "model_type": config.model_type,
+        "parameter_count": model.parameter_count(),
         "config_path": str(config_path.relative_to(REPO_ROOT)),
         "config_sha256": sha256_file(config_path),
         "checkpoint_path": str(checkpoint_path.relative_to(REPO_ROOT)),

@@ -17,8 +17,8 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - The bounded seed-17 A0 pilot completed 1,000 optimizer steps and preserved a
   checkpoint; see [`docs/A0_TRAINING_RESULT.md`](docs/A0_TRAINING_RESULT.md).
 - The host GPU is an NVIDIA GeForce RTX 3060 Ti with working CUDA access. A1
-  architecture implementation and CPU verification are complete; A1 training
-  has not started.
+  architecture implementation, CPU verification, and one-update CUDA smoke
+  test are complete; A1 training has not started.
 
 ## Repository guide
 
@@ -42,8 +42,9 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`scripts/hardware_report.py`](scripts/hardware_report.py): read-only hardware/environment audit.
 - [`scripts/prepare_tinystories.py`](scripts/prepare_tinystories.py): deterministic data/tokenizer preparation; never trains.
 - [`scripts/verify_tinystories.py`](scripts/verify_tinystories.py): local artifact, hash, split, and token-stream verification.
-- [`scripts/train_a0.py`](scripts/train_a0.py): explicitly authorized bounded A0 pilot runner with validation and recovery.
-- [`scripts/evaluate_a0_prompts.py`](scripts/evaluate_a0_prompts.py): fixed-prompt greedy checkpoint inspection; it does not train.
+- [`scripts/train_a0.py`](scripts/train_a0.py): explicitly authorized bounded A0/A1 pilot runner with validation and recovery; model selection is config-driven.
+- [`scripts/evaluate_a0_prompts.py`](scripts/evaluate_a0_prompts.py): fixed-prompt greedy A0/A1 checkpoint inspection; it does not train.
+- [`scripts/smoke_test_a1.py`](scripts/smoke_test_a1.py): one-update A1 CUDA readiness test; it writes no checkpoint and is not a pilot.
 
 ## Cheap checks
 

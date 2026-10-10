@@ -1,4 +1,4 @@
-"""Bounded training-integrity utilities and the explicit A0 pilot runner."""
+"""Bounded training-integrity utilities and the explicit A0/A1 runner."""
 
 from braidformer.training.integrity import (
     IntegrityError,
@@ -11,8 +11,10 @@ from braidformer.training.integrity import (
 )
 from braidformer.training.runner import (
     A0TrainingRunner,
+    TrainingRunner,
     PackedTokenStream,
     TrainingConfigurationError,
+    build_model,
     cosine_warmup_learning_rate,
 )
 
@@ -20,8 +22,10 @@ __all__ = [
     "IntegrityError",
     "IntegrityMonitor",
     "A0TrainingRunner",
+    "TrainingRunner",
     "PackedTokenStream",
     "TrainingConfigurationError",
+    "build_model",
     "cosine_warmup_learning_rate",
     "save_atomic_checkpoint",
     "set_reproducible_seed",

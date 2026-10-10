@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run or validate the explicitly approved bounded BraidFormer A0 pilot."""
+"""Run or validate an explicitly approved bounded BraidNano A0/A1 pilot."""
 
 from __future__ import annotations
 

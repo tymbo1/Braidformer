@@ -1,10 +1,10 @@
-"""Bounded, reproducible A0 training runner.
+"""Bounded, reproducible BraidNano training runner.
 
-This runner intentionally implements only the approved A0 pilot mechanics:
+This runner implements the approved BraidNano pilot mechanics:
 deterministic packed-token consumption, mixed-precision AdamW, cosine warmup,
 fixed validation evaluation, durable step logging, and atomic checkpoint
-recovery.  It does not implement gradient checkpointing or any later BraidFormer
-architecture.
+recovery.  It supports only explicit A0 and A1 model configurations and does
+not implement gradient checkpointing or later BraidFormer architectures.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ from typing import Any, Mapping
 import torch
 
 from braidformer.config import ExperimentConfig, load_config
-from braidformer.models import A0TransformerLM
+from braidformer.models import A0TransformerLM, A1RecurrentStateSpaceLM
 from braidformer.training.integrity import (
     IntegrityError,
     IntegrityMonitor,
@@ -38,7 +38,30 @@ from braidformer.training.integrity import (
 
 
 class TrainingConfigurationError(ValueError):
-    """Raised when the approved A0 configuration or artifacts are unsuitable."""
+    """Raised when an approved BraidNano configuration or artifact is unsuitable."""
+
+
+LanguageModel = A0TransformerLM | A1RecurrentStateSpaceLM
+
+
+def _model_class(config: ExperimentConfig) -> type[LanguageModel]:
+    """Return the model class named by an explicit config without construction."""
+
+    if config.stage == "A0" and config.model_type == "transformer":
+        return A0TransformerLM
+    if config.stage == "A1" and config.model_type == "recurrent_state_space":
+        return A1RecurrentStateSpaceLM
+    raise TrainingConfigurationError(
+        "unsupported model selection; expected A0/transformer or "
+        "A1/recurrent_state_space, received "
+        f"{config.stage!r}/{config.model_type!r}"
+    )
+
+
+def build_model(config: ExperimentConfig) -> LanguageModel:
+    """Construct exactly the architecture named by an explicit config."""
+
+    return _model_class(config)(config)
 
 
 def cosine_warmup_learning_rate(
@@ -297,8 +320,8 @@ def _load_approved_artifacts(repo_root: Path, config: ExperimentConfig) -> Appro
     )
 
 
-class A0TrainingRunner:
-    """Execute or validate the explicitly approved bounded A0 pilot."""
+class TrainingRunner:
+    """Execute or validate an explicitly approved bounded A0/A1 pilot."""
 
     def __init__(
         self,
@@ -338,8 +361,7 @@ class A0TrainingRunner:
         )
         self.warmup_steps = max(1, math.ceil(self.config.warmup_ratio * self.config.max_steps))
 
-        if self.config.stage != "A0" or self.config.model_type != "transformer":
-            raise TrainingConfigurationError("the runner accepts only the A0 Transformer config")
+        _model_class(self.config)
         if self.config.planned_only and not self.execute_approved:
             raise TrainingConfigurationError(
                 "the proposal remains planned_only; pass --execute-approved after explicit authorization"
@@ -375,7 +397,7 @@ class A0TrainingRunner:
             "max_steps": self.config.max_steps,
         }
 
-    def _metadata(self, model: A0TransformerLM, device: torch.device, initial_step: int) -> dict[str, Any]:
+    def _metadata(self, model: LanguageModel, device: torch.device, initial_step: int) -> dict[str, Any]:
         metadata = {
             "experiment_id": self.run_dir.name,
             "status": "running",
@@ -427,7 +449,7 @@ class A0TrainingRunner:
     def _checkpoint(
         self,
         *,
-        model: A0TransformerLM,
+        model: LanguageModel,
         optimizer: torch.optim.Optimizer,
         step: int,
         tokens_processed: int,
@@ -460,7 +482,7 @@ class A0TrainingRunner:
     def _load_resume(
         self,
         *,
-        model: A0TransformerLM,
+        model: LanguageModel,
         optimizer: torch.optim.Optimizer,
     ) -> tuple[int, int, dict[str, Any]]:
         if self.resume_path is None:
@@ -491,7 +513,7 @@ class A0TrainingRunner:
     def _evaluate(
         self,
         *,
-        model: A0TransformerLM,
+        model: LanguageModel,
         stream: PackedTokenStream,
         device: torch.device,
     ) -> float:
@@ -533,7 +555,7 @@ class A0TrainingRunner:
         run_started = time.perf_counter()
         seed_report = set_reproducible_seed(self.config.seed, deterministic=True)
         device = torch.device("cuda")
-        model = A0TransformerLM(self.config).to(device)
+        model = build_model(self.config).to(device)
         parameter_count = model.parameter_count()
         optimizer = torch.optim.AdamW(
             model.parameters(),
@@ -791,13 +813,14 @@ class A0TrainingRunner:
         return summary
 
 
-def _default_run_dir(repo_root: Path, seed: int) -> Path:
+def _default_run_dir(repo_root: Path, seed: int, stage: str = "A0") -> Path:
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    return repo_root / "results" / "runs" / f"a0_seed{seed}_{stamp}"
+    prefix = "a0" if stage == "A0" else stage.lower()
+    return repo_root / "results" / "runs" / f"{prefix}_seed{seed}_{stamp}"
 
 
 def main(argv: list[str] | None = None) -> int:
-    """CLI for the explicitly approved A0 pilot."""
+    """CLI for an explicitly approved A0 or A1 pilot."""
 
     repo_root = Path(__file__).resolve().parents[3]
     parser = argparse.ArgumentParser(description=__doc__)
@@ -812,8 +835,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
     config = load_config(args.config if args.config.is_absolute() else repo_root / args.config)
-    run_dir = args.run_dir or _default_run_dir(repo_root, config.seed)
-    runner = A0TrainingRunner(
+    run_dir = args.run_dir or _default_run_dir(repo_root, config.seed, config.stage)
+    runner = TrainingRunner(
         repo_root=repo_root,
         config_path=args.config,
         run_dir=run_dir,
@@ -832,8 +855,16 @@ def main(argv: list[str] | None = None) -> int:
 
 __all__ = [
     "A0TrainingRunner",
+    "LanguageModel",
     "PackedTokenStream",
+    "TrainingRunner",
     "TrainingConfigurationError",
+    "build_model",
     "cosine_warmup_learning_rate",
     "main",
 ]
+
+
+# Backward-compatible public name used by the original A0 entrypoint.  The
+# implementation now selects A0 or A1 from the validated configuration.
+A0TrainingRunner = TrainingRunner

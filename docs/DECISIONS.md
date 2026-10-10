@@ -61,7 +61,11 @@ state-space recurrent mixers replace attention, with zero retained attention
 layers, while embeddings, context length, feed-forward widths, normalization,
 tied output weights, and the proposed training protocol remain matched. The
 implementation has 41,870,336 unique trainable parameters versus A0's
-41,866,240, a difference of 4,096 parameters. A1 is CPU-verified but not
-GPU-smoke-tested or trained. The existing A0 runner remains intentionally
-A0-only; training is blocked pending a reviewed A1 runner and hardware smoke
-test. No A1 quality or efficiency claim is made.
+41,866,240, a difference of 4,096 parameters. The generalized runner's A1
+dry-run and one approved host-GPU smoke test passed. The smoke test processed
+8,192 synthetic token positions in 11.5694 seconds (708.08 tokens/sec), with
+1,294,976,512 allocated and 1,526,726,656 reserved bytes, and no non-finite
+losses or gradients. This is not a training result or matched A0 benchmark;
+the observed sequential recurrence bottleneck is recorded without optimizing
+it. A1 training remains blocked pending review and explicit pilot
+authorization. No A1 quality or efficiency claim is made.

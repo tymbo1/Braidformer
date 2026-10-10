@@ -29,9 +29,9 @@ smoke test, and an experiment record.
 
 The A1 architecture boundary is similarly limited: construct the recurrent
 model, verify causal logits and shifted loss, run a synthetic CPU backward pass,
-and verify its parameter count against the proposal. A1 training requires a
-separate runner compatibility review and host CUDA smoke test; this change does
-not authorize either.
+and verify its parameter count against the proposal. The generalized runner's
+A1 dry-run and the one-update host CUDA smoke test have now passed. This still
+does not authorize the 1,000-step pilot.
 
 ## Required matching
 
