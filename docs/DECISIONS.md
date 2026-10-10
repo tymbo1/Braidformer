@@ -178,3 +178,16 @@ was `-0.1710029` with sample standard deviation `0.0264044`. A1 met the
 evidence for the specified TinyStories equal-CUDA-time protocol, not a general
 architectural-superiority claim. No A2, scaling, or persistent-memory work
 started.
+
+## 2026-10-10 — D020: freeze the first A0/A1 milestone and assess A2 options
+
+The three-seed A0/A1 equal-CUDA-time milestone is frozen. Commit `00bb31a` was
+audited for tracked checkpoints, raw logs, and secrets and pushed to
+`origin/main`. No A0/A1 source, configuration, checkpoint, or result was
+modified. A focused equation-level mapping against S4D, Mamba, RetNet, and
+RWKV found established family-level similarities but did not establish
+architectural novelty for A1. The bounded next-step assessment is recorded in
+`docs/A2_OPTIONS_ASSESSMENT.md`: longer matched-CUDA training, mathematics-
+preserving A1 execution work, and a dual-state design review. No A2
+implementation, new training, scaling, or persistent-memory integration was
+authorized.

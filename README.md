@@ -34,6 +34,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A1_EQUAL_COMPUTE_PROPOSAL.md`](docs/A1_EQUAL_COMPUTE_PROPOSAL.md): bounded proposal separating equal-token, equal-wall-clock, and equal-GPU-compute tests.
 - [`docs/A0_A1_EQUAL_CUDA_RESULT.md`](docs/A0_A1_EQUAL_CUDA_RESULT.md): authorized seed-17 equal-CUDA-time result and decision.
 - [`docs/A0_A1_EQUAL_CUDA_REPLICATIONS.md`](docs/A0_A1_EQUAL_CUDA_REPLICATIONS.md): seeds 23/29 replications and three-seed aggregate decision.
+- [`docs/A2_OPTIONS_ASSESSMENT.md`](docs/A2_OPTIONS_ASSESSMENT.md): bounded prior-art mapping and next-step options; no A2 implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
