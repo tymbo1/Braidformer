@@ -38,6 +38,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`scripts/prepare_tinystories.py`](scripts/prepare_tinystories.py): deterministic data/tokenizer preparation; never trains.
 - [`scripts/verify_tinystories.py`](scripts/verify_tinystories.py): local artifact, hash, split, and token-stream verification.
 - [`scripts/train_a0.py`](scripts/train_a0.py): explicitly authorized bounded A0 pilot runner with validation and recovery.
+- [`scripts/evaluate_a0_prompts.py`](scripts/evaluate_a0_prompts.py): fixed-prompt greedy checkpoint inspection; it does not train.
 
 ## Cheap checks
 
