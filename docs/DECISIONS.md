@@ -191,3 +191,16 @@ architectural novelty for A1. The bounded next-step assessment is recorded in
 preserving A1 execution work, and a dual-state design review. No A2
 implementation, new training, scaling, or persistent-memory integration was
 authorized.
+
+## 2026-10-10 — D021: freeze the 4× seed-17 matched-CUDA protocol
+
+Option 1 was frozen for one fresh seed-17 A0/A1 experiment before execution.
+The protocol targets `808.427581787` CUDA seconds per arm, with A0 at 4,000
+steps / 32,768,000 tokens and A1 at 2,010 steps / 16,465,920 tokens. It keeps
+the approved TinyStories data, tokenizer, context, effective batch, AdamW
+settings, normalized cosine schedules, A1 `parallel_scan`, and ±5% CUDA-time
+acceptance tolerance. A0 quarter-budget validation anchors are steps 1,000,
+2,000, 3,000, and 4,000; A1 anchors are 500, 1,000, 1,500, and 2,010, with
+the existing 100-step validation interval retained. Protocol-specific derived
+configs preserve the original A0/A1 config files and hashes. No additional
+seeds or later architecture work is authorized by this decision.
