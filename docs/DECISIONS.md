@@ -232,3 +232,27 @@ used more VRAM. This supports the result only for the specified TinyStories
 42M-parameter measured-CUDA protocol; it is not a general superiority,
 energy-efficiency, FLOP-efficiency, or novelty claim. No 8× run, A2, scaling,
 or persistent-memory work started.
+
+## 2026-10-11 — D024: complete the 8× matched-CUDA-time replication
+
+The frozen 8× protocol in commit `188327e` was executed with fresh seed-17,
+seed-23, and seed-29 A0/A1 initialization. A0 used 8,000 steps / 65,536,000
+tokens and A1 used 4,020 steps / 32,931,840 tokens, with measured CUDA-time
+calibration determining the A1 budget. All six runs completed within the
+predeclared ±5% of the `1,616.855164`-second target, with finite values, no
+CUDA/OOM failures, and complete SHA-256-verified optimizer/RNG checkpoints.
+Final A1-minus-A0 validation-loss differences were `-0.2422227`, `-0.2474567`,
+and `-0.2461745`; the mean was `-0.2452846` with sample standard deviation
+`0.0027281`, meeting the `<= -0.05` criterion in all three seeds.
+
+The read-only curve analysis used cumulative CUDA time, piecewise-linear
+interpolation between observed validation points, and the frozen common-
+interval AUC definition. All nine budget/seed AUCs were valid. Relative to
+the prior means, the advantage narrowed from 1× (`-0.1710029`) to 4×
+(`-0.1205968`) and widened at 8× (`-0.2452846`), so the three-budget pattern
+is non-monotonic rather than evidence for a crossover or asymptotic trend.
+Raw logs and checkpoints remain ignored and local; the tracked report and
+machine-readable results are `docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md` and
+`results/a0_a1_eight_equal_cuda_replications.json`. No A2, scaling,
+persistent-memory, or unrelated architecture work started, and nothing was
+pushed to GitHub.
