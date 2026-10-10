@@ -341,6 +341,7 @@ class TrainingRunner:
         max_steps: int | None = None,
         warmup_steps: int | None = None,
         cuda_timing: bool = False,
+        seed: int | None = None,
     ) -> None:
         self.repo_root = Path(repo_root).resolve()
         self.config_path = Path(config_path)
@@ -356,6 +357,9 @@ class TrainingRunner:
         self.device_name = device
         self.config = load_config(self.config_path)
         self.config_hash = sha256_file(self.config_path)
+        self.seed = self.config.seed if seed is None else seed
+        if self.seed < 0:
+            raise TrainingConfigurationError("runtime seed must be non-negative")
         self.artifacts = _load_approved_artifacts(self.repo_root, self.config)
         self.policy = json.loads(
             (self.repo_root / "configs" / "braidnano_a0_integrity_policy.json").read_text(
@@ -414,7 +418,7 @@ class TrainingRunner:
             "config_path": str(self.config_path.relative_to(self.repo_root)),
             "config_sha256": self.config_hash,
             "data": self.artifacts.metadata(self.repo_root),
-            "seed": self.config.seed,
+            "seed": self.seed,
             "tokens_per_step": self.tokens_per_step,
             "warmup_steps": self.warmup_steps,
             "max_steps": self.max_steps,
@@ -423,6 +427,7 @@ class TrainingRunner:
                 "max_steps": self.max_steps,
                 "warmup_steps": self.warmup_steps,
                 "cuda_timing": self.cuda_timing,
+                "seed": self.seed,
             },
         }
 
@@ -437,11 +442,12 @@ class TrainingRunner:
                 "max_steps": self.max_steps,
                 "warmup_steps": self.warmup_steps,
                 "cuda_timing": self.cuda_timing,
+                "seed": self.seed,
             },
             "integrity_policy": self.policy,
-            "seed": self.config.seed,
+            "seed": self.seed,
             "seed_report": {
-                "seed": self.config.seed,
+                "seed": self.seed,
                 "deterministic_algorithms_requested": True,
             },
             "parameter_count": model.parameter_count(),
@@ -503,7 +509,7 @@ class TrainingRunner:
             "optimizer_state_dict": _cpu_copy(optimizer.state_dict()),
             "step": step,
             "tokens_processed": tokens_processed,
-            "seed": self.config.seed,
+            "seed": self.seed,
             "scheduler_state": {"last_step": step},
             "rng_state": _rng_state(),
             "gradient_checkpointing": False,
@@ -511,7 +517,7 @@ class TrainingRunner:
         metadata = {
             "step": step,
             "tokens_processed": tokens_processed,
-            "seed": self.config.seed,
+            "seed": self.seed,
             "config_sha256": self.config_hash,
             "data_manifest_sha256": self.artifacts.manifest_sha256,
             "checkpoint_kind": kind,
@@ -533,7 +539,7 @@ class TrainingRunner:
             raise TrainingConfigurationError("resume checkpoint config hash does not match current config")
         if record.get("data_manifest_sha256") != self.artifacts.manifest_sha256:
             raise TrainingConfigurationError("resume checkpoint data manifest hash does not match")
-        if record.get("seed") != self.config.seed:
+        if record.get("seed") != self.seed:
             raise TrainingConfigurationError("resume checkpoint seed does not match current config")
         payload = torch.load(self.resume_path, map_location="cpu", weights_only=False)
         step = int(payload["step"])
@@ -594,7 +600,7 @@ class TrainingRunner:
         self.run_dir.mkdir(parents=True, exist_ok=True)
 
         run_started = time.perf_counter()
-        seed_report = set_reproducible_seed(self.config.seed, deterministic=True)
+        seed_report = set_reproducible_seed(self.seed, deterministic=True)
         device = torch.device("cuda")
         model = build_model(self.config).to(device)
         parameter_count = model.parameter_count()
@@ -849,7 +855,7 @@ class TrainingRunner:
             "data_manifest_sha256": self.artifacts.manifest_sha256,
             "dataset_revision": self.artifacts.dataset_revision,
             "tokenizer_sha256": self.artifacts.tokenizer_sha256,
-            "seed": self.config.seed,
+            "seed": self.seed,
             "parameter_count": parameter_count,
             "gradient_checkpointing": {
                 "configured": self.config.gradient_checkpointing,
@@ -943,6 +949,12 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="record accumulated CUDA-event time with device-resident training batches",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="runtime random seed; does not modify the approved JSON configuration",
+    )
     parser.add_argument("--execute-approved", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
@@ -957,6 +969,7 @@ def main(argv: list[str] | None = None) -> int:
         max_steps=args.max_steps,
         warmup_steps=args.warmup_steps,
         cuda_timing=args.cuda_timing,
+        seed=args.seed,
     )
     if args.dry_run:
         print(json.dumps(runner.dry_run_report(), indent=2, sort_keys=True))

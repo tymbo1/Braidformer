@@ -164,3 +164,17 @@ Both runs completed with finite values, no CUDA/OOM failures, and verified final
 checkpoints. The original A0/A1 pilots and checkpoints remain unchanged. This
 does not establish statistical significance or general architectural
 superiority; replication and broader evaluation remain separate future work.
+
+## 2026-10-10 — D019: complete seed-23 and seed-29 replications
+
+Two independent fresh-initialization replications were executed with the
+accepted equal-CUDA-time protocol. Seeds 23 and 29 completed both A0 (1,000
+steps, 8,192,000 tokens) and A1 (502 steps, 4,112,384 tokens), with all four
+actual CUDA totals within the predeclared ±5% budget tolerance and all final
+checkpoints verified. Their validation-loss differences were `-0.2007560` and
+`-0.1503594`; including accepted seed 17 (`-0.1618933`), the mean difference
+was `-0.1710029` with sample standard deviation `0.0264044`. A1 met the
+`Delta <= -0.05` advantage threshold in all three seeds. This is reproducible
+evidence for the specified TinyStories equal-CUDA-time protocol, not a general
+architectural-superiority claim. No A2, scaling, or persistent-memory work
+started.

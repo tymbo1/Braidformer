@@ -1,0 +1,143 @@
+{
+  "status": "completed",
+  "protocol_commit": "de41ef2",
+  "replication_seeds": [23, 29],
+  "reference_seed": 17,
+  "protocol": {
+    "cuda_budget_target_seconds": 202.10689544677734,
+    "cuda_budget_tolerance_percent": 5.0,
+    "a0_steps": 1000,
+    "a0_tokens": 8192000,
+    "a0_warmup_steps": 10,
+    "a1_steps": 502,
+    "a1_tokens": 4112384,
+    "a1_warmup_steps": 6,
+    "validation_checkpoints_a0": [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+    "validation_checkpoints_a1": [100, 200, 300, 400, 500, 502],
+    "advantage_threshold": -0.05,
+    "a1_recurrent_path": "parallel_scan",
+    "energy": "not measured; no synchronized power telemetry collected"
+  },
+  "aggregate": {
+    "seeds_evaluated": [17, 23, 29],
+    "validation_delta_definition": "A1 validation loss minus A0 validation loss",
+    "mean_delta": -0.1710028996070226,
+    "sample_standard_deviation_delta": 0.026404424001286946,
+    "population_standard_deviation_delta": 0.021559121918416777,
+    "delta_range": 0.05039660818874836,
+    "minimum_delta": -0.2007560208439827,
+    "maximum_delta": -0.15035941265523434,
+    "all_seeds_meet_advantage_threshold": true,
+    "all_cuda_budgets_within_tolerance": true,
+    "classification": "A1 meets the predeclared advantage criterion consistently across seeds 17, 23, and 29",
+    "claim_scope": "three-seed TinyStories equal-CUDA-time result; not a general architectural superiority claim"
+  },
+  "seeds": {
+    "17": {
+      "a0": {
+        "validation_loss": 3.739681616425514,
+        "cuda_seconds": 209.34900686645503,
+        "cuda_budget_delta_percent": 3.5833074391985873,
+        "tokens_processed": 8192000,
+        "training_wall_seconds": 210.40625031798118,
+        "elapsed_wall_seconds": 233.69884341599936,
+        "training_tokens_per_second": 38934.20460475702,
+        "cuda_tokens_per_second": 39130.82809714844,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "59b3dd03095bd37487423c93b2d958323b9679bd321fc4661f47dc9c5a5b3152",
+        "numerical_instability": false
+      },
+      "a1": {
+        "validation_loss": 3.5777883511036634,
+        "cuda_seconds": 205.36962911987328,
+        "cuda_budget_delta_percent": 1.614360393732901,
+        "tokens_processed": 4112384,
+        "training_wall_seconds": 205.90294520899988,
+        "elapsed_wall_seconds": 225.16022876900024,
+        "training_tokens_per_second": 19972.438936343347,
+        "cuda_tokens_per_second": 20024.304555760875,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "10ca50c2aa30cb856eeb63c9a3feccc9943ddfd4f74723d129f0157ec3221fea",
+        "numerical_instability": false
+      },
+      "a1_minus_a0_validation_loss": -0.16189326532185078,
+      "advantage_threshold_met": true,
+      "cuda_budget_matched": true
+    },
+    "23": {
+      "a0": {
+        "validation_loss": 3.795369291678071,
+        "cuda_seconds": 209.2908582305908,
+        "cuda_budget_delta_percent": 3.5545362111137244,
+        "tokens_processed": 8192000,
+        "training_wall_seconds": 210.34808018700824,
+        "elapsed_wall_seconds": 233.7119150790004,
+        "training_tokens_per_second": 38944.971557225384,
+        "cuda_tokens_per_second": 39141.700068783146,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "1779c23921536a93ea15b36cf9a40903088541417e7ae333000624501a5aac84",
+        "numerical_instability": false
+      },
+      "a1": {
+        "validation_loss": 3.5946132708340883,
+        "cuda_seconds": 206.20338693237295,
+        "cuda_budget_delta_percent": 2.026893479581637,
+        "tokens_processed": 4112384,
+        "training_wall_seconds": 206.74035297099,
+        "elapsed_wall_seconds": 226.083972077,
+        "training_tokens_per_second": 19891.53999643724,
+        "cuda_tokens_per_second": 19943.338764598997,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "d062b418dd93b8fc777ee94b5c504d8baa60ce1b46ce73e6a2ab3e3e062a4eeb",
+        "numerical_instability": false
+      },
+      "a1_minus_a0_validation_loss": -0.2007560208439827,
+      "advantage_threshold_met": true,
+      "cuda_budget_matched": true
+    },
+    "29": {
+      "a0": {
+        "validation_loss": 3.723251983523369,
+        "cuda_seconds": 210.37458547973654,
+        "cuda_budget_delta_percent": 4.090751092229014,
+        "tokens_processed": 8192000,
+        "training_wall_seconds": 211.42546696099453,
+        "elapsed_wall_seconds": 234.79848521799977,
+        "training_tokens_per_second": 38746.51487236079,
+        "cuda_tokens_per_second": 38940.06484347445,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "bce252ab2882900964ef0ba812544009be47aebb4d1eca4f119550f6fe5b5f08",
+        "numerical_instability": false
+      },
+      "a1": {
+        "validation_loss": 3.5728925708681345,
+        "cuda_seconds": 202.86376779174816,
+        "cuda_budget_delta_percent": 0.37449110447106443,
+        "tokens_processed": 4112384,
+        "training_wall_seconds": 203.40392513199913,
+        "elapsed_wall_seconds": 222.52522075200068,
+        "training_tokens_per_second": 20217.820267387982,
+        "cuda_tokens_per_second": 20271.65345869751,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "53287c988d40f5f08cf524e61d0b0acdfff6b829854233c917688ead256b56eb",
+        "numerical_instability": false
+      },
+      "a1_minus_a0_validation_loss": -0.15035941265523434,
+      "advantage_threshold_met": true,
+      "cuda_budget_matched": true
+    }
+  },
+  "preservation": {
+    "original_a0_checkpoint_sha256": "23314261cd0a3efd5eeea2d461268d43908d51c62bcce553dd59a2ad4be38ca3",
+    "original_a1_checkpoint_sha256": "0cac9f52b532f9edb44bffb11051843b4423877b28615cb3378bd73965a69a1d",
+    "approved_a0_config_sha256": "6dd6b619be65c50437121235a0a9ae0a0493e5d210cc2f512a45d5079818d7e4",
+    "approved_a1_config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+    "raw_logs_and_checkpoints": "kept in ignored results/runs paths"
+  }
+}
