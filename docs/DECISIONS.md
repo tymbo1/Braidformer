@@ -204,3 +204,16 @@ acceptance tolerance. A0 quarter-budget validation anchors are steps 1,000,
 the existing 100-step validation interval retained. Protocol-specific derived
 configs preserve the original A0/A1 config files and hashes. No additional
 seeds or later architecture work is authorized by this decision.
+
+## 2026-10-10 — D022: complete the 4× seed-17 matched-CUDA experiment
+
+The frozen Option 1 protocol completed one fresh run per architecture. A0
+processed 32,768,000 tokens in 4,000 steps and accumulated `839.6201` CUDA
+seconds; A1 processed 16,465,920 tokens in 2,010 steps and accumulated
+`817.6418` CUDA seconds. Both totals were within the predeclared ±5% of the
+`808.4276`-second target. Final validation losses were `3.1149070` for A0 and
+`3.0030669` for A1, giving `A1 - A0 = -0.1118402`, which meets the exploratory
+`<= -0.05` rule for this single seed. Both runs completed with finite values,
+no OOM/CUDA failures, and SHA-256-verified final checkpoints. Full curves and
+resource records are in `docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md` and
+`results/a0_a1_longer_equal_cuda_seed17.json`. No additional seed was started.
