@@ -39,6 +39,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md`](docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md): measured seed-17 longer matched-CUDA-time result.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_PROTOCOL.md`](docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_PROTOCOL.md): frozen 4× seed-23/29 replication protocol.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md`](docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md): measured 4× seeds 17/23/29 replication result.
+- [`docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md`](docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md): frozen 8× matched-CUDA-time protocol for seeds 17/23/29.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
