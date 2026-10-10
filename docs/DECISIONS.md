@@ -116,3 +116,15 @@ but A1 took `1.94x` the training wall time and had `51.5%` of A0's measured
 throughput. The result therefore supports only a single-seed equal-token
 observation; no equal-compute efficiency claim is made. A0 artifacts remain
 unchanged, and A2, scaling, and persistent-memory work remain deferred.
+
+## 2026-10-10 — D016: evaluate A1 generation and define an equal-compute test
+
+The preserved A1 checkpoint was evaluated with the exact four A0 prompts,
+greedy argmax decoding, and 64-token generation limit. The run completed in
+`1.5696` seconds with `221,171,200 / 241,172,480` allocated/reserved bytes;
+A0 took `1.0436` seconds under the same method. The outputs are recorded in
+`results/a1_prompt_eval.json` and are qualitative only. A bounded follow-up
+proposal now separates equal token positions, equal host training wall time,
+and equal measured CUDA-event GPU execution time. No additional training was
+started, and the equal-GPU-compute budget remains intentionally unmeasured
+pending review.

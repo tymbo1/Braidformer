@@ -77,3 +77,33 @@ SHA-256 is
 
 No A2 implementation, model scaling, or persistent-memory integration was
 started.
+
+## Fixed-prompt generation evaluation
+
+The preserved A1 checkpoint was evaluated with the same four prompts used for
+A0, greedy `argmax` decoding, no sampling, and a maximum of 64 new tokens per
+prompt. The evaluation took **1.5696 s**; peak allocated/reserved VRAM was
+`221,171,200 / 241,172,480` bytes. A0 took `1.0436 s` under the same method,
+so this A1 evaluation was approximately `1.50x` slower. This is a qualitative
+inspection, not a capability benchmark.
+
+The exact token IDs and outputs are preserved in
+[`results/a1_prompt_eval.json`](../results/a1_prompt_eval.json). The decoded
+outputs were:
+
+1. **Fox and key:** “He was very excited and wanted to play with it. One day,
+   a little girl named Lily went to the park. She saw a big, big, a big, big,
+   and a little girl named Lily. She loved to play with her friends. One day,
+   she went to the park to play with”
+2. **Lucy and tower:** “She was very excited to see the big, and she was very
+   happy. The little girl was so happy that she had to go to the park with her
+   mom. She was so happy to have a new friend. She was so happy that she had
+   never seen a new friend.”
+3. **Sam and dog:** “He was very happy and he had a big, a big, big, and a
+   little girl named Lily. She loved to play with her friends and play with her
+   friends. One day, Lily's mom gave her a big hug and a big hug.
+
+   \"I'm sorry, Lily. I'm sorry,”
+4. **Bird and nest:** “he was very excited. He was so excited to see the little
+   girl. The little girl was so happy that she had to go to the park with her
+   friends. She was so happy that she had to be a new friend.”

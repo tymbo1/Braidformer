@@ -31,6 +31,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_READINESS.md`](docs/A0_READINESS.md): pre-training gate matrix and current hardware blocker.
 - [`docs/A1_PROPOSAL.md`](docs/A1_PROPOSAL.md): bounded recurrent/state-space-majority A1 proposal and training blockers.
 - [`docs/A1_TRAINING_RESULT.md`](docs/A1_TRAINING_RESULT.md): measured A1 seed-17 pilot and explicit equal-token/equal-compute comparison.
+- [`docs/A1_EQUAL_COMPUTE_PROPOSAL.md`](docs/A1_EQUAL_COMPUTE_PROPOSAL.md): bounded proposal separating equal-token, equal-wall-clock, and equal-GPU-compute tests.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
