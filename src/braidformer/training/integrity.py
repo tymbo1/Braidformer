@@ -1,8 +1,8 @@
 """Low-risk integrity controls for the bounded A0 pilot.
 
-This module does not launch training. A future training entry point can use it
-to make provenance, progress, numerical safety, and checkpoint recovery
-observable without changing the model architecture.
+This module does not define a model or training policy. The bounded A0 runner
+uses it to make provenance, progress, numerical safety, and checkpoint
+recovery observable without changing the model architecture.
 """
 
 from __future__ import annotations
@@ -153,6 +153,17 @@ class IntegrityMonitor:
                 "wall_clock_seconds": time.monotonic() - self._started_at,
             }
         )
+
+    def fail(self, reason: str, details: Mapping[str, Any] | None = None) -> None:
+        """Record a fatal integrity event and raise :class:`IntegrityError`.
+
+        The runner uses this public boundary for failures detected before a
+        complete optimizer step can be recorded, such as a non-finite loss or
+        gradient.  Keeping the event in the durable JSONL stream preserves the
+        same fail-fast behavior as :meth:`record_step`.
+        """
+
+        self._failure(reason, details or {})
 
     def _failure(self, reason: str, details: Mapping[str, Any]) -> None:
         self._append(
