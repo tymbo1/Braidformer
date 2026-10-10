@@ -13,6 +13,7 @@ def test_phase0_config_loads_and_validates() -> None:
 
     assert config.stage == "A0"
     assert config.model_type == "transformer"
+    assert config.recurrent_path == "sequential_reference"
     assert config.target_parameters_min == 40_000_000
     assert config.target_parameters_max == 60_000_000
     assert config.planned_only is True
@@ -27,6 +28,15 @@ def test_a0_baseline_proposal_is_explicitly_planned_only() -> None:
     assert config.training_token_budget == 8_192_000
     assert config.evaluation_token_budget == 131_072
     assert config.data_and_tokenizer == "configs/braidnano_a0_data.json"
+
+
+def test_a1_proposal_selects_the_verified_parallel_scan() -> None:
+    config = load_config(
+        ROOT / "configs" / "braidnano_a1_recurrent_state_space_proposal.json"
+    )
+
+    assert config.stage == "A1"
+    assert config.recurrent_path == "parallel_scan"
 
 
 def test_invalid_attention_shape_is_rejected() -> None:

@@ -2,7 +2,7 @@
 
 A1 changes only the sequence-mixing path relative to the A0 control.  Each
 block uses a gated diagonal state-space recurrence with a reset state for each
-+input sequence.  The feed-forward path, embeddings, normalization, context
+input sequence.  The feed-forward path, embeddings, normalization, context
 handling, loss, and tied language-model head remain compatible with A0.
 
 This is an experimental control, not a claim that recurrent processing is

@@ -14,11 +14,16 @@ from braidformer.training.runner import (
 )
 
 
-def _model_config(stage: str, model_type: str) -> ExperimentConfig:
+def _model_config(
+    stage: str,
+    model_type: str,
+    recurrent_path: str = "sequential_reference",
+) -> ExperimentConfig:
     return ExperimentConfig(
         name=f"{stage.lower()}_runner_test",
         stage=stage,
         model_type=model_type,
+        recurrent_path=recurrent_path,
         context_length=8,
         vocab_size=17,
         hidden_size=16,
@@ -34,6 +39,13 @@ def test_model_factory_selects_only_explicit_a0_or_a1() -> None:
 
     assert isinstance(a0, A0TransformerLM)
     assert isinstance(a1, A1RecurrentStateSpaceLM)
+    assert a1.use_parallel_scan is False
+
+    a1_parallel = build_model(
+        _model_config("A1", "recurrent_state_space", "parallel_scan")
+    )
+    assert isinstance(a1_parallel, A1RecurrentStateSpaceLM)
+    assert a1_parallel.use_parallel_scan is True
 
     with pytest.raises(TrainingConfigurationError, match="unsupported model selection"):
         build_model(_model_config("A2", "transformer"))

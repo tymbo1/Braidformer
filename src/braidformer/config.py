@@ -19,6 +19,7 @@ class ExperimentConfig:
     name: str = "braidnano_phase0_planning"
     stage: str = "A0"
     model_type: str = "transformer"
+    recurrent_path: str = "sequential_reference"
     seed: int = 17
     context_length: int = 512
     vocab_size: int = 32_000
@@ -63,6 +64,12 @@ class ExperimentConfig:
             errors.append("stage must not be empty")
         if not self.model_type.strip():
             errors.append("model_type must not be empty")
+        if self.recurrent_path not in {"sequential_reference", "parallel_scan"}:
+            errors.append(
+                "recurrent_path must be sequential_reference or parallel_scan"
+            )
+        if self.stage == "A0" and self.recurrent_path != "sequential_reference":
+            errors.append("A0 must use recurrent_path=sequential_reference")
         if self.seed < 0:
             errors.append("seed must be non-negative")
         for field_name in (

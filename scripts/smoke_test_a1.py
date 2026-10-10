@@ -24,8 +24,8 @@ if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
 from braidformer.config import load_config
-from braidformer.models import A1RecurrentStateSpaceLM
 from braidformer.training.integrity import set_reproducible_seed, sha256_file
+from braidformer.training.runner import build_model
 
 
 EXPECTED_PARAMETER_COUNT = 41_870_336
@@ -82,7 +82,7 @@ def main(argv: list[str] | None = None) -> int:
 
     seed_report = set_reproducible_seed(config.seed, deterministic=True)
     device = torch.device("cuda")
-    model = A1RecurrentStateSpaceLM(config).to(device)
+    model = build_model(config).to(device)
     parameter_count = model.parameter_count()
     if parameter_count != EXPECTED_PARAMETER_COUNT:
         raise RuntimeError(f"unexpected A1 parameter count: {parameter_count}")
@@ -169,6 +169,8 @@ def main(argv: list[str] | None = None) -> int:
         "seed_report": seed_report,
         "stage": config.stage,
         "model_type": config.model_type,
+        "recurrent_path": config.recurrent_path,
+        "parallel_scan_enabled": model.use_parallel_scan,
         "parameter_count": parameter_count,
         "micro_batch_size": config.micro_batch_size,
         "context_length": config.context_length,

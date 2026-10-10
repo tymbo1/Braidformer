@@ -17,8 +17,9 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - The bounded seed-17 A0 pilot completed 1,000 optimizer steps and preserved a
   checkpoint; see [`docs/A0_TRAINING_RESULT.md`](docs/A0_TRAINING_RESULT.md).
 - The host GPU is an NVIDIA GeForce RTX 3060 Ti with working CUDA access. A1
-  architecture implementation, CPU verification, and one-update CUDA smoke
-  test are complete; A1 training has not started.
+  architecture implementation, CPU verification, one-update CUDA smoke test,
+  and bounded ten-update scan stability check are complete; the verified
+  parallel scan is selected explicitly for A1; A1 training has not started.
 
 ## Repository guide
 
@@ -46,6 +47,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`scripts/evaluate_a0_prompts.py`](scripts/evaluate_a0_prompts.py): fixed-prompt greedy A0/A1 checkpoint inspection; it does not train.
 - [`scripts/smoke_test_a1.py`](scripts/smoke_test_a1.py): one-update A1 CUDA readiness test; it writes no checkpoint and is not a pilot.
 - [`scripts/benchmark_a1_recurrence.py`](scripts/benchmark_a1_recurrence.py): matched sequential-versus-associative-scan A1 benchmark; it does not train a pilot.
+- [`scripts/compare_a1_scan_stability.py`](scripts/compare_a1_scan_stability.py): bounded ten-update sequential-versus-scan numerical-stability check; it does not train a pilot.
 
 ## Cheap checks
 

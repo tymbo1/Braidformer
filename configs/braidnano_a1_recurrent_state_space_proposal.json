@@ -2,6 +2,7 @@
   "name": "braidnano_a1_recurrent_state_space_proposal",
   "stage": "A1",
   "model_type": "recurrent_state_space",
+  "recurrent_path": "parallel_scan",
   "seed": 17,
   "context_length": 512,
   "vocab_size": 32000,

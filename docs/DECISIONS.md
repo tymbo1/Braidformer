@@ -82,3 +82,19 @@ matched one-update host benchmark measured 981.85 tokens/sec for the reference
 path and 22,055.47 tokens/sec for the scan, a 22.46x implementation-path
 speedup, with higher scan VRAM and recorded FP16 rounding differences. No A1
 training was started, and no architectural features were added.
+
+## 2026-10-10 — D014: select the verified A1 parallel path for the pilot
+
+The bounded ten-update stability comparison initialized the sequential
+reference and associative scan from identical A1 weights and empty AdamW
+states, then used the same seed-17 batches, FP16 settings, schedule, and
+gradient accumulation. Both paths completed all ten updates with finite losses
+and gradients. Losses differed by at most `6.795e-5`; final parameter
+relative-L2 difference was `0.141%`; final full-gradient relative-L2 difference
+was `4.96%`, recorded as FP16 operation-order variation. The reference path
+measured `998.59 tokens/sec` and the scan `20,433.84 tokens/sec` over the
+ten-update run, with separate peak allocated VRAM of `1,392,904,192` and
+`1,656,395,776` bytes respectively. The explicit A1 configuration now selects
+`parallel_scan`; the sequential loop remains available for diagnostics. This
+was a bounded stability check, not A1 training, and final pilot authorization
+remains outstanding.

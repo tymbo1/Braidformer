@@ -1,0 +1,341 @@
+{
+  "batch_seed": 2017,
+  "checkpoint_written": false,
+  "comparison": "a1_sequential_reference_vs_associative_scan_10_updates",
+  "conditions": {
+    "context_length": 512,
+    "effective_batch_size": 16,
+    "gradient_accumulation_steps": 8,
+    "gradient_clip_norm": 1.0,
+    "input_batches": "one pre-generated CPU batch sequence shared by both paths",
+    "learning_rate": 0.0003,
+    "lr_schedule": "cosine",
+    "micro_batch_size": 2,
+    "optimizer": "AdamW",
+    "optimizer_state_initial": "empty AdamW state for both paths",
+    "optimizer_steps": 10,
+    "precision": "fp16",
+    "tokens_per_path": 81920,
+    "tokens_per_update": 8192,
+    "warmup_steps": 10,
+    "weight_decay": 0.1
+  },
+  "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+  "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+  "device": "NVIDIA GeForce RTX 3060 Ti",
+  "device_capability": [
+    8,
+    6
+  ],
+  "final_gradient_difference": {
+    "candidate_l2": 0.36389482021331787,
+    "max_absolute": 0.000762939453125,
+    "mean_absolute": 1.3270199588077958e-06,
+    "reference_l2": 0.36400869488716125,
+    "relative_l2": 0.04959738627076149
+  },
+  "final_parameter_difference": {
+    "candidate_l2": 211.8018341064453,
+    "max_absolute": 0.0018017236143350601,
+    "mean_absolute": 1.8167824237025343e-05,
+    "reference_l2": 211.8018798828125,
+    "relative_l2": 0.0014113731449469924
+  },
+  "gradient_norm_comparison": [
+    {
+      "absolute_difference": 3.2842159271240234e-05,
+      "parallel_scan": 0.7564940452575684,
+      "relative_difference": 4.3411754185472186e-05,
+      "sequential_reference": 0.7565268874168396,
+      "step": 1
+    },
+    {
+      "absolute_difference": 8.845329284667969e-05,
+      "parallel_scan": 0.7544613480567932,
+      "relative_difference": 0.00011725407084563651,
+      "sequential_reference": 0.7543728947639465,
+      "step": 2
+    },
+    {
+      "absolute_difference": 0.00011217594146728516,
+      "parallel_scan": 0.7393218278884888,
+      "relative_difference": 0.00015170514323964158,
+      "sequential_reference": 0.739434003829956,
+      "step": 3
+    },
+    {
+      "absolute_difference": 0.00033909082412719727,
+      "parallel_scan": 0.7160089612007141,
+      "relative_difference": 0.00047336043305864725,
+      "sequential_reference": 0.7163480520248413,
+      "step": 4
+    },
+    {
+      "absolute_difference": 0.0001043081283569336,
+      "parallel_scan": 0.6636249423027039,
+      "relative_difference": 0.0001571546354016949,
+      "sequential_reference": 0.6637292504310608,
+      "step": 5
+    },
+    {
+      "absolute_difference": 0.00039207935333251953,
+      "parallel_scan": 0.5933125019073486,
+      "relative_difference": 0.0006603946907399171,
+      "sequential_reference": 0.5937045812606812,
+      "step": 6
+    },
+    {
+      "absolute_difference": 6.4849853515625e-05,
+      "parallel_scan": 0.5142511129379272,
+      "relative_difference": 0.00012612132639758776,
+      "sequential_reference": 0.5141862630844116,
+      "step": 7
+    },
+    {
+      "absolute_difference": 9.891390800476074e-05,
+      "parallel_scan": 0.44956836104393005,
+      "relative_difference": 0.000219971328834934,
+      "sequential_reference": 0.4496672749519348,
+      "step": 8
+    },
+    {
+      "absolute_difference": 9.140372276306152e-05,
+      "parallel_scan": 0.3978266716003418,
+      "relative_difference": 0.00022970487754003826,
+      "sequential_reference": 0.39791807532310486,
+      "step": 9
+    },
+    {
+      "absolute_difference": 0.00012052059173583984,
+      "parallel_scan": 0.36564841866493225,
+      "relative_difference": 0.00032949925157878946,
+      "sequential_reference": 0.3657689392566681,
+      "step": 10
+    }
+  ],
+  "interpretation": "bounded numerical-stability comparison only; no A1 training pilot was started",
+  "loss_comparison": [
+    {
+      "absolute_difference": 2.110004425048828e-05,
+      "parallel_scan": 10.478059768676758,
+      "relative_difference": 2.013731762032471e-06,
+      "sequential_reference": 10.478080868721008,
+      "step": 1
+    },
+    {
+      "absolute_difference": 3.445148468017578e-05,
+      "parallel_scan": 10.475850701332092,
+      "relative_difference": 3.2886682868914957e-06,
+      "sequential_reference": 10.475816249847412,
+      "step": 2
+    },
+    {
+      "absolute_difference": 2.205371856689453e-05,
+      "parallel_scan": 10.470885634422302,
+      "relative_difference": 2.1061897615497183e-06,
+      "sequential_reference": 10.47090768814087,
+      "step": 3
+    },
+    {
+      "absolute_difference": 6.186962127685547e-05,
+      "parallel_scan": 10.465478420257568,
+      "relative_difference": 5.911746509321566e-06,
+      "sequential_reference": 10.465540289878845,
+      "step": 4
+    },
+    {
+      "absolute_difference": 6.794929504394531e-05,
+      "parallel_scan": 10.475707173347473,
+      "relative_difference": 6.486326238244515e-06,
+      "sequential_reference": 10.475775122642517,
+      "step": 5
+    },
+    {
+      "absolute_difference": 3.528594970703125e-05,
+      "parallel_scan": 10.478249073028564,
+      "relative_difference": 3.3675312196310686e-06,
+      "sequential_reference": 10.478284358978271,
+      "step": 6
+    },
+    {
+      "absolute_difference": 5.269050598144531e-05,
+      "parallel_scan": 10.479124188423157,
+      "relative_difference": 5.028114955039267e-06,
+      "sequential_reference": 10.479176878929138,
+      "step": 7
+    },
+    {
+      "absolute_difference": 3.421306610107422e-05,
+      "parallel_scan": 10.485490202903748,
+      "relative_difference": 3.2628855500032437e-06,
+      "sequential_reference": 10.485524415969849,
+      "step": 8
+    },
+    {
+      "absolute_difference": 4.291534423828125e-05,
+      "parallel_scan": 10.479702353477478,
+      "relative_difference": 4.095108671386924e-06,
+      "sequential_reference": 10.47965943813324,
+      "step": 9
+    },
+    {
+      "absolute_difference": 3.3736228942871094e-05,
+      "parallel_scan": 10.478381037712097,
+      "relative_difference": 3.219613548989344e-06,
+      "sequential_reference": 10.478347301483154,
+      "step": 10
+    }
+  ],
+  "parameter_count": 41870336,
+  "paths": {
+    "parallel_scan": {
+      "gradient_norm_trajectory": [
+        0.7564940452575684,
+        0.7544613480567932,
+        0.7393218278884888,
+        0.7160089612007141,
+        0.6636249423027039,
+        0.5933125019073486,
+        0.5142511129379272,
+        0.44956836104393005,
+        0.3978266716003418,
+        0.36564841866493225
+      ],
+      "learning_rate_trajectory": [
+        2.9999999999999997e-05,
+        5.9999999999999995e-05,
+        8.999999999999999e-05,
+        0.00011999999999999999,
+        0.00015,
+        0.00017999999999999998,
+        0.00020999999999999998,
+        0.00023999999999999998,
+        0.00026999999999999995,
+        0.0003
+      ],
+      "loss_trajectory": [
+        10.478059768676758,
+        10.475850701332092,
+        10.470885634422302,
+        10.465478420257568,
+        10.475707173347473,
+        10.478249073028564,
+        10.479124188423157,
+        10.485490202903748,
+        10.479702353477478,
+        10.478381037712097
+      ],
+      "nonfinite_gradient_steps": [],
+      "nonfinite_loss_steps": [],
+      "optimizer_steps": 10,
+      "parameter_change_from_initial": {
+        "candidate_l2": 211.8018341064453,
+        "max_absolute": 0.0017769336700439453,
+        "mean_absolute": 0.0004716968396678567,
+        "reference_l2": 211.80474853515625,
+        "relative_l2": 0.01708085834980011
+      },
+      "path": "parallel_scan",
+      "peak_allocated_vram_bytes": 1656395776,
+      "peak_reserved_vram_bytes": 2111832064,
+      "tokens_per_second": 20433.843615144764,
+      "tokens_per_update": 8192,
+      "tokens_processed": 81920,
+      "total_wall_seconds": 4.009035282000696,
+      "update_wall_seconds": [
+        0.37354984800003876,
+        0.38002265199975227,
+        0.4413965809999354,
+        0.38411422799981665,
+        0.41565965699919616,
+        0.4016372700007196,
+        0.38549118599985377,
+        0.43011915299939574,
+        0.3851142860003165,
+        0.4117512410011841
+      ],
+      "use_parallel_scan": true
+    },
+    "sequential_reference": {
+      "gradient_norm_trajectory": [
+        0.7565268874168396,
+        0.7543728947639465,
+        0.739434003829956,
+        0.7163480520248413,
+        0.6637292504310608,
+        0.5937045812606812,
+        0.5141862630844116,
+        0.4496672749519348,
+        0.39791807532310486,
+        0.3657689392566681
+      ],
+      "learning_rate_trajectory": [
+        2.9999999999999997e-05,
+        5.9999999999999995e-05,
+        8.999999999999999e-05,
+        0.00011999999999999999,
+        0.00015,
+        0.00017999999999999998,
+        0.00020999999999999998,
+        0.00023999999999999998,
+        0.00026999999999999995,
+        0.0003
+      ],
+      "loss_trajectory": [
+        10.478080868721008,
+        10.475816249847412,
+        10.47090768814087,
+        10.465540289878845,
+        10.475775122642517,
+        10.478284358978271,
+        10.479176878929138,
+        10.485524415969849,
+        10.47965943813324,
+        10.478347301483154
+      ],
+      "nonfinite_gradient_steps": [],
+      "nonfinite_loss_steps": [],
+      "optimizer_steps": 10,
+      "parameter_change_from_initial": {
+        "candidate_l2": 211.8018798828125,
+        "max_absolute": 0.0017819404602050781,
+        "mean_absolute": 0.0004716864787042141,
+        "reference_l2": 211.80474853515625,
+        "relative_l2": 0.017080698162317276
+      },
+      "path": "sequential_reference",
+      "peak_allocated_vram_bytes": 1392904192,
+      "peak_reserved_vram_bytes": 1826619392,
+      "tokens_per_second": 998.5899721869592,
+      "tokens_per_update": 8192,
+      "tokens_processed": 81920,
+      "total_wall_seconds": 82.0356725799993,
+      "update_wall_seconds": [
+        8.491906922001363,
+        8.168255743999907,
+        8.104788107999411,
+        8.247488934999637,
+        8.115248197000255,
+        8.195963076001135,
+        8.188041395000255,
+        8.19051292200129,
+        8.207990004000749,
+        8.12526041700039
+      ],
+      "use_parallel_scan": false
+    }
+  },
+  "script_sha256": "a1a3134435d69abc9ef2a1d38187eb395112f64f625bf1e0aec81b005a12c9cb",
+  "seed": 17,
+  "seed_report": {
+    "deterministic_algorithms_requested": true,
+    "numpy": true,
+    "python": true,
+    "seed": 17,
+    "torch": true
+  },
+  "status": "completed",
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.12.0+cu130",
+  "training_pilot_started": false
+}

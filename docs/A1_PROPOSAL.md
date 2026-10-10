@@ -1,8 +1,8 @@
 # A1 recurrent/state-space-majority proposal
 
-Status: the A1 architecture is implemented and CPU-verified. Its single
-approved host-GPU smoke test passed, but it has not been trained or compared
-empirically with A0.
+Status: the A1 architecture is implemented and CPU-verified. Its approved
+host-GPU smoke test and bounded ten-update recurrence stability check passed,
+but it has not been trained or compared empirically with A0.
 
 ## Research question
 
@@ -72,6 +72,11 @@ The implementation retains the auditable Python loop as the default reference
 same parameter count. A future state-dependent gate would invalidate this
 scan; it must not be substituted silently.
 
+The planned A1 JSON configuration now selects `recurrent_path: "parallel_scan"`
+explicitly. The runner and evaluator pass that selection into the model
+factory; direct model construction still defaults to the sequential reference
+so tests and diagnostic comparisons cannot silently change path.
+
 The shared `num_attention_heads: 8` configuration field is retained only for
 the common BraidNano configuration shape and parameter-accounting comparison;
 it does not instantiate attention in A1.
@@ -96,7 +101,7 @@ learned diagonal transition scalar per hidden channel per block.
 The difference is **4,096 parameters**, or approximately **0.0098%** relative
 to A0. The exact A1 construction and proposal are recorded in
 `configs/braidnano_a1_recurrent_state_space_proposal.json` (SHA-256:
-`b8444b2c899a76737c18383f94310cb4699b3385c627a2d7e2c2ce62b2eef6ff`).
+`0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab`).
 
 ## Context and training compatibility
 
@@ -114,7 +119,8 @@ therefore reuses:
 - validation every 100 steps and the existing integrity policy.
 
 The proposal remains `planned_only: true`. The generalized training runner now
-selects A0 or A1 only from the explicit stage/model-type pair, and its A1
+selects A0 or A1 only from the explicit stage/model-type pair and selects the
+configured A1 recurrence path, and its A1
 dry-run passed the pinned data, tokenizer, validation, logging, checkpoint, and
 recovery checks. The execution gate still prevents training unless an explicit
 pilot authorization is supplied. The fixed-prompt evaluator uses the same
@@ -174,6 +180,35 @@ redesign it. The measurement is a readiness result, not an A1 training result
 or a matched A0 benchmark; the full comparison must use the same runner and
 measurement method.
 
+## Ten-update numerical stability check
+
+The sequential reference and parallel scan were initialized from identical
+weights and empty AdamW states, then consumed the same 80 pre-generated
+micro-batches (10 updates, 8,192 tokens per update) with seed 17, FP16
+autocast, the approved cosine warmup schedule, micro-batch 2, context 512, and
+accumulation 8. No checkpoint was written and the 1,000-step pilot was not
+started.
+
+| Measurement | Result |
+| --- | ---: |
+| Non-finite losses or gradients | None in either path |
+| Maximum absolute loss difference across 10 updates | `6.795e-5` |
+| Maximum relative loss difference across 10 updates | `6.487e-6` |
+| Final parameter relative-L2 difference | `0.001411` (0.141%) |
+| Final gradient relative-L2 difference | `0.04960` (4.96%) |
+| Reference path wall time / throughput | `82.036 s` / `998.59 tokens/s` |
+| Parallel path wall time / throughput | `4.009 s` / `20,433.84 tokens/s` |
+| Reference / parallel peak allocated VRAM | `1,392,904,192` / `1,656,395,776` bytes |
+
+The loss and parameter trajectories remained close over the bounded check. The
+larger full-gradient difference is retained as a measured FP16 operation-order
+effect; it is not reported as bitwise equivalence. This evidence is sufficient
+to select the parallel scan as the explicit A1 pilot path, while retaining the
+sequential implementation as the reference diagnostic path. It is not an A1
+training result and does not establish quality or architectural superiority.
+
+The raw record is `results/a1_scan_stability.json`.
+
 ## Falsifiable comparison hypotheses
 
 The first comparison should report A0 and A1 at matched seed, data, tokenizer,
@@ -202,7 +237,7 @@ result. Seeds 23 and 29 remain necessary before a stronger claim.
 | A1 runner selection and shared checkpoint/recovery/logging behavior | RECOMMENDED | Generalized and A1 dry-run passed; no pilot run |
 | Host CUDA smoke test for A1 at micro-batch 2 / context 512 | RECOMMENDED | Passed: finite loss/gradients, one AdamW update, no OOM |
 | A1 fixed-prompt evaluation wiring | RECOMMENDED | Generalized; no A1 checkpoint exists to evaluate |
-| Associative scan mathematical validity and path benchmark | RECOMMENDED | Verified; 22.46x path speedup with higher VRAM and recorded FP16 rounding differences |
+| Associative scan validity, path benchmark, and ten-update stability | RECOMMENDED | Verified; no non-finite values, 0.141% final parameter relative-L2 difference, and explicit parallel-path selection |
 | Final A1 pilot authorization | BLOCKER | Intentionally awaiting review |
 | Gradient checkpointing | DEFERRED | Not implemented or enabled; unchanged from A0 |
 | Attention, MoE, conditional depth, controller, persistent memory | DEFERRED | Explicitly outside A1 |

@@ -18,8 +18,9 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 | A7 | Later multi-token prediction | Later |
 | A8 | Later conditional/static memory | Later |
 
-The Phase 0 bootstrap did not begin training. The A0 control was added as the
-next implementation slice, but it has not been trained or benchmarked.
+The Phase 0 bootstrap did not begin training. The A0 control was subsequently
+trained only in its separately authorized seed-17 pilot; the A1 pilot remains
+unstarted.
 
 The A0 smoke boundary is deliberately small: validate configuration, construct
 the model, check causal logits and parameter count, and run one synthetic

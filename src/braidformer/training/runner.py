@@ -61,7 +61,13 @@ def _model_class(config: ExperimentConfig) -> type[LanguageModel]:
 def build_model(config: ExperimentConfig) -> LanguageModel:
     """Construct exactly the architecture named by an explicit config."""
 
-    return _model_class(config)(config)
+    model_class = _model_class(config)
+    if config.stage == "A1":
+        return model_class(
+            config,
+            use_parallel_scan=config.recurrent_path == "parallel_scan",
+        )
+    return model_class(config)
 
 
 def cosine_warmup_learning_rate(

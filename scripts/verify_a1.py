@@ -14,6 +14,7 @@ import torch
 
 from braidformer.config import load_config
 from braidformer.models import A1RecurrentStateSpaceLM
+from braidformer.training.runner import build_model
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -31,7 +32,7 @@ def _parameter_breakdown(model: A1RecurrentStateSpaceLM) -> dict[str, int]:
 def build_report(config_path: Path) -> dict[str, Any]:
     config = load_config(config_path)
     torch.manual_seed(config.seed)
-    model = A1RecurrentStateSpaceLM(config)
+    model = build_model(config)
     parameter_count = model.parameter_count()
     if not config.target_parameters_min <= parameter_count <= config.target_parameters_max:
         raise ValueError(
@@ -56,6 +57,8 @@ def build_report(config_path: Path) -> dict[str, Any]:
         "architecture": {
             "stage": config.stage,
             "model_type": config.model_type,
+            "recurrent_path": config.recurrent_path,
+            "parallel_scan_enabled": model.use_parallel_scan,
             "vocab_size": config.vocab_size,
             "context_length": config.context_length,
             "hidden_size": config.hidden_size,
