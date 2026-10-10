@@ -18,6 +18,14 @@ The planned ingredients are:
 
 No item above is considered beneficial until it beats an appropriately matched control or reveals a clearly documented trade-off.
 
+## Current implementation boundary
+
+The A0 conventional decoder-only Transformer control is now implemented in
+`src/braidformer/models/transformer.py`. It supports causal logits, optional
+next-token loss, parameter counting, and explicit tied-embedding configuration.
+The implementation has only passed synthetic CPU smoke tests; it has not been
+trained or benchmarked. A1 and later mechanisms remain unimplemented.
+
 ## Initial model scale
 
 The first model family is BraidNano, targeted at approximately 40M–60M parameters. It is a cheap instrument for architecture falsification, not a proxy for frontier-scale performance. Parameter counts, active parameters, and approximate training FLOPs must be measured rather than inferred from labels.

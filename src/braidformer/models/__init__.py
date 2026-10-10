@@ -1,1 +1,5 @@
-"""Model implementations will be added one controlled stage at a time."""
+"""Model implementations for the staged BraidFormer experiments."""
+
+from braidformer.models.transformer import A0TransformerLM, CausalLMOutput, ModelConfigError
+
+__all__ = ["A0TransformerLM", "CausalLMOutput", "ModelConfigError"]

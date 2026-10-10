@@ -27,3 +27,7 @@ Read-only PCI metadata identifies an NVIDIA GeForce RTX 3060 Ti GDDR6X (GA104, A
 ## 2026-10-10 — D006: use JSON configs in the bootstrap
 
 The bootstrap uses standard-library JSON configuration loading and validation so Phase 0 does not require a YAML dependency. Later experiment tooling may add a dependency only when its need is recorded and tested.
+
+## 2026-10-10 — D007: implement the A0 control before architectural variants
+
+The next implementation slice is a conventional decoder-only Transformer using the existing BraidNano dimensions. Its model type, dropout, normalization epsilon, bias policy, and tied-embedding policy are explicit configuration fields. The model rejects non-A0 stages, and validation is limited to synthetic CPU smoke tests; no dataset, checkpoint, or training run is authorized by this change.

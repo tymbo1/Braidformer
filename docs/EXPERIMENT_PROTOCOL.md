@@ -6,9 +6,9 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 
 ## Planned experimental ladder
 
-| Stage | Planned change | Status in Phase 0 |
+| Stage | Planned change | Current status |
 | --- | --- | --- |
-| A0 | Conventional Transformer control | Planned |
+| A0 | Conventional Transformer control | Implemented; synthetic smoke-tested only |
 | A1 | Recurrent/state-space majority backbone | Planned |
 | A2 | A1 plus periodic/selective attention | Planned |
 | A3 | A2 plus a small sparse latent MoE | Planned |
@@ -18,7 +18,14 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 | A7 | Later multi-token prediction | Later |
 | A8 | Later conditional/static memory | Later |
 
-Phase 0 does not implement these stages and does not begin training.
+The Phase 0 bootstrap did not begin training. The A0 control was added as the
+next implementation slice, but it has not been trained or benchmarked.
+
+The A0 smoke boundary is deliberately small: validate configuration, construct
+the model, check causal logits and parameter count, and run one synthetic
+forward/backward pass on CPU. A real experiment still requires a versioned
+dataset/tokenizer choice, matched optimizer settings, a working device memory
+smoke test, and an experiment record.
 
 ## Required matching
 
