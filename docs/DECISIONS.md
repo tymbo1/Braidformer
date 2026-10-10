@@ -53,3 +53,15 @@ losses or gradients, or CUDA errors. A durable step log, validation records,
 and SHA-256-verified final checkpoint are preserved under
 `results/runs/a0_seed17_pilot/`. Gradient checkpointing remains explicitly
 unimplemented and was not claimed as enabled. No A1 work began.
+
+## 2026-10-10 — D012: implement a narrow A1 recurrent control
+
+A1 changes only the sequence-mixing path relative to A0: eight gated diagonal
+state-space recurrent mixers replace attention, with zero retained attention
+layers, while embeddings, context length, feed-forward widths, normalization,
+tied output weights, and the proposed training protocol remain matched. The
+implementation has 41,870,336 unique trainable parameters versus A0's
+41,866,240, a difference of 4,096 parameters. A1 is CPU-verified but not
+GPU-smoke-tested or trained. The existing A0 runner remains intentionally
+A0-only; training is blocked pending a reviewed A1 runner and hardware smoke
+test. No A1 quality or efficiency claim is made.

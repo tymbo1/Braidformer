@@ -9,7 +9,7 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 | Stage | Planned change | Current status |
 | --- | --- | --- |
 | A0 | Conventional Transformer control | Implemented; synthetic smoke-tested only |
-| A1 | Recurrent/state-space majority backbone | Planned |
+| A1 | Recurrent/state-space majority backbone | Implemented; CPU-verified; not trained |
 | A2 | A1 plus periodic/selective attention | Planned |
 | A3 | A2 plus a small sparse latent MoE | Planned |
 | A4 | A3 plus conditional depth | Planned |
@@ -26,6 +26,12 @@ the model, check causal logits and parameter count, and run one synthetic
 forward/backward pass on CPU. A real experiment still requires a versioned
 dataset/tokenizer choice, matched optimizer settings, a working device memory
 smoke test, and an experiment record.
+
+The A1 architecture boundary is similarly limited: construct the recurrent
+model, verify causal logits and shifted loss, run a synthetic CPU backward pass,
+and verify its parameter count against the proposal. A1 training requires a
+separate runner compatibility review and host CUDA smoke test; this change does
+not authorize either.
 
 ## Required matching
 
@@ -103,7 +109,7 @@ security review, and long-run resilience experiments are deferred.
 ## Phase gates
 
 - **Gate 0:** hardware and software audit completed; CUDA state is explicit.
-- **Gate 1:** A0 and A1 have matched data, optimizer, tokens, context, and seeds.
+- **Gate 1:** A0 and A1 have matched data, optimizer, tokens, context, and seeds; the A1 runner and CUDA smoke test must pass before training authorization.
 - **Gate 2:** A2 retrieval probes demonstrate whether selective attention corrects a known failure mode.
 - **Gate 3:** A3–A5 report quality, active compute, routing statistics, and controller stability together.
 - **Gate 4:** memory and multi-token variants are introduced only after the core architecture has a measured baseline.

@@ -23,8 +23,11 @@ No item above is considered beneficial until it beats an appropriately matched c
 The A0 conventional decoder-only Transformer control is now implemented in
 `src/braidformer/models/transformer.py`. It supports causal logits, optional
 next-token loss, parameter counting, and explicit tied-embedding configuration.
-The implementation has only passed synthetic CPU smoke tests; it has not been
-trained or benchmarked. A1 and later mechanisms remain unimplemented.
+The seed-17 A0 pilot is complete and its checkpoint is preserved. The bounded
+A1 recurrent/state-space-majority proposal is implemented in
+`src/braidformer/models/recurrent.py` and has passed CPU construction, causal
+loss, backward, and parameter-accounting tests. A1 has not been GPU-smoke-tested
+or trained. Later mechanisms remain unimplemented.
 
 ## Initial model scale
 
@@ -37,7 +40,7 @@ The initial planning configuration uses a 512-dimensional representation, 8 laye
 The architecture ladder introduces one major capability at a time:
 
 - A0 establishes the conventional Transformer control.
-- A1 changes the majority sequence-processing path to recurrent/state-space processing.
+- A1 changes the majority sequence-processing path to recurrent/state-space processing; its implementation is complete but training remains gated.
 - A2 adds periodic/selective attention for retrieval and correction.
 - A3 adds a small sparse latent MoE.
 - A4 adds conditional depth.

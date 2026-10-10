@@ -153,4 +153,5 @@ matched A1 run. For every run:
    result.
 
 The seed-17 result is a bounded TinyStories pilot measurement. It is not a
-general capability claim or an A0-versus-A1 comparison; A1 has not started.
+general capability claim or an A0-versus-A1 comparison; A1 architecture
+implementation is now complete, but A1 training has not started.
