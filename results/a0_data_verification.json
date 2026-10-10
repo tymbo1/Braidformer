@@ -1,0 +1,60 @@
+{
+  "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+  "duplicate_text_hashes_found": 0,
+  "errors": [],
+  "manifest": "data/tinystories_a0/manifest.json",
+  "runtime": {
+    "python": "3.12.3"
+  },
+  "schema_version": 1,
+  "source_files_checked": [
+    {
+      "path": "data/tinystories_a0/raw/data/train-00000-of-00004-2d5a1467fff1081b.parquet",
+      "sha256": "77cf780cebe52b6e83e3a2ac84bc56d8059363113e41d17a023f1d8b2ed0fc0b"
+    },
+    {
+      "path": "data/tinystories_a0/raw/data/train-00001-of-00004-5852b56a2bd28fd9.parquet",
+      "sha256": "e2f173a6dcc2b5895183e8ad376e115bd5c06764eb0cfc01ce1add156b2d017f"
+    },
+    {
+      "path": "data/tinystories_a0/raw/data/train-00002-of-00004-a26307300439e943.parquet",
+      "sha256": "cac73cd1a0973a7fccde022a5a5c78f8ba58ea6849541835c58e7c5fc747f2ef"
+    },
+    {
+      "path": "data/tinystories_a0/raw/data/train-00003-of-00004-d243063613e5a057.parquet",
+      "sha256": "862514ae75723ddd339337f1ef7617b88f82290dcddd57445e1d38d257ca7891"
+    },
+    {
+      "path": "data/tinystories_a0/raw/data/validation-00000-of-00001-869c898b519ad725.parquet",
+      "sha256": "33406a6206554cfc279c29c11f4df51528af487aa1a602b075566fc83c49dcab"
+    }
+  ],
+  "split_counts": {
+    "test": 7822,
+    "train": 1799248,
+    "validation": 7567
+  },
+  "status": "PASS",
+  "streams_checked": {
+    "test": {
+      "max_token_id": 31999,
+      "path": "data/tinystories_a0/tokens_test.bin",
+      "sha256": "f810ab5c68297193bb76e0332f0e85d6abdfc9f21fe89c4d13059113149421a4",
+      "tokens": 1588146
+    },
+    "train": {
+      "max_token_id": 31999,
+      "path": "data/tinystories_a0/tokens_train.bin",
+      "sha256": "f4e63ba08e9fc8e94b351fdeb23ffd879abf10de68837fc23c0e720aaa9abcf2",
+      "tokens": 391534494
+    },
+    "validation": {
+      "max_token_id": 31964,
+      "path": "data/tinystories_a0/tokens_validation.bin",
+      "sha256": "35c5821fcf5926fddc86ecaeb7a6bc6aaf7bf9fbd0e276cc328e24ec2b9d4d8c",
+      "tokens": 1538229
+    }
+  },
+  "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+  "verified_at_utc": "2026-10-10T02:26:51.686974+00:00"
+}

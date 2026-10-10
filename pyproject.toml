@@ -12,6 +12,11 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+data = [
+    "huggingface_hub==1.14.0",
+    "pyarrow==24.0.0",
+    "tokenizers==0.22.2",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

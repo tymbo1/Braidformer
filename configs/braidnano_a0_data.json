@@ -1,0 +1,44 @@
+{
+  "name": "braidnano_a0_tinystories_32000_bpe",
+  "status": "prepared_pending_hardware",
+  "artifact_root": "data/tinystories_a0",
+  "dataset": {
+    "repo_id": "roneneldan/TinyStories",
+    "revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "license": "CDLA-Sharing-1.0",
+    "dataset_card": "https://huggingface.co/datasets/roneneldan/TinyStories",
+    "paper": "https://arxiv.org/abs/2305.07759",
+    "license_text": "https://cdla.dev/sharing-1-0/"
+  },
+  "prepared_artifacts": {
+    "manifest": "data/tinystories_a0/manifest.json",
+    "manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+    "verification_report": "results/a0_data_verification.json",
+    "verification_report_sha256": "ec2a449d711d7e00477ea58fb6030999df1bea1b029b4444b4c8d82fa56e0fbb",
+    "verification_status": "PASS",
+    "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+    "split_manifest_sha256": "a06d103e15d0f5cbfabfdd7b42b480792e462b727d26229e95eb82e9aaad12f8"
+  },
+  "tokenizer": {
+    "type": "byte_level_bpe",
+    "vocab_size": 32000,
+    "training_source_split": "train",
+    "special_tokens": ["<|pad|>", "<|bos|>", "<|eos|>", "<|unk|>"],
+    "min_frequency": 2,
+    "artifact": "data/tinystories_a0/tokenizer.json"
+  },
+  "partition": {
+    "source_train_to_final_train": true,
+    "source_validation_assignment": "sha256(normalized_text) first 32 bits parity",
+    "duplicate_policy": "first-seen text hash wins; later duplicate rows are excluded",
+    "manifest": "data/tinystories_a0/split_manifest.jsonl"
+  },
+  "preprocessing": "strip leading/trailing Unicode whitespace; preserve interior text and case; discard null/empty rows",
+  "packing": {
+    "context_length": 512,
+    "document_boundary": "BOS + encoded text + EOS",
+    "stream_format": "uint16 little-endian",
+    "sequence_policy": "non-overlapping complete 512-token sequences; drop only recorded tail per split"
+  },
+  "training_gate": "prepared data does not authorize model training; require passing CUDA/memory smoke test and final run approval"
+}

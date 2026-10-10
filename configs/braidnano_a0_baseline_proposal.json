@@ -32,7 +32,7 @@
   "evaluation_token_budget": 131072,
   "eval_interval_steps": 100,
   "checkpoint_interval_steps": 1000,
-  "data_and_tokenizer": "PENDING_APPROVAL",
+  "data_and_tokenizer": "configs/braidnano_a0_data.json",
   "max_steps": 1000,
   "planned_only": true
 }

@@ -39,7 +39,10 @@ Record actual parameter count, active parameter count where meaningful, wall-clo
 
 - Start with small tests and smoke checks before expensive tests.
 - Do not begin long training runs without an explicit, versioned configuration and a successful cheap validation.
-- Phase 0 does not download large datasets or checkpoints and does not train.
+- The initial Phase 0 bootstrap does not download large datasets or checkpoints
+  and does not train. A later explicitly approved A0 readiness step may fetch
+  the pinned dataset and tokenizer artifacts; it still must not train or fetch
+  checkpoints.
 - The initial target is BraidNano at approximately 40M–60M parameters; do not jump to 1B or 14B.
 - Do not use Qwen distillation in Phase 0. Qwen may be introduced later as a clearly labeled teacher or baseline.
 - Keep the architecture ladder explicit. Do not implement or report later stages as complete merely because scaffolding exists.

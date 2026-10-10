@@ -26,7 +26,7 @@ def test_a0_baseline_proposal_is_explicitly_planned_only() -> None:
     assert config.max_steps == 1_000
     assert config.training_token_budget == 8_192_000
     assert config.evaluation_token_budget == 131_072
-    assert config.data_and_tokenizer == "PENDING_APPROVAL"
+    assert config.data_and_tokenizer == "configs/braidnano_a0_data.json"
 
 
 def test_invalid_attention_shape_is_rejected() -> None:

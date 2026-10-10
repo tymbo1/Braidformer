@@ -15,6 +15,7 @@ import os
 import platform
 import re
 import shutil
+import stat
 import subprocess
 import sys
 import warnings
@@ -124,17 +125,25 @@ def parse_lspci_graphics(stdout: str) -> list[dict[str, Any]]:
     current: dict[str, Any] | None = None
     for raw_line in stdout.splitlines():
         line = raw_line.rstrip()
-        header = re.match(
-            r"^(?P<address>[0-9a-f:.]+)\s+.*?(VGA compatible controller|3D controller|Display controller).*?:\s*(?P<description>.+)$",
-            line,
-            re.IGNORECASE,
-        )
+        header = re.match(r"^(?P<address>[0-9a-f:.]+)\s+(?P<rest>.+)$", line, re.IGNORECASE)
         if header:
-            match = re.search(r"\[(GeForce [^\]]+)\]", header.group("description"), re.IGNORECASE)
-            model = match.group(1) if match else header.group("description")
+            current = None
+            device_class = re.search(
+                r"VGA compatible controller|3D controller|Display controller",
+                header.group("rest"),
+                re.IGNORECASE,
+            )
+            if device_class is None:
+                continue
+            colon_index = header.group("rest").find(":", device_class.end())
+            if colon_index < 0:
+                continue
+            description = header.group("rest")[colon_index + 1 :].strip()
+            match = re.search(r"\[(GeForce [^\]]+)\]", description, re.IGNORECASE)
+            model = match.group(1) if match else description
             current = {
                 "pci_address": header.group("address"),
-                "description": header.group("description"),
+                "description": description,
                 "model": model,
                 "driver_in_use": None,
             }
@@ -145,6 +154,27 @@ def parse_lspci_graphics(stdout: str) -> list[dict[str, Any]]:
             if driver_match:
                 current["driver_in_use"] = driver_match.group(1).strip()
     return devices
+
+
+def collect_nvidia_device_nodes() -> list[dict[str, Any]]:
+    """Report NVIDIA character-device nodes without creating or changing them."""
+
+    nodes: list[dict[str, Any]] = []
+    for path in sorted(Path("/dev").glob("nvidia*")):
+        try:
+            mode = path.stat()
+        except OSError as exc:
+            nodes.append({"path": str(path), "stat_error": f"{type(exc).__name__}: {exc}"})
+            continue
+        nodes.append(
+            {
+                "path": str(path),
+                "is_character_device": stat.S_ISCHR(mode.st_mode),
+                "major": os.major(mode.st_rdev) if stat.S_ISCHR(mode.st_mode) else None,
+                "minor": os.minor(mode.st_rdev) if stat.S_ISCHR(mode.st_mode) else None,
+            }
+        )
+    return nodes
 
 
 def parse_os_release(path: Path = Path("/etc/os-release")) -> dict[str, str]:
@@ -320,9 +350,15 @@ def collect_gpu() -> dict[str, Any]:
         device.setdefault("driver_version", driver_version)
         device.setdefault("driver_in_use", None)
 
+    device_nodes = collect_nvidia_device_nodes()
+
     return {
         "detected": bool(devices),
         "devices": devices,
+        "device_nodes": {
+            "present": bool(device_nodes),
+            "entries": device_nodes,
+        },
         "driver_version": driver_version,
         "driver_version_raw": driver_raw,
         "nvidia_smi_ok": smi["ok"],

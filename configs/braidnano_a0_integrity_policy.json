@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "scope": "1,000-step A0 pilot",
+  "stop_on_nonfinite_loss": true,
+  "stop_on_nonfinite_gradient_norm": true,
+  "loss_ceiling": 100.0,
+  "require_contiguous_optimizer_steps": true,
+  "require_monotonic_token_counter": true,
+  "record_train_and_validation_loss": true,
+  "record_gradient_norm": true,
+  "record_learning_rate": true,
+  "record_tokens_per_second": true,
+  "record_peak_allocated_and_reserved_vram": true,
+  "raw_step_log_format": "JSONL with fsync per record",
+  "checkpoint_policy": "atomic torch save plus SHA-256 sidecar containing step, tokens, seed, config hash, and data-manifest hash",
+  "not_in_scope": [
+    "automated hyperparameter search",
+    "security audit",
+    "distributed training",
+    "architectural changes",
+    "long-run fault injection"
+  ]
+}

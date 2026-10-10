@@ -2,14 +2,19 @@
 
 BraidFormer is an independent research project for experimentally testing a small recurrent/state-space-majority architecture with selective exact retrieval, sparse latent experts, and conditional compute. The project is deliberately falsification-first: the proposed architecture is a hypothesis, not an assumed improvement.
 
-The first target is **BraidNano**, approximately 40M–60M parameters. Phase 0 is repository and hardware bootstrap only. It does not train, download a dataset, download a checkpoint, or use Qwen distillation.
+The first target is **BraidNano**, approximately 40M–60M parameters. The
+initial Phase 0 bootstrap was repository and hardware setup only. The later,
+explicitly approved A0 readiness step prepared TinyStories data; it still does
+not train, download a checkpoint, or use Qwen distillation.
 
 ## Current status
 
 - Phase 0 scaffold completed.
 - A0 conventional decoder-only Transformer control implemented and covered by
   CPU-only synthetic shape, loss, backward, and causality smoke tests.
-- No dataset, checkpoint, or training run has been started.
+- TinyStories data, tokenizer, deterministic splits, and packed token streams
+  have been prepared and independently verified; no checkpoint or training run
+  has been started.
 - Hardware report generated at [`results/hardware_report.json`](results/hardware_report.json).
 - The audited machine exposes an NVIDIA GeForce RTX 3060 Ti GDDR6X through PCI metadata, but the NVIDIA driver currently fails `nvidia-smi` and PyTorch cannot see CUDA. See the report and [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
@@ -18,14 +23,19 @@ The first target is **BraidNano**, approximately 40M–60M parameters. Phase 0 i
 - [`AGENTS.md`](AGENTS.md): persistent research and workspace rules.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): hypothesis and planned components.
 - [`docs/A0_BASELINE.md`](docs/A0_BASELINE.md): verified A0 accounting, test coverage, and proposed experiment protocol.
-- [`docs/A0_READINESS.md`](docs/A0_READINESS.md): pre-training gate matrix and unresolved data/hardware requirements.
+- [`docs/A0_READINESS.md`](docs/A0_READINESS.md): pre-training gate matrix and current hardware blocker.
+- [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
 - [`configs/braidnano_phase0_planning.json`](configs/braidnano_phase0_planning.json): conservative planning-only configuration.
 - [`configs/braidnano_a0_baseline_proposal.json`](configs/braidnano_a0_baseline_proposal.json): reviewed but not executed training proposal.
+- [`configs/braidnano_a0_data.json`](configs/braidnano_a0_data.json): approved data/tokenizer preparation specification.
+- [`configs/braidnano_a0_integrity_policy.json`](configs/braidnano_a0_integrity_policy.json): bounded pilot safeguards.
 - [`src/braidformer/models/transformer.py`](src/braidformer/models/transformer.py): A0 control model.
 - [`scripts/verify_a0.py`](scripts/verify_a0.py): construction and parameter-accounting verification.
 - [`scripts/hardware_report.py`](scripts/hardware_report.py): read-only hardware/environment audit.
+- [`scripts/prepare_tinystories.py`](scripts/prepare_tinystories.py): deterministic data/tokenizer preparation; never trains.
+- [`scripts/verify_tinystories.py`](scripts/verify_tinystories.py): local artifact, hash, split, and token-stream verification.
 
 ## Cheap checks
 

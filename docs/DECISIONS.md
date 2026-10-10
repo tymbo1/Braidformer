@@ -35,3 +35,11 @@ The next implementation slice is a conventional decoder-only Transformer using t
 ## 2026-10-10 — D008: keep training gated on data and hardware evidence
 
 The A0 control now has explicit synthetic checks for causal attention and exact next-token loss shifting. Training remains gated: a dataset/tokenizer and deterministic split manifest must be approved, and the device/memory smoke test must pass. The audited machine currently has no usable CUDA device, so no training-time performance or model-quality claim is permitted.
+
+## 2026-10-10 — D009: approve TinyStories preparation, not training
+
+TinyStories is approved as the A0 preparation source at immutable Hugging Face revision `f54c09fd23315a6f9c86f9dc80f725de7d8f9c64`, under the source-declared CDLA-Sharing-1.0 terms. A 32,000-token byte-level BPE tokenizer was trained on the deduplicated train split only. Deterministic train/validation/test assignments, source hashes, tokenizer hash, and packed token-stream hashes are recorded and pass local verification. The license is not treated as unrestricted; any redistribution must preserve its terms and attribution.
+
+## 2026-10-10 — D010: bounded training-integrity review
+
+For the 1,000-step pilot, low-risk integrity controls were added for deterministic seeding, provenance hashes, durable step records, non-finite/loss/progress circuit breakers, and atomic checkpoint sidecars. Hyperparameter search, distributed fault testing, security review, and architectural changes are deferred. CUDA remains the sole infrastructure blocker identified by the current readiness audit.

@@ -82,6 +82,24 @@ This is an estimate, not a measured safe maximum. Reduce context or micro-batch 
 
 No long run should begin before steps 1–4 pass and the experiment record is complete.
 
+## Bounded A0 integrity safeguards
+
+The 1,000-step A0 pilot uses the policy in
+[`configs/braidnano_a0_integrity_policy.json`](../configs/braidnano_a0_integrity_policy.json)
+and the low-risk utilities in `braidformer.training.integrity`. Before a run,
+the local TinyStories artifact verifier must pass. During a run, the future
+training entry point must record a durable JSONL record for every optimizer
+step containing train loss, validation loss when evaluated, gradient norm,
+learning rate, token count, throughput, and peak VRAM. It must stop on
+non-finite losses or gradient norms, an excessive configured loss ceiling,
+skipped optimizer steps, or a non-monotonic token counter. Checkpoints must be
+written atomically and accompanied by a SHA-256 sidecar containing recovery
+metadata.
+
+This is an engineering safety boundary for the pilot, not a new benchmark or
+an architectural feature. Hyperparameter search, distributed fault testing,
+security review, and long-run resilience experiments are deferred.
+
 ## Phase gates
 
 - **Gate 0:** hardware and software audit completed; CUDA state is explicit.

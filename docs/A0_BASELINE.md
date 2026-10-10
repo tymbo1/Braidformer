@@ -1,8 +1,8 @@
 # A0 verification and baseline proposal
 
-Status: the A0 implementation is verified for construction and synthetic CPU
-smoke behavior. No dataset has been read, no checkpoint has been loaded, and no
-training or benchmark performance measurement has been run.
+Status: the A0 implementation and the approved TinyStories preparation are
+verified for construction and data integrity. No checkpoint has been loaded,
+and no training or benchmark performance measurement has been run.
 
 ## Reproduce the verification
 
@@ -10,6 +10,7 @@ From the repository root:
 
 ```bash
 PYTHONPATH=src python3 scripts/verify_a0.py
+PYTHONPATH=src python3 scripts/verify_tinystories.py
 python3 -m pytest -q
 python3 -m compileall -q src tests scripts
 ```
@@ -67,7 +68,7 @@ not counted twice:
 
 ## Test coverage
 
-At verification time, `python3 -m pytest -q` reports **14 passed**. The tests
+At verification time, `python3 -m pytest -q` reports **20 passed**. The tests
 cover:
 
 - JSON configuration loading and validation, including architecture and
@@ -80,9 +81,12 @@ cover:
 - parameter-count target-range and tied-embedding checks;
 - context-length enforcement; and
 - existing hardware-report parser behavior.
+- data-preparation helper determinism;
+- fail-fast numerical/progress integrity monitoring; and
+- atomic checkpoint sidecar verification.
 
 Using the Python standard-library `trace` module for line coverage gives
-272/272 executable lines (100%) across `src/braidformer` for this test run.
+461/461 executable lines (100%) across `src/braidformer` for this test run.
 This is line coverage, not branch coverage, throughput validation, numerical
 stability validation, or training performance evidence. The coverage command
 used was:
@@ -106,7 +110,7 @@ one.
 | --- | --- |
 | Primary seed | 17 |
 | Replication seeds | 23 and 29, if the primary pilot is approved |
-| Dataset/tokenizer | `PENDING_APPROVAL`; must be fixed and versioned before running |
+| Dataset/tokenizer | TinyStories at revision `f54c09fd23315a6f9c86f9dc80f725de7d8f9c64`, 32,000-token byte-level BPE; verified artifact record in `configs/braidnano_a0_data.json` |
 | Training budget | 8,192,000 tokens (1,000 optimizer steps at 8,192 tokens/step) |
 | Evaluation budget | 131,072 tokens |
 | Context | 512 tokens |
@@ -122,9 +126,9 @@ one.
 | Checkpoint cadence | at the end of the 1,000-step pilot |
 | Distillation | disabled; no Qwen teacher |
 
-The dataset/tokenizer field remains intentionally unresolved. Until it is
-selected, pinned, and added to the experiment record, this is a proposal for
-review—not a reproducible training run.
+The dataset/tokenizer is now selected, pinned, prepared, and locally verified.
+The proposal remains `planned_only: true`; this is a reproducible training
+configuration for review, not an authorization to run it.
 
 ## Benchmark methodology
 
