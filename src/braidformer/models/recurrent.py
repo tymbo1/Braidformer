@@ -7,7 +7,9 @@ handling, loss, and tied language-model head remain compatible with A0.
 
 This is an experimental control, not a claim that recurrent processing is
 superior.  The implementation deliberately contains no attention, experts,
-conditional depth, retrieval, or compute controller.
+conditional depth, retrieval, or compute controller.  An optional associative
+scan path is provided for benchmarking; the sequential path remains the
+default reference implementation.
 """
 
 from __future__ import annotations
@@ -41,6 +43,7 @@ class GatedDiagonalStateSpaceMixer(nn.Module):
         dropout: float,
         use_bias: bool = True,
         initial_decay: float = 0.9,
+        use_parallel_scan: bool = False,
     ) -> None:
         super().__init__()
         if hidden_size <= 0:
@@ -49,12 +52,68 @@ class GatedDiagonalStateSpaceMixer(nn.Module):
             raise ModelConfigError("initial_decay must be strictly between 0 and 1")
 
         self.hidden_size = hidden_size
+        self.use_parallel_scan = use_parallel_scan
         self.input_projection = nn.Linear(hidden_size, 3 * hidden_size, bias=use_bias)
         self.output_projection = nn.Linear(hidden_size, hidden_size, bias=use_bias)
         self.state_transition_logit = nn.Parameter(torch.empty(hidden_size))
         self.residual_dropout = nn.Dropout(dropout)
         initial_logit = math.log(initial_decay / (1.0 - initial_decay))
         nn.init.constant_(self.state_transition_logit, initial_logit)
+
+    def _sequential_scan(
+        self,
+        candidate: Tensor,
+        input_gate: Tensor,
+        decay: Tensor,
+    ) -> Tensor:
+        """Reference recurrence; intentionally simple and auditable."""
+
+        batch_size, sequence_length, hidden_size = candidate.shape
+        state = candidate.new_zeros((batch_size, hidden_size))
+        outputs: list[Tensor] = []
+
+        for timestep in range(sequence_length):
+            candidate_t = torch.tanh(candidate[:, timestep, :])
+            input_gate_t = torch.sigmoid(input_gate[:, timestep, :])
+            state = decay * state + (1.0 - decay) * input_gate_t * candidate_t
+            outputs.append(state)
+
+        return torch.stack(outputs, dim=1)
+
+    @staticmethod
+    def _parallel_scan(decay: Tensor, updates: Tensor) -> Tensor:
+        """Compute the same diagonal recurrence with an associative scan.
+
+        Each timestep is represented by an affine update ``(a_t, b_t)``
+        mapping ``state`` to ``a_t * state + b_t``.  Composition is
+
+        ``(a_2, b_2) o (a_1, b_1) = (a_2*a_1, a_2*b_1 + b_2)``.
+
+        The doubling scan below applies that associative composition in
+        ``O(log(sequence_length))`` rounds of tensor operations.  It is
+        mathematically valid here because both ``decay`` and ``updates`` are
+        independent of the evolving state.
+        """
+
+        batch_size, sequence_length, hidden_size = updates.shape
+        scan_a = decay.view(1, 1, hidden_size).expand(
+            batch_size,
+            sequence_length,
+            hidden_size,
+        )
+        scan_b = updates
+        offset = 1
+        while offset < sequence_length:
+            left_a = scan_a[:, :-offset, :]
+            left_b = scan_b[:, :-offset, :]
+            right_a = scan_a[:, offset:, :]
+            right_b = scan_b[:, offset:, :]
+            combined_a = right_a * left_a
+            combined_b = right_a * left_b + right_b
+            scan_a = torch.cat((scan_a[:, :offset, :], combined_a), dim=1)
+            scan_b = torch.cat((scan_b[:, :offset, :], combined_b), dim=1)
+            offset *= 2
+        return scan_b
 
     def forward(self, hidden_states: Tensor) -> Tensor:
         """Apply the recurrent mixer with a fresh state for each sequence."""
@@ -72,25 +131,21 @@ class GatedDiagonalStateSpaceMixer(nn.Module):
         projected = self.input_projection(hidden_states)
         candidate, input_gate, output_gate = projected.chunk(3, dim=-1)
         decay = torch.sigmoid(self.state_transition_logit).to(dtype=hidden_states.dtype)
-        decay = decay.unsqueeze(0)
-        state = hidden_states.new_zeros((batch_size, hidden_size))
-        outputs: list[Tensor] = []
+        updates = (1.0 - decay).view(1, 1, hidden_size)
+        updates = updates * torch.sigmoid(input_gate) * torch.tanh(candidate)
+        if self.use_parallel_scan:
+            states = self._parallel_scan(decay, updates)
+        else:
+            states = self._sequential_scan(candidate, input_gate, decay.unsqueeze(0))
 
-        for timestep in range(sequence_length):
-            candidate_t = torch.tanh(candidate[:, timestep, :])
-            input_gate_t = torch.sigmoid(input_gate[:, timestep, :])
-            state = decay * state + (1.0 - decay) * input_gate_t * candidate_t
-            output_gate_t = torch.sigmoid(output_gate[:, timestep, :])
-            outputs.append(output_gate_t * state)
-
-        mixed = torch.stack(outputs, dim=1)
+        mixed = torch.sigmoid(output_gate) * states
         return self.residual_dropout(self.output_projection(mixed))
 
 
 class A1RecurrentStateSpaceBlock(nn.Module):
     """A pre-normalized A1 recurrent block with the A0 feed-forward path."""
 
-    def __init__(self, config: ExperimentConfig) -> None:
+    def __init__(self, config: ExperimentConfig, *, use_parallel_scan: bool = False) -> None:
         super().__init__()
         self.state_space_norm = nn.LayerNorm(
             config.hidden_size,
@@ -100,6 +155,7 @@ class A1RecurrentStateSpaceBlock(nn.Module):
             hidden_size=config.hidden_size,
             dropout=config.dropout,
             use_bias=config.use_bias,
+            use_parallel_scan=use_parallel_scan,
         )
         self.feed_forward_norm = nn.LayerNorm(
             config.hidden_size,
@@ -128,7 +184,7 @@ class A1RecurrentStateSpaceLM(nn.Module):
     later architecture from being run accidentally under the A0 label.
     """
 
-    def __init__(self, config: ExperimentConfig) -> None:
+    def __init__(self, config: ExperimentConfig, *, use_parallel_scan: bool = False) -> None:
         super().__init__()
         config.validate()
         if config.stage != "A1":
@@ -142,11 +198,13 @@ class A1RecurrentStateSpaceLM(nn.Module):
             )
 
         self.config = config
+        self.use_parallel_scan = use_parallel_scan
         self.token_embedding = nn.Embedding(config.vocab_size, config.hidden_size)
         self.position_embedding = nn.Embedding(config.context_length, config.hidden_size)
         self.embedding_dropout = nn.Dropout(config.dropout)
         self.blocks = nn.ModuleList(
-            A1RecurrentStateSpaceBlock(config) for _ in range(config.num_layers)
+            A1RecurrentStateSpaceBlock(config, use_parallel_scan=use_parallel_scan)
+            for _ in range(config.num_layers)
         )
         self.final_norm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)

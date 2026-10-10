@@ -46,9 +46,13 @@ def test_a1_forward_backward_returns_expected_shapes() -> None:
     assert torch.isfinite(model.token_embedding.weight.grad).all()
 
 
-def test_a1_recurrence_is_causal() -> None:
+@pytest.mark.parametrize("use_parallel_scan", [False, True])
+def test_a1_recurrence_is_causal(use_parallel_scan: bool) -> None:
     torch.manual_seed(7)
-    model = A1RecurrentStateSpaceLM(tiny_a1_config())
+    model = A1RecurrentStateSpaceLM(
+        tiny_a1_config(),
+        use_parallel_scan=use_parallel_scan,
+    )
     model.eval()
     prefix = torch.tensor([[1, 2, 3, 4]])
     first_suffix = torch.tensor([[5, 6]])
@@ -60,9 +64,54 @@ def test_a1_recurrence_is_causal() -> None:
     assert torch.allclose(first[:, :4], second[:, :4], atol=1e-6, rtol=0.0)
 
 
-def test_a1_state_is_reset_for_each_forward_sequence() -> None:
+def test_a1_parallel_scan_matches_reference_forward_and_gradients() -> None:
+    torch.manual_seed(23)
+    config = tiny_a1_config()
+    reference = A1RecurrentStateSpaceLM(config, use_parallel_scan=False)
+    accelerated = A1RecurrentStateSpaceLM(config, use_parallel_scan=True)
+    accelerated.load_state_dict(reference.state_dict())
+    input_ids = torch.randint(0, 31, (2, 12), dtype=torch.long)
+
+    reference_output = reference(input_ids, labels=input_ids)
+    accelerated_output = accelerated(input_ids, labels=input_ids)
+
+    assert reference_output.loss is not None
+    assert accelerated_output.loss is not None
+    torch.testing.assert_close(
+        accelerated_output.logits,
+        reference_output.logits,
+        atol=1e-5,
+        rtol=1e-5,
+    )
+    torch.testing.assert_close(
+        accelerated_output.loss,
+        reference_output.loss,
+        atol=1e-6,
+        rtol=1e-6,
+    )
+
+    reference_output.loss.backward()
+    accelerated_output.loss.backward()
+    for reference_parameter, accelerated_parameter in zip(
+        reference.parameters(), accelerated.parameters()
+    ):
+        assert reference_parameter.grad is not None
+        assert accelerated_parameter.grad is not None
+        torch.testing.assert_close(
+            accelerated_parameter.grad,
+            reference_parameter.grad,
+            atol=2e-5,
+            rtol=2e-5,
+        )
+
+
+@pytest.mark.parametrize("use_parallel_scan", [False, True])
+def test_a1_state_is_reset_for_each_forward_sequence(use_parallel_scan: bool) -> None:
     torch.manual_seed(13)
-    model = A1RecurrentStateSpaceLM(tiny_a1_config())
+    model = A1RecurrentStateSpaceLM(
+        tiny_a1_config(),
+        use_parallel_scan=use_parallel_scan,
+    )
     model.eval()
     input_ids = torch.tensor([[1, 2, 3, 4]])
 
@@ -70,6 +119,25 @@ def test_a1_state_is_reset_for_each_forward_sequence() -> None:
     second = model(input_ids).logits
 
     assert torch.allclose(first, second, atol=0.0, rtol=0.0)
+
+
+def test_a1_parallel_scan_matches_reference_at_context_512() -> None:
+    torch.manual_seed(31)
+    config = tiny_a1_config(context_length=512)
+    reference = A1RecurrentStateSpaceLM(config, use_parallel_scan=False)
+    accelerated = A1RecurrentStateSpaceLM(config, use_parallel_scan=True)
+    accelerated.load_state_dict(reference.state_dict())
+    input_ids = torch.randint(0, 31, (1, 512), dtype=torch.long)
+
+    reference_logits = reference(input_ids).logits
+    accelerated_logits = accelerated(input_ids).logits
+
+    torch.testing.assert_close(
+        accelerated_logits,
+        reference_logits,
+        atol=1e-5,
+        rtol=1e-5,
+    )
 
 
 def test_a1_has_recurrent_mixer_and_no_attention_module() -> None:
@@ -102,6 +170,7 @@ def test_a1_full_proposal_parameter_count_is_close_to_a0() -> None:
     difference = abs(a1_model.parameter_count() - a0_model.parameter_count())
     assert difference == 4_096
     assert difference / a0_model.parameter_count() < 0.0001
+    assert A1RecurrentStateSpaceLM(a1_config, use_parallel_scan=True).parameter_count() == a1_model.parameter_count()
 
 
 def test_a1_context_length_is_enforced() -> None:

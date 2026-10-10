@@ -50,6 +50,28 @@ The state is initialized to zero independently for every input sequence. It is
 not carried between packed windows or batches. The output is passed through a
 dense hidden-size projection and the same A0 feed-forward residual path.
 
+## Reference and accelerated recurrence paths
+
+The actual A1 equations satisfy the associative-scan condition. The decay is a
+learned per-channel constant, and the candidate and gates are functions of the
+current token representation only; none depends on the evolving state. Writing
+
+```text
+s[t] = a[t] * s[t-1] + b[t]
+```
+
+allows affine updates to compose associatively:
+
+```text
+(a2, b2) o (a1, b1) = (a2 * a1, a2 * b1 + b2)
+```
+
+The implementation retains the auditable Python loop as the default reference
+(`use_parallel_scan=False`) and adds an opt-in tensor doubling scan
+(`use_parallel_scan=True`). Both paths use the same parameters and have the
+same parameter count. A future state-dependent gate would invalidate this
+scan; it must not be substituted silently.
+
 The shared `num_attention_heads: 8` configuration field is retained only for
 the common BraidNano configuration shape and parameter-accounting comparison;
 it does not instantiate attention in A1.
@@ -114,9 +136,34 @@ A0's quadratic attention interaction term with a recurrent state update:
   layer.
 
 Therefore A1 may reduce activation/attention-memory growth at longer context,
-but it may be slower on a GPU because the recurrence limits time-dimension
-parallelism. No throughput, FLOP, or memory advantage is assumed; all three
-must be measured.
+but its reference recurrence may be slower on a GPU because it limits
+time-dimension parallelism. No throughput, FLOP, or memory advantage is
+assumed; all three must be measured.
+
+The matched one-update RTX 3060 Ti benchmark used identical initial weights,
+synthetic batches, FP16 autocast, micro-batch 2, accumulation 8, context 512,
+and AdamW for both paths:
+
+| Metric | Sequential reference | Associative scan |
+| --- | ---: | ---: |
+| Optimizer-step wall time | 8.3435 s | 0.3714 s |
+| Throughput | 981.85 tokens/s | 22,055.47 tokens/s |
+| Peak allocated VRAM | 1,057,416,704 bytes | 1,316,685,312 bytes |
+| Peak reserved VRAM | 1,243,611,136 bytes | 1,526,726,656 bytes |
+
+The scan was **22.46x faster** in this implementation benchmark, at the cost
+of higher peak memory. Both paths had finite loss and gradients and completed
+one AdamW update. At FP16 context 512, forward differences were max absolute
+`0.001953125`, mean absolute `0.000254959`, and relative L2 `0.00076814`;
+gradient differences were max absolute `0.00121737`, mean absolute
+`1.80e-6`, and relative L2 `0.03355`. CPU FP32 tests pass the tighter forward
+and gradient-agreement tolerances. The FP16 differences are recorded as
+rounding from a different associative evaluation order, not hidden as exact
+bitwise equality.
+
+This is an implementation-path result, not an A1 training result or an A0
+architectural comparison. The benchmark record is
+`results/a1_recurrence_benchmark.json`.
 
 The approved smoke test exposed the expected implementation risk: one
 accumulated optimizer update processed 8,192 synthetic token positions in
@@ -155,6 +202,7 @@ result. Seeds 23 and 29 remain necessary before a stronger claim.
 | A1 runner selection and shared checkpoint/recovery/logging behavior | RECOMMENDED | Generalized and A1 dry-run passed; no pilot run |
 | Host CUDA smoke test for A1 at micro-batch 2 / context 512 | RECOMMENDED | Passed: finite loss/gradients, one AdamW update, no OOM |
 | A1 fixed-prompt evaluation wiring | RECOMMENDED | Generalized; no A1 checkpoint exists to evaluate |
+| Associative scan mathematical validity and path benchmark | RECOMMENDED | Verified; 22.46x path speedup with higher VRAM and recorded FP16 rounding differences |
 | Final A1 pilot authorization | BLOCKER | Intentionally awaiting review |
 | Gradient checkpointing | DEFERRED | Not implemented or enabled; unchanged from A0 |
 | Attention, MoE, conditional depth, controller, persistent memory | DEFERRED | Explicitly outside A1 |

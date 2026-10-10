@@ -45,6 +45,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`scripts/train_a0.py`](scripts/train_a0.py): explicitly authorized bounded A0/A1 pilot runner with validation and recovery; model selection is config-driven.
 - [`scripts/evaluate_a0_prompts.py`](scripts/evaluate_a0_prompts.py): fixed-prompt greedy A0/A1 checkpoint inspection; it does not train.
 - [`scripts/smoke_test_a1.py`](scripts/smoke_test_a1.py): one-update A1 CUDA readiness test; it writes no checkpoint and is not a pilot.
+- [`scripts/benchmark_a1_recurrence.py`](scripts/benchmark_a1_recurrence.py): matched sequential-versus-associative-scan A1 benchmark; it does not train a pilot.
 
 ## Cheap checks
 

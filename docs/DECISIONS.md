@@ -69,3 +69,16 @@ losses or gradients. This is not a training result or matched A0 benchmark;
 the observed sequential recurrence bottleneck is recorded without optimizing
 it. A1 training remains blocked pending review and explicit pilot
 authorization. No A1 quality or efficiency claim is made.
+
+## 2026-10-10 — D013: preserve A1 reference recurrence and add associative scan
+
+Inspection confirmed that A1's actual gates depend only on the current token
+representation and its learned decay is independent of the evolving state.
+Therefore its update has the exact affine form `s[t] = a[t] * s[t-1] + b[t]`
+and admits an associative prefix scan. The original sequential loop remains the
+default reference path; the scan is opt-in and uses the same parameters. CPU
+tests, including context 512, verified forward and gradient agreement. The
+matched one-update host benchmark measured 981.85 tokens/sec for the reference
+path and 22,055.47 tokens/sec for the scan, a 22.46x implementation-path
+speedup, with higher scan VRAM and recorded FP16 rounding differences. No A1
+training was started, and no architectural features were added.

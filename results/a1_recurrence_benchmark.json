@@ -1,0 +1,76 @@
+{
+  "benchmark": "a1_recurrence_reference_vs_associative_scan",
+  "checkpoint_written": false,
+  "conditions": {
+    "context_length": 512,
+    "effective_batch_size": 16,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0003,
+    "micro_batch_size": 2,
+    "optimizer": "AdamW",
+    "precision": "fp16",
+    "tokens_per_path": 8192,
+    "weight_decay": 0.1
+  },
+  "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+  "config_sha256": "b8444b2c899a76737c18383f94310cb4699b3385c627a2d7e2c2ce62b2eef6ff",
+  "device": "NVIDIA GeForce RTX 3060 Ti",
+  "device_capability": [
+    8,
+    6
+  ],
+  "forward_equivalence": {
+    "max_absolute": 0.001953125,
+    "max_relative": 23007.392578125,
+    "mean_absolute": 0.0002549589574337006,
+    "relative_l2": 0.0007681396326716961
+  },
+  "gradient_equivalence": {
+    "max_absolute": 0.0012173652648925781,
+    "max_relative": 3118.506103515625,
+    "mean_absolute": 1.8026077705615876e-06,
+    "relative_l2": 0.03354703706155596
+  },
+  "interpretation": "one-update implementation benchmark only; not an A1 training result",
+  "parameter_count": 41870336,
+  "paths": {
+    "parallel_scan": {
+      "gradient_norm": 0.7438971996307373,
+      "mean_microbatch_loss": 10.47152590751648,
+      "optimizer_step_wall_seconds": 0.37142709999898216,
+      "optimizer_steps": 1,
+      "path": "parallel_scan",
+      "peak_allocated_vram_bytes": 1316685312,
+      "peak_reserved_vram_bytes": 1526726656,
+      "tokens_per_second": 22055.471989045625,
+      "tokens_processed": 8192,
+      "use_parallel_scan": true
+    },
+    "sequential_reference": {
+      "gradient_norm": 0.7439526915550232,
+      "mean_microbatch_loss": 10.47154700756073,
+      "optimizer_step_wall_seconds": 8.34345416999895,
+      "optimizer_steps": 1,
+      "path": "sequential_reference",
+      "peak_allocated_vram_bytes": 1057416704,
+      "peak_reserved_vram_bytes": 1243611136,
+      "tokens_per_second": 981.8475457630556,
+      "tokens_processed": 8192,
+      "use_parallel_scan": false
+    }
+  },
+  "seed": 17,
+  "seed_report": {
+    "deterministic_algorithms_requested": true,
+    "numpy": true,
+    "python": true,
+    "seed": 17,
+    "torch": true
+  },
+  "speedup_parallel_over_reference": 22.463234831335175,
+  "status": "completed",
+  "throughput_ratio_parallel_over_reference": 22.463234831335175,
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.12.0+cu130",
+  "training_pilot_started": false
+}
