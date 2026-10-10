@@ -87,10 +87,10 @@ No long run should begin before steps 1–4 pass and the experiment record is co
 The 1,000-step A0 pilot uses the policy in
 [`configs/braidnano_a0_integrity_policy.json`](../configs/braidnano_a0_integrity_policy.json)
 and the low-risk utilities in `braidformer.training.integrity`. Before a run,
-the local TinyStories artifact verifier must pass. During a run, the future
-training entry point must record a durable JSONL record for every optimizer
-step containing train loss, validation loss when evaluated, gradient norm,
-learning rate, token count, throughput, and peak VRAM. It must stop on
+the local TinyStories artifact verifier must pass. During a run, the A0
+training entry point records a durable JSONL record for every optimizer step
+containing train loss, validation loss when evaluated, gradient norm, learning
+rate, token count, throughput, and peak VRAM. It stops on
 non-finite losses or gradient norms, an excessive configured loss ceiling,
 skipped optimizer steps, or a non-monotonic token counter. Checkpoints must be
 written atomically and accompanied by a SHA-256 sidecar containing recovery

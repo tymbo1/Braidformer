@@ -1,8 +1,8 @@
 # A0 verification and baseline proposal
 
-Status: the A0 implementation and the approved TinyStories preparation are
-verified for construction and data integrity. No checkpoint has been loaded,
-and no training or benchmark performance measurement has been run.
+Status: the A0 implementation, approved TinyStories preparation, host CUDA
+path, and primary seed-17 pilot are verified. The pilot is a bounded
+TinyStories measurement, not a general capability benchmark.
 
 ## Reproduce the verification
 
@@ -31,8 +31,8 @@ The verified result for the planning configuration is:
 | Target range | 40,000,000–60,000,000 |
 | Word embeddings | tied to the LM head |
 | Device used for verification | CPU |
-| CUDA state | unavailable on the audited machine |
-| Training started | No |
+| CUDA state | host RTX 3060 Ti available; smoke test and pilot passed |
+| Training started | Yes — seed-17 A0 pilot completed |
 
 ## Architecture record
 
@@ -68,7 +68,7 @@ not counted twice:
 
 ## Test coverage
 
-At verification time, `python3 -m pytest -q` reports **20 passed**. The tests
+At verification time, `python3 -m pytest -q` reports **23 passed**. The tests
 cover:
 
 - JSON configuration loading and validation, including architecture and
@@ -85,11 +85,12 @@ cover:
 - fail-fast numerical/progress integrity monitoring; and
 - atomic checkpoint sidecar verification.
 
-Using the Python standard-library `trace` module for line coverage gives
-461/461 executable lines (100%) across `src/braidformer` for this test run.
-This is line coverage, not branch coverage, throughput validation, numerical
-stability validation, or training performance evidence. The coverage command
-used was:
+The earlier A0 verification at commit `1a55157` used the Python
+standard-library `trace` module and reported 461/461 executable lines (100%)
+for the pre-runner `src/braidformer` code. That is line coverage, not branch
+coverage, runner coverage, throughput validation, numerical stability
+validation, or training performance evidence. The historical coverage command
+was:
 
 ```bash
 PYTHONPATH=src python3 -m trace --count --summary \
@@ -98,13 +99,12 @@ PYTHONPATH=src python3 -m trace --count --summary \
   --module pytest -q
 ```
 
-## Proposed training configuration — not executed
+## Executed training configuration
 
-The machine-readable proposal is
+The machine-readable proposal used for the run is
 [`configs/braidnano_a0_baseline_proposal.json`](../configs/braidnano_a0_baseline_proposal.json).
-It is intentionally marked `planned_only: true`. Presenting and reviewing this
-proposal is a prerequisite to any training run; this commit does not authorize
-one.
+It remains marked `planned_only: true` in source control; explicit run
+authorization was supplied through the training entrypoint.
 
 | Setting | Proposed value |
 | --- | --- |
@@ -121,14 +121,15 @@ one.
 | Schedule | cosine, 1% warmup |
 | Gradient clipping | global norm 1.0 |
 | Precision | fp16 only after a CUDA memory smoke test passes |
-| Gradient checkpointing | enabled |
+| Gradient checkpointing | not implemented; not enabled |
 | Evaluation cadence | every 100 optimizer steps |
 | Checkpoint cadence | at the end of the 1,000-step pilot |
 | Distillation | disabled; no Qwen teacher |
 
-The dataset/tokenizer is now selected, pinned, prepared, and locally verified.
-The proposal remains `planned_only: true`; this is a reproducible training
-configuration for review, not an authorization to run it.
+The dataset/tokenizer was selected, pinned, prepared, and locally verified
+before the run. The measured result is recorded in
+[`A0_TRAINING_RESULT.md`](A0_TRAINING_RESULT.md). Replication seeds 23 and 29
+remain unstarted.
 
 ## Benchmark methodology
 
@@ -140,8 +141,8 @@ matched A1 run. For every run:
 2. Keep context length, token budget, micro/effective batch, optimizer,
    schedule, precision, clipping, evaluation split, and checkpoint cadence
    identical across A0 and A1 wherever the architecture permits.
-3. Gate execution on a successful device and memory smoke test. The current
-   audited CUDA runtime fails this gate, so no training is started here.
+3. Gate execution on a successful device and memory smoke test. The A0 host
+   CUDA gate passed before the seed-17 pilot.
 4. Preserve step-level raw logs before summarizing them.
 5. Report parameter count, active parameters where applicable, approximate
    training FLOPs and accounting method, wall-clock time, warm-up time, tokens
@@ -151,6 +152,5 @@ matched A1 run. For every run:
    wall-clock time. Any deviation must be recorded before interpreting a
    result.
 
-No training-performance claim is made in this baseline record. The only
-current quantitative claims are construction-time parameter accounting and the
-test results above.
+The seed-17 result is a bounded TinyStories pilot measurement. It is not a
+general capability claim or an A0-versus-A1 comparison; A1 has not started.

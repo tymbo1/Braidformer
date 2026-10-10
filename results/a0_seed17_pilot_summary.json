@@ -1,0 +1,91 @@
+{
+  "experiment_id": "a0_seed17_pilot",
+  "status": "completed",
+  "training_started": true,
+  "git_commit": "9e43883",
+  "config_path": "configs/braidnano_a0_baseline_proposal.json",
+  "config_sha256": "6dd6b619be65c50437121235a0a9ae0a0493e5d210cc2f512a45d5079818d7e4",
+  "architecture": {
+    "stage": "A0",
+    "model_type": "decoder_only_transformer",
+    "parameters": 41866240,
+    "layers": 8,
+    "hidden_size": 512,
+    "attention_heads": 8,
+    "intermediate_size": 2048,
+    "vocabulary_size": 32000,
+    "context_length": 512
+  },
+  "data": {
+    "dataset": "roneneldan/TinyStories",
+    "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+    "data_manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+    "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+    "train_stream_sha256": "f4e63ba08e9fc8e94b351fdeb23ffd879abf10de68837fc23c0e720aaa9abcf2",
+    "validation_stream_sha256": "35c5821fcf5926fddc86ecaeb7a6bc6aaf7bf9fbd0e276cc328e24ec2b9d4d8c"
+  },
+  "configuration": {
+    "seed": 17,
+    "micro_batch_size": 2,
+    "gradient_accumulation_steps": 8,
+    "effective_batch_size": 16,
+    "training_token_budget": 8192000,
+    "optimizer_steps": 1000,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.1,
+    "lr_schedule": "cosine",
+    "warmup_steps": 10,
+    "precision": "fp16_autocast_with_fp32_parameters",
+    "gradient_checkpointing": {
+      "configured": true,
+      "implemented": false,
+      "enabled": false
+    }
+  },
+  "measurements": {
+    "tokens_processed": 8192000,
+    "elapsed_wall_seconds": 231.61743161400045,
+    "training_wall_seconds": 208.55354419600008,
+    "average_tokens_per_second": 39320.88487980695,
+    "peak_allocated_vram_bytes": 1329410560,
+    "peak_reserved_vram_bytes": 1591738368,
+    "device": "NVIDIA GeForce RTX 3060 Ti",
+    "torch_version": "2.12.0+cu130",
+    "torch_cuda_build": "13.0",
+    "first_train_loss": 10.58256447315216,
+    "final_train_loss": 3.616092175245285,
+    "first_validation_loss": 4.992859743535519,
+    "final_validation_loss": 3.7512181103229523,
+    "minimum_train_loss": 3.3592744767665863,
+    "maximum_gradient_norm": 6.395023822784424
+  },
+  "validation_curve": [
+    {"step": 100, "train_loss": 4.912783145904541, "validation_loss": 4.992859743535519},
+    {"step": 200, "train_loss": 4.224494934082031, "validation_loss": 4.38599232211709},
+    {"step": 300, "train_loss": 4.030465990304947, "validation_loss": 4.270323349162936},
+    {"step": 400, "train_loss": 4.266433894634247, "validation_loss": 4.116766506806016},
+    {"step": 500, "train_loss": 3.7202232778072357, "validation_loss": 4.001939347013831},
+    {"step": 600, "train_loss": 4.171508193016052, "validation_loss": 3.91235332749784},
+    {"step": 700, "train_loss": 3.6446861028671265, "validation_loss": 3.8501439038664103},
+    {"step": 800, "train_loss": 3.4284413158893585, "validation_loss": 3.7757385540753603},
+    {"step": 900, "train_loss": 3.4157312214374542, "validation_loss": 3.7585409209132195},
+    {"step": 1000, "train_loss": 3.616092175245285, "validation_loss": 3.7512181103229523}
+  ],
+  "integrity": {
+    "nonfinite_loss": false,
+    "nonfinite_gradients": false,
+    "cuda_error": false,
+    "out_of_memory": false,
+    "step_log_records": 1000,
+    "checkpoint_sidecar_verified": true,
+    "checkpoint_path": "results/runs/a0_seed17_pilot/checkpoint_step_001000.pt",
+    "checkpoint_sha256": "23314261cd0a3efd5eeea2d461268d43908d51c62bcce553dd59a2ad4be38ca3",
+    "checkpoint_bytes": 568060699
+  },
+  "runtime_notes": [
+    "PyTorch emitted a flash-attention nondeterminism warning under the existing warn-only deterministic policy; no numerical instability was observed.",
+    "This is a TinyStories pilot measurement only; it is not a general capability benchmark.",
+    "A1 was not started."
+  ]
+}

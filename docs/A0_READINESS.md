@@ -2,10 +2,9 @@
 
 Date of audit: 2026-10-10 (Australia/Brisbane)
 
-Status: **not ready to train**. The A0 control and TinyStories preparation are
-verified, but the CUDA hardware gate fails. A training configuration remains a
-`planned_only` proposal. No checkpoint has been loaded and no training step has
-run.
+Status: **A0 seed-17 pilot completed**. The A0 control, TinyStories
+preparation, host CUDA path, bounded training runner, and final checkpoint are
+verified. Replication seeds 23 and 29 and A1 remain unstarted.
 
 ## Gate matrix
 
@@ -17,28 +16,26 @@ run.
 | Model-level leakage control | PASS | The model uses causal scaled dot-product attention and predicts label `t + 1` from positions through `t`. |
 | Dataset provenance and split integrity | PASS | TinyStories is pinned to revision `f54c09fd23315a6f9c86f9dc80f725de7d8f9c64`; source, tokenizer, split manifest, and token-stream hashes pass `results/a0_data_verification.json`. No duplicate text hashes cross final splits. |
 | Tokenizer and packing | PASS | 32,000-token byte-level BPE trained on final train only; 512-token non-overlapping streams are verified. |
-| Automated tests | PASS | 20 tests pass; source line coverage is 461/461 (100%) for `src/braidformer` under the documented standard-library trace command. This is not branch coverage. |
-| Training integrity safeguards | RECOMMENDED | The bounded monitor records losses, gradient norms, token counts, throughput, VRAM, hashes, and fail-fast events; atomic checkpoint sidecars are tested. A future runner must wire it before authorization. |
-| Training proposal | PASS — proposal only | The JSON proposal fixes data, tokenizer, optimizer, schedule, context, batch arithmetic, token budgets, evaluation cadence, and seeds, but remains `planned_only: true`. |
-| Hardware feasibility | BLOCKER | PCI metadata identifies an RTX 3060 Ti and the kernel module is loaded, but `nvidia-smi` fails, `/dev/nvidia0`/`nvidiactl` are absent, and PyTorch reports no CUDA device. VRAM and GPU throughput are unmeasured. |
-| Empirical model performance | NOT MEASURED | No loss curve, validation result, tokens/second, memory profile, or task benchmark exists. No performance claim is made. |
+| Automated tests | PASS | 23 tests pass. The earlier 461/461 source-line figure records pre-runner A0 verification and is not a coverage claim for the training runner. |
+| Training integrity safeguards | PASS | The bounded runner records losses, gradient norms, token counts, throughput, VRAM, hashes, validation metrics, and fail-fast events; atomic checkpoint sidecars and resume/interruption paths are implemented. |
+| Training proposal | EXECUTED — seed 17 | The approved proposal was executed once at 1,000 optimizer steps. Replication seeds 23 and 29 remain unstarted. |
+| Hardware feasibility | PASS | Host-level CUDA smoke test and the full pilot passed on the RTX 3060 Ti. |
+| Empirical pilot measurements | RECORDED | The pilot reached 8,192,000 tokens; final train loss was 3.6161 and final validation loss was 3.7512. These are TinyStories pilot measurements, not broad capability claims. |
 
-## Required approval gate before training
+## Completed training gate
 
-Training remains paused until all of the following are recorded in the final
-experiment configuration:
+The following evidence was recorded before the pilot:
 
-1. A passing device and memory smoke test for the proposed context and
-   effective batch, or an explicit decision to run under a documented CPU
-   fallback.
-2. An approved final configuration hash and seed list. The current proposal
-   uses seeds 17, 23, and 29 and is still not executable while the hardware
-   gate fails.
+1. A passing host-level device and memory smoke test for the proposed context
+   and effective batch.
+2. An approved configuration hash, seed 17, pinned data/tokenizer hashes, and
+   the bounded runner capability check.
 
 The proposed experiment has already been presented in
 [`configs/braidnano_a0_baseline_proposal.json`](../configs/braidnano_a0_baseline_proposal.json).
-This readiness record does not authorize training; it identifies the hardware
-evidence still required before that proposal can become an executed run.
+The executed result is recorded in
+[`docs/A0_TRAINING_RESULT.md`](A0_TRAINING_RESULT.md) and
+[`results/a0_seed17_pilot_summary.json`](../results/a0_seed17_pilot_summary.json).
 
 ## Recheck commands
 

@@ -42,4 +42,14 @@ TinyStories is approved as the A0 preparation source at immutable Hugging Face r
 
 ## 2026-10-10 — D010: bounded training-integrity review
 
-For the 1,000-step pilot, low-risk integrity controls were added for deterministic seeding, provenance hashes, durable step records, non-finite/loss/progress circuit breakers, and atomic checkpoint sidecars. Hyperparameter search, distributed fault testing, security review, and architectural changes are deferred. CUDA remains the sole infrastructure blocker identified by the current readiness audit.
+For the 1,000-step pilot, low-risk integrity controls were added for deterministic seeding, provenance hashes, durable step records, non-finite/loss/progress circuit breakers, and atomic checkpoint sidecars. Hyperparameter search, distributed fault testing, security review, and architectural changes are deferred. At the time of this review, CUDA was the sole infrastructure blocker identified by the readiness audit.
+
+## 2026-10-10 — D011: complete the primary A0 pilot before A1
+
+The explicitly authorized seed-17 A0 pilot completed 1,000 optimizer steps and
+processed exactly 8,192,000 TinyStories token positions using the approved
+configuration. The host RTX 3060 Ti completed the run without OOM, non-finite
+losses or gradients, or CUDA errors. A durable step log, validation records,
+and SHA-256-verified final checkpoint are preserved under
+`results/runs/a0_seed17_pilot/`. Gradient checkpointing remains explicitly
+unimplemented and was not claimed as enabled. No A1 work began.
