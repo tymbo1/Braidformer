@@ -52,6 +52,8 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`scripts/smoke_test_a1.py`](scripts/smoke_test_a1.py): one-update A1 CUDA readiness test; it writes no checkpoint and is not a pilot.
 - [`scripts/benchmark_a1_recurrence.py`](scripts/benchmark_a1_recurrence.py): matched sequential-versus-associative-scan A1 benchmark; it does not train a pilot.
 - [`scripts/compare_a1_scan_stability.py`](scripts/compare_a1_scan_stability.py): bounded ten-update sequential-versus-scan numerical-stability check; it does not train a pilot.
+- [`scripts/measure_a0_a1_cuda_timing.py`](scripts/measure_a0_a1_cuda_timing.py): bounded CUDA-event calibration for the proposed equal-compute protocol; it discards in-memory updates and does not train a pilot.
+- [`results/a0_a1_cuda_timing_calibration.json`](results/a0_a1_cuda_timing_calibration.json): measured CUDA timing, analytical FLOP labels, and the proposal-only 1,000/502-step budget.
 
 ## Cheap checks
 

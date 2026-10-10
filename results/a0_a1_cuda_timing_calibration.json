@@ -1,0 +1,498 @@
+{
+  "arms": {
+    "A0": {
+      "checkpoint_path": "results/runs/a0_seed17_pilot/checkpoint_step_001000.pt",
+      "checkpoint_sha256": "23314261cd0a3efd5eeea2d461268d43908d51c62bcce553dd59a2ad4be38ca3",
+      "checkpoint_step": 1000,
+      "config_path": "configs/braidnano_a0_baseline_proposal.json",
+      "config_sha256": "6dd6b619be65c50437121235a0a9ae0a0493e5d210cc2f512a45d5079818d7e4",
+      "cuda_event_seconds_mean": 0.20210689544677735,
+      "cuda_event_seconds_median": 0.1967713165283203,
+      "cuda_event_seconds_stdev": 0.013112193105482117,
+      "cuda_event_seconds_total": 4.042137908935547,
+      "cuda_to_host_time_ratio": 0.9998915251022004,
+      "estimated_flops": {
+        "a0_attention_interaction_forward_flops_per_token": 8388608,
+        "convention": "2 FLOPs per counted multiply-add; backward approximated as 2x forward",
+        "dense_and_lm_forward_flops_per_token": 83099648,
+        "forward_lower_bound_flops_per_token": 91488256,
+        "omitted_terms": "embedding, layer norm, activations, softmax, masking, optimizer, memory traffic, and kernel overhead",
+        "training_lower_bound_flops_per_optimizer_step": 2248415379456,
+        "training_lower_bound_flops_per_token": 274464768,
+        "used_for_cuda_budget": false
+      },
+      "finite_updates": true,
+      "host_wall_seconds_mean": 0.20212882135001564,
+      "host_wall_seconds_median": 0.19679179750073672,
+      "host_wall_seconds_total": 4.042576427000313,
+      "measured_optimizer_steps": 20,
+      "model_type": "transformer",
+      "parameter_count": 41866240,
+      "peak_allocated_vram_bytes": 1329843712,
+      "peak_reserved_vram_bytes": 1520435200,
+      "recurrent_path": "sequential_reference",
+      "seed": 17,
+      "stage": "A0",
+      "tokens_measured": 163840,
+      "tokens_per_optimizer_step": 8192,
+      "update_records": [
+        {
+          "cuda_event_seconds": 0.19185235595703126,
+          "gradient_norm": 0.848717987537384,
+          "host_wall_seconds": 0.1918863720002264,
+          "mean_loss": 4.168845981359482,
+          "tokens_per_second_by_cuda_time": 42699.50170345963,
+          "tokens_per_second_by_host_time": 42691.93228579221
+        },
+        {
+          "cuda_event_seconds": 0.1915630645751953,
+          "gradient_norm": 0.7452682256698608,
+          "host_wall_seconds": 0.1915845809999155,
+          "mean_loss": 4.049975126981735,
+          "tokens_per_second_by_cuda_time": 42763.98489534682,
+          "tokens_per_second_by_host_time": 42759.18217032097
+        },
+        {
+          "cuda_event_seconds": 0.19308531188964845,
+          "gradient_norm": 0.8292805552482605,
+          "host_wall_seconds": 0.19310663099895464,
+          "mean_loss": 4.127725422382355,
+          "tokens_per_second_by_cuda_time": 42426.841896093414,
+          "tokens_per_second_by_host_time": 42422.15794259466
+        },
+        {
+          "cuda_event_seconds": 0.23854534912109376,
+          "gradient_norm": 0.7962849140167236,
+          "host_wall_seconds": 0.2385663619988918,
+          "mean_loss": 4.157419949769974,
+          "tokens_per_second_by_cuda_time": 34341.47859173503,
+          "tokens_per_second_by_host_time": 34338.453801119096
+        },
+        {
+          "cuda_event_seconds": 0.1943085479736328,
+          "gradient_norm": 0.7997898459434509,
+          "host_wall_seconds": 0.19432930100083468,
+          "mean_loss": 4.1197492480278015,
+          "tokens_per_second_by_cuda_time": 42159.75100133852,
+          "tokens_per_second_by_host_time": 42155.24863111001
+        },
+        {
+          "cuda_event_seconds": 0.1927487335205078,
+          "gradient_norm": 0.7720257639884949,
+          "host_wall_seconds": 0.19276956199973938,
+          "mean_loss": 3.9986229836940765,
+          "tokens_per_second_by_cuda_time": 42500.92776422004,
+          "tokens_per_second_by_host_time": 42496.33559893172
+        },
+        {
+          "cuda_event_seconds": 0.19215231323242188,
+          "gradient_norm": 0.688529372215271,
+          "host_wall_seconds": 0.19217248099994322,
+          "mean_loss": 4.045746982097626,
+          "tokens_per_second_by_cuda_time": 42632.84611146572,
+          "tokens_per_second_by_host_time": 42628.37195718163
+        },
+        {
+          "cuda_event_seconds": 0.19818540954589844,
+          "gradient_norm": 0.7502409815788269,
+          "host_wall_seconds": 0.1982065030006197,
+          "mean_loss": 4.163640469312668,
+          "tokens_per_second_by_cuda_time": 41335.03076119631,
+          "tokens_per_second_by_host_time": 41330.63182076517
+        },
+        {
+          "cuda_event_seconds": 0.22951119995117186,
+          "gradient_norm": 0.7655929327011108,
+          "host_wall_seconds": 0.22953440899982525,
+          "mean_loss": 4.112200051546097,
+          "tokens_per_second_by_cuda_time": 35693.247221672995,
+          "tokens_per_second_by_host_time": 35689.6381492251
+        },
+        {
+          "cuda_event_seconds": 0.201401123046875,
+          "gradient_norm": 0.7365964651107788,
+          "host_wall_seconds": 0.2014217230007489,
+          "mean_loss": 4.051138460636139,
+          "tokens_per_second_by_cuda_time": 40675.0462761489,
+          "tokens_per_second_by_host_time": 40670.88632723861
+        },
+        {
+          "cuda_event_seconds": 0.19450877380371093,
+          "gradient_norm": 0.7235172390937805,
+          "host_wall_seconds": 0.1945290109997586,
+          "mean_loss": 3.994483917951584,
+          "tokens_per_second_by_cuda_time": 42116.35207914569,
+          "tokens_per_second_by_host_time": 42111.97064077073
+        },
+        {
+          "cuda_event_seconds": 0.1953572235107422,
+          "gradient_norm": 0.7566843032836914,
+          "host_wall_seconds": 0.19537709200085374,
+          "mean_loss": 4.115996032953262,
+          "tokens_per_second_by_cuda_time": 41933.43789793134,
+          "tokens_per_second_by_host_time": 41929.17355922261
+        },
+        {
+          "cuda_event_seconds": 0.20518841552734374,
+          "gradient_norm": 0.7239446043968201,
+          "host_wall_seconds": 0.20520862399826,
+          "mean_loss": 3.948801279067993,
+          "tokens_per_second_by_cuda_time": 39924.28119758214,
+          "tokens_per_second_by_host_time": 39920.34954666165
+        },
+        {
+          "cuda_event_seconds": 0.21836297607421876,
+          "gradient_norm": 0.8418766260147095,
+          "host_wall_seconds": 0.2183836269996391,
+          "mean_loss": 3.362409621477127,
+          "tokens_per_second_by_cuda_time": 37515.517269812466,
+          "tokens_per_second_by_host_time": 37511.96970464062
+        },
+        {
+          "cuda_event_seconds": 0.20089503479003906,
+          "gradient_norm": 1.0722501277923584,
+          "host_wall_seconds": 0.20091526299984253,
+          "mean_loss": 3.4957949221134186,
+          "tokens_per_second_by_cuda_time": 40777.513533680336,
+          "tokens_per_second_by_host_time": 40773.40804121199
+        },
+        {
+          "cuda_event_seconds": 0.19428355407714842,
+          "gradient_norm": 0.9348143339157104,
+          "host_wall_seconds": 0.19430435100002796,
+          "mean_loss": 3.504270613193512,
+          "tokens_per_second_by_cuda_time": 42165.17470514783,
+          "tokens_per_second_by_host_time": 42160.6616518784
+        },
+        {
+          "cuda_event_seconds": 0.19337123107910156,
+          "gradient_norm": 0.8398516178131104,
+          "host_wall_seconds": 0.19339278200095578,
+          "mean_loss": 3.564886301755905,
+          "tokens_per_second_by_cuda_time": 42364.109460775646,
+          "tokens_per_second_by_host_time": 42359.38857304154
+        },
+        {
+          "cuda_event_seconds": 0.20389132690429687,
+          "gradient_norm": 0.9761453866958618,
+          "host_wall_seconds": 0.2039111940011935,
+          "mean_loss": 3.517172396183014,
+          "tokens_per_second_by_cuda_time": 40178.26615962525,
+          "tokens_per_second_by_host_time": 40174.351585386976
+        },
+        {
+          "cuda_event_seconds": 0.21236483764648437,
+          "gradient_norm": 0.8932071328163147,
+          "host_wall_seconds": 0.2123944949998986,
+          "mean_loss": 3.6095736622810364,
+          "tokens_per_second_by_cuda_time": 38575.124256855124,
+          "tokens_per_second_by_host_time": 38569.73788329076
+        },
+        {
+          "cuda_event_seconds": 0.20056112670898438,
+          "gradient_norm": 0.9009132981300354,
+          "host_wall_seconds": 0.20058206300018355,
+          "mean_loss": 3.312716156244278,
+          "tokens_per_second_by_cuda_time": 40845.40276783871,
+          "tokens_per_second_by_host_time": 40841.13941929345
+        }
+      ],
+      "updates_persisted": false,
+      "warmup_steps_not_measured": 2
+    },
+    "A1": {
+      "checkpoint_path": "results/runs/a1_seed17_pilot/checkpoint_step_001000.pt",
+      "checkpoint_sha256": "0cac9f52b532f9edb44bffb11051843b4423877b28615cb3378bd73965a69a1d",
+      "checkpoint_step": 1000,
+      "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+      "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+      "cuda_event_seconds_mean": 0.40210519561767577,
+      "cuda_event_seconds_median": 0.40397898864746096,
+      "cuda_event_seconds_stdev": 0.018789938738752163,
+      "cuda_event_seconds_total": 8.042103912353516,
+      "cuda_to_host_time_ratio": 0.9999475543302767,
+      "estimated_flops": {
+        "a0_attention_interaction_forward_flops_per_token": 8388608,
+        "convention": "2 FLOPs per counted multiply-add; backward approximated as 2x forward",
+        "dense_and_lm_forward_flops_per_token": 83099648,
+        "forward_lower_bound_flops_per_token": 83099648,
+        "omitted_terms": "embedding, layer norm, activations, optimizer, memory traffic, kernel overhead, and all elementwise recurrence/scan operations",
+        "training_lower_bound_flops_per_optimizer_step": 2042256949248,
+        "training_lower_bound_flops_per_token": 249298944,
+        "used_for_cuda_budget": false
+      },
+      "finite_updates": true,
+      "host_wall_seconds_mean": 0.402126285400027,
+      "host_wall_seconds_median": 0.4039990820001549,
+      "host_wall_seconds_total": 8.04252570800054,
+      "measured_optimizer_steps": 20,
+      "model_type": "recurrent_state_space",
+      "parameter_count": 41870336,
+      "peak_allocated_vram_bytes": 1669996032,
+      "peak_reserved_vram_bytes": 1860173824,
+      "recurrent_path": "parallel_scan",
+      "seed": 17,
+      "stage": "A1",
+      "tokens_measured": 163840,
+      "tokens_per_optimizer_step": 8192,
+      "update_records": [
+        {
+          "cuda_event_seconds": 0.44123052978515626,
+          "gradient_norm": 0.8157769441604614,
+          "host_wall_seconds": 0.4412599440001941,
+          "mean_loss": 3.637818783521652,
+          "tokens_per_second_by_cuda_time": 18566.258332098743,
+          "tokens_per_second_by_host_time": 18565.020712590212
+        },
+        {
+          "cuda_event_seconds": 0.37264166259765624,
+          "gradient_norm": 0.7616540193557739,
+          "host_wall_seconds": 0.3726635399998486,
+          "mean_loss": 3.567267030477524,
+          "tokens_per_second_by_cuda_time": 21983.58590098112,
+          "tokens_per_second_by_host_time": 21982.29534341709
+        },
+        {
+          "cuda_event_seconds": 0.4078677062988281,
+          "gradient_norm": 0.7569509148597717,
+          "host_wall_seconds": 0.40788931700080866,
+          "mean_loss": 3.6235271990299225,
+          "tokens_per_second_by_cuda_time": 20084.943900898234,
+          "tokens_per_second_by_host_time": 20083.879764822963
+        },
+        {
+          "cuda_event_seconds": 0.39169418334960937,
+          "gradient_norm": 0.7752543687820435,
+          "host_wall_seconds": 0.3917143840008066,
+          "mean_loss": 3.6247707307338715,
+          "tokens_per_second_by_cuda_time": 20914.27534089311,
+          "tokens_per_second_by_host_time": 20913.196794895157
+        },
+        {
+          "cuda_event_seconds": 0.3762430419921875,
+          "gradient_norm": 0.7542212605476379,
+          "host_wall_seconds": 0.37626409100084857,
+          "mean_loss": 3.6090556383132935,
+          "tokens_per_second_by_cuda_time": 21773.160127091738,
+          "tokens_per_second_by_host_time": 21771.942090486453
+        },
+        {
+          "cuda_event_seconds": 0.42616671752929686,
+          "gradient_norm": 0.7546961307525635,
+          "host_wall_seconds": 0.42618683200089436,
+          "mean_loss": 3.510854721069336,
+          "tokens_per_second_by_cuda_time": 19222.524103930853,
+          "tokens_per_second_by_host_time": 19221.616870562553
+        },
+        {
+          "cuda_event_seconds": 0.3789747314453125,
+          "gradient_norm": 0.7529533505439758,
+          "host_wall_seconds": 0.3789962210012163,
+          "mean_loss": 3.5373776853084564,
+          "tokens_per_second_by_cuda_time": 21616.216914404322,
+          "tokens_per_second_by_host_time": 21614.991248088747
+        },
+        {
+          "cuda_event_seconds": 0.40388906860351564,
+          "gradient_norm": 0.7964001893997192,
+          "host_wall_seconds": 0.4039089569996577,
+          "mean_loss": 3.6681628227233887,
+          "tokens_per_second_by_cuda_time": 20282.79702722485,
+          "tokens_per_second_by_host_time": 20281.798306361754
+        },
+        {
+          "cuda_event_seconds": 0.40406890869140627,
+          "gradient_norm": 0.822234570980072,
+          "host_wall_seconds": 0.4040892070006521,
+          "mean_loss": 3.6256235539913177,
+          "tokens_per_second_by_cuda_time": 20273.769705593357,
+          "tokens_per_second_by_host_time": 20272.75130856633
+        },
+        {
+          "cuda_event_seconds": 0.38212210083007814,
+          "gradient_norm": 0.8411145806312561,
+          "host_wall_seconds": 0.38214316199992027,
+          "mean_loss": 3.5683496296405792,
+          "tokens_per_second_by_cuda_time": 21438.173772740807,
+          "tokens_per_second_by_host_time": 21436.99224428804
+        },
+        {
+          "cuda_event_seconds": 0.4254097290039062,
+          "gradient_norm": 0.8511146903038025,
+          "host_wall_seconds": 0.42543015199953516,
+          "mean_loss": 3.5246246457099915,
+          "tokens_per_second_by_cuda_time": 19256.72931642045,
+          "tokens_per_second_by_host_time": 19255.804887117993
+        },
+        {
+          "cuda_event_seconds": 0.3858999328613281,
+          "gradient_norm": 0.846594512462616,
+          "host_wall_seconds": 0.38591963299950294,
+          "mean_loss": 3.643520265817642,
+          "tokens_per_second_by_cuda_time": 21228.30117968372,
+          "tokens_per_second_by_host_time": 21227.217533165905
+        },
+        {
+          "cuda_event_seconds": 0.4086435241699219,
+          "gradient_norm": 0.7659960389137268,
+          "host_wall_seconds": 0.40866351799922995,
+          "mean_loss": 3.4646530747413635,
+          "tokens_per_second_by_cuda_time": 20046.812234796624,
+          "tokens_per_second_by_host_time": 20045.831446142045
+        },
+        {
+          "cuda_event_seconds": 0.4104166259765625,
+          "gradient_norm": 0.8799236416816711,
+          "host_wall_seconds": 0.41043706799973734,
+          "mean_loss": 2.862632781267166,
+          "tokens_per_second_by_cuda_time": 19960.20502460789,
+          "tokens_per_second_by_host_time": 19959.210896627013
+        },
+        {
+          "cuda_event_seconds": 0.3897179870605469,
+          "gradient_norm": 1.0721999406814575,
+          "host_wall_seconds": 0.3897382139984984,
+          "mean_loss": 3.0440653860569,
+          "tokens_per_second_by_cuda_time": 21020.328216791502,
+          "tokens_per_second_by_host_time": 21019.237287395077
+        },
+        {
+          "cuda_event_seconds": 0.4253710327148438,
+          "gradient_norm": 0.9584417343139648,
+          "host_wall_seconds": 0.4253915709996363,
+          "mean_loss": 3.0680192410945892,
+          "tokens_per_second_by_cuda_time": 19258.4811140435,
+          "tokens_per_second_by_host_time": 19257.55129738338
+        },
+        {
+          "cuda_event_seconds": 0.3911065368652344,
+          "gradient_norm": 0.9892803430557251,
+          "host_wall_seconds": 0.39112740400014445,
+          "mean_loss": 3.1268510222434998,
+          "tokens_per_second_by_cuda_time": 20945.69951619796,
+          "tokens_per_second_by_host_time": 20944.58203700034
+        },
+        {
+          "cuda_event_seconds": 0.41466461181640624,
+          "gradient_norm": 1.0387184619903564,
+          "host_wall_seconds": 0.4146852089997992,
+          "mean_loss": 3.0862176716327667,
+          "tokens_per_second_by_cuda_time": 19755.724907692456,
+          "tokens_per_second_by_host_time": 19754.743651838246
+        },
+        {
+          "cuda_event_seconds": 0.4095430908203125,
+          "gradient_norm": 1.0537493228912354,
+          "host_wall_seconds": 0.40956407799967565,
+          "mean_loss": 3.1684813797473907,
+          "tokens_per_second_by_cuda_time": 20002.779154670807,
+          "tokens_per_second_by_host_time": 20001.75415776207
+        },
+        {
+          "cuda_event_seconds": 0.3964321899414063,
+          "gradient_norm": 0.9199175834655762,
+          "host_wall_seconds": 0.39645320599993283,
+          "mean_loss": 2.8364720940589905,
+          "tokens_per_second_by_cuda_time": 20664.31588517269,
+          "tokens_per_second_by_host_time": 20663.220465926534
+        }
+      ],
+      "updates_persisted": false,
+      "warmup_steps_not_measured": 2
+    }
+  },
+  "calibration": "a0_a1_cuda_event_timing_only",
+  "checkpoint_written": false,
+  "conditions": {
+    "batch_source": "approved sequential packed train stream from token 0",
+    "batches_device_resident_during_timing": true,
+    "context_length": 512,
+    "effective_batch_size": 16,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0003,
+    "micro_batch_size": 2,
+    "optimizer": "AdamW",
+    "precision": "fp16",
+    "weight_decay": 0.1
+  },
+  "data": {
+    "batch_source": "approved sequential packed train stream from token 0",
+    "data_config_path": "configs/braidnano_a0_data.json",
+    "data_config_sha256": "d568ba95874c930e3c7bd502ae85c0e7c22f0aa2ab5c841d3b36c85a3ea3119f",
+    "manifest_path": "data/tinystories_a0/manifest.json",
+    "manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+    "train_stream_path": "data/tinystories_a0/tokens_train.bin",
+    "train_stream_sha256": "f4e63ba08e9fc8e94b351fdeb23ffd879abf10de68837fc23c0e720aaa9abcf2"
+  },
+  "device": "NVIDIA GeForce RTX 3060 Ti",
+  "device_capability": [
+    8,
+    6
+  ],
+  "energy": {
+    "not_used_for_budget": true,
+    "reason": "No synchronized power telemetry was sampled; CUDA elapsed time and FLOPs are not energy measurements.",
+    "status": "not_measured"
+  },
+  "interpretation": "bounded timing calibration only; in-memory updates were discarded and no training pilot was started",
+  "measured_steps_per_arm": 20,
+  "proposed_equal_cuda_budget": {
+    "a0_optimizer_steps": 1000,
+    "a0_tokens": 8192000,
+    "a1_optimizer_steps": 502,
+    "a1_projected_cuda_seconds": 201.85680820007323,
+    "a1_step_derivation": "floor(A0 CUDA budget / A1 mean CUDA-event seconds per optimizer step)",
+    "a1_tokens": 4112384,
+    "acceptance": {
+      "advantage": "A1 validation loss minus A0 validation loss <= -0.05 at the same measured CUDA budget, with finite metrics and intact checkpoints",
+      "failure": "A1 validation loss is >0.05 worse, or a critical numerical/CUDA/OOM/checkpoint failure occurs",
+      "parity": "absolute validation-loss difference <= 0.05"
+    },
+    "budget_basis": "A0 measured mean CUDA-event update time multiplied by its existing 1,000-step pilot budget",
+    "cuda_compute_budget_seconds": 202.10689544677734,
+    "schedule": {
+      "a0_warmup_steps": 10,
+      "a1_warmup_steps": 6,
+      "learning_rate": 0.0003,
+      "rule": "normalize cosine progress to each arm's planned optimizer-step budget and reach zero at its final step",
+      "schedule": "cosine",
+      "warmup_ratio": 0.01
+    },
+    "status": "proposal_only_requires_review_and_authorization",
+    "validation_checkpoints": {
+      "a0_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000
+      ],
+      "a1_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        502
+      ],
+      "interval_steps": 100,
+      "tokens": 131072
+    }
+  },
+  "status": "completed",
+  "timing_scope": {
+    "cuda_event": "default CUDA stream from optimizer.zero_grad through optimizer.step; excludes host-to-device copies, validation, checkpoint I/O, and data loading",
+    "full_pilot_wall_not_measured": true,
+    "host_wall": "host perf_counter for the same device-resident update scope, including synchronization"
+  },
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.12.0+cu130",
+  "training_started": false,
+  "updates_persisted": false,
+  "warmup_steps": 2
+}

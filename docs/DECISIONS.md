@@ -126,5 +126,25 @@ A0 took `1.0436` seconds under the same method. The outputs are recorded in
 `results/a1_prompt_eval.json` and are qualitative only. A bounded follow-up
 proposal now separates equal token positions, equal host training wall time,
 and equal measured CUDA-event GPU execution time. No additional training was
-started, and the equal-GPU-compute budget remains intentionally unmeasured
-pending review.
+started. The subsequent bounded CUDA calibration and protocol are recorded in
+D017 below.
+
+## 2026-10-10 — D017: establish a measured equal-CUDA-compute protocol
+
+A bounded host-GPU calibration used two warm-up and twenty measured in-memory
+optimizer updates per arm with device-resident approved batches. It preserved
+and verified the existing A0/A1 checkpoint hashes, produced finite losses and
+gradients, and discarded all updates. Mean CUDA-event time was `0.202106895`
+seconds for A0 and `0.402105196` seconds for A1; mean host time for the same
+scope was `0.202128821` and `0.402126285` seconds respectively. The resulting
+fixed planning budget is `202.106895447` CUDA seconds: A0 uses 1,000 steps and
+A1 uses 502 steps, processing 8,192,000 and 4,112,384 token positions. The
+calibration record is `results/a0_a1_cuda_timing_calibration.json`.
+
+This is a proposal only. Any authorized equal-compute run must start both arms
+from fresh seed-17 initialization, use normalized cosine schedules with 10 A0
+warmup steps and 6 A1 warmup steps, validate at the declared 100-step
+checkpoints plus each final step, and record actual CUDA time, host time,
+estimated FLOPs, and checkpoint integrity separately. Estimated FLOPs are not
+the budget, and energy was not measured. Existing A0/A1 pilots, checkpoints,
+configurations, and results remain unchanged; no additional training began.
