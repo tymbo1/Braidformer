@@ -217,3 +217,18 @@ seconds; A1 processed 16,465,920 tokens in 2,010 steps and accumulated
 no OOM/CUDA failures, and SHA-256-verified final checkpoints. Full curves and
 resource records are in `docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md` and
 `results/a0_a1_longer_equal_cuda_seed17.json`. No additional seed was started.
+
+## 2026-10-10 — D023: complete the 4× seed-23 and seed-29 replications
+
+The frozen 4× matched-CUDA protocol was replicated with fresh seed-23 and
+seed-29 A0/A1 initializations. All four new arms completed their declared
+budgets, and all six seed-17/23/29 arm totals were within the predeclared ±5%
+CUDA-time tolerance. Final validation-loss differences `A1 - A0` were
+`-0.1118402`, `-0.1256531`, and `-0.1242971`, respectively. The three-seed
+mean was `-0.1205968` with sample standard deviation `0.0076137`; A1 met the
+`<= -0.05` criterion in all three seeds. Every run had finite values and a
+SHA-256-verified optimizer/RNG checkpoint. A1 remained slower per token and
+used more VRAM. This supports the result only for the specified TinyStories
+42M-parameter measured-CUDA protocol; it is not a general superiority,
+energy-efficiency, FLOP-efficiency, or novelty claim. No 8× run, A2, scaling,
+or persistent-memory work started.

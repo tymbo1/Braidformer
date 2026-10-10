@@ -1,0 +1,128 @@
+{
+  "status": "completed",
+  "source_protocol_commit": "ff16dde",
+  "replication_protocol_commit": "fbd9b87",
+  "target_cuda_seconds_per_arm": 808.4275817871094,
+  "cuda_tolerance_fraction": 0.05,
+  "decision_rule": "validation_loss_A1_minus_A0 <= -0.05",
+  "dataset_revision": "f54c09fd23315a6f9c86f9dc80f725de7d8f9c64",
+  "data_manifest_sha256": "e67a3c36c2403f0eb4437def2b72aee5f30b508767cb3ea401efe155b3bfdd55",
+  "tokenizer_sha256": "9d2b84ebf358729cf548a2962f10fe15eebc512a0b6f42b3f90a010d44b589f3",
+  "architectures": {
+    "A0": {
+      "parameter_count": 41866240,
+      "optimizer_steps": 4000,
+      "training_tokens": 32768000,
+      "warmup_steps": 40,
+      "recurrent_path": null
+    },
+    "A1": {
+      "parameter_count": 41870336,
+      "optimizer_steps": 2010,
+      "training_tokens": 16465920,
+      "warmup_steps": 21,
+      "recurrent_path": "parallel_scan"
+    }
+  },
+  "replications": [
+    {
+      "seed": 17,
+      "A0": {
+        "validation_loss": 3.1149070430547,
+        "cuda_seconds": 839.6201208648679,
+        "cuda_deviation_percent": 3.858420937198148,
+        "tokens_per_second": 38831.16934558101,
+        "training_wall_seconds": 843.8581828010028,
+        "elapsed_wall_seconds": 933.4047345870003,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "70b81bc90c5ada413528f76b6d955caa4f5bb93a48d2ea87a64241ae2ac1b43c"
+      },
+      "A1": {
+        "validation_loss": 3.003066873177886,
+        "cuda_seconds": 817.6418055725112,
+        "cuda_deviation_percent": 1.1397710806740236,
+        "tokens_per_second": 20085.43159613693,
+        "training_wall_seconds": 819.7941837190556,
+        "elapsed_wall_seconds": 885.735629494,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "34619fa20f2d773c4a1efe387dc9be86d4c1c1157cf156285e564f5a73082f9d"
+      },
+      "A1_minus_A0_validation_loss": -0.11184016987681389,
+      "advantage_threshold_met": true
+    },
+    {
+      "seed": 23,
+      "A0": {
+        "validation_loss": 3.1545825228095055,
+        "cuda_seconds": 842.1388874511712,
+        "cuda_deviation_percent": 4.16998460017155,
+        "tokens_per_second": 38716.19052714238,
+        "training_wall_seconds": 846.3642614070632,
+        "elapsed_wall_seconds": 936.3015713140012,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "e1b1a49a9514617ccde6532f5b60ae239bd2b8dff7e1462a87ec4034f2602277"
+      },
+      "A1": {
+        "validation_loss": 3.028929455205798,
+        "cuda_seconds": 826.1056822814946,
+        "cuda_deviation_percent": 2.1867265408369807,
+        "tokens_per_second": 19880.57877635633,
+        "training_wall_seconds": 828.2414805540102,
+        "elapsed_wall_seconds": 894.795735382002,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "5e9224dac193a8380e3b78d04cfd82f4e7fdc3d94c5910777357cc1dd58044cb"
+      },
+      "A1_minus_A0_validation_loss": -0.1256530676037073,
+      "advantage_threshold_met": true
+    },
+    {
+      "seed": 29,
+      "A0": {
+        "validation_loss": 3.1391073372215033,
+        "cuda_seconds": 845.9514658813479,
+        "cuda_deviation_percent": 4.641588800234686,
+        "tokens_per_second": 38541.81846755372,
+        "training_wall_seconds": 850.1934081700274,
+        "elapsed_wall_seconds": 940.2957797790004,
+        "peak_allocated_vram_bytes": 1329467904,
+        "peak_reserved_vram_bytes": 1593835520,
+        "checkpoint_sha256": "e05c4a2d8fe0f5f78e41a13998604119aef34790f952505b571d3719adff2ffb"
+      },
+      "A1": {
+        "validation_loss": 3.0148102324455976,
+        "cuda_seconds": 822.6910766601583,
+        "cuda_deviation_percent": 1.764350350530841,
+        "tokens_per_second": 19962.738104744767,
+        "training_wall_seconds": 824.8327415609565,
+        "elapsed_wall_seconds": 891.1666351099993,
+        "peak_allocated_vram_bytes": 1657272320,
+        "peak_reserved_vram_bytes": 1931476992,
+        "checkpoint_sha256": "ba79ff5a8c73710b27a8e6474361ed88421116f9d9d35233a340a81bbd78b77d"
+      },
+      "A1_minus_A0_validation_loss": -0.12429710477590561,
+      "advantage_threshold_met": true
+    }
+  ],
+  "aggregate": {
+    "mean_A1_minus_A0_validation_loss": -0.12059678075214227,
+    "sample_stddev_A1_minus_A0_validation_loss": 0.007613693867895823,
+    "min_A1_minus_A0_validation_loss": -0.1256530676037073,
+    "max_A1_minus_A0_validation_loss": -0.11184016987681389,
+    "seeds_meeting_threshold": 3,
+    "seeds_tested": 3,
+    "all_cuda_budgets_within_tolerance": true,
+    "numerical_instability_reported": false,
+    "checkpoint_integrity_failures": 0
+  },
+  "measurement_scope": {
+    "cuda_time": "CUDA event time from optimizer.zero_grad through optimizer.step with device-resident batches; excludes host input preparation, validation, checkpoint I/O, and unrelated synchronization",
+    "wall_time": "Recorded separately and not used as the matched-compute acceptance metric",
+    "energy": "Not measured",
+    "estimated_flops": "Not used as the acceptance metric",
+    "gradient_checkpointing": "Configured in inherited JSON shape but not implemented or enabled"
+  }
+}

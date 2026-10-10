@@ -38,6 +38,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_PROTOCOL.md`](docs/A0_A1_LONGER_EQUAL_CUDA_PROTOCOL.md): frozen 4× seed-17 matched-CUDA-time protocol.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md`](docs/A0_A1_LONGER_EQUAL_CUDA_RESULT.md): measured seed-17 longer matched-CUDA-time result.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_PROTOCOL.md`](docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_PROTOCOL.md): frozen 4× seed-23/29 replication protocol.
+- [`docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md`](docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md): measured 4× seeds 17/23/29 replication result.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
@@ -62,6 +63,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`results/a0_a1_cuda_timing_calibration.json`](results/a0_a1_cuda_timing_calibration.json): measured CUDA timing, analytical FLOP labels, and the proposal-only 1,000/502-step budget.
 - [`results/a0_a1_equal_cuda_comparison.json`](results/a0_a1_equal_cuda_comparison.json): concise measured equal-CUDA-time curves, budgets, and decision.
 - [`results/a0_a1_equal_cuda_replications.json`](results/a0_a1_equal_cuda_replications.json): per-seed replication metrics and aggregate variation.
+- [`results/a0_a1_longer_equal_cuda_replications.json`](results/a0_a1_longer_equal_cuda_replications.json): per-seed 4× replication metrics, resource records, and checkpoint hashes.
 
 ## Cheap checks
 
