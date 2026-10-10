@@ -31,3 +31,7 @@ The bootstrap uses standard-library JSON configuration loading and validation so
 ## 2026-10-10 — D007: implement the A0 control before architectural variants
 
 The next implementation slice is a conventional decoder-only Transformer using the existing BraidNano dimensions. Its model type, dropout, normalization epsilon, bias policy, and tied-embedding policy are explicit configuration fields. The model rejects non-A0 stages, and validation is limited to synthetic CPU smoke tests; no dataset, checkpoint, or training run is authorized by this change.
+
+## 2026-10-10 — D008: keep training gated on data and hardware evidence
+
+The A0 control now has explicit synthetic checks for causal attention and exact next-token loss shifting. Training remains gated: a dataset/tokenizer and deterministic split manifest must be approved, and the device/memory smoke test must pass. The audited machine currently has no usable CUDA device, so no training-time performance or model-quality claim is permitted.

@@ -67,12 +67,13 @@ not counted twice:
 
 ## Test coverage
 
-At verification time, `python3 -m pytest -q` reports **13 passed**. The tests
+At verification time, `python3 -m pytest -q` reports **14 passed**. The tests
 cover:
 
 - JSON configuration loading and validation, including architecture and
   training-field constraints;
 - output shape and finite next-token loss on a synthetic batch;
+- exact next-token loss shifting, including the ignored first label;
 - a CPU backward pass with a populated embedding gradient;
 - causal isolation of earlier logits from changed future tokens;
 - rejection of a later-stage config by the A0 model;

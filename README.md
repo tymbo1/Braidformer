@@ -18,6 +18,7 @@ The first target is **BraidNano**, approximately 40M–60M parameters. Phase 0 i
 - [`AGENTS.md`](AGENTS.md): persistent research and workspace rules.
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): hypothesis and planned components.
 - [`docs/A0_BASELINE.md`](docs/A0_BASELINE.md): verified A0 accounting, test coverage, and proposed experiment protocol.
+- [`docs/A0_READINESS.md`](docs/A0_READINESS.md): pre-training gate matrix and unresolved data/hardware requirements.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
 - [`configs/braidnano_phase0_planning.json`](configs/braidnano_phase0_planning.json): conservative planning-only configuration.

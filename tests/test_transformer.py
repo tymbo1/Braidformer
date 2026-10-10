@@ -40,6 +40,29 @@ def test_a0_forward_backward_returns_expected_shapes() -> None:
     assert model.token_embedding.weight.grad is not None
 
 
+def test_a0_loss_uses_next_token_shift_and_ignores_first_label() -> None:
+    torch.manual_seed(11)
+    model = A0TransformerLM(tiny_config())
+    model.eval()
+    input_ids = torch.tensor([[1, 4, 7, 10, 13, 16]])
+    labels = input_ids.clone()
+
+    output = model(input_ids, labels=labels)
+    expected = torch.nn.functional.cross_entropy(
+        output.logits[:, :-1, :].reshape(-1, 31),
+        labels[:, 1:].reshape(-1),
+    )
+
+    changed_first_label = labels.clone()
+    changed_first_label[:, 0] = 30
+    changed_first_label_output = model(input_ids, labels=changed_first_label)
+
+    assert output.loss is not None
+    assert changed_first_label_output.loss is not None
+    assert torch.allclose(output.loss, expected)
+    assert torch.allclose(output.loss, changed_first_label_output.loss)
+
+
 def test_a0_attention_is_causal() -> None:
     torch.manual_seed(7)
     model = A0TransformerLM(tiny_config())
