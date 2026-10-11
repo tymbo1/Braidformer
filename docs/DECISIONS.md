@@ -299,3 +299,34 @@ evidence is recorded in
 specific to the declared TinyStories 42M-parameter protocols and do not
 establish general architectural superiority, matched FLOP/energy efficiency,
 or novelty. No further experiment was started.
+
+## 2026-10-11 — D027: complete the synthetic recall and retrieval battery
+
+The frozen synthetic battery protocol in commit
+`a0f2a95a65c696053d9b2d98b4f6106d421c0daa` was executed with fresh A0/A1
+initialization for seeds 17, 23, and 29. Each of the six runs used 1,000
+optimizer steps and 8,192,000 synthetic token positions with the unchanged
+42M-parameter architectures, context 512, micro-batch 2, accumulation 8,
+AdamW, and the identical 10-step-warmup cosine schedule. The tasks were exact
+copying, eight-record associative recall, and thirty-two-record selective
+retrieval.
+
+The primary autoregressive greedy test produced zero exact whole-answer
+matches for both architectures on every task and seed. Mean answer-token
+accuracy was `0.000109` for A0 and `0.000000` for A1; this budget therefore
+does not demonstrate successful exact recall or a primary-metric winner.
+As a secondary diagnostic, A0 had lower target-only test loss in all nine
+seed/task pairs: A0 mean `9.341637`, A1 mean `9.686330`, paired delta
+`A1 - A0 = +0.344694` with sample SD `0.129459`. A1 used mean `385.549`
+CUDA seconds versus A0's `195.319` seconds, a `1.974x` ratio, for the same
+token/update budget. All six runs completed with finite values, no CUDA/OOM
+failure, and SHA-256-verified optimizer/RNG checkpoints; gradient checkpointing
+remains unimplemented and disabled.
+
+This is a bounded negative result for this synthetic generator and budget. It
+does not generalize beyond the declared tasks or overturn the prior TinyStories
+results. The tracked evidence is in
+`docs/A0_A1_SYNTHETIC_RECALL_RESULT.md` and
+`results/a0_a1_synthetic_recall_battery.json`; raw logs and checkpoints remain
+ignored. No A2, long-context, second-corpus, scaling, post-training,
+persistent-memory, WNF, or SNAIL/SSRE work started.
