@@ -330,3 +330,29 @@ results. The tracked evidence is in
 `results/a0_a1_synthetic_recall_battery.json`; raw logs and checkpoints remain
 ignored. No A2, long-context, second-corpus, scaling, post-training,
 persistent-memory, WNF, or SNAIL/SSRE work started.
+
+## 2026-10-11 — D028: complete the seed-17 solvability calibration
+
+The frozen first-rung calibration protocol in commit `8a34cda` was executed
+with fresh seed-17 initialization for the unchanged 41,866,240-parameter A0
+Transformer and 41,870,336-parameter A1 `parallel_scan` model. Each run used
+2,000 optimizer steps and 256,000 sequence-token positions on the fixed
+one-key/one-value task. Both models reached `1.0000` autoregressive greedy
+exact match on the repeated 128-example training set, so neither model failed
+the trivial memorization calibration.
+
+The held-out set was diagnostic only: it used disjoint keys and mappings while
+retaining the earlier record value needed for the same copy/retrieve operation.
+A0 reached `0.8828` exact match and target loss `1.222888`; A1 reached
+`0.8516` and `1.509632`. The A1-minus-A0 held-out target-loss difference was
+`+0.286744`, with A1 using `1.519x` A0's CUDA time (`283.746` versus
+`186.852` seconds). This calibration was not a matched-compute comparison and
+does not isolate model capacity, recurrent state capacity, or optimization.
+
+Both runs completed with finite values, no CUDA/OOM failure, and SHA-256-
+verified optimizer/RNG checkpoints. The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_CALIBRATION_RESULT.md`,
+`results/a0_a1_solvability_calibration.json`, and the read-only verifier
+`scripts/analyze_synthetic_overfit_calibration.py`; raw logs and checkpoints
+remain ignored. No seeds 23/29, harder ladder rung, scaling, A2, persistent
+memory, WNF, or SNAIL/SSRE work started.
