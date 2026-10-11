@@ -273,3 +273,29 @@ architectures and all approved data/training controls. The protocol is frozen
 for review, but no new training has started; execution requires explicit
 authorization after the exact conditions are presented. No 16×, A2, scaling,
 persistent-memory, or unrelated architecture work is included.
+
+## 2026-10-11 — D026: complete schedule disentanglement
+
+The frozen protocol in `eb1cb6a` was executed with fresh seeds 17, 23, and 29
+for both controls: twelve runs in total. The CUDA-fraction schedule control
+used 8,000 A0 steps / 65,536,000 tokens and 4,020 A1 steps / 32,931,840
+tokens under a shared CUDA-progress cosine schedule. All six CUDA totals passed
+the ±5% tolerance; the mean final delta was `-0.2325530` with sample SD
+`0.0104430`, and A1 met the `<= -0.05` criterion in all three seeds.
+
+The equal-token/equal-step control used 4,020 steps / 32,931,840 tokens for
+both arms under the identical 41-step cosine schedule. The mean final delta
+was `-0.2975742` with sample SD `0.0240075`, again meeting the criterion in
+all three seeds. A1 used approximately 1.96× A0's CUDA time in this condition,
+so it is an equal-token/update result rather than an equal-compute result.
+
+All twelve final optimizer/RNG checkpoints passed the existing SHA-256
+integrity and metadata checks; no run reported numerical, CUDA, or OOM failure.
+Relative to native 8× mean delta `-0.2452846`, the CUDA-fraction control
+retained a slightly smaller but still consistent advantage. The complete
+evidence is recorded in
+`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_RESULT.md` and
+`results/a0_a1_schedule_disentanglement_results.json`. These results remain
+specific to the declared TinyStories 42M-parameter protocols and do not
+establish general architectural superiority, matched FLOP/energy efficiency,
+or novelty. No further experiment was started.
