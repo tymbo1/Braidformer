@@ -636,3 +636,25 @@ verifier `scripts/analyze_synthetic_solvability_associations2_values8000.py`;
 raw logs and checkpoints remain ignored. Four/eight associations, distractors,
 target-length changes, decay analysis, predictive learning-state,
 competence-ledger, scaling, A2, and memory work remain unfrozen.
+
+## 2026-10-12 — D042: freeze the four-association 8000-value solvability rung
+
+The completed two-association rung still showed perfect training memorization
+but near-floor held-out retrieval. The next controlled test therefore changes
+only the association count from two to four while retaining the 8,000-value
+pool, 128 examples, seed 17, model sizes, optimizer, 2,000 optimizer steps,
+effective batch 16, and evaluation/checkpoint cadence.
+
+Four explicit records require a 17-token example. The resulting run processes
+544,000 sequence-token positions at the same optimizer-step budget; this
+unavoidable sequence-length change is recorded as a limitation rather than
+treated as equal-token evidence.
+
+The frozen configurations are
+`configs/braidnano_a0_solvability_associations4_values8000.json` and
+`configs/braidnano_a1_solvability_associations4_values8000.json`; the protocol
+is `docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md`. Only the
+two fresh seed-17 arms are in scope. Eight associations, additional seeds,
+distractors, target-length changes, decay analysis, predictive
+learning-state/inheritance, scaling, A2, and memory work remain outside this
+authorization boundary.

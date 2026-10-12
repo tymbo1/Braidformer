@@ -52,6 +52,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md): measured seed-17 8000-value solvability-ladder result.
 - [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md): frozen seed-17 two-association protocol.
 - [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_RESULT.md): measured seed-17 two-association solvability result.
+- [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md): frozen seed-17 four-association protocol; execution pending.
 - [`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md`](docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md): deferred predictive training-policy experiment; no implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.

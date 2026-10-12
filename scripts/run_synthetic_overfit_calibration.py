@@ -51,9 +51,11 @@ PROTOCOL_PATHS = {
 }
 ASSOCIATION_GENERATOR_VERSIONS = {
     (8000, 2): "synthetic_solvability_associations2_values8000_v1",
+    (8000, 4): "synthetic_solvability_associations4_values8000_v1",
 }
 ASSOCIATION_PROTOCOL_PATHS = {
     (8000, 2): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md",
+    (8000, 4): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md",
 }
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
@@ -166,25 +168,18 @@ def make_example(
         )
         labels = (-100, -100, -100, -100, -100, -100, -100, value)
         return CalibrationExample(split, index, input_ids, labels, value)
-    if association_count != 2:
+    if association_count not in (2, 4):
         raise ValueError(f"association generator does not implement count {association_count}")
     keys = tuple(key_base + index * association_count + offset for offset in range(association_count))
     values = tuple(VALUE_BASE + offset for offset in rng.sample(range(value_count), association_count))
     query_index = rng.randrange(association_count)
     query_key = keys[query_index]
     target = values[query_index]
-    input_ids = (
-        MARKERS["task"],
-        MARKERS["record"],
-        keys[0],
-        values[0],
-        MARKERS["record"],
-        keys[1],
-        values[1],
-        MARKERS["query"],
-        query_key,
-        MARKERS["answer"],
-        target,
+    record_tokens: list[int] = []
+    for key, value in zip(keys, values):
+        record_tokens.extend((MARKERS["record"], key, value))
+    input_ids = tuple(
+        [MARKERS["task"], *record_tokens, MARKERS["query"], query_key, MARKERS["answer"], target]
     )
     labels = (-100,) * (len(input_ids) - 1) + (target,)
     return CalibrationExample(split, index, input_ids, labels, target)
@@ -775,7 +770,7 @@ def main() -> int:
         "--association-count",
         type=int,
         default=1,
-        choices=(1, 2),
+        choices=(1, 2, 4),
         help="number of key/value associations in the selected solvability rung",
     )
     parser.add_argument(

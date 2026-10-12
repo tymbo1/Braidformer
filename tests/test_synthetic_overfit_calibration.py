@@ -116,6 +116,28 @@ def test_associations2_rung_has_two_bindings_and_one_queried_answer() -> None:
     assert make_example(17, "train", 7, value_count=8000, association_count=2) == example
 
 
+def test_associations4_rung_has_four_bindings_and_one_queried_answer() -> None:
+    example = make_example(17, "train", 7, value_count=8000, association_count=4)
+    spec = generator_spec(17, value_count=8000, association_count=4)
+
+    assert generator_version(8000, 4) == "synthetic_solvability_associations4_values8000_v1"
+    assert spec["version"] == "synthetic_solvability_associations4_values8000_v1"
+    assert spec["association_count"] == 4
+    assert spec["sequence_length"] == sequence_length(4) == 17
+    assert len(example.input_ids) == 17
+    assert example.input_ids[0] == 30_000
+    assert example.input_ids[1] == example.input_ids[4] == example.input_ids[7] == example.input_ids[10] == 30_001
+    assert example.input_ids[13] == 30_002
+    assert example.input_ids[15] == 30_003
+    keys = tuple(example.input_ids[offset] for offset in (2, 5, 8, 11))
+    values = tuple(example.input_ids[offset] for offset in (3, 6, 9, 12))
+    assert example.input_ids[14] in keys
+    assert example.target == example.input_ids[16] == values[keys.index(example.input_ids[14])]
+    assert example.labels[:-1] == (-100,) * 16
+    assert example.labels[-1] == example.target
+    assert make_example(17, "train", 7, value_count=8000, association_count=4) == example
+
+
 def test_calibration_batch_repeats_fixed_training_set() -> None:
     first_inputs, first_labels = make_training_batch(17, 1)
     ninth_inputs, ninth_labels = make_training_batch(17, 9)
@@ -241,4 +263,24 @@ def test_associations2_configs_keep_controls_and_use_expanded_sequence_budget() 
         assert config.eval_interval_steps == 100
         assert config.checkpoint_interval_steps == 100
         assert config.data_and_tokenizer == "synthetic_solvability_associations2_values8000_v1"
+        assert config.planned_only is True
+
+
+def test_associations4_configs_keep_controls_and_use_expanded_sequence_budget() -> None:
+    a0 = load_config(ROOT / "configs" / "braidnano_a0_solvability_associations4_values8000.json")
+    a1 = load_config(ROOT / "configs" / "braidnano_a1_solvability_associations4_values8000.json")
+
+    assert a0.stage == "A0"
+    assert a1.stage == "A1"
+    assert a1.recurrent_path == "parallel_scan"
+    for config in (a0, a1):
+        assert config.context_length == 512
+        assert config.vocab_size == 32_000
+        assert config.micro_batch_size == 2
+        assert config.gradient_accumulation_steps == 8
+        assert config.max_steps == 2_000
+        assert config.training_token_budget == 544_000
+        assert config.eval_interval_steps == 100
+        assert config.checkpoint_interval_steps == 100
+        assert config.data_and_tokenizer == "synthetic_solvability_associations4_values8000_v1"
         assert config.planned_only is True
