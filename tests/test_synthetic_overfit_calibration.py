@@ -4,6 +4,7 @@ import torch
 
 from braidformer.config import load_config
 from scripts.run_synthetic_overfit_calibration import (
+    DISTRACTOR_MARKER,
     EFFECTIVE_BATCH_SIZE,
     FIXED_EXAMPLES,
     SEQUENCE_LENGTH,
@@ -92,6 +93,50 @@ def test_values8000_rung_changes_only_the_reserved_answer_pool_identity() -> Non
     assert example.input_ids[3] == example.input_ids[7] == example.target
     assert 0 <= example.target - 8_000 < 8000
     assert make_example(17, "train", 7, value_count=8000) == example
+
+
+def test_distractor_distance_rungs_preserve_values8000_bindings() -> None:
+    distances = (
+        (4, "synthetic_solvability_distance4_values8000_v1"),
+        (16, "synthetic_solvability_distance16_values8000_v1"),
+        (64, "synthetic_solvability_distance64_values8000_v1"),
+    )
+    for distance, version in distances:
+        baseline = make_example(17, "train", 7, value_count=8000)
+        example = make_example(
+            17,
+            "train",
+            7,
+            value_count=8000,
+            distractor_distance=distance,
+        )
+        spec = generator_spec(17, value_count=8000, distractor_distance=distance)
+
+        assert generator_version(8000, 1, distance) == version
+        assert spec["version"] == version
+        assert spec["distractor_distance"] == distance
+        assert spec["distractor_marker"] == DISTRACTOR_MARKER
+        assert spec["sequence_length"] == sequence_length(1, distance) == 8 + distance
+        assert example.input_ids[:4] == baseline.input_ids[:4]
+        assert example.input_ids[4 : 4 + distance] == (DISTRACTOR_MARKER,) * distance
+        assert example.input_ids[4 + distance :] == baseline.input_ids[4:]
+        assert example.target == baseline.target
+        assert example.labels == (-100,) * (7 + distance) + (example.target,)
+
+        for split in ("train", "heldout"):
+            for index in range(FIXED_EXAMPLES):
+                original = make_example(17, split, index, value_count=8000)
+                spaced = make_example(
+                    17,
+                    split,
+                    index,
+                    value_count=8000,
+                    distractor_distance=distance,
+                )
+                assert spaced.input_ids[:4] == original.input_ids[:4]
+                assert spaced.input_ids[4 : 4 + distance] == (DISTRACTOR_MARKER,) * distance
+                assert spaced.input_ids[4 + distance :] == original.input_ids[4:]
+                assert spaced.target == original.target
 
 
 def test_associations2_rung_has_two_bindings_and_one_queried_answer() -> None:
@@ -268,6 +313,35 @@ def test_values8000_configs_keep_controls_and_use_recovery_checkpoint_cadence() 
         assert config.checkpoint_interval_steps == 100
         assert config.data_and_tokenizer == "synthetic_solvability_values8000_v1"
         assert config.planned_only is True
+
+
+def test_distractor_distance_configs_keep_controls_and_scale_sequence_budget() -> None:
+    for distance, version in (
+        (4, "synthetic_solvability_distance4_values8000_v1"),
+        (16, "synthetic_solvability_distance16_values8000_v1"),
+        (64, "synthetic_solvability_distance64_values8000_v1"),
+    ):
+        a0 = load_config(
+            ROOT / "configs" / f"braidnano_a0_solvability_distance{distance}_values8000.json"
+        )
+        a1 = load_config(
+            ROOT / "configs" / f"braidnano_a1_solvability_distance{distance}_values8000.json"
+        )
+
+        assert a0.stage == "A0"
+        assert a1.stage == "A1"
+        assert a1.recurrent_path == "parallel_scan"
+        for config in (a0, a1):
+            assert config.context_length == 512
+            assert config.vocab_size == 32_000
+            assert config.micro_batch_size == 2
+            assert config.gradient_accumulation_steps == 8
+            assert config.max_steps == 2_000
+            assert config.training_token_budget == 2_000 * (8 + distance) * EFFECTIVE_BATCH_SIZE
+            assert config.eval_interval_steps == 100
+            assert config.checkpoint_interval_steps == 100
+            assert config.data_and_tokenizer == version
+            assert config.planned_only is True
 
 
 def test_associations2_configs_keep_controls_and_use_expanded_sequence_budget() -> None:

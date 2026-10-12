@@ -59,6 +59,16 @@ ASSOCIATION_PROTOCOL_PATHS = {
     (8000, 4): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md",
     (8000, 8): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_PROTOCOL.md",
 }
+DISTRACTOR_GENERATOR_VERSIONS = {
+    (8000, 1, 4): "synthetic_solvability_distance4_values8000_v1",
+    (8000, 1, 16): "synthetic_solvability_distance16_values8000_v1",
+    (8000, 1, 64): "synthetic_solvability_distance64_values8000_v1",
+}
+DISTRACTOR_PROTOCOL_PATHS = {
+    (8000, 1, 4): "docs/A0_A1_SOLVABILITY_DISTANCE4_VALUES8000_PROTOCOL.md",
+    (8000, 1, 16): "docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md",
+    (8000, 1, 64): "docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md",
+}
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
 FIXED_EXAMPLES = 128
@@ -73,6 +83,7 @@ KEY_HELDOUT_BASE = 2_000
 VALUE_BASE = 8_000
 VALUE_COUNT = 64
 MARKERS = {"task": 30_000, "record": 30_001, "query": 30_002, "answer": 30_003}
+DISTRACTOR_MARKER = 30_004
 SPLIT_OFFSETS = {"train": 0x13579BDF, "heldout": 0x2468ACE0}
 
 
@@ -89,15 +100,36 @@ class CalibrationExample:
         return len(self.input_ids) - 1
 
 
-def sequence_length(association_count: int = 1) -> int:
+def sequence_length(association_count: int = 1, distractor_distance: int = 0) -> int:
     if association_count < 1:
         raise ValueError(f"association_count must be positive: {association_count}")
-    return SEQUENCE_LENGTH + 3 * (association_count - 1)
+    if distractor_distance < 0:
+        raise ValueError(f"distractor_distance must be non-negative: {distractor_distance}")
+    return SEQUENCE_LENGTH + 3 * (association_count - 1) + distractor_distance
 
 
-def generator_version(value_count: int = VALUE_COUNT, association_count: int = 1) -> str:
+def generator_version(
+    value_count: int = VALUE_COUNT,
+    association_count: int = 1,
+    distractor_distance: int = 0,
+) -> str:
     """Return the immutable generator identity for a ladder value-pool size."""
 
+    if distractor_distance != 0:
+        try:
+            return DISTRACTOR_GENERATOR_VERSIONS[
+                (value_count, association_count, distractor_distance)
+            ]
+        except KeyError as exc:
+            supported = ", ".join(
+                f"values={values}, associations={associations}, distance={distance}"
+                for values, associations, distance in sorted(DISTRACTOR_GENERATOR_VERSIONS)
+            )
+            raise ValueError(
+                "unsupported distractor-distance rung "
+                f"value_count={value_count}, association_count={association_count}, "
+                f"distractor_distance={distractor_distance}; expected one of {supported}"
+            ) from exc
     if association_count != 1:
         try:
             return ASSOCIATION_GENERATOR_VERSIONS[(value_count, association_count)]
@@ -124,10 +156,15 @@ def _derived_seed(
     index: int,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> int:
-    version = generator_version(value_count, association_count)
-    if association_count == 1:
+    version = generator_version(value_count, association_count, distractor_distance)
+    if association_count == 1 and distractor_distance == 0:
         payload = f"{version}:{base_seed}:{split}:{index}".encode("utf-8")
+    elif distractor_distance != 0:
+        # Keep the distance curve paired with the existing distance-0 mappings.
+        baseline_version = generator_version(value_count, 1, 0)
+        payload = f"{baseline_version}:{base_seed}:{split}:{index}".encode("utf-8")
     else:
         payload = f"{version}:{base_seed}:{split}:{index}:{association_count}".encode("utf-8")
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "little")
@@ -139,12 +176,13 @@ def make_example(
     index: int,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> CalibrationExample:
     if split not in SPLIT_OFFSETS:
         raise ValueError(f"unknown split: {split}")
     if not 0 <= index < FIXED_EXAMPLES:
         raise ValueError(f"index out of range: {index}")
-    generator_version(value_count, association_count)
+    generator_version(value_count, association_count, distractor_distance)
     rng = random.Random(
         _derived_seed(
             base_seed + SPLIT_OFFSETS[split],
@@ -152,23 +190,27 @@ def make_example(
             index,
             value_count,
             association_count,
+            distractor_distance,
         )
     )
     key_base = KEY_TRAIN_BASE if split == "train" else KEY_HELDOUT_BASE
     if association_count == 1:
         key = key_base + index
         value = VALUE_BASE + rng.randrange(value_count)
-        input_ids = (
+        prefix = (
             MARKERS["task"],
             MARKERS["record"],
             key,
             value,
+        )
+        suffix = (
             MARKERS["query"],
             key,
             MARKERS["answer"],
             value,
         )
-        labels = (-100, -100, -100, -100, -100, -100, -100, value)
+        input_ids = prefix + (DISTRACTOR_MARKER,) * distractor_distance + suffix
+        labels = (-100,) * (len(input_ids) - 1) + (value,)
         return CalibrationExample(split, index, input_ids, labels, value)
     if association_count not in (2, 4, 8):
         raise ValueError(f"association generator does not implement count {association_count}")
@@ -192,6 +234,7 @@ def make_training_batch(
     optimizer_step: int,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     examples = [
         make_example(
@@ -200,6 +243,7 @@ def make_training_batch(
             ((optimizer_step - 1) * EFFECTIVE_BATCH_SIZE + offset) % FIXED_EXAMPLES,
             value_count,
             association_count,
+            distractor_distance,
         )
         for offset in range(EFFECTIVE_BATCH_SIZE)
     ]
@@ -214,9 +258,17 @@ def make_evaluation_examples(
     split: str,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> list[CalibrationExample]:
     return [
-        make_example(base_seed, split, index, value_count, association_count)
+        make_example(
+            base_seed,
+            split,
+            index,
+            value_count,
+            association_count,
+            distractor_distance,
+        )
         for index in range(FIXED_EXAMPLES)
     ]
 
@@ -225,11 +277,12 @@ def generator_spec(
     base_seed: int,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> dict[str, Any]:
     spec = {
-        "version": generator_version(value_count, association_count),
+        "version": generator_version(value_count, association_count, distractor_distance),
         "base_seed": base_seed,
-        "sequence_length": sequence_length(association_count),
+        "sequence_length": sequence_length(association_count, distractor_distance),
         "fixed_examples": FIXED_EXAMPLES,
         "key_train_base": KEY_TRAIN_BASE,
         "key_heldout_base": KEY_HELDOUT_BASE,
@@ -240,6 +293,9 @@ def generator_spec(
     }
     if association_count != 1:
         spec["association_count"] = association_count
+    if distractor_distance != 0:
+        spec["distractor_distance"] = distractor_distance
+        spec["distractor_marker"] = DISTRACTOR_MARKER
     return spec
 
 
@@ -364,11 +420,16 @@ def _data_hash(
     base_seed: int,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
 ) -> str:
     digest = hashlib.sha256()
     for split in ("train", "heldout"):
         for example in make_evaluation_examples(
-            base_seed, split, value_count, association_count
+            base_seed,
+            split,
+            value_count,
+            association_count,
+            distractor_distance,
         ):
             digest.update(split.encode("ascii"))
             digest.update(
@@ -388,6 +449,7 @@ def run(
     *,
     value_count: int = VALUE_COUNT,
     association_count: int = 1,
+    distractor_distance: int = 0,
     resume_path: Path | None = None,
 ) -> dict[str, Any]:
     """Run one fixed-set rung, checkpointing often enough for power-loss recovery.
@@ -401,8 +463,12 @@ def run(
         raise RuntimeError("CUDA is unavailable in the host training process")
     if run_dir.exists() and any(run_dir.iterdir()):
         raise RuntimeError(f"run directory is not empty: {run_dir}")
-    version = generator_version(value_count, association_count)
-    if association_count == 1:
+    version = generator_version(value_count, association_count, distractor_distance)
+    if distractor_distance != 0:
+        protocol_relative_path = DISTRACTOR_PROTOCOL_PATHS[
+            (value_count, association_count, distractor_distance)
+        ]
+    elif association_count == 1:
         protocol_relative_path = PROTOCOL_PATHS[value_count]
     else:
         protocol_relative_path = ASSOCIATION_PROTOCOL_PATHS[(value_count, association_count)]
@@ -415,7 +481,7 @@ def run(
         )
 
     config = load_config(config_path)
-    current_sequence_length = sequence_length(association_count)
+    current_sequence_length = sequence_length(association_count, distractor_distance)
     tokens_per_step = current_sequence_length * EFFECTIVE_BATCH_SIZE
     expected_tokens = MAX_STEPS * tokens_per_step
     if config.context_length != 512 or config.micro_batch_size != MICRO_BATCH_SIZE:
@@ -430,6 +496,7 @@ def run(
         raise RuntimeError(
             f"config data identity does not match value_count={value_count}, "
             f"association_count={association_count}: "
+            f"distractor_distance={distractor_distance}: "
             f"{config.data_and_tokenizer!r} != {version!r}"
         )
 
@@ -438,9 +505,9 @@ def run(
     script_hash = sha256_file(Path(__file__))
     protocol_path = REPO_ROOT / protocol_relative_path
     protocol_hash = sha256_file(protocol_path)
-    spec = generator_spec(seed, value_count, association_count)
+    spec = generator_spec(seed, value_count, association_count, distractor_distance)
     generator_hash = sha256_json(spec)
-    data_hash = _data_hash(seed, value_count, association_count)
+    data_hash = _data_hash(seed, value_count, association_count, distractor_distance)
     seed_report = set_reproducible_seed(seed, deterministic=True)
     device = torch.device("cuda")
     model = _build_model(config).to(device)
@@ -504,10 +571,10 @@ def run(
         last_train_loss = payload.get("last_train_loss")
 
     train_examples = make_evaluation_examples(
-        seed, "train", value_count, association_count
+        seed, "train", value_count, association_count, distractor_distance
     )
     heldout_examples = make_evaluation_examples(
-        seed, "heldout", value_count, association_count
+        seed, "heldout", value_count, association_count, distractor_distance
     )
     run_metadata = {
         "experiment_id": run_dir.name,
@@ -535,6 +602,7 @@ def run(
             "fixed_training_examples": FIXED_EXAMPLES,
             "value_count": value_count,
             "association_count": association_count,
+            "distractor_distance": distractor_distance,
             "warmup_steps": WARMUP_STEPS,
             "validation_interval_steps": EVAL_INTERVAL,
             "checkpoint_interval_steps": config.checkpoint_interval_steps,
@@ -598,6 +666,7 @@ def run(
                 "synthetic_generator_version": version,
                 "value_count": value_count,
                 "association_count": association_count,
+                "distractor_distance": distractor_distance,
                 "gradient_checkpointing": False,
             },
         )
@@ -611,7 +680,7 @@ def run(
             learning_rate = _learning_rate(config.learning_rate, step)
             _set_learning_rate(optimizer, learning_rate)
             cpu_inputs, cpu_labels = make_training_batch(
-                seed, step, value_count, association_count
+                seed, step, value_count, association_count, distractor_distance
             )
             device_inputs = cpu_inputs.to(device)
             device_labels = cpu_labels.to(device)
@@ -716,6 +785,7 @@ def run(
                 "initial_step": initial_step,
                 "sequence_length": current_sequence_length,
                 "association_count": association_count,
+                "distractor_distance": distractor_distance,
                 "tokens_processed": expected_tokens,
                 "warmup_steps": WARMUP_STEPS,
                 "learning_rate": config.learning_rate,
@@ -776,6 +846,13 @@ def main() -> int:
         help="number of key/value associations in the selected solvability rung",
     )
     parser.add_argument(
+        "--distractor-distance",
+        type=int,
+        default=0,
+        choices=(0, 4, 16, 64),
+        help="number of neutral distractor markers between the binding and query",
+    )
+    parser.add_argument(
         "--resume",
         type=Path,
         default=None,
@@ -798,13 +875,18 @@ def main() -> int:
     )
     if args.dry_run:
         config = load_config(config_path)
-        version = generator_version(args.value_count, args.association_count)
-        current_sequence_length = sequence_length(args.association_count)
+        version = generator_version(
+            args.value_count, args.association_count, args.distractor_distance
+        )
+        current_sequence_length = sequence_length(
+            args.association_count, args.distractor_distance
+        )
         expected_tokens = MAX_STEPS * current_sequence_length * EFFECTIVE_BATCH_SIZE
         if config.data_and_tokenizer != version:
             raise SystemExit(
                 f"config data identity does not match value_count={args.value_count}, "
                 f"association_count={args.association_count}: "
+                f"distractor_distance={args.distractor_distance}: "
                 f"{config.data_and_tokenizer!r} != {version!r}"
             )
         if config.max_steps != MAX_STEPS or config.training_token_budget != expected_tokens:
@@ -818,6 +900,7 @@ def main() -> int:
                     "seed": args.seed,
                     "value_count": args.value_count,
                     "association_count": args.association_count,
+                    "distractor_distance": args.distractor_distance,
                     "sequence_length": current_sequence_length,
                     "generator_version": version,
                     "max_steps": MAX_STEPS,
@@ -840,6 +923,7 @@ def main() -> int:
                 args.protocol_commit,
                 value_count=args.value_count,
                 association_count=args.association_count,
+                distractor_distance=args.distractor_distance,
                 resume_path=resume_path,
             ),
             indent=2,

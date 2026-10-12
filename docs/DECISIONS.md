@@ -737,3 +737,34 @@ verifier `scripts/analyze_synthetic_solvability_associations4_values8000.py`;
 raw logs and checkpoints remain ignored. Eight associations, distractors,
 target-length changes, decay analysis, predictive learning-state,
 competence-ledger, scaling, A2, and memory work remain unfrozen.
+
+## 2026-10-12 — D046: freeze the distractor-distance solvability axis
+
+The completed eight-association rung confirms that both unchanged 42M models
+can memorize the fixed examples while held-out retrieval is at or near the
+floor. The next controlled axis therefore returns to one association and the
+8,000-value pool, preserving the completed distance-0 mappings and inserting
+only neutral markers before the query.
+
+Three fresh seed-17 distance rungs are frozen for execution:
+
+- distance 4: 12 tokens per example and 384,000 sequence-token positions;
+- distance 16: 24 tokens per example and 768,000 sequence-token positions;
+- distance 64: 72 tokens per example and 2,304,000 sequence-token positions.
+
+Each rung retains the same A0/A1 architectures, 128 fixed examples, optimizer,
+2,000 optimizer steps, effective batch 16, and evaluation/checkpoint cadence.
+The changing sequence length means these are matched-step retention probes, not
+equal-token comparisons. The reserved distractor marker is not an answer
+candidate, and a mapping-preservation test compares every distance example to
+its distance-0 counterpart before execution.
+
+The frozen configurations are the six
+`configs/braidnano_a{0,1}_solvability_distance{4,16,64}_values8000.json`
+files. The protocols are
+`docs/A0_A1_SOLVABILITY_DISTANCE4_VALUES8000_PROTOCOL.md`,
+`docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md`, and
+`docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md`. Only these six
+fresh arms are in scope. No association-count changes, target-length changes,
+additional seeds, A1 modification, decay analysis, predictive learning-state,
+competence-ledger, scaling, A2, or memory work is authorized by this freeze.

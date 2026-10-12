@@ -56,6 +56,9 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_RESULT.md): measured seed-17 four-association solvability result.
 - [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_PROTOCOL.md): frozen seed-17 eight-association protocol.
 - [`docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_RESULT.md): measured seed-17 eight-association solvability result.
+- [`docs/A0_A1_SOLVABILITY_DISTANCE4_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_DISTANCE4_VALUES8000_PROTOCOL.md): frozen seed-17 distance-4 retrieval protocol.
+- [`docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md): frozen seed-17 distance-16 retrieval protocol.
+- [`docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md): frozen seed-17 distance-64 retrieval protocol.
 - [`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md`](docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md): deferred predictive training-policy experiment; no implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
