@@ -41,10 +41,10 @@ target-state degradation, or optimization.
 | ID | Hypothesis | Current status |
 | --- | --- | --- |
 | H1 | Temporal decay erases the required value trace. | Supported by distance curve, short learned taus, and fixed-probe collapse; long-decay-tail negative result means decay alone is insufficient. |
-| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Open; requires layer/position evidence. |
+| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Favoured over a pure readout failure by the distance curve and item-3 fixed-probe degradation, but not isolated from H1/H3. |
 | H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Open; requires before/after-query comparison. |
 | H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Supported by association/value-space collapse; not enough to explain the distance-specific A1 divergence alone. |
-| H5 | The required value survives internally but the output route/readout fails. | Open; requires probe/readout localization. |
+| H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
 | H6 | Multi-token autoregressive target state degrades after the first output. | Open; target-position decomposition is next. |
 | H7 | A1 needs more optimization steps or a different optimization trajectory. | Not ruled out, but existing controls show the key failures are present despite perfect training memorization; no new training is authorized before diagnostics. |
 
@@ -60,9 +60,10 @@ target-state degradation, or optimization.
    result is correlational and its cross-split fixed-probe metric conflates
    retention with representation transfer; item 3 explicitly repairs that
    limitation.
-3. **Query/readout localization — next.** Add within-heldout fixed-probe
+3. **Query/readout localization — complete.** Added within-heldout fixed-probe
    transfer and direct logit/rank/probability localization through the query
-   and target-output stages.
+   and target-output stages. The probes stayed near floor and did not reveal a
+   strong retained-value/native-readout gap; item 4 is the next step.
 4. **One reversible inference-time causal intervention.** Predeclare its
    prediction from items 1–3; no weight changes.
 5. **Mechanism adjudication.** Rank hypotheses and reject contradicted ones.
@@ -135,8 +136,40 @@ interpretation caveat and detailed table are in
 Integrity: all six source checkpoint hashes, expected parameter counts, capture
 sites, recurrent layers, finite tensors, and finite probe metrics passed. Raw
 checkpoints/logs remain ignored; no A0/A1 architecture or frozen protocol was
+changed. The full test suite and `git diff --check` passed in the item-2 result
+commit. The next queued item is the reversible inference-time causal
+intervention.
+
+### Item 3 — query/readout localization
+
+The six frozen checkpoints passed sidecar/hash verification. Native
+teacher-forced logits were measured at every requested target position over the
+full vocabulary and the 8,000-value candidate range. Temporary value readouts
+were fit with deterministic four-fold cross-validation inside the heldout set;
+no same-sample fitted ceiling was used.
+
+A1's native value-range top-1 was zero at every target position for lengths 4
+and 8. Fixed pre-query probes stayed at or near floor through post-query and
+target sites, and site-specific probes did not produce a strong retained-value
+signal or a diagnostic readout advantage. This weakens the pure H5
+readout/routing hypothesis. The result favours representation/binding or
+recurrent transformation over a final-head-only failure, while H1 temporal
+decay, H2 state transformation/interference, H3 query-conditioned corruption,
+and H4 binding failure remain jointly viable. It is correlational and requires
+the predeclared reversible intervention in item 4.
+
+The complete native metrics, fold assignments, probe ranks/cosines, capture
+positions, and source checkpoint hashes are in
+`results/a0_a1_query_readout_localization_values8000.json`; the concise tables
+and interpretation are in
+`docs/A0_A1_QUERY_READOUT_LOCALIZATION_RESULT.md`.
+
+Integrity: source hashes, expected parameter counts, capture sites, balanced
+folds, finite logits/representations, and finite diagnostic metrics passed. Raw
+checkpoints/logs remain ignored; no A0/A1 architecture or frozen protocol was
 changed. The full test suite and `git diff --check` are required before the
-item result commit. The next queued item is query/readout localization.
+item result commit. The next queued item is the reversible inference-time
+causal intervention.
 
 ## Commit ledger
 
@@ -149,5 +182,6 @@ item result commit. The next queued item is query/readout localization.
 | Item 2 protocol | `9202c1d` | Frozen layerwise representation-forensics plan. |
 | Item 2 analyzer | `338a249` | Read-only layerwise capture/probe implementation. |
 | Item 2 result | `9856a8b` | Frozen-checkpoint layerwise result, caveats, and ledger update. |
-| Item 3 protocol | pending | Query/readout localization plan; commit before execution. |
+| Item 3 protocol | `75c4efe` | Frozen query/readout localization plan. |
+| Item 3 analyzer | `a0555b0` | Cross-validated native-logit and diagnostic-readout analyzer. |
 
