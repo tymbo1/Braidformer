@@ -50,7 +50,7 @@ target-state degradation, or optimization.
 
 ## Queue
 
-1. **Target-position decomposition — next.** Frozen target-length checkpoints;
+1. **Target-position decomposition — complete.** Frozen target-length checkpoints;
    no retraining. Measure per-position teacher-forced CE, top-1 accuracy,
    correct-token probability, correct-vs-best-incorrect logit margin, and
    autoregressive accuracy where supported.
@@ -78,14 +78,36 @@ condition.
 
 ## Completed campaign items
 
-None yet. The current continuation point is the committed target-position
-decomposition plan in
-`docs/A0_A1_TARGET_POSITION_DECOMPOSITION_PLAN.md`.
+### Item 1 — target-position decomposition
+
+The six frozen target-length checkpoints passed source-run and checkpoint
+verification. At target lengths 4 and 8, A1 was already at zero held-out
+teacher-forced top-1 accuracy on position 1, with mean correct-token
+probability about `4.8e-5` and `6.1e-5`, respectively. A0 retained position-1
+teacher-forced top-1 of `0.0234` and `0.0312`. Therefore autoregressive error
+accumulation cannot be the sole explanation for the A1 collapse at those
+lengths. At length 2 both models were near the measurement floor at position 1
+and the A1 small edge reversed to a deficit at position 2. A0 also loses some
+signal under autoregressive feedback at longer targets, but A1's length-4/8
+deficit is present before generated target tokens are fed back.
+
+The full position-wise CE, top-1, correct-token probability, logit margin, and
+greedy autoregressive metrics are in
+`results/a0_a1_target_position_decomposition_values8000.json` and
+`docs/A0_A1_TARGET_POSITION_DECOMPOSITION_RESULT.md`. This item weakens a
+pure H6 explanation and leaves H1/H2/H3/H4/H5 open for representation
+forensics. The current next item is layerwise representation forensics.
+
+Integrity: source checkpoint hashes and machine-readable finite-value checks
+passed; the full test suite passed (`67 passed`); `git diff --check` passed;
+raw logs/checkpoints remain ignored and no architecture/config files changed.
 
 ## Commit ledger
 
 | Queue state | Commit | Evidence |
 | --- | --- | --- |
 | Campaign baseline | `70ba2cd` | Existing target-length result and clean repository state. |
-| Item 1 protocol | pending | Plan is prepared before read-only checkpoint analysis. |
+| Campaign/Item 1 protocol | `e82f342` | Ledger and frozen target-position analysis plan. |
+| Item 1 analyzer | `e031c2d` | Read-only decomposition implementation, committed before execution. |
+| Item 1 result | pending | Frozen-checkpoint decomposition result/report and this ledger update. |
 
