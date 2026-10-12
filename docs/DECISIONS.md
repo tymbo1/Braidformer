@@ -402,3 +402,27 @@ The tracked evidence is in
 `scripts/analyze_synthetic_solvability_values128.py`; raw logs and checkpoints
 remain ignored. No higher value pool, additional seed, multiple-association
 rung, scaling, A2, persistent memory, WNF, or SNAIL/SSRE work started.
+
+## 2026-10-12 — D031: record a deferred trajectory-aware training-policy test
+
+The project will later test whether a compact cumulative training-state
+predictor can estimate the learning utility of a candidate batch and reduce
+unnecessary backward passes. The first useful target is not literal next-batch
+text prediction: a shuffled stream makes that target mostly unidentifiable.
+The initial target is expected reducible loss, learning utility, surprise, or
+future forgetting conditioned on prior training history and the candidate
+batch.
+
+The proposal is recorded in
+`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md` and added as the deferred T1
+training-policy side track in `docs/EXPERIMENT_PROTOCOL.md`. Its first
+comparison is planned as A1-normal, current-loss-gated, and
+trajectory-predictive-gated arms with the same model, data, seed, token
+budget, optimizer, validation set, and measured resource accounting. It must
+retain an exploration/audit floor and report false skips, coverage, predictor
+overhead, validation quality, CUDA time, and wall time.
+
+This entry authorizes no implementation, data reordering, training, model
+self-description, provenance-ledger integration, or architecture change. A
+future execution requires a versioned protocol, leakage audit, cheap synthetic
+validation, explicit quality/compute thresholds, and separate approval.

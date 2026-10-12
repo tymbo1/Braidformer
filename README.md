@@ -44,6 +44,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md`](docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md): frozen schedule-control protocol; execution pending authorization.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md): frozen protocol for the completed seed-17 128-value solvability-ladder rung.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md): measured seed-17 128-value solvability-ladder result.
+- [`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md`](docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md): deferred predictive training-policy experiment; no implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.
