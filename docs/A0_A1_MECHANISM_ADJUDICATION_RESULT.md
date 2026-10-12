@@ -61,5 +61,6 @@ All source result JSON files were present and complete; the four campaign diagno
 | item4_result | `dbf4706` |
 | item5_protocol | `cddcd83` |
 | item5_analyzer | `861854b3068e1a6b9284cca034bf1f912513868f` |
+| item5_result | `ebbcddb` |
 
 Final Git status is recorded in the machine-readable result and must be clean except for this result/ledger commit while the campaign handoff is made.

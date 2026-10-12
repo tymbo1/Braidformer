@@ -255,5 +255,5 @@ remain untouched; no GitHub push occurred.
 | Item 4 result | `dbf4706` | Negative layer-7 replay result and integrity evidence. |
 | Item 5 protocol | `cddcd83` | Frozen evidence-synthesis and intervention-gate rubric. |
 | Item 5 analyzer | `861854b` | Read-only evidence audit and hypothesis synthesis. |
-| Item 5 result | pending | Final adjudication result and completed-campaign handoff. |
+| Item 5 result | `ebbcddb` | Final adjudication result and completed-campaign handoff. |
 
