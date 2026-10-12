@@ -1,0 +1,1037 @@
+{
+  "association_count": 1,
+  "curve": [
+    {
+      "control_heldout_em": 0.015625,
+      "control_heldout_loss": 10.466506958007812,
+      "cuda_training_seconds": 317.2875774383542,
+      "distance": 4,
+      "heldout_em_delta": -0.0078125,
+      "heldout_loss_delta": 0.23583221435546875,
+      "intervention_heldout_em": 0.0078125,
+      "intervention_heldout_loss": 10.702339172363281,
+      "intervention_train_em": 1.0
+    },
+    {
+      "control_heldout_em": 0.0,
+      "control_heldout_loss": 10.82415771484375,
+      "cuda_training_seconds": 347.697946670532,
+      "distance": 16,
+      "heldout_em_delta": 0.0,
+      "heldout_loss_delta": 0.067108154296875,
+      "intervention_heldout_em": 0.0,
+      "intervention_heldout_loss": 10.891265869140625,
+      "intervention_train_em": 1.0
+    },
+    {
+      "control_heldout_em": 0.0,
+      "control_heldout_loss": 10.974029541015625,
+      "cuda_training_seconds": 402.08532575988824,
+      "distance": 64,
+      "heldout_em_delta": 0.0,
+      "heldout_loss_delta": -0.116424560546875,
+      "intervention_heldout_em": 0.0,
+      "intervention_heldout_loss": 10.85760498046875,
+      "intervention_train_em": 1.0
+    }
+  ],
+  "experiment": "a1_decaytail_solvability_values8000",
+  "initialization": "tail_75_original_25_long_v1",
+  "interpretation": {
+    "next": "Run the fixed-probe state/decay forensics before deciding whether the tail repaired storage without repairing retrieval, or failed to change the relevant state signature.",
+    "task_result": "The decay-tail initialization did not improve held-out retrieval on the tested seed and distances.",
+    "training_memorization": "All intervention runs reached 100% training exact match."
+  },
+  "protocol_commit": "515f9d99e359789ee65e0291d25904ab8717768c",
+  "protocol_path": "docs/A1_SOLVABILITY_DECAYTAIL_VALUES8000_PROTOCOL.md",
+  "protocol_sha256": "ed14d7b6ac06193f587c8b476c69b437bac606635bf0c12baf57a04530ecdf1a",
+  "runs": [
+    {
+      "checkpoint": {
+        "path": "results/runs/solvability_decaytail_distance4_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "79bdbae2ecd56e6963f019e018f087de98948d1e03a9d7d0876160cb5881a7df",
+        "verified": true
+      },
+      "config_path": "configs/braidnano_a1_solvability_decaytail_distance4_values8000.json",
+      "config_sha256": "22d9de38ad6066eb8975de2a94cf132cae887f4f9b4facfa24a3fb0c79b469fc",
+      "cuda_training_seconds": 317.2875774383542,
+      "distance": 4,
+      "final_heldout": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 0.0078125,
+        "greedy_exact_match": 0.0078125,
+        "target_loss": 10.702339172363281
+      },
+      "final_train": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 1.0,
+        "greedy_exact_match": 1.0,
+        "target_loss": 0.0006454829126596451
+      },
+      "run_dir": "results/runs/solvability_decaytail_distance4_values8000_a1_seed17",
+      "sequence_length": 12,
+      "tokens_processed": 384000,
+      "validation_history": [
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 11.20245361328125
+          },
+          "step": 100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.07281625270843506
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.863327026367188
+          },
+          "step": 200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.008195310831069946
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.592475891113281
+          },
+          "step": 300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.005381792783737183
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.578620910644531
+          },
+          "step": 400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0033414289355278015
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.588211059570312
+          },
+          "step": 500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.002360217273235321
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.607292175292969
+          },
+          "step": 600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0017990320920944214
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.626800537109375
+          },
+          "step": 700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.001447923481464386
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.645050048828125
+          },
+          "step": 800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0012155547738075256
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.658317565917969
+          },
+          "step": 900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0010553784668445587
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.670394897460938
+          },
+          "step": 1000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009389147162437439
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.678436279296875
+          },
+          "step": 1100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008541978895664215
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.684364318847656
+          },
+          "step": 1200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0007908586412668228
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.690422058105469
+          },
+          "step": 1300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0007434878498315811
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.694648742675781
+          },
+          "step": 1400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0007084719836711884
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.697555541992188
+          },
+          "step": 1500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.000682806596159935
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.699699401855469
+          },
+          "step": 1600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0006655827164649963
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.700981140136719
+          },
+          "step": 1700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0006542131304740906
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.701828002929688
+          },
+          "step": 1800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0006476882845163345
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.701744079589844
+          },
+          "step": 1900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.000645587220788002
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0078125,
+            "greedy_exact_match": 0.0078125,
+            "target_loss": 10.702339172363281
+          },
+          "step": 2000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0006454829126596451
+          }
+        }
+      ]
+    },
+    {
+      "checkpoint": {
+        "path": "results/runs/solvability_decaytail_distance16_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "10b650f6fcf44b88267178845cea8fc0ca8d775562f5cbc61780c06497194cb7",
+        "verified": true
+      },
+      "config_path": "configs/braidnano_a1_solvability_decaytail_distance16_values8000.json",
+      "config_sha256": "9737681059a39220fa89a30d2d6b20dd9bb002803a04fe7a423eb5fff2ec96ab",
+      "cuda_training_seconds": 347.697946670532,
+      "distance": 16,
+      "final_heldout": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 0.0,
+        "greedy_exact_match": 0.0,
+        "target_loss": 10.891265869140625
+      },
+      "final_train": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 1.0,
+        "greedy_exact_match": 1.0,
+        "target_loss": 0.0008338224142789841
+      },
+      "run_dir": "results/runs/solvability_decaytail_distance16_values8000_a1_seed17",
+      "sequence_length": 24,
+      "tokens_processed": 768000,
+      "validation_history": [
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 11.433380126953125
+          },
+          "step": 100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.9462947845458984
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 11.236663818359375
+          },
+          "step": 200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.01020270586013794
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.854888916015625
+          },
+          "step": 300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0070986151695251465
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.768951416015625
+          },
+          "step": 400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0047736018896102905
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.772003173828125
+          },
+          "step": 500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0033136308193206787
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.784027099609375
+          },
+          "step": 600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0024980902671813965
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.80242919921875
+          },
+          "step": 700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0019892826676368713
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.8193359375
+          },
+          "step": 800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.001654215157032013
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.8355712890625
+          },
+          "step": 900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0014206543564796448
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.848358154296875
+          },
+          "step": 1000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0012530684471130371
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.860137939453125
+          },
+          "step": 1100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.001129843294620514
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.868896484375
+          },
+          "step": 1200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0010392889380455017
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.875579833984375
+          },
+          "step": 1300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009729377925395966
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.880645751953125
+          },
+          "step": 1400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.00092296302318573
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.884735107421875
+          },
+          "step": 1500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008869543671607971
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.8878173828125
+          },
+          "step": 1600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008620806038379669
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.889617919921875
+          },
+          "step": 1700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008463859558105469
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.890625
+          },
+          "step": 1800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008379016071557999
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.89093017578125
+          },
+          "step": 1900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008342359215021133
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.891265869140625
+          },
+          "step": 2000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0008338224142789841
+          }
+        }
+      ]
+    },
+    {
+      "checkpoint": {
+        "path": "results/runs/solvability_decaytail_distance64_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "42ee4a206f7dec3d14c70afa181d629d6da7af90588f1dd79f46ac2696a1a682",
+        "verified": true
+      },
+      "config_path": "configs/braidnano_a1_solvability_decaytail_distance64_values8000.json",
+      "config_sha256": "b3dd6745fa93b1bd3cc8effc5abc6f57dc3e1c856b66638d7d46137abe15ddc9",
+      "cuda_training_seconds": 402.08532575988824,
+      "distance": 64,
+      "final_heldout": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 0.0,
+        "greedy_exact_match": 0.0,
+        "target_loss": 10.85760498046875
+      },
+      "final_train": {
+        "examples": 128,
+        "greedy_answer_token_accuracy": 1.0,
+        "greedy_exact_match": 1.0,
+        "target_loss": 0.0009473934769630432
+      },
+      "run_dir": "results/runs/solvability_decaytail_distance64_values8000_a1_seed17",
+      "sequence_length": 72,
+      "tokens_processed": 2304000,
+      "validation_history": [
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 13.231170654296875
+          },
+          "step": 100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.1484375,
+            "greedy_exact_match": 0.1484375,
+            "target_loss": 4.52032470703125
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 11.4346923828125
+          },
+          "step": 200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.013574361801147461
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.904296875
+          },
+          "step": 300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.008115440607070923
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.745391845703125
+          },
+          "step": 400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0058489590883255005
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.744873046875
+          },
+          "step": 500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.003967389464378357
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.75323486328125
+          },
+          "step": 600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.002956278622150421
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.76739501953125
+          },
+          "step": 700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0023336857557296753
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.782684326171875
+          },
+          "step": 800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0019257217645645142
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.797332763671875
+          },
+          "step": 900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0016444623470306396
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.810394287109375
+          },
+          "step": 1000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0014446936547756195
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.82244873046875
+          },
+          "step": 1100,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.001299440860748291
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.83154296875
+          },
+          "step": 1200,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0011919625103473663
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.83917236328125
+          },
+          "step": 1300,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.001111358404159546
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.845916748046875
+          },
+          "step": 1400,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0010526925325393677
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.85015869140625
+          },
+          "step": 1500,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0010101161897182465
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.853302001953125
+          },
+          "step": 1600,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009806565940380096
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.85589599609375
+          },
+          "step": 1700,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009621195495128632
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.85723876953125
+          },
+          "step": 1800,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.000952351838350296
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.8577880859375
+          },
+          "step": 1900,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009477771818637848
+          }
+        },
+        {
+          "heldout": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 0.0,
+            "greedy_exact_match": 0.0,
+            "target_loss": 10.85760498046875
+          },
+          "step": 2000,
+          "train": {
+            "examples": 128,
+            "greedy_answer_token_accuracy": 1.0,
+            "greedy_exact_match": 1.0,
+            "target_loss": 0.0009473934769630432
+          }
+        }
+      ]
+    }
+  ],
+  "seed": 17,
+  "status": "complete",
+  "value_count": 8000
+}
