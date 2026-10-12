@@ -505,6 +505,35 @@ arms are in scope. Values8000, association-count changes, distractors,
 target-length changes, decay analysis, predictive learning-state/inheritance,
 scaling, A2, and memory work remain outside this authorization boundary.
 
+## 2026-10-12 — D045: complete the eight-association 8000-value solvability rung
+
+The frozen protocol in commit `cde7170` was executed with fresh seed-17 A0 and
+A1 initialization. Both unchanged 42M models completed 2,000 optimizer steps
+and 928,000 sequence-token positions, reached `1.0000` autoregressive greedy
+exact match on the repeated 128-example training set, and produced finite
+values with SHA-256-verified final checkpoints and no CUDA/OOM failure.
+
+On the diagnostic held-out set, both A0 and A1 reached `0.0000` exact match
+(`0/128`). A0's target loss was `10.917267`; A1's was `10.812836`, for an A1
+minus A0 delta of `-0.104431`. Exact match is at the floor; at this rung A1
+has the lower held-out target loss, unlike the preceding association rungs.
+Relative to the four-association 8000-value rung, held-out exact match
+remained at `0.0000` for both architectures under the same 2,000-optimizer-
+step recipe.
+
+This completes the predeclared association-count axis without reaching a
+training-memorization boundary: both models still memorized the fixed
+training set. The eight-association examples necessarily used 29 tokens, so
+the rung used 928,000 token positions and is not an equal-token comparison
+with earlier association results. A1 used `1.851x` A0's CUDA time (`347.492`
+versus `187.689` seconds). The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_RESULT.md`,
+`results/a0_a1_solvability_associations8_values8000.json`, and the read-only
+verifier `scripts/analyze_synthetic_solvability_associations8_values8000.py`;
+raw logs and checkpoints remain ignored. Distractor distance, target-length
+changes, decay analysis, predictive learning-state, competence-ledger,
+scaling, A2, and memory work remain deferred.
+
 ## 2026-10-12 — D036: complete the 1024-value solvability-ladder rung
 
 The frozen protocol in commit `18025c1` was executed with fresh seed-17 A0 and
