@@ -52,10 +52,12 @@ PROTOCOL_PATHS = {
 ASSOCIATION_GENERATOR_VERSIONS = {
     (8000, 2): "synthetic_solvability_associations2_values8000_v1",
     (8000, 4): "synthetic_solvability_associations4_values8000_v1",
+    (8000, 8): "synthetic_solvability_associations8_values8000_v1",
 }
 ASSOCIATION_PROTOCOL_PATHS = {
     (8000, 2): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md",
     (8000, 4): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS4_VALUES8000_PROTOCOL.md",
+    (8000, 8): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS8_VALUES8000_PROTOCOL.md",
 }
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
@@ -168,7 +170,7 @@ def make_example(
         )
         labels = (-100, -100, -100, -100, -100, -100, -100, value)
         return CalibrationExample(split, index, input_ids, labels, value)
-    if association_count not in (2, 4):
+    if association_count not in (2, 4, 8):
         raise ValueError(f"association generator does not implement count {association_count}")
     keys = tuple(key_base + index * association_count + offset for offset in range(association_count))
     values = tuple(VALUE_BASE + offset for offset in rng.sample(range(value_count), association_count))
@@ -770,7 +772,7 @@ def main() -> int:
         "--association-count",
         type=int,
         default=1,
-        choices=(1, 2, 4),
+        choices=(1, 2, 4, 8),
         help="number of key/value associations in the selected solvability rung",
     )
     parser.add_argument(
