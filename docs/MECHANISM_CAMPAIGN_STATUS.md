@@ -54,7 +54,7 @@ target-state degradation, or optimization.
    no retraining. Measure per-position teacher-forced CE, top-1 accuracy,
    correct-token probability, correct-vs-best-incorrect logit margin, and
    autoregressive accuracy where supported.
-2. **Layerwise representation forensics.** Frozen checkpoints; probe key,
+2. **Layerwise representation forensics — next.** Frozen checkpoints; probe key,
    value/binding identity, and target position before query, after query, and
    at every target-output position; include every A1 recurrent layer where
    practical.
@@ -109,5 +109,5 @@ raw logs/checkpoints remain ignored and no architecture/config files changed.
 | Campaign baseline | `70ba2cd` | Existing target-length result and clean repository state. |
 | Campaign/Item 1 protocol | `e82f342` | Ledger and frozen target-position analysis plan. |
 | Item 1 analyzer | `e031c2d` | Read-only decomposition implementation, committed before execution. |
-| Item 1 result | pending | Frozen-checkpoint decomposition result/report and this ledger update. |
+| Item 1 result | `6d19ee4` | Frozen-checkpoint decomposition result/report and ledger update. |
 
