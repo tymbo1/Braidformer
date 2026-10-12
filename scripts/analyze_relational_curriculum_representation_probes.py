@@ -52,7 +52,7 @@ EXPECTED_TOKENS_PER_STEP = 464
 EXPECTED_SCRIPT_SHA256 = SOURCE_RUNNER_SHA256
 EXPECTED_CHECKPOINTS = {
     ("A1", "staged"): "0b6ba5eff90ff477a0dc8dc810e4bcfa1b396f2b31f5b2a72c100c5645eb5e8b",
-    ("A1", "shuffled"): "be7a71017ea6ea88dbbb99476611e4bfef98c398b378e74d2a57fd40a5fec8b",
+    ("A1", "shuffled"): "be7a71017ea6ea88dbbb99476611e4bfef98c398b3788e74d2a57fd40a5fec8b",
     ("A0", "staged"): "8c15b235dd5329ef349c64e96f24476dcfdaa904cdf4e654f3ad92ca6427c105",
     ("A0", "shuffled"): "e6c998e3d90acb5b102ddf4f1f3dd4cfb892400f90543e798001fe814126ebff",
 }
