@@ -1,6 +1,6 @@
 # BraidFormer A0/A1 Mechanism Campaign Status
 
-Status: **active**
+Status: **complete**
 
 This ledger is the authoritative continuation point for the bounded mechanism
 campaign. It is updated and committed after every queue item. The campaign
@@ -40,13 +40,13 @@ target-state degradation, or optimization.
 
 | ID | Hypothesis | Current status |
 | --- | --- | --- |
-| H1 | Temporal decay erases the required value trace. | Distance curve, short learned taus, and probe collapse support a temporal component; the long-decay-tail and layer-7 state-replay negatives reject simple decay/state preservation as sufficient. |
-| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Still favoured over a pure readout failure, but the layer-7 replay null rejects that single preservation mechanism; distinguish from H1/H3 in adjudication. |
-| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Open; requires before/after-query comparison. |
-| H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Supported by association/value-space collapse; not enough to explain the distance-specific A1 divergence alone. |
+| H1 | Temporal decay erases the required value trace. | Partially supported but insufficient: distance, taus, and probe collapse support a temporal component; long-tail and layer-7 replay reject simple decay/state preservation as sufficient. |
+| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Leading composite hypothesis, but no single layer/state rule was isolated; layer-7 replay was null. |
+| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Surviving alternative; not separated from H2/H4. |
+| H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Strongly supported shared failure; it does not alone explain A1's extra distance sensitivity. |
 | H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
 | H6 | Multi-token autoregressive target state degrades after the first output. | Weakened: A1 is already impaired on the first teacher-forced target at lengths 4 and 8, so autoregressive feedback is not the sole cause. |
-| H7 | A1 needs more optimization steps or a different optimization trajectory. | Not ruled out, but existing controls show the key failures are present despite perfect training memorization; no new training is authorized before diagnostics. |
+| H7 | A1 needs more optimization steps or a different optimization trajectory. | Unresolved background factor; not enough evidence to justify a training intervention. |
 
 ## Queue
 
@@ -67,12 +67,13 @@ target-state degradation, or optimization.
 4. **One reversible inference-time causal intervention — complete.** State
    replay at A1 layer 7 produced no top-1 gain and slightly worsened mean CE;
    no second intervention is authorized.
-5. **Mechanism adjudication — next.** Rank hypotheses and reject contradicted
-   ones using the complete behavioral, representation, readout, and causal
-   chain. The optional training gate is decided here.
-6. **Optional single minimal training intervention.** Unlock only if at least
-   two independent diagnostics converge and a falsifiable mechanism-specific
-   prediction is frozen first. Otherwise record that the gate stayed locked.
+5. **Mechanism adjudication — complete.** The strongest supported explanation
+   is a composite recurrent retrieval failure: compositional binding is weak,
+   and A1's recurrent transformation/retention path amplifies the weakness
+   with temporal separation. The optional training gate is locked.
+6. **Optional single minimal training intervention — not unlocked.** No item-6
+   training run was performed because the diagnostics did not converge on one
+   minimal mechanism-specific factor.
 
 ## Stop gates
 
@@ -201,6 +202,40 @@ checkpoints/logs remain ignored; no architecture/config/protocol was changed.
 The full test suite and `git diff --check` are required before the item result
 commit. The next queued item is mechanism adjudication.
 
+### Item 5 — mechanism adjudication
+
+The completed evidence was audited without model execution. The strongest
+supported mechanism is a composite recurrent retrieval failure: the synthetic
+task already exposes a shared compositional key/value-binding failure, while
+A1's learned recurrent transformation/retention path makes that failure more
+severe as temporal separation grows. The evidence does not isolate one decay
+constant, layer, gate, or output-head defect.
+
+H1 temporal decay is partially supported but insufficient; H2 recurrent
+transformation/interference is the leading mechanism family; H3
+query-conditioned corruption and H4 shared binding/generalization remain
+viable; H5 pure readout failure is weakened; H6 autoregressive accumulation is
+rejected as the sole cause; H7 optimization remains unresolved but unsupported
+as the primary explanation. The layer-7 replay intervention is negative and
+was not stacked.
+
+The optional training gate is **locked**. Two independent diagnostics support
+a broad recurrent/temporal/binding family, but they do not identify one
+minimal mechanism-specific factor. The single best follow-up outside this
+campaign is a matched fresh A0/A1 run with a staged synthetic relational/
+binding curriculum, keeping architecture, optimizer, compute budget, and
+final heldout tests fixed.
+
+The complete machine-readable synthesis and source hashes are in
+`results/a0_a1_mechanism_adjudication.json`; the report is in
+`docs/A0_A1_MECHANISM_ADJUDICATION_RESULT.md`. This queue is now complete.
+
+Integrity: all 16 source result artifacts were present and complete; the four
+campaign diagnostics were read-only; source/checkpoint hashes were preserved;
+the full test suite passed after each item (`67 passed`); `git diff --check`
+passed; raw logs/checkpoints remain ignored; A0 and original A1 definitions
+remain untouched; no GitHub push occurred.
+
 ## Commit ledger
 
 | Queue state | Commit | Evidence |
@@ -218,5 +253,7 @@ commit. The next queued item is mechanism adjudication.
 | Item 4 protocol | `6e299a7` | Frozen layer-7 state-replay intervention plan. |
 | Item 4 analyzer | `961d452` | Inference-only functional state-replay analyzer. |
 | Item 4 result | `dbf4706` | Negative layer-7 replay result and integrity evidence. |
-| Item 5 protocol | pending | Frozen evidence-synthesis and intervention-gate rubric. |
+| Item 5 protocol | `cddcd83` | Frozen evidence-synthesis and intervention-gate rubric. |
+| Item 5 analyzer | `861854b` | Read-only evidence audit and hypothesis synthesis. |
+| Item 5 result | pending | Final adjudication result and completed-campaign handoff. |
 
