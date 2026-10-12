@@ -560,3 +560,29 @@ The frozen configurations are
 arms are in scope. Association-count changes, distractors, target-length
 changes, decay analysis, predictive learning-state/inheritance, scaling, A2,
 and memory work remain outside this authorization boundary.
+
+## 2026-10-12 — D039: complete the 8000-value solvability-ladder rung
+
+The frozen protocol in commit `eee5e58` was executed with fresh seed-17 A0 and
+A1 initialization. Both unchanged 42M models completed 2,000 optimizer steps
+and 256,000 token positions, reached `1.0000` autoregressive greedy exact
+match on the repeated 128-example training set, and produced finite values
+with SHA-256-verified final checkpoints and no CUDA/OOM failure.
+
+On the diagnostic held-out set, both A0 and A1 reached `0.0391` exact match
+(`5/128`). A0's target loss was `9.947532`; A1's was `10.239311`, for an A1
+minus A0 delta of `+0.291780`. Thus exact-match separation disappeared at
+this rung, but A0 remained closer to the correct answer by target loss.
+Relative to values1024, held-out exact match fell from `0.1406` to `0.0391`
+for A0 and from `0.0703` to `0.0391` for A1. A1 used `1.550x` A0's CUDA time
+(`287.884` versus `185.684` seconds).
+
+This completes the reserved value-space axis without reaching a training-
+memorization boundary: both models still memorized the fixed training set.
+The next separately controlled rung is association count. The tracked
+evidence is in `docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md`,
+`results/a0_a1_solvability_values8000.json`, and the read-only verifier
+`scripts/analyze_synthetic_solvability_values8000.py`; raw logs and
+checkpoints remain ignored. No association-count change, distractor-distance
+change, target-length change, decay analysis, predictive learning-state,
+competence-ledger, scaling, A2, or memory work started.

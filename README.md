@@ -48,7 +48,8 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_SOLVABILITY_VALUES256_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES256_RESULT.md): measured seed-17 256-value solvability-ladder result.
 - [`docs/A0_A1_SOLVABILITY_VALUES1024_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES1024_PROTOCOL.md): frozen protocol for the completed seed-17 1024-value solvability-ladder rung.
 - [`docs/A0_A1_SOLVABILITY_VALUES1024_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES1024_RESULT.md): measured seed-17 1024-value solvability-ladder result.
-- [`docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md): frozen seed-17 8000-value solvability-ladder protocol; execution pending.
+- [`docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md): frozen seed-17 8000-value solvability-ladder protocol.
+- [`docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md): measured seed-17 8000-value solvability-ladder result.
 - [`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md`](docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md): deferred predictive training-policy experiment; no implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
