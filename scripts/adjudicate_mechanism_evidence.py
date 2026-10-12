@@ -403,7 +403,8 @@ def main() -> int:
         "item4_protocol": "6e299a7",
         "item4_analyzer": "961d452",
         "item4_result": "dbf4706",
-        "item5_protocol": head,
+        "item5_protocol": "cddcd83",
+        "item5_analyzer": head,
     }
     result = {
         "status": "complete",
