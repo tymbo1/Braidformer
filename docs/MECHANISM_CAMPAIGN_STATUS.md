@@ -69,7 +69,7 @@ target-state degradation, or optimization.
    no second intervention is authorized.
 5. **Mechanism adjudication — next.** Rank hypotheses and reject contradicted
    ones using the complete behavioral, representation, readout, and causal
-   chain.
+   chain. The optional training gate is decided here.
 6. **Optional single minimal training intervention.** Unlock only if at least
    two independent diagnostics converge and a falsifiable mechanism-specific
    prediction is frozen first. Otherwise record that the gate stayed locked.
@@ -217,4 +217,6 @@ commit. The next queued item is mechanism adjudication.
 | Item 3 result | `b534b0e` | Frozen query/readout localization result and hypothesis update. |
 | Item 4 protocol | `6e299a7` | Frozen layer-7 state-replay intervention plan. |
 | Item 4 analyzer | `961d452` | Inference-only functional state-replay analyzer. |
+| Item 4 result | `dbf4706` | Negative layer-7 replay result and integrity evidence. |
+| Item 5 protocol | pending | Frozen evidence-synthesis and intervention-gate rubric. |
 
