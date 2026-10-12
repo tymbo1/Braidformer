@@ -48,6 +48,15 @@ architectures/config controls drift, or the results cannot be compared because
 the exposure hash differs. A positive or negative result alone is not a stop
 condition; it must be recorded and adjudicated.
 
+## Next queued experiment
+
+Use the existing frozen representation-probe methodology on the four new
+curriculum checkpoints, beginning with A1 staged versus A1 shuffled. Test
+whether the staged A1 cross-entropy gains correspond to a more decodable held-
+out value or binding identity before the query and at target output positions.
+This is a read-only diagnostic; it must receive its own analysis plan/commit
+before execution and must not modify the checkpoints.
+
 ## Completed evidence
 
 The preceding mechanism campaign is complete at commit `040736a`, with the
@@ -67,4 +76,4 @@ mechanism and H4 remains strongly supported.
 | state | commit | evidence |
 | --- | --- | --- |
 | protocol/code freeze | `30488e4f6b95994f02e15de9fab5710ce9af2aa4` | frozen protocol, deterministic generator, runner, configs, and tests |
-| four-arm result | pending | four completed summaries, verified checkpoints, and aggregate result |
+| four-arm result | `73898c8cc0e1b16e2dd77ec8ab38a3692ee442ab` | four completed summaries, verified checkpoints, and aggregate result |
