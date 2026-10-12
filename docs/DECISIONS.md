@@ -768,3 +768,41 @@ files. The protocols are
 fresh arms are in scope. No association-count changes, target-length changes,
 additional seeds, A1 modification, decay analysis, predictive learning-state,
 competence-ledger, scaling, A2, or memory work is authorized by this freeze.
+
+## 2026-10-12 — D047: complete the distractor-distance solvability axis
+
+The frozen distance-4, distance-16, and distance-64 protocols in commit
+`3e8e862` were executed with fresh seed-17 A0 and A1 initialization. All six
+runs completed their 2,000 optimizer steps with finite losses and gradients,
+no CUDA/OOM failure, and SHA-256-verified final checkpoints. The fixed
+one-association, 8,000-value mappings were preserved exactly; only four,
+sixteen, or 64 reserved neutral markers were inserted before the query.
+
+Both architectures retained `1.0000` training greedy exact match at all
+three distances. On the held-out set, A0 was `0.0469` exact match at
+distances 4, 16, and 64, with target losses `9.779089`, `9.673668`, and
+`9.734173`. A1 was `0.0156`, `0.0000`, and `0.0000`, with target losses
+`10.466507`, `10.824158`, and `10.974030`. Relative to the completed
+distance-0 values8000 baseline, A1's target-loss disadvantage grew from
+`+0.291780` to `+0.687418`, `+1.150490`, and `+1.239856` at distances 4,
+16, and 64. A1 used `1.721x`, `1.907x`, and `2.221x` A0's CUDA time on
+those arms.
+
+This is stronger evidence for a distance-sensitive retention or state-use
+weakness in the present A1 implementation, in addition to the binding and
+held-out generalization weakness already exposed by the association axis. A0
+was broadly flat across this distance range. The result is a matched-step
+retention probe, not an equal-token comparison: longer examples process more
+token positions at the same 2,000 optimizer steps. One seed and one model
+size do not identify the internal mechanism, so A1 remains unchanged.
+
+The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_DISTANCES_VALUES8000_RESULT.md`,
+`results/a0_a1_solvability_distances_values8000.json`, and the read-only
+verifier `scripts/analyze_synthetic_solvability_distances_values8000.py`;
+raw logs and checkpoints remain ignored. The synthetic solvability axis now
+has completed value-space, association-count, and distractor-distance arms.
+Target-length tests and non-invasive A1 state/decay forensics remain the next
+local diagnostic options. Relational curriculum, broader language data,
+dialogue fine-tuning, predictive learning-state/inheritance, scaling, A2,
+and memory work remain deferred.
