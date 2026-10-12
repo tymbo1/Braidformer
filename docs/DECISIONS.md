@@ -377,3 +377,28 @@ run directory after an interruption. Unit tests and dry-run validation pass.
 This freezes the protocol for review only: no seed-17 training, additional
 seeds, higher value pools, multiple associations, distractors, longer answers,
 scaling, A2, or memory integration is authorized by this decision.
+
+## 2026-10-12 — D030: complete the 128-value solvability-ladder rung
+
+After the GPU device nodes were restored following the host power outage, the
+frozen protocol in commit `68fbfd3` was executed with fresh seed-17 A0 and A1
+initialization. Both unchanged 42M models completed 2,000 optimizer steps and
+256,000 token positions, reached `1.0000` autoregressive greedy exact match on
+the repeated 128-example training set, and produced SHA-256-verified final
+checkpoints with finite values and no CUDA/OOM failure.
+
+On the diagnostic held-out set, A0 reached `0.6484` exact match and target loss
+`3.488070`; A1 reached `0.5938` and `4.252668`. The paired A1-minus-A0
+held-out target-loss delta was `+0.764598`, while A1 used `1.583x` A0's CUDA
+time (`288.644` versus `182.390` seconds). This is evidence of an A0 advantage
+on this explicit one-association retrieval diagnostic at one seed and budget,
+not a matched-compute or general architectural claim. The held-out set is
+diagnostic because keys and mappings are disjoint while the earlier record
+value remains in the input.
+
+The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md`,
+`results/a0_a1_solvability_values128.json`, and the read-only verifier
+`scripts/analyze_synthetic_solvability_values128.py`; raw logs and checkpoints
+remain ignored. No higher value pool, additional seed, multiple-association
+rung, scaling, A2, persistent memory, WNF, or SNAIL/SSRE work started.
