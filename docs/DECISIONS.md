@@ -542,3 +542,21 @@ sealed until evaluation. Future successor experiments require no-inheritance
 and scrambled/withheld-inheritance controls and must judge transfer on the
 untouched final test. This is a deferred design constraint, not authorization
 for implementation or training.
+
+## 2026-10-12 — D038: freeze the 8000-value solvability-ladder rung
+
+The completed values1024 rung preserved perfect training memorization for both
+models while reducing held-out exact match to `0.1406` for A0 and `0.0703` for
+A1. The next calibrated test therefore expands only the reserved answer-token
+pool from 1,024 to 8,000, keeping the one association, 128 fixed examples,
+architectures, seed 17, optimizer, 2,000-step budget, 256,000 token
+positions, and checkpoint/evaluation cadence unchanged. The reserved values
+fit inside the existing 32,000-token vocabulary.
+
+The frozen configurations are
+`configs/braidnano_a0_solvability_values8000.json` and
+`configs/braidnano_a1_solvability_values8000.json`; the protocol is
+`docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md`. Only the two fresh seed-17
+arms are in scope. Association-count changes, distractors, target-length
+changes, decay analysis, predictive learning-state/inheritance, scaling, A2,
+and memory work remain outside this authorization boundary.
