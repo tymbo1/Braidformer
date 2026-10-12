@@ -45,7 +45,7 @@ target-state degradation, or optimization.
 | H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Open; requires before/after-query comparison. |
 | H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Supported by association/value-space collapse; not enough to explain the distance-specific A1 divergence alone. |
 | H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
-| H6 | Multi-token autoregressive target state degrades after the first output. | Open; target-position decomposition is next. |
+| H6 | Multi-token autoregressive target state degrades after the first output. | Weakened: A1 is already impaired on the first teacher-forced target at lengths 4 and 8, so autoregressive feedback is not the sole cause. |
 | H7 | A1 needs more optimization steps or a different optimization trajectory. | Not ruled out, but existing controls show the key failures are present despite perfect training memorization; no new training is authorized before diagnostics. |
 
 ## Queue
@@ -64,8 +64,9 @@ target-state degradation, or optimization.
    transfer and direct logit/rank/probability localization through the query
    and target-output stages. The probes stayed near floor and did not reveal a
    strong retained-value/native-readout gap; item 4 is the next step.
-4. **One reversible inference-time causal intervention.** Predeclare its
-   prediction from items 1–3; no weight changes.
+4. **One reversible inference-time causal intervention — next.** State replay
+   at A1 layer 7, with the exact source/target positions and prediction frozen
+   in `docs/A0_A1_STATE_REPLAY_INTERVENTION_PLAN.md`; no weight changes.
 5. **Mechanism adjudication.** Rank hypotheses and reject contradicted ones.
 6. **Optional single minimal training intervention.** Unlock only if at least
    two independent diagnostics converge and a falsifiable mechanism-specific
@@ -184,4 +185,6 @@ causal intervention.
 | Item 2 result | `9856a8b` | Frozen-checkpoint layerwise result, caveats, and ledger update. |
 | Item 3 protocol | `75c4efe` | Frozen query/readout localization plan. |
 | Item 3 analyzer | `a0555b0` | Cross-validated native-logit and diagnostic-readout analyzer. |
+| Item 3 result | `b534b0e` | Frozen query/readout localization result and hypothesis update. |
+| Item 4 protocol | pending | Frozen layer-7 state-replay intervention plan; commit before execution. |
 
