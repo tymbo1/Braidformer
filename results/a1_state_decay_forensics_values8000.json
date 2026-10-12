@@ -1,0 +1,5090 @@
+{
+  "checkpoints": [
+    {
+      "checkpoint": "results/runs/solvability_values8000_a1_seed17/checkpoint_step_002000.pt",
+      "checkpoint_sha256": "550c669c663d63db56765df4ee4512edbecbc5bcd6552bcb922bd236b41a12e7",
+      "config": "configs/braidnano_a1_solvability_values8000.json",
+      "config_sha256": "e71dfd9effad65cc71c1e76827f4a8349ed0dedd6057de3464b13f693cae56c1",
+      "final_readout_curve": [
+        {
+          "distance": 0,
+          "heldout": {
+            "mean_target_logit": -1.9431264400482178,
+            "mean_target_rank": 2832.373046875,
+            "median_target_rank": 2570.0,
+            "top1_accuracy": 0.017578125,
+            "top5_accuracy": 0.01953125
+          },
+          "train": {
+            "mean_target_logit": -1.9559483528137207,
+            "mean_target_rank": 2971.2470703125,
+            "median_target_rank": 2620.0,
+            "top1_accuracy": 0.0078125,
+            "top5_accuracy": 0.0107421875
+          }
+        },
+        {
+          "distance": 4,
+          "heldout": {
+            "mean_target_logit": -2.1187281608581543,
+            "mean_target_rank": 3556.30078125,
+            "median_target_rank": 3456.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.005859375
+          },
+          "train": {
+            "mean_target_logit": -2.1509313583374023,
+            "mean_target_rank": 3564.7666015625,
+            "median_target_rank": 3431.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0009765625
+          }
+        },
+        {
+          "distance": 8,
+          "heldout": {
+            "mean_target_logit": -2.341747999191284,
+            "mean_target_rank": 3637.353515625,
+            "median_target_rank": 3486.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.3723409175872803,
+            "mean_target_rank": 3708.892578125,
+            "median_target_rank": 3551.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          }
+        },
+        {
+          "distance": 16,
+          "heldout": {
+            "mean_target_logit": -2.2376139163970947,
+            "mean_target_rank": 3838.71484375,
+            "median_target_rank": 3850.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.2543697357177734,
+            "mean_target_rank": 3862.787109375,
+            "median_target_rank": 3846.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 32,
+          "heldout": {
+            "mean_target_logit": -2.261223316192627,
+            "mean_target_rank": 3924.025390625,
+            "median_target_rank": 3879.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.2840769290924072,
+            "mean_target_rank": 3909.9638671875,
+            "median_target_rank": 3757.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 64,
+          "heldout": {
+            "mean_target_logit": -2.2456345558166504,
+            "mean_target_rank": 3896.80078125,
+            "median_target_rank": 3913.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.272573709487915,
+            "mean_target_rank": 3974.4033203125,
+            "median_target_rank": 3906.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        }
+      ],
+      "label": "distance0",
+      "layers": [
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6894168257713318,
+                "top1_accuracy": 0.998046875,
+                "top5_accuracy": 0.998046875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.9121912121772766,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9096860289573669,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3798791766166687,
+                "top1_accuracy": 0.09375,
+                "top5_accuracy": 0.201171875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.43338799476623535,
+                "top1_accuracy": 0.5458984375,
+                "top5_accuracy": 0.7470703125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6458953619003296,
+                "mean_norm": 1.673898458480835,
+                "p10_cosine_to_distance0": 0.6197549104690552,
+                "p90_cosine_to_distance0": 0.67466139793396
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.291401743888855,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.03515625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.31354689598083496,
+                "top1_accuracy": 0.017578125,
+                "top5_accuracy": 0.09765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5140869617462158,
+                "mean_norm": 2.28542160987854,
+                "p10_cosine_to_distance0": 0.4822634756565094,
+                "p90_cosine_to_distance0": 0.5498253107070923
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2768915891647339,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2830604910850525,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.45146170258522034,
+                "mean_norm": 2.998328447341919,
+                "p10_cosine_to_distance0": 0.41554418206214905,
+                "p90_cosine_to_distance0": 0.48997005820274353
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.259258896112442,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.25987616181373596,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4282744228839874,
+                "mean_norm": 3.4278879165649414,
+                "p10_cosine_to_distance0": 0.39197012782096863,
+                "p90_cosine_to_distance0": 0.46872735023498535
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.26518598198890686,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.26515671610832214,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4044700860977173,
+                "mean_norm": 3.4731593132019043,
+                "p10_cosine_to_distance0": 0.368406742811203,
+                "p90_cosine_to_distance0": 0.44554972648620605
+              }
+            }
+          ],
+          "layer": 0
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6306014060974121,
+                "top1_accuracy": 0.98828125,
+                "top5_accuracy": 0.99609375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8907918930053711,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.8744324445724487,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3836592435836792,
+                "top1_accuracy": 0.0625,
+                "top5_accuracy": 0.09765625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.45527708530426025,
+                "top1_accuracy": 0.6513671875,
+                "top5_accuracy": 0.7724609375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6670830845832825,
+                "mean_norm": 1.6907703876495361,
+                "p10_cosine_to_distance0": 0.6326664686203003,
+                "p90_cosine_to_distance0": 0.7021666765213013
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.27364200353622437,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.01171875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.30545690655708313,
+                "top1_accuracy": 0.060546875,
+                "top5_accuracy": 0.1103515625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5194207429885864,
+                "mean_norm": 2.3951501846313477,
+                "p10_cosine_to_distance0": 0.47177696228027344,
+                "p90_cosine_to_distance0": 0.5683848857879639
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2178945690393448,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.22841200232505798,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4259761869907379,
+                "mean_norm": 3.286895751953125,
+                "p10_cosine_to_distance0": 0.37220677733421326,
+                "p90_cosine_to_distance0": 0.4792991578578949
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.20052528381347656,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2029111534357071,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3750399947166443,
+                "mean_norm": 3.8139684200286865,
+                "p10_cosine_to_distance0": 0.3176158666610718,
+                "p90_cosine_to_distance0": 0.43315231800079346
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2166207879781723,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.21803146600723267,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3463943302631378,
+                "mean_norm": 4.051203727722168,
+                "p10_cosine_to_distance0": 0.2878553569316864,
+                "p90_cosine_to_distance0": 0.4087446928024292
+              }
+            }
+          ],
+          "layer": 1
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6039294004440308,
+                "top1_accuracy": 0.931640625,
+                "top5_accuracy": 0.98046875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8812153339385986,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.8845157027244568,
+                "p10_cosine_to_distance0": 0.9999999403953552,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3701706826686859,
+                "top1_accuracy": 0.017578125,
+                "top5_accuracy": 0.060546875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.4460837244987488,
+                "top1_accuracy": 0.4443359375,
+                "top5_accuracy": 0.6826171875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6188699007034302,
+                "mean_norm": 1.7303751707077026,
+                "p10_cosine_to_distance0": 0.5669525861740112,
+                "p90_cosine_to_distance0": 0.6681414842605591
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2599281668663025,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.009765625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2930983304977417,
+                "top1_accuracy": 0.0390625,
+                "top5_accuracy": 0.08984375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.45698705315589905,
+                "mean_norm": 2.5393056869506836,
+                "p10_cosine_to_distance0": 0.38454362750053406,
+                "p90_cosine_to_distance0": 0.5287752747535706
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2454533576965332,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.255965918302536,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3671515882015228,
+                "mean_norm": 3.490438222885132,
+                "p10_cosine_to_distance0": 0.2900274395942688,
+                "p90_cosine_to_distance0": 0.4431063234806061
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.192630797624588,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19377531111240387,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.31282660365104675,
+                "mean_norm": 4.104579448699951,
+                "p10_cosine_to_distance0": 0.23626767098903656,
+                "p90_cosine_to_distance0": 0.3890867829322815
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.15395186841487885,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.15373337268829346,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3004843294620514,
+                "mean_norm": 4.29069185256958,
+                "p10_cosine_to_distance0": 0.2227715402841568,
+                "p90_cosine_to_distance0": 0.3807659447193146
+              }
+            }
+          ],
+          "layer": 2
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5856820344924927,
+                "top1_accuracy": 0.8125,
+                "top5_accuracy": 0.919921875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8745319247245789,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9024115204811096,
+                "p10_cosine_to_distance0": 0.9999999403953552,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3471561074256897,
+                "top1_accuracy": 0.013671875,
+                "top5_accuracy": 0.041015625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.4307631850242615,
+                "top1_accuracy": 0.4736328125,
+                "top5_accuracy": 0.6611328125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6479743719100952,
+                "mean_norm": 1.7621099948883057,
+                "p10_cosine_to_distance0": 0.5930686593055725,
+                "p90_cosine_to_distance0": 0.7031949162483215
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.212293341755867,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.009765625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2491605430841446,
+                "top1_accuracy": 0.0380859375,
+                "top5_accuracy": 0.099609375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.499294638633728,
+                "mean_norm": 2.627265691757202,
+                "p10_cosine_to_distance0": 0.4262273907661438,
+                "p90_cosine_to_distance0": 0.5743078589439392
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.14121758937835693,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.15294674038887024,
+                "top1_accuracy": 0.0029296875,
+                "top5_accuracy": 0.01171875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4001086354255676,
+                "mean_norm": 3.632321834564209,
+                "p10_cosine_to_distance0": 0.3190977871417999,
+                "p90_cosine_to_distance0": 0.48600825667381287
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.1032465472817421,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10408386588096619,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3260195255279541,
+                "mean_norm": 4.222678184509277,
+                "p10_cosine_to_distance0": 0.2393338531255722,
+                "p90_cosine_to_distance0": 0.4197388291358948
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.09868501126766205,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.09815709292888641,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.31592702865600586,
+                "mean_norm": 4.382390975952148,
+                "p10_cosine_to_distance0": 0.2268742173910141,
+                "p90_cosine_to_distance0": 0.40312623977661133
+              }
+            }
+          ],
+          "layer": 3
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5789090394973755,
+                "top1_accuracy": 0.736328125,
+                "top5_accuracy": 0.859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8715699315071106,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.924808919429779,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2562187612056732,
+                "top1_accuracy": 0.01953125,
+                "top5_accuracy": 0.0390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3505088984966278,
+                "top1_accuracy": 0.529296875,
+                "top5_accuracy": 0.732421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6706532835960388,
+                "mean_norm": 1.7868105173110962,
+                "p10_cosine_to_distance0": 0.621668815612793,
+                "p90_cosine_to_distance0": 0.7171100974082947
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.05673705413937569,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.09564775228500366,
+                "top1_accuracy": 0.02734375,
+                "top5_accuracy": 0.060546875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5282732248306274,
+                "mean_norm": 2.592512845993042,
+                "p10_cosine_to_distance0": 0.4609133005142212,
+                "p90_cosine_to_distance0": 0.5968828201293945
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.0057427966967225075,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.004777032881975174,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.0068359375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4424278736114502,
+                "mean_norm": 3.574706554412842,
+                "p10_cosine_to_distance0": 0.3670100271701813,
+                "p90_cosine_to_distance0": 0.5206995010375977
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.025089239701628685,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.02492053061723709,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.38463863730430603,
+                "mean_norm": 4.045848369598389,
+                "p10_cosine_to_distance0": 0.3027125597000122,
+                "p90_cosine_to_distance0": 0.46934109926223755
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.046746283769607544,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.048668574541807175,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3717861771583557,
+                "mean_norm": 4.177189826965332,
+                "p10_cosine_to_distance0": 0.2922127842903137,
+                "p90_cosine_to_distance0": 0.455049067735672
+              }
+            }
+          ],
+          "layer": 4
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5766059160232544,
+                "top1_accuracy": 0.666015625,
+                "top5_accuracy": 0.84765625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8700804710388184,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9589816927909851,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3473936915397644,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.041015625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.4293063282966614,
+                "top1_accuracy": 0.3828125,
+                "top5_accuracy": 0.6748046875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6805098652839661,
+                "mean_norm": 1.8720940351486206,
+                "p10_cosine_to_distance0": 0.63019859790802,
+                "p90_cosine_to_distance0": 0.7320752143859863
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.22322317957878113,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2588101327419281,
+                "top1_accuracy": 0.0234375,
+                "top5_accuracy": 0.0634765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5435940027236938,
+                "mean_norm": 2.689758539199829,
+                "p10_cosine_to_distance0": 0.47627875208854675,
+                "p90_cosine_to_distance0": 0.6118396520614624
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.18388108909130096,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19454097747802734,
+                "top1_accuracy": 0.0029296875,
+                "top5_accuracy": 0.0068359375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.44933822751045227,
+                "mean_norm": 3.699920415878296,
+                "p10_cosine_to_distance0": 0.3750198483467102,
+                "p90_cosine_to_distance0": 0.526266872882843
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.14802810549736023,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.14834724366664886,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3878781795501709,
+                "mean_norm": 4.267331600189209,
+                "p10_cosine_to_distance0": 0.3098812997341156,
+                "p90_cosine_to_distance0": 0.46964341402053833
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11191027611494064,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.1101635992527008,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3677383065223694,
+                "mean_norm": 4.50255823135376,
+                "p10_cosine_to_distance0": 0.28621363639831543,
+                "p90_cosine_to_distance0": 0.44800078868865967
+              }
+            }
+          ],
+          "layer": 5
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5755077600479126,
+                "top1_accuracy": 0.640625,
+                "top5_accuracy": 0.79296875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8678969144821167,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9740031957626343,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.29072076082229614,
+                "top1_accuracy": 0.015625,
+                "top5_accuracy": 0.0390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.37604108452796936,
+                "top1_accuracy": 0.4814453125,
+                "top5_accuracy": 0.630859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6752315759658813,
+                "mean_norm": 1.856326937675476,
+                "p10_cosine_to_distance0": 0.6200355887413025,
+                "p90_cosine_to_distance0": 0.7269466519355774
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.13618247210979462,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.17215943336486816,
+                "top1_accuracy": 0.033203125,
+                "top5_accuracy": 0.0615234375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5151843428611755,
+                "mean_norm": 2.70230770111084,
+                "p10_cosine_to_distance0": 0.4453432261943817,
+                "p90_cosine_to_distance0": 0.5883307456970215
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06516650319099426,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.07569748163223267,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.42281004786491394,
+                "mean_norm": 3.702897071838379,
+                "p10_cosine_to_distance0": 0.34243184328079224,
+                "p90_cosine_to_distance0": 0.501070499420166
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.02315099909901619,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.023097055032849312,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3533618450164795,
+                "mean_norm": 4.251707077026367,
+                "p10_cosine_to_distance0": 0.27054283022880554,
+                "p90_cosine_to_distance0": 0.4346042275428772
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.003858929965645075,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.005715114064514637,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3177640438079834,
+                "mean_norm": 4.452960968017578,
+                "p10_cosine_to_distance0": 0.2386852204799652,
+                "p90_cosine_to_distance0": 0.40151479840278625
+              }
+            }
+          ],
+          "layer": 6
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5735992789268494,
+                "top1_accuracy": 0.537109375,
+                "top5_accuracy": 0.72265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8663802742958069,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9909321665763855,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3540622293949127,
+                "top1_accuracy": 0.01953125,
+                "top5_accuracy": 0.048828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.438076376914978,
+                "top1_accuracy": 0.5009765625,
+                "top5_accuracy": 0.62890625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6771034002304077,
+                "mean_norm": 1.8102203607559204,
+                "p10_cosine_to_distance0": 0.6294850707054138,
+                "p90_cosine_to_distance0": 0.7244626879692078
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.23685669898986816,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2740373909473419,
+                "top1_accuracy": 0.041015625,
+                "top5_accuracy": 0.0791015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5364593267440796,
+                "mean_norm": 2.6938977241516113,
+                "p10_cosine_to_distance0": 0.4688081741333008,
+                "p90_cosine_to_distance0": 0.6060475707054138
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.12682510912418365,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.13684037327766418,
+                "top1_accuracy": 0.0068359375,
+                "top5_accuracy": 0.009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.44240039587020874,
+                "mean_norm": 3.7377991676330566,
+                "p10_cosine_to_distance0": 0.36465391516685486,
+                "p90_cosine_to_distance0": 0.5233671069145203
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06445087492465973,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.0630725622177124,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3874645233154297,
+                "mean_norm": 4.379061222076416,
+                "p10_cosine_to_distance0": 0.3048189580440521,
+                "p90_cosine_to_distance0": 0.47224241495132446
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.042648378759622574,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.039270929992198944,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.37080422043800354,
+                "mean_norm": 4.591809272766113,
+                "p10_cosine_to_distance0": 0.2860202491283417,
+                "p90_cosine_to_distance0": 0.454656720161438
+              }
+            }
+          ],
+          "layer": 7
+        }
+      ],
+      "probe": {
+        "batch_size": 128,
+        "distances": [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "fit_position": "state immediately after the VALUE token at distance 0",
+        "heldout_examples": 512,
+        "ridge_strength": 0.001,
+        "target": "frozen token-embedding vector for the correct value token",
+        "train_examples": 1024
+      },
+      "time_constants": {
+        "channels": 4096,
+        "channels_tau_at_least": {
+          "16": 0,
+          "32": 0,
+          "4": 4096,
+          "64": 0,
+          "8": 4096
+        },
+        "decay_max": 0.8946062922477722,
+        "decay_median": 0.8936757445335388,
+        "decay_min": 0.8920339345932007,
+        "layers": [
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8942598104476929,
+            "decay_median": 0.8935680985450745,
+            "decay_min": 0.892718493938446,
+            "decay_p10": 0.8931626677513123,
+            "decay_p90": 0.8939442038536072,
+            "half_life_median": 6.159515857696533,
+            "layer": 0,
+            "tau_max": 8.947830200195312,
+            "tau_median": 8.886302947998047,
+            "tau_min": 8.811816215515137,
+            "tau_p90": 8.919660568237305
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944580554962158,
+            "decay_median": 0.8937984704971313,
+            "decay_min": 0.8928197026252747,
+            "decay_p10": 0.8933339715003967,
+            "decay_p90": 0.8941023349761963,
+            "half_life_median": 6.1736578941345215,
+            "layer": 1,
+            "tau_max": 8.96561336517334,
+            "tau_median": 8.906705856323242,
+            "tau_min": 8.820627212524414,
+            "tau_p90": 8.933752059936523
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8946062922477722,
+            "decay_median": 0.8937113285064697,
+            "decay_min": 0.8924840092658997,
+            "decay_p10": 0.8932035565376282,
+            "decay_p90": 0.8940426707267761,
+            "half_life_median": 6.168301105499268,
+            "layer": 2,
+            "tau_max": 8.97895336151123,
+            "tau_median": 8.898977279663086,
+            "tau_min": 8.791465759277344,
+            "tau_p90": 8.928427696228027
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944928050041199,
+            "decay_median": 0.8936389088630676,
+            "decay_min": 0.8924266695976257,
+            "decay_p10": 0.8930811882019043,
+            "decay_p90": 0.89399254322052,
+            "half_life_median": 6.163856029510498,
+            "layer": 3,
+            "tau_max": 8.968737602233887,
+            "tau_median": 8.89256477355957,
+            "tau_min": 8.78650188446045,
+            "tau_p90": 8.923964500427246
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944797515869141,
+            "decay_median": 0.8936061263084412,
+            "decay_min": 0.8920339345932007,
+            "decay_p10": 0.8929137587547302,
+            "decay_p90": 0.894006609916687,
+            "half_life_median": 6.161846160888672,
+            "layer": 4,
+            "tau_max": 8.96756362915039,
+            "tau_median": 8.889664649963379,
+            "tau_min": 8.752650260925293,
+            "tau_p90": 8.925213813781738
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944625854492188,
+            "decay_median": 0.8936268091201782,
+            "decay_min": 0.8923138976097107,
+            "decay_p10": 0.8930073380470276,
+            "decay_p90": 0.8940411806106567,
+            "half_life_median": 6.163114547729492,
+            "layer": 5,
+            "tau_max": 8.966020584106445,
+            "tau_median": 8.891494750976562,
+            "tau_min": 8.77675724029541,
+            "tau_p90": 8.928297996520996
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944891691207886,
+            "decay_median": 0.8936333060264587,
+            "decay_min": 0.8920689821243286,
+            "decay_p10": 0.8930208086967468,
+            "decay_p90": 0.8940237760543823,
+            "half_life_median": 6.16351318359375,
+            "layer": 6,
+            "tau_max": 8.96841049194336,
+            "tau_median": 8.892069816589355,
+            "tau_min": 8.755661964416504,
+            "tau_p90": 8.926746368408203
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944985270500183,
+            "decay_median": 0.8937799334526062,
+            "decay_min": 0.8922979235649109,
+            "decay_p10": 0.8931808471679688,
+            "decay_p90": 0.8941313624382019,
+            "half_life_median": 6.172517776489258,
+            "layer": 7,
+            "tau_max": 8.96925163269043,
+            "tau_median": 8.905060768127441,
+            "tau_min": 8.775378227233887,
+            "tau_p90": 8.936344146728516
+          }
+        ],
+        "tau_max": 8.97895336151123,
+        "tau_median": 8.895825386047363,
+        "tau_min": 8.752650260925293,
+        "tau_p90": 8.92854118347168
+      },
+      "training_distance": 0
+    },
+    {
+      "checkpoint": "results/runs/solvability_distance4_values8000_a1_seed17/checkpoint_step_002000.pt",
+      "checkpoint_sha256": "8d370cb799e5f200528561c0473d2a794e847f81748a218b89096dc7bc94c981",
+      "config": "configs/braidnano_a1_solvability_distance4_values8000.json",
+      "config_sha256": "fc7abd875f1c37649721b85059e4fac31e34d5044bac8f1f851927961281b091",
+      "final_readout_curve": [
+        {
+          "distance": 0,
+          "heldout": {
+            "mean_target_logit": -2.651921272277832,
+            "mean_target_rank": 3506.376953125,
+            "median_target_rank": 3443.0,
+            "top1_accuracy": 0.001953125,
+            "top5_accuracy": 0.00390625
+          },
+          "train": {
+            "mean_target_logit": -2.676055908203125,
+            "mean_target_rank": 3471.76171875,
+            "median_target_rank": 3220.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          }
+        },
+        {
+          "distance": 4,
+          "heldout": {
+            "mean_target_logit": -2.308321237564087,
+            "mean_target_rank": 3199.953125,
+            "median_target_rank": 2943.0,
+            "top1_accuracy": 0.005859375,
+            "top5_accuracy": 0.009765625
+          },
+          "train": {
+            "mean_target_logit": -2.323453903198242,
+            "mean_target_rank": 3307.3251953125,
+            "median_target_rank": 2967.0,
+            "top1_accuracy": 0.0009765625,
+            "top5_accuracy": 0.00390625
+          }
+        },
+        {
+          "distance": 8,
+          "heldout": {
+            "mean_target_logit": -3.1329801082611084,
+            "mean_target_rank": 3586.654296875,
+            "median_target_rank": 3383.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.00390625
+          },
+          "train": {
+            "mean_target_logit": -3.16900634765625,
+            "mean_target_rank": 3747.171875,
+            "median_target_rank": 3538.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0009765625
+          }
+        },
+        {
+          "distance": 16,
+          "heldout": {
+            "mean_target_logit": -2.8683512210845947,
+            "mean_target_rank": 3896.7109375,
+            "median_target_rank": 3905.0,
+            "top1_accuracy": 0.001953125,
+            "top5_accuracy": 0.005859375
+          },
+          "train": {
+            "mean_target_logit": -2.9254040718078613,
+            "mean_target_rank": 3964.8388671875,
+            "median_target_rank": 3962.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0009765625
+          }
+        },
+        {
+          "distance": 32,
+          "heldout": {
+            "mean_target_logit": -2.8575780391693115,
+            "mean_target_rank": 3990.904296875,
+            "median_target_rank": 4122.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.9084110260009766,
+            "mean_target_rank": 4040.5537109375,
+            "median_target_rank": 4062.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 64,
+          "heldout": {
+            "mean_target_logit": -2.8931920528411865,
+            "mean_target_rank": 4022.8046875,
+            "median_target_rank": 4163.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.925800085067749,
+            "mean_target_rank": 4078.3154296875,
+            "median_target_rank": 4146.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        }
+      ],
+      "label": "distance4",
+      "layers": [
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6860365867614746,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.911443829536438,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9311704039573669,
+                "p10_cosine_to_distance0": 0.9999999403953552,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.21804046630859375,
+                "top1_accuracy": 0.18359375,
+                "top5_accuracy": 0.466796875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.28690633177757263,
+                "top1_accuracy": 0.8076171875,
+                "top5_accuracy": 0.9599609375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.48229214549064636,
+                "mean_norm": 0.8885154724121094,
+                "p10_cosine_to_distance0": 0.45476797223091125,
+                "p90_cosine_to_distance0": 0.5106977224349976
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06397144496440887,
+                "top1_accuracy": 0.013671875,
+                "top5_accuracy": 0.037109375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.08741287887096405,
+                "top1_accuracy": 0.078125,
+                "top5_accuracy": 0.1484375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.07395429909229279,
+                "mean_norm": 1.2917556762695312,
+                "p10_cosine_to_distance0": 0.03464123234152794,
+                "p90_cosine_to_distance0": 0.11253325641155243
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.02823830023407936,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.033013034611940384,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.0146484375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06383578479290009,
+                "mean_norm": 1.7645164728164673,
+                "p10_cosine_to_distance0": -0.10596153140068054,
+                "p90_cosine_to_distance0": -0.022543683648109436
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.01762855425477028,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.02051609195768833,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.11272221803665161,
+                "mean_norm": 2.0222482681274414,
+                "p10_cosine_to_distance0": -0.15617868304252625,
+                "p90_cosine_to_distance0": -0.0695202574133873
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.019832292571663857,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.02388784848153591,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.15780770778656006,
+                "mean_norm": 2.1049294471740723,
+                "p10_cosine_to_distance0": -0.1986774355173111,
+                "p90_cosine_to_distance0": -0.11566334962844849
+              }
+            }
+          ],
+          "layer": 0
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6370951533317566,
+                "top1_accuracy": 0.98828125,
+                "top5_accuracy": 0.994140625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8914752006530762,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9417669773101807,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.3196399211883545,
+                "top1_accuracy": 0.033203125,
+                "top5_accuracy": 0.138671875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3937661349773407,
+                "top1_accuracy": 0.5419921875,
+                "top5_accuracy": 0.8173828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4902056157588959,
+                "mean_norm": 0.9950190782546997,
+                "p10_cosine_to_distance0": 0.4479542374610901,
+                "p90_cosine_to_distance0": 0.5353837609291077
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.15772654116153717,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0078125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19181707501411438,
+                "top1_accuracy": 0.0205078125,
+                "top5_accuracy": 0.09765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.12525278329849243,
+                "mean_norm": 1.5534515380859375,
+                "p10_cosine_to_distance0": 0.06600958108901978,
+                "p90_cosine_to_distance0": 0.1828068643808365
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.03820626065135002,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.04658914729952812,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.006654133088886738,
+                "mean_norm": 2.378253936767578,
+                "p10_cosine_to_distance0": -0.06406868994235992,
+                "p90_cosine_to_distance0": 0.0476708747446537
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0395735502243042,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.04069098085165024,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06404435634613037,
+                "mean_norm": 3.036675214767456,
+                "p10_cosine_to_distance0": -0.12449672818183899,
+                "p90_cosine_to_distance0": -0.0062857321463525295
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.08361662924289703,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.08345033973455429,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.07540221512317657,
+                "mean_norm": 3.261931896209717,
+                "p10_cosine_to_distance0": -0.13511177897453308,
+                "p90_cosine_to_distance0": -0.014760111458599567
+              }
+            }
+          ],
+          "layer": 1
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6103562116622925,
+                "top1_accuracy": 0.916015625,
+                "top5_accuracy": 0.97265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8807642459869385,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9658491611480713,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2299753725528717,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.046875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3115990161895752,
+                "top1_accuracy": 0.3466796875,
+                "top5_accuracy": 0.65625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.47745272517204285,
+                "mean_norm": 1.023531436920166,
+                "p10_cosine_to_distance0": 0.42922714352607727,
+                "p90_cosine_to_distance0": 0.5271288752555847
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0713314488530159,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10966681689023972,
+                "top1_accuracy": 0.0595703125,
+                "top5_accuracy": 0.1171875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.19642296433448792,
+                "mean_norm": 1.6372811794281006,
+                "p10_cosine_to_distance0": 0.13575656712055206,
+                "p90_cosine_to_distance0": 0.260294646024704
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.02861696667969227,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.04012599587440491,
+                "top1_accuracy": 0.0068359375,
+                "top5_accuracy": 0.015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.1007196381688118,
+                "mean_norm": 2.6339452266693115,
+                "p10_cosine_to_distance0": 0.03980632126331329,
+                "p90_cosine_to_distance0": 0.1654445379972458
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.02109547331929207,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.022444356232881546,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.05502607673406601,
+                "mean_norm": 3.3093318939208984,
+                "p10_cosine_to_distance0": -0.007317702751606703,
+                "p90_cosine_to_distance0": 0.11992281675338745
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.028390061110258102,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.029477814212441444,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.046139344573020935,
+                "mean_norm": 3.5089516639709473,
+                "p10_cosine_to_distance0": -0.01730325259268284,
+                "p90_cosine_to_distance0": 0.1088697761297226
+              }
+            }
+          ],
+          "layer": 2
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.598292350769043,
+                "top1_accuracy": 0.79296875,
+                "top5_accuracy": 0.931640625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8750559687614441,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9980311989784241,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.23872175812721252,
+                "top1_accuracy": 0.017578125,
+                "top5_accuracy": 0.044921875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3322072923183441,
+                "top1_accuracy": 0.564453125,
+                "top5_accuracy": 0.7451171875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5029993057250977,
+                "mean_norm": 1.0779930353164673,
+                "p10_cosine_to_distance0": 0.45171502232551575,
+                "p90_cosine_to_distance0": 0.5503493547439575
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.07488639652729034,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.11787954717874527,
+                "top1_accuracy": 0.0849609375,
+                "top5_accuracy": 0.150390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.17214080691337585,
+                "mean_norm": 1.6120303869247437,
+                "p10_cosine_to_distance0": 0.10471034795045853,
+                "p90_cosine_to_distance0": 0.23713013529777527
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06962066888809204,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.08402526378631592,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.0126953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.03401805832982063,
+                "mean_norm": 2.5701706409454346,
+                "p10_cosine_to_distance0": -0.03313864767551422,
+                "p90_cosine_to_distance0": 0.10139189660549164
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.10531135648488998,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10968613624572754,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.026643333956599236,
+                "mean_norm": 3.200744152069092,
+                "p10_cosine_to_distance0": -0.09316541254520416,
+                "p90_cosine_to_distance0": 0.04092762619256973
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.12184269726276398,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.1253373920917511,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.07542784512042999,
+                "mean_norm": 3.366293430328369,
+                "p10_cosine_to_distance0": -0.13946668803691864,
+                "p90_cosine_to_distance0": -0.006176660768687725
+              }
+            }
+          ],
+          "layer": 3
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5931471586227417,
+                "top1_accuracy": 0.751953125,
+                "top5_accuracy": 0.890625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8723862767219543,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9803812503814697,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.17771293222904205,
+                "top1_accuracy": 0.025390625,
+                "top5_accuracy": 0.05078125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.268563836812973,
+                "top1_accuracy": 0.5380859375,
+                "top5_accuracy": 0.7373046875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4484471082687378,
+                "mean_norm": 1.1331945657730103,
+                "p10_cosine_to_distance0": 0.3864399790763855,
+                "p90_cosine_to_distance0": 0.509190559387207
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0017472442705184221,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.0426836721599102,
+                "top1_accuracy": 0.01953125,
+                "top5_accuracy": 0.0517578125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.10236780345439911,
+                "mean_norm": 1.7026575803756714,
+                "p10_cosine_to_distance0": 0.024430885910987854,
+                "p90_cosine_to_distance0": 0.1772993803024292
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.004719045478850603,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.015891926363110542,
+                "top1_accuracy": 0.0029296875,
+                "top5_accuracy": 0.009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.015577306970953941,
+                "mean_norm": 2.7470297813415527,
+                "p10_cosine_to_distance0": -0.0900738388299942,
+                "p90_cosine_to_distance0": 0.061832427978515625
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.002760370494797826,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.001895371824502945,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.07016921788454056,
+                "mean_norm": 3.3770639896392822,
+                "p10_cosine_to_distance0": -0.1436210572719574,
+                "p90_cosine_to_distance0": 0.0034905970096588135
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.029421688988804817,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.032144661992788315,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.10080764442682266,
+                "mean_norm": 3.584585666656494,
+                "p10_cosine_to_distance0": -0.17233629524707794,
+                "p90_cosine_to_distance0": -0.023891286924481392
+              }
+            }
+          ],
+          "layer": 4
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5871474742889404,
+                "top1_accuracy": 0.66015625,
+                "top5_accuracy": 0.826171875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8702157735824585,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.0107712745666504,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.20061351358890533,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.033203125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2914663255214691,
+                "top1_accuracy": 0.40625,
+                "top5_accuracy": 0.611328125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4363026022911072,
+                "mean_norm": 1.1118561029434204,
+                "p10_cosine_to_distance0": 0.3789762854576111,
+                "p90_cosine_to_distance0": 0.4969748258590698
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0331222340464592,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.07611677795648575,
+                "top1_accuracy": 0.021484375,
+                "top5_accuracy": 0.083984375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.059127822518348694,
+                "mean_norm": 1.6758558750152588,
+                "p10_cosine_to_distance0": -0.011484035290777683,
+                "p90_cosine_to_distance0": 0.134086474776268
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.02911917120218277,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.01455974206328392,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06117625907063484,
+                "mean_norm": 2.667614459991455,
+                "p10_cosine_to_distance0": -0.1282522827386856,
+                "p90_cosine_to_distance0": 0.00727675249800086
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.03929438069462776,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.036420002579689026,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.12839551270008087,
+                "mean_norm": 3.283214807510376,
+                "p10_cosine_to_distance0": -0.1931888461112976,
+                "p90_cosine_to_distance0": -0.060222093015909195
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.0410112626850605,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.03894693776965141,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.15168419480323792,
+                "mean_norm": 3.5601863861083984,
+                "p10_cosine_to_distance0": -0.21940402686595917,
+                "p90_cosine_to_distance0": -0.08125225454568863
+              }
+            }
+          ],
+          "layer": 5
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5858784317970276,
+                "top1_accuracy": 0.626953125,
+                "top5_accuracy": 0.798828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8682485818862915,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.012296199798584,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.30607467889785767,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0234375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.38448411226272583,
+                "top1_accuracy": 0.3056640625,
+                "top5_accuracy": 0.5625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4638412594795227,
+                "mean_norm": 1.1637195348739624,
+                "p10_cosine_to_distance0": 0.40108364820480347,
+                "p90_cosine_to_distance0": 0.5240888595581055
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.1664835810661316,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.20236989855766296,
+                "top1_accuracy": 0.0517578125,
+                "top5_accuracy": 0.1025390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.0884942039847374,
+                "mean_norm": 1.7748312950134277,
+                "p10_cosine_to_distance0": 0.011649806052446365,
+                "p90_cosine_to_distance0": 0.16206040978431702
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11066363006830215,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.1231754943728447,
+                "top1_accuracy": 0.005859375,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.03835006803274155,
+                "mean_norm": 2.8103153705596924,
+                "p10_cosine_to_distance0": -0.11034314334392548,
+                "p90_cosine_to_distance0": 0.030335193499922752
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.10945907235145569,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.11235680431127548,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.10002386569976807,
+                "mean_norm": 3.4866416454315186,
+                "p10_cosine_to_distance0": -0.1676882803440094,
+                "p90_cosine_to_distance0": -0.030731962993741035
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.05080269277095795,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.052364710718393326,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.15193143486976624,
+                "mean_norm": 3.738774061203003,
+                "p10_cosine_to_distance0": -0.22451810538768768,
+                "p90_cosine_to_distance0": -0.08351801335811615
+              }
+            }
+          ],
+          "layer": 6
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.5856050848960876,
+                "top1_accuracy": 0.580078125,
+                "top5_accuracy": 0.767578125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8668793439865112,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9839374423027039,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.20509377121925354,
+                "top1_accuracy": 0.01953125,
+                "top5_accuracy": 0.048828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.294364333152771,
+                "top1_accuracy": 0.5009765625,
+                "top5_accuracy": 0.642578125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4603200852870941,
+                "mean_norm": 1.1539331674575806,
+                "p10_cosine_to_distance0": 0.405928373336792,
+                "p90_cosine_to_distance0": 0.5136091709136963
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06715013831853867,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10764480382204056,
+                "top1_accuracy": 0.0390625,
+                "top5_accuracy": 0.1015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.14884009957313538,
+                "mean_norm": 1.6530086994171143,
+                "p10_cosine_to_distance0": 0.07423792779445648,
+                "p90_cosine_to_distance0": 0.218072310090065
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0712922140955925,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.08577332645654678,
+                "top1_accuracy": 0.0029296875,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.016650410369038582,
+                "mean_norm": 2.5777251720428467,
+                "p10_cosine_to_distance0": -0.05347166582942009,
+                "p90_cosine_to_distance0": 0.0834764912724495
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.013161950744688511,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.015401087701320648,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06048757582902908,
+                "mean_norm": 3.2388103008270264,
+                "p10_cosine_to_distance0": -0.13088035583496094,
+                "p90_cosine_to_distance0": 0.005755786783993244
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.09635765105485916,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.09792846441268921,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.09720883518457413,
+                "mean_norm": 3.493366003036499,
+                "p10_cosine_to_distance0": -0.1644507497549057,
+                "p90_cosine_to_distance0": -0.03175370395183563
+              }
+            }
+          ],
+          "layer": 7
+        }
+      ],
+      "probe": {
+        "batch_size": 128,
+        "distances": [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "fit_position": "state immediately after the VALUE token at distance 0",
+        "heldout_examples": 512,
+        "ridge_strength": 0.001,
+        "target": "frozen token-embedding vector for the correct value token",
+        "train_examples": 1024
+      },
+      "time_constants": {
+        "channels": 4096,
+        "channels_tau_at_least": {
+          "16": 0,
+          "32": 0,
+          "4": 4096,
+          "64": 0,
+          "8": 4096
+        },
+        "decay_max": 0.8946967720985413,
+        "decay_median": 0.8939369916915894,
+        "decay_min": 0.8923446536064148,
+        "layers": [
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8943440914154053,
+            "decay_median": 0.8936448097229004,
+            "decay_min": 0.8923446536064148,
+            "decay_p10": 0.8930899500846863,
+            "decay_p90": 0.8940184116363525,
+            "half_life_median": 6.164218425750732,
+            "layer": 0,
+            "tau_max": 8.955382347106934,
+            "tau_median": 8.893087387084961,
+            "tau_min": 8.779412269592285,
+            "tau_p90": 8.92626953125
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8946967720985413,
+            "decay_median": 0.8939552903175354,
+            "decay_min": 0.8924937844276428,
+            "decay_p10": 0.8935943841934204,
+            "decay_p90": 0.8942028880119324,
+            "half_life_median": 6.18332052230835,
+            "layer": 1,
+            "tau_max": 8.987114906311035,
+            "tau_median": 8.920645713806152,
+            "tau_min": 8.792311668395996,
+            "tau_p90": 8.94273567199707
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8945403695106506,
+            "decay_median": 0.893916666507721,
+            "decay_min": 0.892806887626648,
+            "decay_p10": 0.8934761881828308,
+            "decay_p90": 0.8942067623138428,
+            "half_life_median": 6.180938243865967,
+            "layer": 2,
+            "tau_max": 8.973015785217285,
+            "tau_median": 8.917208671569824,
+            "tau_min": 8.819511413574219,
+            "tau_p90": 8.943084716796875
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944836258888245,
+            "decay_median": 0.893918514251709,
+            "decay_min": 0.8928828835487366,
+            "decay_p10": 0.8935176730155945,
+            "decay_p90": 0.8941769599914551,
+            "half_life_median": 6.181051731109619,
+            "layer": 3,
+            "tau_max": 8.967911720275879,
+            "tau_median": 8.917372703552246,
+            "tau_min": 8.826136589050293,
+            "tau_p90": 8.940418243408203
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8945847749710083,
+            "decay_median": 0.8939222097396851,
+            "decay_min": 0.8923951387405396,
+            "decay_p10": 0.8935452103614807,
+            "decay_p90": 0.8941929340362549,
+            "half_life_median": 6.18127965927124,
+            "layer": 4,
+            "tau_max": 8.977014541625977,
+            "tau_median": 8.917701721191406,
+            "tau_min": 8.783775329589844,
+            "tau_p90": 8.941848754882812
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944990634918213,
+            "decay_median": 0.8939709067344666,
+            "decay_min": 0.8926407098770142,
+            "decay_p10": 0.8936173915863037,
+            "decay_p90": 0.8941993713378906,
+            "half_life_median": 6.18428373336792,
+            "layer": 5,
+            "tau_max": 8.969300270080566,
+            "tau_median": 8.922035217285156,
+            "tau_min": 8.805055618286133,
+            "tau_p90": 8.942423820495605
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8946796655654907,
+            "decay_median": 0.8939861059188843,
+            "decay_min": 0.8927114009857178,
+            "decay_p10": 0.8936808705329895,
+            "decay_p90": 0.8942227363586426,
+            "half_life_median": 6.1852216720581055,
+            "layer": 6,
+            "tau_max": 8.985570907592773,
+            "tau_median": 8.923388481140137,
+            "tau_min": 8.811199188232422,
+            "tau_p90": 8.944512367248535
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8945696949958801,
+            "decay_median": 0.8940353989601135,
+            "decay_min": 0.8925208449363708,
+            "decay_p10": 0.8937807083129883,
+            "decay_p90": 0.8942617774009705,
+            "half_life_median": 6.188266754150391,
+            "layer": 7,
+            "tau_max": 8.975656509399414,
+            "tau_median": 8.92778205871582,
+            "tau_min": 8.794655799865723,
+            "tau_p90": 8.948009490966797
+          }
+        ],
+        "tau_max": 8.987114906311035,
+        "tau_median": 8.919015884399414,
+        "tau_min": 8.779412269592285,
+        "tau_p90": 8.942545890808105
+      },
+      "training_distance": 4
+    },
+    {
+      "checkpoint": "results/runs/solvability_distance16_values8000_a1_seed17/checkpoint_step_002000.pt",
+      "checkpoint_sha256": "d6fd707bd81be88cd5111af7e36e103f4508bdc62acf26fd00cfc3874d1bf6c2",
+      "config": "configs/braidnano_a1_solvability_distance16_values8000.json",
+      "config_sha256": "16c5962b6440ef324b7728c81e07361a13ec1066b349fb69610bdbb07c42e04b",
+      "final_readout_curve": [
+        {
+          "distance": 0,
+          "heldout": {
+            "mean_target_logit": -2.6646854877471924,
+            "mean_target_rank": 3824.423828125,
+            "median_target_rank": 3872.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.6975462436676025,
+            "mean_target_rank": 3879.0185546875,
+            "median_target_rank": 3777.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 4,
+          "heldout": {
+            "mean_target_logit": -2.732215404510498,
+            "mean_target_rank": 3776.060546875,
+            "median_target_rank": 3633.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.796415090560913,
+            "mean_target_rank": 3941.2138671875,
+            "median_target_rank": 3881.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 8,
+          "heldout": {
+            "mean_target_logit": -2.727809190750122,
+            "mean_target_rank": 3763.421875,
+            "median_target_rank": 3640.0,
+            "top1_accuracy": 0.001953125,
+            "top5_accuracy": 0.00390625
+          },
+          "train": {
+            "mean_target_logit": -2.800633430480957,
+            "mean_target_rank": 4002.5849609375,
+            "median_target_rank": 4005.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 16,
+          "heldout": {
+            "mean_target_logit": -2.577834129333496,
+            "mean_target_rank": 3841.435546875,
+            "median_target_rank": 3824.0,
+            "top1_accuracy": 0.001953125,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.5996932983398438,
+            "mean_target_rank": 4032.7060546875,
+            "median_target_rank": 4025.0,
+            "top1_accuracy": 0.0009765625,
+            "top5_accuracy": 0.0009765625
+          }
+        },
+        {
+          "distance": 32,
+          "heldout": {
+            "mean_target_logit": -2.654956817626953,
+            "mean_target_rank": 3960.931640625,
+            "median_target_rank": 4055.0,
+            "top1_accuracy": 0.001953125,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.713991403579712,
+            "mean_target_rank": 4063.0947265625,
+            "median_target_rank": 3943.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 64,
+          "heldout": {
+            "mean_target_logit": -2.926569700241089,
+            "mean_target_rank": 3934.154296875,
+            "median_target_rank": 3974.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.9524264335632324,
+            "mean_target_rank": 3982.5478515625,
+            "median_target_rank": 3981.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        }
+      ],
+      "label": "distance16",
+      "layers": [
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6778181195259094,
+                "top1_accuracy": 0.98828125,
+                "top5_accuracy": 0.98828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.9086304903030396,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.2551376819610596,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2841533422470093,
+                "top1_accuracy": 0.470703125,
+                "top5_accuracy": 0.732421875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.39826446771621704,
+                "top1_accuracy": 0.998046875,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.8702241778373718,
+                "mean_norm": 0.8579224944114685,
+                "p10_cosine_to_distance0": 0.8624000549316406,
+                "p90_cosine_to_distance0": 0.8792808651924133
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.023781199008226395,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.033203125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.07080688327550888,
+                "top1_accuracy": 0.064453125,
+                "top5_accuracy": 0.2412109375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5793946981430054,
+                "mean_norm": 0.7357949018478394,
+                "p10_cosine_to_distance0": 0.5580963492393494,
+                "p90_cosine_to_distance0": 0.6008293032646179
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.06189803034067154,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.049422044306993484,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.12891368567943573,
+                "mean_norm": 0.8470700979232788,
+                "p10_cosine_to_distance0": 0.0985432043671608,
+                "p90_cosine_to_distance0": 0.15896570682525635
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.14761760830879211,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.14825919270515442,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06834912300109863,
+                "mean_norm": 1.1122760772705078,
+                "p10_cosine_to_distance0": -0.0987929254770279,
+                "p90_cosine_to_distance0": -0.0358598418533802
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.14396727085113525,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.1466473639011383,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.12513063848018646,
+                "mean_norm": 1.1101446151733398,
+                "p10_cosine_to_distance0": -0.15598052740097046,
+                "p90_cosine_to_distance0": -0.0913044661283493
+              }
+            }
+          ],
+          "layer": 0
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6770821213722229,
+                "top1_accuracy": 0.9921875,
+                "top5_accuracy": 0.994140625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8973279595375061,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.1152281761169434,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.30359768867492676,
+                "top1_accuracy": 0.0234375,
+                "top5_accuracy": 0.083984375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3738152086734772,
+                "top1_accuracy": 0.5029296875,
+                "top5_accuracy": 0.7041015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.657296359539032,
+                "mean_norm": 1.0492860078811646,
+                "p10_cosine_to_distance0": 0.6308162808418274,
+                "p90_cosine_to_distance0": 0.68265700340271
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.20313787460327148,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.01171875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.23865331709384918,
+                "top1_accuracy": 0.0341796875,
+                "top5_accuracy": 0.103515625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3224043548107147,
+                "mean_norm": 1.251958966255188,
+                "p10_cosine_to_distance0": 0.2782725393772125,
+                "p90_cosine_to_distance0": 0.3668064773082733
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.16614750027656555,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.18186549842357635,
+                "top1_accuracy": 0.0078125,
+                "top5_accuracy": 0.01953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.005176212638616562,
+                "mean_norm": 1.3680578470230103,
+                "p10_cosine_to_distance0": -0.0503893606364727,
+                "p90_cosine_to_distance0": 0.04259229451417923
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.15595155954360962,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.16060200333595276,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.13233588635921478,
+                "mean_norm": 1.7582159042358398,
+                "p10_cosine_to_distance0": -0.17338165640830994,
+                "p90_cosine_to_distance0": -0.08874078840017319
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2069648951292038,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.21101000905036926,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.15346777439117432,
+                "mean_norm": 1.9980370998382568,
+                "p10_cosine_to_distance0": -0.1952265202999115,
+                "p90_cosine_to_distance0": -0.10976125299930573
+              }
+            }
+          ],
+          "layer": 1
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6679965853691101,
+                "top1_accuracy": 0.96875,
+                "top5_accuracy": 0.98828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8863809704780579,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.2410557270050049,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2361980825662613,
+                "top1_accuracy": 0.005859375,
+                "top5_accuracy": 0.033203125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.30572712421417236,
+                "top1_accuracy": 0.2568359375,
+                "top5_accuracy": 0.5107421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6058903932571411,
+                "mean_norm": 0.9550113081932068,
+                "p10_cosine_to_distance0": 0.5742688775062561,
+                "p90_cosine_to_distance0": 0.6346725821495056
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.16159753501415253,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19683101773262024,
+                "top1_accuracy": 0.0380859375,
+                "top5_accuracy": 0.09765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.15306535363197327,
+                "mean_norm": 1.1790120601654053,
+                "p10_cosine_to_distance0": 0.10607724636793137,
+                "p90_cosine_to_distance0": 0.20341728627681732
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.12475179880857468,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.13848668336868286,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.013671875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.21688410639762878,
+                "mean_norm": 1.3377113342285156,
+                "p10_cosine_to_distance0": -0.2592765986919403,
+                "p90_cosine_to_distance0": -0.17617791891098022
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.12873931229114532,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.13117104768753052,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.30131858587265015,
+                "mean_norm": 1.9235855340957642,
+                "p10_cosine_to_distance0": -0.34279778599739075,
+                "p90_cosine_to_distance0": -0.2588796317577362
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.16513220965862274,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.16603867709636688,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.28654325008392334,
+                "mean_norm": 2.0175774097442627,
+                "p10_cosine_to_distance0": -0.3237853944301605,
+                "p90_cosine_to_distance0": -0.25151416659355164
+              }
+            }
+          ],
+          "layer": 2
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6643354892730713,
+                "top1_accuracy": 0.953125,
+                "top5_accuracy": 0.986328125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8816529512405396,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.2611968517303467,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06285075843334198,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.041015625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.12836302816867828,
+                "top1_accuracy": 0.1796875,
+                "top5_accuracy": 0.4306640625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5884727835655212,
+                "mean_norm": 1.0166746377944946,
+                "p10_cosine_to_distance0": 0.5547988414764404,
+                "p90_cosine_to_distance0": 0.6201404929161072
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.06095704436302185,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.031233422458171844,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.0107421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.13224251568317413,
+                "mean_norm": 1.3317129611968994,
+                "p10_cosine_to_distance0": 0.0830564796924591,
+                "p90_cosine_to_distance0": 0.18484260141849518
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.09895940870046616,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.08946812152862549,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.19388796389102936,
+                "mean_norm": 1.5657638311386108,
+                "p10_cosine_to_distance0": -0.23974314332008362,
+                "p90_cosine_to_distance0": -0.15001055598258972
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.06728541105985641,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.06676945835351944,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.2964262366294861,
+                "mean_norm": 2.181792974472046,
+                "p10_cosine_to_distance0": -0.3362128734588623,
+                "p90_cosine_to_distance0": -0.2552764117717743
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.1034739762544632,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.10564517974853516,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.33238479495048523,
+                "mean_norm": 2.3072545528411865,
+                "p10_cosine_to_distance0": -0.3715408146381378,
+                "p90_cosine_to_distance0": -0.2927686870098114
+              }
+            }
+          ],
+          "layer": 3
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6603325605392456,
+                "top1_accuracy": 0.91015625,
+                "top5_accuracy": 0.97265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8785222768783569,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.2284914255142212,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.1641339808702469,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.033203125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.22608999907970428,
+                "top1_accuracy": 0.3046875,
+                "top5_accuracy": 0.443359375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5727924704551697,
+                "mean_norm": 1.0225082635879517,
+                "p10_cosine_to_distance0": 0.5414885878562927,
+                "p90_cosine_to_distance0": 0.6041173338890076
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.08353502303361893,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.111759714782238,
+                "top1_accuracy": 0.025390625,
+                "top5_accuracy": 0.0791015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.12668833136558533,
+                "mean_norm": 1.339354157447815,
+                "p10_cosine_to_distance0": 0.07526052743196487,
+                "p90_cosine_to_distance0": 0.1806640326976776
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06626701354980469,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.07880637049674988,
+                "top1_accuracy": 0.0068359375,
+                "top5_accuracy": 0.013671875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.2312506139278412,
+                "mean_norm": 1.6803027391433716,
+                "p10_cosine_to_distance0": -0.28328263759613037,
+                "p90_cosine_to_distance0": -0.18056568503379822
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06208045035600662,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.06635140627622604,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.32962799072265625,
+                "mean_norm": 2.3664188385009766,
+                "p10_cosine_to_distance0": -0.37551966309547424,
+                "p90_cosine_to_distance0": -0.2808223366737366
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.05819389224052429,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.062046099454164505,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.3366188406944275,
+                "mean_norm": 2.5222864151000977,
+                "p10_cosine_to_distance0": -0.38220909237861633,
+                "p90_cosine_to_distance0": -0.29150140285491943
+              }
+            }
+          ],
+          "layer": 4
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6585041880607605,
+                "top1_accuracy": 0.875,
+                "top5_accuracy": 0.958984375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8763650059700012,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.216003179550171,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.1858305037021637,
+                "top1_accuracy": 0.0078125,
+                "top5_accuracy": 0.04296875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.2471231371164322,
+                "top1_accuracy": 0.2822265625,
+                "top5_accuracy": 0.439453125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5231600403785706,
+                "mean_norm": 0.9746836423873901,
+                "p10_cosine_to_distance0": 0.48979634046554565,
+                "p90_cosine_to_distance0": 0.5536728501319885
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06973511725664139,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.09740135073661804,
+                "top1_accuracy": 0.03125,
+                "top5_accuracy": 0.078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.066538006067276,
+                "mean_norm": 1.3527264595031738,
+                "p10_cosine_to_distance0": 0.018632465973496437,
+                "p90_cosine_to_distance0": 0.11683432757854462
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06068412959575653,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.06967763602733612,
+                "top1_accuracy": 0.0078125,
+                "top5_accuracy": 0.015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.2722451984882355,
+                "mean_norm": 1.7452384233474731,
+                "p10_cosine_to_distance0": -0.32176461815834045,
+                "p90_cosine_to_distance0": -0.22607141733169556
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06844185292720795,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.06927186250686646,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.3860464096069336,
+                "mean_norm": 2.5061914920806885,
+                "p10_cosine_to_distance0": -0.42745068669319153,
+                "p90_cosine_to_distance0": -0.34417301416397095
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06089409068226814,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.060536112636327744,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0068359375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.38965630531311035,
+                "mean_norm": 2.7128429412841797,
+                "p10_cosine_to_distance0": -0.4317314624786377,
+                "p90_cosine_to_distance0": -0.34580403566360474
+              }
+            }
+          ],
+          "layer": 5
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6561027765274048,
+                "top1_accuracy": 0.849609375,
+                "top5_accuracy": 0.947265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8743574023246765,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.2195827960968018,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.18858478963375092,
+                "top1_accuracy": 0.015625,
+                "top5_accuracy": 0.01953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.24599288403987885,
+                "top1_accuracy": 0.2041015625,
+                "top5_accuracy": 0.326171875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.4346786439418793,
+                "mean_norm": 1.0333720445632935,
+                "p10_cosine_to_distance0": 0.39111968874931335,
+                "p90_cosine_to_distance0": 0.4742494225502014
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.07685010135173798,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.0078125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10210312157869339,
+                "top1_accuracy": 0.025390625,
+                "top5_accuracy": 0.0537109375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.03856657072901726,
+                "mean_norm": 1.5603435039520264,
+                "p10_cosine_to_distance0": -0.08956094086170197,
+                "p90_cosine_to_distance0": 0.009204844012856483
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.14857091009616852,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.15814219415187836,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.015625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.32223209738731384,
+                "mean_norm": 2.0346643924713135,
+                "p10_cosine_to_distance0": -0.3689665198326111,
+                "p90_cosine_to_distance0": -0.27607986330986023
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.19034045934677124,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19240523874759674,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.404486745595932,
+                "mean_norm": 2.8125715255737305,
+                "p10_cosine_to_distance0": -0.4479251801967621,
+                "p90_cosine_to_distance0": -0.3618914484977722
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.18542098999023438,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.1865026354789734,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.41509807109832764,
+                "mean_norm": 3.0032591819763184,
+                "p10_cosine_to_distance0": -0.45643502473831177,
+                "p90_cosine_to_distance0": -0.37320560216903687
+              }
+            }
+          ],
+          "layer": 6
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6526581645011902,
+                "top1_accuracy": 0.8125,
+                "top5_accuracy": 0.904296875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8726128339767456,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.134026288986206,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.047107044607400894,
+                "top1_accuracy": 0.009765625,
+                "top5_accuracy": 0.017578125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10196954756975174,
+                "top1_accuracy": 0.1396484375,
+                "top5_accuracy": 0.212890625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3850131630897522,
+                "mean_norm": 1.1157063245773315,
+                "p10_cosine_to_distance0": 0.34667763113975525,
+                "p90_cosine_to_distance0": 0.4192657470703125
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.029918743297457695,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0078125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.0540933720767498,
+                "top1_accuracy": 0.017578125,
+                "top5_accuracy": 0.048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.014105292037129402,
+                "mean_norm": 1.7362468242645264,
+                "p10_cosine_to_distance0": -0.05908947065472603,
+                "p90_cosine_to_distance0": 0.03232952952384949
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0164434015750885,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.025266340002417564,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.2719343304634094,
+                "mean_norm": 2.242464065551758,
+                "p10_cosine_to_distance0": -0.3161279261112213,
+                "p90_cosine_to_distance0": -0.22992543876171112
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.01462976448237896,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.014572599902749062,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.36074206233024597,
+                "mean_norm": 2.957897663116455,
+                "p10_cosine_to_distance0": -0.40204909443855286,
+                "p90_cosine_to_distance0": -0.3210868239402771
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.041747815907001495,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.04124056547880173,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.3553892970085144,
+                "mean_norm": 3.131439447402954,
+                "p10_cosine_to_distance0": -0.3951605260372162,
+                "p90_cosine_to_distance0": -0.31321120262145996
+              }
+            }
+          ],
+          "layer": 7
+        }
+      ],
+      "probe": {
+        "batch_size": 128,
+        "distances": [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "fit_position": "state immediately after the VALUE token at distance 0",
+        "heldout_examples": 512,
+        "ridge_strength": 0.001,
+        "target": "frozen token-embedding vector for the correct value token",
+        "train_examples": 1024
+      },
+      "time_constants": {
+        "channels": 4096,
+        "channels_tau_at_least": {
+          "16": 0,
+          "32": 0,
+          "4": 4096,
+          "64": 0,
+          "8": 4096
+        },
+        "decay_max": 0.8949823975563049,
+        "decay_median": 0.8941128849983215,
+        "decay_min": 0.8905994892120361,
+        "layers": [
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8944770693778992,
+            "decay_median": 0.893030047416687,
+            "decay_min": 0.8905994892120361,
+            "decay_p10": 0.8918728828430176,
+            "decay_p90": 0.8938159346580505,
+            "half_life_median": 6.126723766326904,
+            "layer": 0,
+            "tau_max": 8.96732234954834,
+            "tau_median": 8.838994026184082,
+            "tau_min": 8.631072044372559,
+            "tau_p90": 8.90825366973877
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8948023319244385,
+            "decay_median": 0.8941415548324585,
+            "decay_min": 0.8933197855949402,
+            "decay_p10": 0.8939113616943359,
+            "decay_p90": 0.8944051861763,
+            "half_life_median": 6.194833278656006,
+            "layer": 1,
+            "tau_max": 8.99665355682373,
+            "tau_median": 8.937254905700684,
+            "tau_min": 8.864410400390625,
+            "tau_p90": 8.96086311340332
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8949823975563049,
+            "decay_median": 0.8941196203231812,
+            "decay_min": 0.8934812545776367,
+            "decay_p10": 0.8939148187637329,
+            "decay_p90": 0.8943667411804199,
+            "half_life_median": 6.193475246429443,
+            "layer": 2,
+            "tau_max": 9.012969017028809,
+            "tau_median": 8.935296058654785,
+            "tau_min": 8.87863540649414,
+            "tau_p90": 8.957416534423828
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8948518633842468,
+            "decay_median": 0.8941339254379272,
+            "decay_min": 0.8934012651443481,
+            "decay_p10": 0.8939402103424072,
+            "decay_p90": 0.8943832516670227,
+            "half_life_median": 6.194361209869385,
+            "layer": 3,
+            "tau_max": 9.00113582611084,
+            "tau_median": 8.93657398223877,
+            "tau_min": 8.871582984924316,
+            "tau_p90": 8.958897590637207
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8948375582695007,
+            "decay_median": 0.8941192626953125,
+            "decay_min": 0.8936036825180054,
+            "decay_p10": 0.8939133286476135,
+            "decay_p90": 0.8943513035774231,
+            "half_life_median": 6.193452835083008,
+            "layer": 4,
+            "tau_max": 8.99984073638916,
+            "tau_median": 8.935263633728027,
+            "tau_min": 8.889449119567871,
+            "tau_p90": 8.956027030944824
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8947535753250122,
+            "decay_median": 0.8941283226013184,
+            "decay_min": 0.8935537934303284,
+            "decay_p10": 0.8939363956451416,
+            "decay_p90": 0.8943650722503662,
+            "half_life_median": 6.194014072418213,
+            "layer": 5,
+            "tau_max": 8.992244720458984,
+            "tau_median": 8.936073303222656,
+            "tau_min": 8.885039329528809,
+            "tau_p90": 8.95726490020752
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8947191834449768,
+            "decay_median": 0.8941410779953003,
+            "decay_min": 0.8935499787330627,
+            "decay_p10": 0.8939347267150879,
+            "decay_p90": 0.8943623304367065,
+            "half_life_median": 6.1948041915893555,
+            "layer": 6,
+            "tau_max": 8.989137649536133,
+            "tau_median": 8.937212944030762,
+            "tau_min": 8.884702682495117,
+            "tau_p90": 8.957016944885254
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8947712779045105,
+            "decay_median": 0.8941730856895447,
+            "decay_min": 0.893627941608429,
+            "decay_p10": 0.8939946889877319,
+            "decay_p90": 0.8943911790847778,
+            "half_life_median": 6.196785926818848,
+            "layer": 7,
+            "tau_max": 8.993844985961914,
+            "tau_median": 8.940072059631348,
+            "tau_min": 8.891594886779785,
+            "tau_p90": 8.959609031677246
+          }
+        ],
+        "tau_max": 9.012969017028809,
+        "tau_median": 8.93469524383545,
+        "tau_min": 8.631072044372559,
+        "tau_p90": 8.956422805786133
+      },
+      "training_distance": 16
+    },
+    {
+      "checkpoint": "results/runs/solvability_distance64_values8000_a1_seed17/checkpoint_step_002000.pt",
+      "checkpoint_sha256": "c0b3ba35b668a02c6f9dfcff5e6951d7b971763b022b8f0bc1cb3f78975ebcae",
+      "config": "configs/braidnano_a1_solvability_distance64_values8000.json",
+      "config_sha256": "d7b23162e6390e9eaefb4d131d72b36b5157a2df8e70ce287fdf779731466d82",
+      "final_readout_curve": [
+        {
+          "distance": 0,
+          "heldout": {
+            "mean_target_logit": -2.7163429260253906,
+            "mean_target_rank": 3990.7109375,
+            "median_target_rank": 4005.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.759876012802124,
+            "mean_target_rank": 3995.17578125,
+            "median_target_rank": 3948.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 4,
+          "heldout": {
+            "mean_target_logit": -3.0204834938049316,
+            "mean_target_rank": 3938.421875,
+            "median_target_rank": 3754.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -3.0648698806762695,
+            "mean_target_rank": 4051.8369140625,
+            "median_target_rank": 4074.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 8,
+          "heldout": {
+            "mean_target_logit": -3.3281424045562744,
+            "mean_target_rank": 3959.873046875,
+            "median_target_rank": 4014.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -3.346714735031128,
+            "mean_target_rank": 4058.3125,
+            "median_target_rank": 4100.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 16,
+          "heldout": {
+            "mean_target_logit": -3.024496555328369,
+            "mean_target_rank": 4063.275390625,
+            "median_target_rank": 4071.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -3.0569682121276855,
+            "mean_target_rank": 4086.748046875,
+            "median_target_rank": 4107.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 32,
+          "heldout": {
+            "mean_target_logit": -2.528717517852783,
+            "mean_target_rank": 4038.857421875,
+            "median_target_rank": 4128.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          },
+          "train": {
+            "mean_target_logit": -2.5693583488464355,
+            "mean_target_rank": 3980.8544921875,
+            "median_target_rank": 3963.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        },
+        {
+          "distance": 64,
+          "heldout": {
+            "mean_target_logit": -2.9275882244110107,
+            "mean_target_rank": 3949.4375,
+            "median_target_rank": 3949.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.001953125
+          },
+          "train": {
+            "mean_target_logit": -2.9476118087768555,
+            "mean_target_rank": 4098.755859375,
+            "median_target_rank": 4108.0,
+            "top1_accuracy": 0.0,
+            "top5_accuracy": 0.0
+          }
+        }
+      ],
+      "label": "distance64",
+      "layers": [
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6947211027145386,
+                "top1_accuracy": 0.990234375,
+                "top5_accuracy": 0.990234375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.9125429391860962,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.3680955171585083,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.23827339708805084,
+                "top1_accuracy": 0.51953125,
+                "top5_accuracy": 0.732421875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.34419089555740356,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.8978621959686279,
+                "mean_norm": 0.9468607306480408,
+                "p10_cosine_to_distance0": 0.8921858072280884,
+                "p90_cosine_to_distance0": 0.9039859771728516
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.05807722359895706,
+                "top1_accuracy": 0.0078125,
+                "top5_accuracy": 0.01171875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.01762893982231617,
+                "top1_accuracy": 0.01171875,
+                "top5_accuracy": 0.0126953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6615021228790283,
+                "mean_norm": 0.8133572936058044,
+                "p10_cosine_to_distance0": 0.6471231579780579,
+                "p90_cosine_to_distance0": 0.6771365404129028
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.10679549723863602,
+                "top1_accuracy": 0.005859375,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.09690245985984802,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.24101686477661133,
+                "mean_norm": 0.8612942695617676,
+                "p10_cosine_to_distance0": 0.21634437143802643,
+                "p90_cosine_to_distance0": 0.2660213112831116
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.18769922852516174,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.1897733211517334,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.037352439016103745,
+                "mean_norm": 0.9650182723999023,
+                "p10_cosine_to_distance0": 0.011884395033121109,
+                "p90_cosine_to_distance0": 0.063137486577034
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.20948246121406555,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.21425193548202515,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.05775025114417076,
+                "mean_norm": 0.9190139770507812,
+                "p10_cosine_to_distance0": -0.08297505974769592,
+                "p90_cosine_to_distance0": -0.031370121985673904
+              }
+            }
+          ],
+          "layer": 0
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6967397332191467,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.9013457298278809,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 0.9913158416748047,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.24832218885421753,
+                "top1_accuracy": 0.09375,
+                "top5_accuracy": 0.197265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3197949528694153,
+                "top1_accuracy": 0.7236328125,
+                "top5_accuracy": 0.8798828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.7039397954940796,
+                "mean_norm": 0.9787111282348633,
+                "p10_cosine_to_distance0": 0.6827558875083923,
+                "p90_cosine_to_distance0": 0.7237634658813477
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.0410061813890934,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.017578125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.07209110260009766,
+                "top1_accuracy": 0.0341796875,
+                "top5_accuracy": 0.107421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3774374723434448,
+                "mean_norm": 1.1595304012298584,
+                "p10_cosine_to_distance0": 0.33909568190574646,
+                "p90_cosine_to_distance0": 0.41244569420814514
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.013064214028418064,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.004251169506460428,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.12093646079301834,
+                "mean_norm": 1.3803346157073975,
+                "p10_cosine_to_distance0": 0.07796842604875565,
+                "p90_cosine_to_distance0": 0.1612340211868286
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.0326358787715435,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.032270047813653946,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.051668982952833176,
+                "mean_norm": 1.4966598749160767,
+                "p10_cosine_to_distance0": -0.09378413110971451,
+                "p90_cosine_to_distance0": -0.011967593804001808
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.029447056353092194,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.02856607362627983,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06945609301328659,
+                "mean_norm": 1.4888129234313965,
+                "p10_cosine_to_distance0": -0.1112351343035698,
+                "p90_cosine_to_distance0": -0.027533281594514847
+              }
+            }
+          ],
+          "layer": 1
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6840488910675049,
+                "top1_accuracy": 0.978515625,
+                "top5_accuracy": 0.9921875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8920713663101196,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.078059196472168,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.06944404542446136,
+                "top1_accuracy": 0.015625,
+                "top5_accuracy": 0.064453125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.1345738023519516,
+                "top1_accuracy": 0.30859375,
+                "top5_accuracy": 0.5732421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6663488745689392,
+                "mean_norm": 1.036738634109497,
+                "p10_cosine_to_distance0": 0.6416051387786865,
+                "p90_cosine_to_distance0": 0.6882271766662598
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.06531141698360443,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.03853672742843628,
+                "top1_accuracy": 0.0048828125,
+                "top5_accuracy": 0.0107421875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.3271028399467468,
+                "mean_norm": 1.2807226181030273,
+                "p10_cosine_to_distance0": 0.28620460629463196,
+                "p90_cosine_to_distance0": 0.36909520626068115
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.10164325684309006,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.09403960406780243,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.06869689375162125,
+                "mean_norm": 1.6286556720733643,
+                "p10_cosine_to_distance0": 0.01611805148422718,
+                "p90_cosine_to_distance0": 0.1186661347746849
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.0918440967798233,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.091770701110363,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.06032751128077507,
+                "mean_norm": 1.8457834720611572,
+                "p10_cosine_to_distance0": -0.11243937909603119,
+                "p90_cosine_to_distance0": -0.010570166632533073
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.08200906217098236,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.08318495750427246,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.08935599774122238,
+                "mean_norm": 1.8141534328460693,
+                "p10_cosine_to_distance0": -0.14156478643417358,
+                "p90_cosine_to_distance0": -0.039393577724695206
+              }
+            }
+          ],
+          "layer": 2
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6760231256484985,
+                "top1_accuracy": 0.93359375,
+                "top5_accuracy": 0.98828125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8866952061653137,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.0937128067016602,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.13598011434078217,
+                "top1_accuracy": 0.021484375,
+                "top5_accuracy": 0.072265625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.20378078520298004,
+                "top1_accuracy": 0.3642578125,
+                "top5_accuracy": 0.6220703125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6585736870765686,
+                "mean_norm": 1.0003000497817993,
+                "p10_cosine_to_distance0": 0.6334781050682068,
+                "p90_cosine_to_distance0": 0.6837805509567261
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.02926425263285637,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.0078125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.0022432785481214523,
+                "top1_accuracy": 0.0087890625,
+                "top5_accuracy": 0.0185546875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.26498591899871826,
+                "mean_norm": 1.2311896085739136,
+                "p10_cosine_to_distance0": 0.21774691343307495,
+                "p90_cosine_to_distance0": 0.31583139300346375
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.08810465782880783,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.08105930685997009,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.002170115476474166,
+                "mean_norm": 1.5940567255020142,
+                "p10_cosine_to_distance0": -0.05406233295798302,
+                "p90_cosine_to_distance0": 0.05839455500245094
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.07933159172534943,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.07998163998126984,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.13270540535449982,
+                "mean_norm": 1.8026840686798096,
+                "p10_cosine_to_distance0": -0.18814337253570557,
+                "p90_cosine_to_distance0": -0.07765980809926987
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.06263822317123413,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.06399759650230408,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.17830698192119598,
+                "mean_norm": 1.813645601272583,
+                "p10_cosine_to_distance0": -0.23458506166934967,
+                "p90_cosine_to_distance0": -0.12107441574335098
+              }
+            }
+          ],
+          "layer": 3
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6735408902168274,
+                "top1_accuracy": 0.89453125,
+                "top5_accuracy": 0.96875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8831613659858704,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.1152729988098145,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2917836308479309,
+                "top1_accuracy": 0.01171875,
+                "top5_accuracy": 0.044921875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.3545454144477844,
+                "top1_accuracy": 0.2861328125,
+                "top5_accuracy": 0.494140625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6245278120040894,
+                "mean_norm": 1.0951963663101196,
+                "p10_cosine_to_distance0": 0.5926543474197388,
+                "p90_cosine_to_distance0": 0.654819905757904
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.17302213609218597,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.20011582970619202,
+                "top1_accuracy": 0.0283203125,
+                "top5_accuracy": 0.05078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.25132694840431213,
+                "mean_norm": 1.4319405555725098,
+                "p10_cosine_to_distance0": 0.19446934759616852,
+                "p90_cosine_to_distance0": 0.3048476576805115
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11972558498382568,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.12825334072113037,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0078125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.009291759692132473,
+                "mean_norm": 1.8617768287658691,
+                "p10_cosine_to_distance0": -0.049698833376169205,
+                "p90_cosine_to_distance0": 0.06738749146461487
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.09868423640727997,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.09974417090415955,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.00390625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.08826841413974762,
+                "mean_norm": 2.1622679233551025,
+                "p10_cosine_to_distance0": -0.1460212767124176,
+                "p90_cosine_to_distance0": -0.02825445681810379
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.08715125173330307,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.0868312418460846,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.11422737687826157,
+                "mean_norm": 2.226752996444702,
+                "p10_cosine_to_distance0": -0.17506349086761475,
+                "p90_cosine_to_distance0": -0.05403219535946846
+              }
+            }
+          ],
+          "layer": 4
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6706376671791077,
+                "top1_accuracy": 0.849609375,
+                "top5_accuracy": 0.94140625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8812059760093689,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.1198488473892212,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11283600330352783,
+                "top1_accuracy": 0.021484375,
+                "top5_accuracy": 0.046875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.17920443415641785,
+                "top1_accuracy": 0.341796875,
+                "top5_accuracy": 0.5009765625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.6051067113876343,
+                "mean_norm": 1.1417205333709717,
+                "p10_cosine_to_distance0": 0.5737141966819763,
+                "p90_cosine_to_distance0": 0.6363415718078613
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.05036291852593422,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.00390625
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.024572161957621574,
+                "top1_accuracy": 0.005859375,
+                "top5_accuracy": 0.0146484375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.23035696148872375,
+                "mean_norm": 1.5172131061553955,
+                "p10_cosine_to_distance0": 0.17661350965499878,
+                "p90_cosine_to_distance0": 0.2850441038608551
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.11278948932886124,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.10586578398942947,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.0064283451065421104,
+                "mean_norm": 1.9727997779846191,
+                "p10_cosine_to_distance0": -0.05435086786746979,
+                "p90_cosine_to_distance0": 0.06610898673534393
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.12135499715805054,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.12245181202888489,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.1073501706123352,
+                "mean_norm": 2.244554042816162,
+                "p10_cosine_to_distance0": -0.1656724065542221,
+                "p90_cosine_to_distance0": -0.04799347743391991
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.14287403225898743,
+                "top1_accuracy": 0.001953125,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.14567843079566956,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.1404002606868744,
+                "mean_norm": 2.2918686866760254,
+                "p10_cosine_to_distance0": -0.19883275032043457,
+                "p90_cosine_to_distance0": -0.08286332339048386
+              }
+            }
+          ],
+          "layer": 5
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6679471135139465,
+                "top1_accuracy": 0.83984375,
+                "top5_accuracy": 0.93359375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8799740076065063,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.0957777500152588,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.000000238418579
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.2483690083026886,
+                "top1_accuracy": 0.013671875,
+                "top5_accuracy": 0.029296875
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.30561885237693787,
+                "top1_accuracy": 0.2470703125,
+                "top5_accuracy": 0.3603515625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5262811779975891,
+                "mean_norm": 1.1868960857391357,
+                "p10_cosine_to_distance0": 0.48963838815689087,
+                "p90_cosine_to_distance0": 0.5619537830352783
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.1662958711385727,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.19168142974376678,
+                "top1_accuracy": 0.029296875,
+                "top5_accuracy": 0.048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.14403973519802094,
+                "mean_norm": 1.670669436454773,
+                "p10_cosine_to_distance0": 0.0906381830573082,
+                "p90_cosine_to_distance0": 0.19925904273986816
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11779843270778656,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.12761177122592926,
+                "top1_accuracy": 0.0029296875,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.05787253752350807,
+                "mean_norm": 2.2285475730895996,
+                "p10_cosine_to_distance0": -0.11382012069225311,
+                "p90_cosine_to_distance0": -0.0017022741958498955
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.10153038799762726,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.10549134016036987,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0029296875
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.14689716696739197,
+                "mean_norm": 2.547882318496704,
+                "p10_cosine_to_distance0": -0.19871999323368073,
+                "p90_cosine_to_distance0": -0.09611010551452637
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11628280580043793,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.11970915645360947,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.001953125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.17566174268722534,
+                "mean_norm": 2.6068286895751953,
+                "p10_cosine_to_distance0": -0.22728316485881805,
+                "p90_cosine_to_distance0": -0.12449045479297638
+              }
+            }
+          ],
+          "layer": 6
+        },
+        {
+          "distances": [
+            {
+              "distance": 0,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.6631488800048828,
+                "top1_accuracy": 0.751953125,
+                "top5_accuracy": 0.896484375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.8786123394966125,
+                "top1_accuracy": 1.0,
+                "top5_accuracy": 1.0
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 1.0,
+                "mean_norm": 1.0223277807235718,
+                "p10_cosine_to_distance0": 0.9999998807907104,
+                "p90_cosine_to_distance0": 1.0000001192092896
+              }
+            },
+            {
+              "distance": 4,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.11414740979671478,
+                "top1_accuracy": 0.00390625,
+                "top5_accuracy": 0.02734375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.162329763174057,
+                "top1_accuracy": 0.0908203125,
+                "top5_accuracy": 0.2119140625
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.5343912839889526,
+                "mean_norm": 1.389261245727539,
+                "p10_cosine_to_distance0": 0.5038316249847412,
+                "p90_cosine_to_distance0": 0.5656580924987793
+              }
+            },
+            {
+              "distance": 8,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.015049267560243607,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.005859375
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.035434894263744354,
+                "top1_accuracy": 0.005859375,
+                "top5_accuracy": 0.033203125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.2530481815338135,
+                "mean_norm": 2.0042495727539062,
+                "p10_cosine_to_distance0": 0.21126841008663177,
+                "p90_cosine_to_distance0": 0.29684463143348694
+              }
+            },
+            {
+              "distance": 16,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.014307001605629921,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.001953125
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.007506439927965403,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.09264333546161652,
+                "mean_norm": 2.694978952407837,
+                "p10_cosine_to_distance0": 0.04400239512324333,
+                "p90_cosine_to_distance0": 0.13715624809265137
+              }
+            },
+            {
+              "distance": 32,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": -0.0034833778627216816,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": -0.0015549177769571543,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.005859375
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": 0.013417655602097511,
+                "mean_norm": 3.113677501678467,
+                "p10_cosine_to_distance0": -0.03441507741808891,
+                "p90_cosine_to_distance0": 0.0616820752620697
+              }
+            },
+            {
+              "distance": 64,
+              "probe_heldout": {
+                "mean_cosine_to_predicted_value": 0.003997518680989742,
+                "top1_accuracy": 0.0,
+                "top5_accuracy": 0.0
+              },
+              "probe_train": {
+                "mean_cosine_to_predicted_value": 0.004769163206219673,
+                "top1_accuracy": 0.0009765625,
+                "top5_accuracy": 0.0048828125
+              },
+              "state_drift": {
+                "mean_cosine_to_distance0": -0.0069298576563596725,
+                "mean_norm": 3.1663434505462646,
+                "p10_cosine_to_distance0": -0.05596337094902992,
+                "p90_cosine_to_distance0": 0.04042021930217743
+              }
+            }
+          ],
+          "layer": 7
+        }
+      ],
+      "probe": {
+        "batch_size": 128,
+        "distances": [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64
+        ],
+        "fit_position": "state immediately after the VALUE token at distance 0",
+        "heldout_examples": 512,
+        "ridge_strength": 0.001,
+        "target": "frozen token-embedding vector for the correct value token",
+        "train_examples": 1024
+      },
+      "time_constants": {
+        "channels": 4096,
+        "channels_tau_at_least": {
+          "16": 0,
+          "32": 0,
+          "4": 4096,
+          "64": 0,
+          "8": 4096
+        },
+        "decay_max": 0.8950279951095581,
+        "decay_median": 0.8936817646026611,
+        "decay_min": 0.8893010020256042,
+        "layers": [
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8940359354019165,
+            "decay_median": 0.8925260901451111,
+            "decay_min": 0.8893010020256042,
+            "decay_p10": 0.8909782767295837,
+            "decay_p90": 0.893474280834198,
+            "half_life_median": 6.096306324005127,
+            "layer": 0,
+            "tau_max": 8.92782974243164,
+            "tau_median": 8.795110702514648,
+            "tau_min": 8.523731231689453,
+            "tau_p90": 8.878018379211426
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8943748474121094,
+            "decay_median": 0.8937327861785889,
+            "decay_min": 0.8922999501228333,
+            "decay_p10": 0.8933538198471069,
+            "decay_p90": 0.8939983248710632,
+            "half_life_median": 6.169619560241699,
+            "layer": 1,
+            "tau_max": 8.958141326904297,
+            "tau_median": 8.900879859924316,
+            "tau_min": 8.775552749633789,
+            "tau_p90": 8.92447566986084
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8947542905807495,
+            "decay_median": 0.8937192559242249,
+            "decay_min": 0.8926867842674255,
+            "decay_p10": 0.8933289051055908,
+            "decay_p90": 0.8940444588661194,
+            "half_life_median": 6.168788433074951,
+            "layer": 2,
+            "tau_max": 8.9923095703125,
+            "tau_median": 8.899680137634277,
+            "tau_min": 8.809059143066406,
+            "tau_p90": 8.928589820861816
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8946120142936707,
+            "decay_median": 0.8937122821807861,
+            "decay_min": 0.8925560712814331,
+            "decay_p10": 0.8933137059211731,
+            "decay_p90": 0.8940728306770325,
+            "half_life_median": 6.168360710144043,
+            "layer": 3,
+            "tau_max": 8.979469299316406,
+            "tau_median": 8.899063110351562,
+            "tau_min": 8.797710418701172,
+            "tau_p90": 8.93111801147461
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8950279951095581,
+            "decay_median": 0.8937321901321411,
+            "decay_min": 0.8923563361167908,
+            "decay_p10": 0.8933078050613403,
+            "decay_p90": 0.894090473651886,
+            "half_life_median": 6.169582843780518,
+            "layer": 4,
+            "tau_max": 9.017109870910645,
+            "tau_median": 8.900826454162598,
+            "tau_min": 8.780421257019043,
+            "tau_p90": 8.932694435119629
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8945640325546265,
+            "decay_median": 0.8936890959739685,
+            "decay_min": 0.8925309181213379,
+            "decay_p10": 0.8933195471763611,
+            "decay_p90": 0.8940958380699158,
+            "half_life_median": 6.166936874389648,
+            "layer": 5,
+            "tau_max": 8.975146293640137,
+            "tau_median": 8.897008895874023,
+            "tau_min": 8.79552936553955,
+            "tau_p90": 8.933171272277832
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8945924639701843,
+            "decay_median": 0.8937470316886902,
+            "decay_min": 0.8926538825035095,
+            "decay_p10": 0.8933119773864746,
+            "decay_p90": 0.8941032886505127,
+            "half_life_median": 6.17049503326416,
+            "layer": 6,
+            "tau_max": 8.977706909179688,
+            "tau_median": 8.902142524719238,
+            "tau_min": 8.80620002746582,
+            "tau_p90": 8.93384075164795
+          },
+          {
+            "channels": 512,
+            "channels_tau_at_least": {
+              "16": 0,
+              "32": 0,
+              "4": 512,
+              "64": 0,
+              "8": 512
+            },
+            "decay_max": 0.8947121500968933,
+            "decay_median": 0.8937796950340271,
+            "decay_min": 0.8925856351852417,
+            "decay_p10": 0.893358051776886,
+            "decay_p90": 0.8941704034805298,
+            "half_life_median": 6.172503471374512,
+            "layer": 7,
+            "tau_max": 8.988502502441406,
+            "tau_median": 8.90503978729248,
+            "tau_min": 8.800274848937988,
+            "tau_p90": 8.939835548400879
+          }
+        ],
+        "tau_max": 9.017109870910645,
+        "tau_median": 8.896358489990234,
+        "tau_min": 8.523731231689453,
+        "tau_p90": 8.929769515991211
+      },
+      "training_distance": 64
+    }
+  ],
+  "device": "cuda",
+  "experiment": "a1_state_decay_forensics_values8000",
+  "interpretation": {
+    "causal_limit": "Decay extraction and probe curves are correlational diagnostics; no intervention was run.",
+    "next": "Use the measured time-scale and probe signature to choose a narrowly targeted A1 intervention, while keeping the original A1 and distance benchmark frozen.",
+    "state_probe": "The frozen linear probe is fit at the post-value state for distance 0 and evaluated without refitting after each neutral-marker distance."
+  },
+  "seed": 17,
+  "status": "complete",
+  "value_count": 8000
+}

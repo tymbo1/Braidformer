@@ -806,3 +806,45 @@ Target-length tests and non-invasive A1 state/decay forensics remain the next
 local diagnostic options. Relational curriculum, broader language data,
 dialogue fine-tuning, predictive learning-state/inheritance, scaling, A2,
 and memory work remain deferred.
+
+## 2026-10-12 — D048: complete non-invasive A1 state/decay forensics
+
+The distance axis produced a specific retention hypothesis, so the next step
+was changed from target-length testing to read-only A1 forensics. The analysis
+used the completed distance-0, distance-4, distance-16, and distance-64 A1
+checkpoints. Each checkpoint sidecar was verified before loading; evaluation
+mode and disabled gradients were used; no source checkpoint or model
+parameter was modified.
+
+All four checkpoints learned an almost identical short transition timescale:
+the median channel time constant was `8.896`–`8.935` tokens, the maximum was
+`8.979`–`9.017`, and zero of the 4,096 recurrent channels had `tau >= 16` or
+`tau >= 64`. Thus the present A1 did not develop a meaningful population of
+long-timescale diagonal channels even when trained on the distance-64 rung.
+
+A fixed linear probe was fitted only on the value-vector state immediately
+after the value token at distance 0, then evaluated without refitting after
+neutral markers. On the distance-64-trained checkpoint, held-out probe top-1
+accuracy was `1.0000` at distance 0, `0.5195` at distance 4, `0.0078` at
+distance 8, `0.0059` at distance 16, and `0.0020` at distances 32 and 64.
+The corresponding best-layer state cosine to distance 0 fell from `0.8979`
+at distance 4 to `0.6615`, `0.2410`, `0.0374`, and `-0.1404`. The other
+checkpoints show the same qualitative collapse, with small layer-dependent
+variation.
+
+This is strong mechanistic evidence that the current recurrent state trace
+loses a directly decodable value representation over roughly 8–16 neutral
+positions. It supports the temporal-retention/state-utilization hypothesis,
+but does not yet distinguish decay from recurrent transformation,
+interference, or later readout effects. No longer-decay initialization,
+architecture change, target-length run, relational curriculum, or A2
+intervention was performed.
+
+The tracked evidence is in
+`docs/A1_STATE_DECAY_FORENSICS_VALUES8000.md`,
+`results/a1_state_decay_forensics_values8000.json`, and the read-only analyzer
+`scripts/analyze_a1_state_decay_forensics.py`; raw checkpoints remain
+ignored. The next experiment should be a narrowly controlled causal decay
+intervention, with the original A1 and distance benchmark retained as the
+untouched control. Target-length testing and relational-curriculum/broader
+language branches remain later work.

@@ -60,6 +60,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md): frozen seed-17 distance-16 retrieval protocol.
 - [`docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md): frozen seed-17 distance-64 retrieval protocol.
 - [`docs/A0_A1_SOLVABILITY_DISTANCES_VALUES8000_RESULT.md`](docs/A0_A1_SOLVABILITY_DISTANCES_VALUES8000_RESULT.md): verified seed-17 distractor-distance curve and integrity summary.
+- [`docs/A1_STATE_DECAY_FORENSICS_VALUES8000.md`](docs/A1_STATE_DECAY_FORENSICS_VALUES8000.md): read-only A1 time-scale, state-drift, and frozen-probe analysis.
 - [`docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md`](docs/TRAJECTORY_AWARE_TRAINING_PROPOSAL.md): deferred predictive training-policy experiment; no implementation or training authorized.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
@@ -88,6 +89,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`results/a0_a1_equal_cuda_replications.json`](results/a0_a1_equal_cuda_replications.json): per-seed replication metrics and aggregate variation.
 - [`results/a0_a1_longer_equal_cuda_replications.json`](results/a0_a1_longer_equal_cuda_replications.json): per-seed 4× replication metrics, resource records, and checkpoint hashes.
 - [`scripts/analyze_synthetic_solvability_distances_values8000.py`](scripts/analyze_synthetic_solvability_distances_values8000.py): read-only verifier and aggregator for the completed distractor-distance axis.
+- [`scripts/analyze_a1_state_decay_forensics.py`](scripts/analyze_a1_state_decay_forensics.py): read-only A1 decay and recurrent-state forensic analyzer.
 
 ## Cheap checks
 
