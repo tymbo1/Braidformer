@@ -150,6 +150,23 @@ self-model. A later provenance/creation-ledger project could expose immutable
 architecture, data, checkpoint, and experiment history to a model, but that is
 a separate hypothesis and must not be smuggled into T2.
 
+### Later extension: predictive learning-state modeling and inheritance
+
+The stronger version of this hypothesis predicts the learner's future state,
+not merely the next batch. Candidate targets include future reducible loss,
+future competence on concept buckets, useful parameter/gradient change, or
+forgetting. The target must be evaluated under randomized data order so a
+predictor cannot receive credit for learning syllabus choreography.
+
+Only after the single-generation T2/T3 comparison could a separate
+cross-generation test ask whether a successor benefits from inherited
+curriculum, competence/failure, useful-update, or future-state information.
+Controls should include a fresh successor with no inheritance and a successor
+with the inherited artifact scrambled or withheld. The outcome is measured as
+tokens-to-target-loss, CUDA-seconds-to-target-loss, and final held-out quality.
+This is a later extension, not part of T0-T4 or the current BraidFormer
+solvability ladder.
+
 A positive result would show that a cumulative trajectory signal adds value
 beyond a current-loss gate under the declared controls. A null result would be
 useful: it would indicate that the extra self-trajectory machinery does not

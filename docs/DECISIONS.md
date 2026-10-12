@@ -444,3 +444,46 @@ The frozen configurations are
 arms are in scope. Values1024/8000, association-count changes,
 distractors, target-length changes, decay analysis, T1 predictive training,
 scaling, A2, and memory work remain outside this authorization boundary.
+
+## 2026-10-12 — D033: complete the 256-value solvability-ladder rung
+
+The frozen protocol in commit `5b02db5` was executed with fresh seed-17 A0 and
+A1 initialization. Both unchanged 42M models completed 2,000 optimizer steps
+and 256,000 token positions, reached `1.0000` autoregressive greedy exact
+match on the repeated 128-example training set, and produced finite values
+with SHA-256-verified final checkpoints and no CUDA/OOM failure.
+
+On the diagnostic held-out set, A0 reached `0.4297` exact match and target
+loss `5.813058`; A1 reached `0.3516` and `6.850369`. The paired A1-minus-A0
+held-out target-loss delta was `+1.037312`, and the exact-match delta was
+`-0.0781`. Relative to values128, held-out exact match fell from `0.6484` to
+`0.4297` for A0 and from `0.5938` to `0.3516` for A1, while both still
+memorized training perfectly. A1 used `1.544x` A0's CUDA time (`285.427`
+versus `184.821` seconds).
+
+This locates a stronger difficulty effect and a wider A0 diagnostic advantage,
+but not a complete capability boundary: neither model failed the training
+memorization criterion and held-out exact match remained nonzero. The tracked
+evidence is in `docs/A0_A1_SOLVABILITY_VALUES256_RESULT.md`,
+`results/a0_a1_solvability_values256.json`, and the read-only verifier
+`scripts/analyze_synthetic_solvability_values256.py`; raw logs and checkpoints
+remain ignored. No values1024/8000 rung, association-count change,
+distractor-distance change, target-length change, decay analysis, predictive
+training, scaling, A2, or memory work started.
+
+## 2026-10-12 — D034: refine the deferred T1 hypothesis
+
+The deferred trajectory-aware training-policy idea is refined as **predictive
+learning-state modeling**. Its stronger target is not literal next-batch text
+prediction, which can learn dataset order rather than learning dynamics. A
+future controller should instead predict a compact future learning state,
+expected reducible loss, useful parameter/gradient change, competence change,
+or forgetting from cumulative training history and candidate data.
+
+The longer-horizon “learning inheritance” concept—passing a validated
+curriculum map, competence/failure map, or future-state predictor from one
+model generation to a successor—remains a separate extension. It must be
+tested only after the single-generation normal/loss-gated/trajectory-gated
+comparison, with shuffled-order and withheld/scrambled-inheritance controls.
+This refinement authorizes no implementation, training, self-model, or
+cross-generation experiment.
