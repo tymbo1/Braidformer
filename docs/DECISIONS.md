@@ -504,3 +504,41 @@ The frozen configurations are
 arms are in scope. Values8000, association-count changes, distractors,
 target-length changes, decay analysis, predictive learning-state/inheritance,
 scaling, A2, and memory work remain outside this authorization boundary.
+
+## 2026-10-12 — D036: complete the 1024-value solvability-ladder rung
+
+The frozen protocol in commit `18025c1` was executed with fresh seed-17 A0 and
+A1 initialization. Both unchanged 42M models completed 2,000 optimizer steps
+and 256,000 token positions, reached `1.0000` autoregressive greedy exact
+match on the repeated 128-example training set, and produced finite values
+with SHA-256-verified final checkpoints and no CUDA/OOM failure.
+
+On the diagnostic held-out set, A0 reached `0.1406` exact match and target
+loss `8.802002`; A1 reached `0.0703` and `9.573342`. The paired A1-minus-A0
+held-out target-loss delta was `+0.771340`, with an exact-match delta of
+`-0.0703`. Relative to values256, held-out exact match fell from `0.4297` to
+`0.1406` for A0 and from `0.3516` to `0.0703` for A1. A1 used `1.573x` A0's
+CUDA time (`287.715` versus `182.948` seconds).
+
+This is a substantial shared difficulty effect, but not yet a training-
+memorization boundary: both models still reached perfect training exact match.
+The A0 held-out advantage remained, while narrowing slightly from values256.
+The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_VALUES1024_RESULT.md`,
+`results/a0_a1_solvability_values1024.json`, and the read-only verifier
+`scripts/analyze_synthetic_solvability_values1024.py`; raw logs and
+checkpoints remain ignored. No values8000 rung, association-count change,
+distractor-distance change, target-length change, decay analysis, predictive
+learning-state, competence-ledger, scaling, A2, or memory work started.
+
+## 2026-10-12 — D037: define the future competence-ledger safeguards
+
+The later predictive-learning/inheritance branch may maintain a cumulative
+competence ledger covering successes, failures, mastery, forgetting,
+fail-to-pass transitions, pass-to-fail transitions, and useful interventions.
+This must use `Train | Meta/Development | Final Test`: the development split
+may update a curriculum or inherited artifact, while the final test remains
+sealed until evaluation. Future successor experiments require no-inheritance
+and scrambled/withheld-inheritance controls and must judge transfer on the
+untouched final test. This is a deferred design constraint, not authorization
+for implementation or training.

@@ -167,6 +167,32 @@ tokens-to-target-loss, CUDA-seconds-to-target-loss, and final held-out quality.
 This is a later extension, not part of T0-T4 or the current BraidFormer
 solvability ladder.
 
+### Competence ledger and sealed evaluation
+
+The inherited artifact may eventually include a competence ledger:
+
+\[
+H_g=\{\text{successes},\text{failures},\text{mastery},\text{forgetting},
+\text{useful interventions},\text{learning trajectory}\}.
+\]
+
+It should record abstract example or concept clusters, confidence and loss,
+repeated-failure counts, fail-to-pass transitions, pass-to-fail transitions,
+and the training interventions associated with observed improvement. The
+ledger must not turn the final evaluation set into training data. A future
+generational protocol therefore needs a strict split:
+
+```text
+Train | Meta/Development | Final Test
+```
+
+The meta/development set may update the ledger and curriculum. The final test
+must remain sealed until the end of the generation and must never determine a
+successor's curriculum, predictor, or inherited artifact. A fresh successor,
+an inherited successor, and a scrambled/withheld-inheritance control should be
+compared on the untouched final test. Improvement only on repeatedly examined
+development failures is overfitting, not transferable learning inheritance.
+
 A positive result would show that a cumulative trajectory signal adds value
 beyond a current-loss gate under the declared controls. A null result would be
 useful: it would indicate that the extra self-trajectory machinery does not
