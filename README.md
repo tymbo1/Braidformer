@@ -42,6 +42,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md`](docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md): frozen 8× matched-CUDA-time protocol for seeds 17/23/29.
 - [`docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md`](docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md): measured 8× seeds 17/23/29 replication and curve/AUC analysis.
 - [`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md`](docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md): frozen schedule-control protocol; execution pending authorization.
+- [`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md): frozen seed-17 128-value solvability-ladder rung; execution pending authorization.
 - [`docs/DATASET_TOKENIZER.md`](docs/DATASET_TOKENIZER.md): pinned TinyStories provenance, tokenizer, split, and packing procedure.
 - [`docs/EXPERIMENT_PROTOCOL.md`](docs/EXPERIMENT_PROTOCOL.md): controlled experimental ladder and measurements.
 - [`docs/DECISIONS.md`](docs/DECISIONS.md): dated decisions and environment findings.

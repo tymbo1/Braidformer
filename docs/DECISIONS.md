@@ -356,3 +356,24 @@ verified optimizer/RNG checkpoints. The tracked evidence is in
 `scripts/analyze_synthetic_overfit_calibration.py`; raw logs and checkpoints
 remain ignored. No seeds 23/29, harder ladder rung, scaling, A2, persistent
 memory, WNF, or SNAIL/SSRE work started.
+
+## 2026-10-12 — D029: freeze the 128-value solvability-ladder rung for review
+
+The completed first-rung calibration showed that both unchanged 42M models can
+memorize the one-association task, while A0 had lower held-out target loss than
+A1 at seed 17. The next bounded rung therefore keeps the sequence, one
+association, 128 fixed training examples, optimizer, 2,000-step budget,
+architecture, and full 32,000-token output vocabulary unchanged while expanding
+the reserved answer-token set from 64 to 128. No winner threshold is declared;
+the primary observation remains separate training-set autoregressive exact
+match, with held-out performance diagnostic only.
+
+The planned A0/A1 configurations are
+`configs/braidnano_a0_solvability_values128.json` and
+`configs/braidnano_a1_solvability_values128.json`. The protocol is recorded in
+`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`; it requires atomic checkpoints
+every 100 steps and resumes from a verified interior checkpoint into a fresh
+run directory after an interruption. Unit tests and dry-run validation pass.
+This freezes the protocol for review only: no seed-17 training, additional
+seeds, higher value pools, multiple associations, distractors, longer answers,
+scaling, A2, or memory integration is authorized by this decision.
