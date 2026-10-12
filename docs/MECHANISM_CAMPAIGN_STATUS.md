@@ -54,12 +54,15 @@ target-state degradation, or optimization.
    no retraining. Measure per-position teacher-forced CE, top-1 accuracy,
    correct-token probability, correct-vs-best-incorrect logit margin, and
    autoregressive accuracy where supported.
-2. **Layerwise representation forensics — next.** Frozen checkpoints; probe key,
-   value/binding identity, and target position before query, after query, and
-   at every target-output position; include every A1 recurrent layer where
-   practical.
-3. **Query/readout localization.** Use frozen diagnostic probes and logits to
-   locate any gap between retained information and output use.
+2. **Layerwise representation forensics — complete.** Frozen checkpoints; probe
+   key, value/binding identity, and target position before query, after query,
+   and at every target-output position across all A1 recurrent layers. The
+   result is correlational and its cross-split fixed-probe metric conflates
+   retention with representation transfer; item 3 explicitly repairs that
+   limitation.
+3. **Query/readout localization — next.** Add within-heldout fixed-probe
+   transfer and direct logit/rank/probability localization through the query
+   and target-output stages.
 4. **One reversible inference-time causal intervention.** Predeclare its
    prediction from items 1–3; no weight changes.
 5. **Mechanism adjudication.** Rank hypotheses and reject contradicted ones.
@@ -96,11 +99,44 @@ greedy autoregressive metrics are in
 `results/a0_a1_target_position_decomposition_values8000.json` and
 `docs/A0_A1_TARGET_POSITION_DECOMPOSITION_RESULT.md`. This item weakens a
 pure H6 explanation and leaves H1/H2/H3/H4/H5 open for representation
-forensics. The current next item is layerwise representation forensics.
+forensics. Layerwise representation forensics is now complete; the next item
+is query/readout localization.
 
 Integrity: source checkpoint hashes and machine-readable finite-value checks
 passed; the full test suite passed (`67 passed`); `git diff --check` passed;
 raw logs/checkpoints remain ignored and no architecture/config files changed.
+
+### Item 2 — layerwise representation forensics
+
+The six frozen target-length checkpoints passed sidecar/hash verification and
+were analyzed without retraining or checkpoint writes. Every A0 block output,
+every A1 block output, every reconstructed A1 recurrent state, and final
+normalization were captured at pre-query, post-query, and each target position.
+Temporary ridge probes and geometry measurements were finite.
+
+The site-fitted heldout key/value probes are essentially perfect, but that is a
+same-split diagnostic ceiling and must not be treated as learned
+generalization. Train-fitted-to-heldout value probes are near floor at the
+longer target lengths, as are the fixed pre-query transfer probes. The current
+cross-split transfer therefore supports a failure of stable transferable
+binding, but cannot distinguish actual trace erasure from a changed coordinate
+system or output-use failure. A1 recurrent-state target-position decodability
+also weakens with depth at length 4, but target position is not the requested
+value and this is not causal evidence.
+
+This item leaves H2 recurrent transformation/interference, H3 query-conditioned
+corruption, H4 binding failure, and H5 readout/routing failure open. H1 remains
+compatible with the result but is not isolated by it. The full per-site
+metrics, capture positions, geometry, and checkpoint hashes are in
+`results/a0_a1_layerwise_representation_forensics_values8000.json`; the
+interpretation caveat and detailed table are in
+`docs/A0_A1_LAYERWISE_REPRESENTATION_FORENSICS_RESULT.md`.
+
+Integrity: all six source checkpoint hashes, expected parameter counts, capture
+sites, recurrent layers, finite tensors, and finite probe metrics passed. Raw
+checkpoints/logs remain ignored; no A0/A1 architecture or frozen protocol was
+changed. The full test suite and `git diff --check` are required before the
+item result commit. The next queued item is query/readout localization.
 
 ## Commit ledger
 
@@ -110,4 +146,6 @@ raw logs/checkpoints remain ignored and no architecture/config files changed.
 | Campaign/Item 1 protocol | `e82f342` | Ledger and frozen target-position analysis plan. |
 | Item 1 analyzer | `e031c2d` | Read-only decomposition implementation, committed before execution. |
 | Item 1 result | `6d19ee4` | Frozen-checkpoint decomposition result/report and ledger update. |
+| Item 2 protocol | `9202c1d` | Frozen layerwise representation-forensics plan. |
+| Item 2 analyzer | `338a249` | Read-only layerwise capture/probe implementation. |
 
