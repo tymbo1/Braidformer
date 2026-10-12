@@ -40,8 +40,8 @@ target-state degradation, or optimization.
 
 | ID | Hypothesis | Current status |
 | --- | --- | --- |
-| H1 | Temporal decay erases the required value trace. | Supported by distance curve, short learned taus, and fixed-probe collapse; long-decay-tail negative result means decay alone is insufficient. |
-| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Favoured over a pure readout failure by the distance curve and item-3 fixed-probe degradation, but not isolated from H1/H3. |
+| H1 | Temporal decay erases the required value trace. | Distance curve, short learned taus, and probe collapse support a temporal component; the long-decay-tail and layer-7 state-replay negatives reject simple decay/state preservation as sufficient. |
+| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Still favoured over a pure readout failure, but the layer-7 replay null rejects that single preservation mechanism; distinguish from H1/H3 in adjudication. |
 | H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Open; requires before/after-query comparison. |
 | H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Supported by association/value-space collapse; not enough to explain the distance-specific A1 divergence alone. |
 | H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
@@ -64,10 +64,12 @@ target-state degradation, or optimization.
    transfer and direct logit/rank/probability localization through the query
    and target-output stages. The probes stayed near floor and did not reveal a
    strong retained-value/native-readout gap; item 4 is the next step.
-4. **One reversible inference-time causal intervention — next.** State replay
-   at A1 layer 7, with the exact source/target positions and prediction frozen
-   in `docs/A0_A1_STATE_REPLAY_INTERVENTION_PLAN.md`; no weight changes.
-5. **Mechanism adjudication.** Rank hypotheses and reject contradicted ones.
+4. **One reversible inference-time causal intervention — complete.** State
+   replay at A1 layer 7 produced no top-1 gain and slightly worsened mean CE;
+   no second intervention is authorized.
+5. **Mechanism adjudication — next.** Rank hypotheses and reject contradicted
+   ones using the complete behavioral, representation, readout, and causal
+   chain.
 6. **Optional single minimal training intervention.** Unlock only if at least
    two independent diagnostics converge and a falsifiable mechanism-specific
    prediction is frozen first. Otherwise record that the gate stayed locked.
@@ -172,6 +174,33 @@ changed. The full test suite and `git diff --check` are required before the
 item result commit. The next queued item is the reversible inference-time
 causal intervention.
 
+### Item 4 — layer-7 state-replay intervention
+
+The predeclared inference-only intervention copied each target value's
+layer-7 recurrent state from its stored-value position to the matching target
+output position. All six A0/A1 source runs were verified; the three A1 runs
+were evaluated on the heldout split. Parameter digests were unchanged before
+and after the functional intervention.
+
+The prediction failed: replay produced no top-1 improvement at any target
+position and slightly worsened mean value-range cross-entropy at every
+position. This rejects the narrow claim that simple layer-7 state preservation
+is sufficient to restore retrieval. It does not disprove every temporal,
+query-conditioned, or recurrent-transformation mechanism, because the test
+used one layer and one post-query state replacement. The campaign will not
+stack another intervention; item 5 is mechanism adjudication.
+
+The complete baseline/patched metrics, state norms/cosines, parameter digests,
+positions, and source hashes are in
+`results/a0_a1_state_replay_intervention_values8000.json`; the report is in
+`docs/A0_A1_STATE_REPLAY_INTERVENTION_RESULT.md`.
+
+Integrity: all source hashes, expected A1 parameter counts, exact positions,
+finite baseline/patched tensors, and unchanged parameter digests passed. Raw
+checkpoints/logs remain ignored; no architecture/config/protocol was changed.
+The full test suite and `git diff --check` are required before the item result
+commit. The next queued item is mechanism adjudication.
+
 ## Commit ledger
 
 | Queue state | Commit | Evidence |
@@ -186,5 +215,6 @@ causal intervention.
 | Item 3 protocol | `75c4efe` | Frozen query/readout localization plan. |
 | Item 3 analyzer | `a0555b0` | Cross-validated native-logit and diagnostic-readout analyzer. |
 | Item 3 result | `b534b0e` | Frozen query/readout localization result and hypothesis update. |
-| Item 4 protocol | pending | Frozen layer-7 state-replay intervention plan; commit before execution. |
+| Item 4 protocol | `6e299a7` | Frozen layer-7 state-replay intervention plan. |
+| Item 4 analyzer | `961d452` | Inference-only functional state-replay analyzer. |
 

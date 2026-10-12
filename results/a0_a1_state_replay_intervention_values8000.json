@@ -1,0 +1,993 @@
+{
+  "analysis_device": "cuda",
+  "analysis_plan_path": "docs/A0_A1_STATE_REPLAY_INTERVENTION_PLAN.md",
+  "analysis_plan_sha256": "508e553810158e2c9e1403f590b0be37365728c1978d2468ff2cee7ebdb6d25e",
+  "architectures_verified": [
+    "A0",
+    "A1"
+  ],
+  "association_count": 1,
+  "distractor_distance": 0,
+  "heldout_examples": 128,
+  "intervention": "copy_layer7_recurrent_state_from_each_stored_value_to_matching_target_output",
+  "patch_layer": 7,
+  "read_only": true,
+  "runs": [
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength2_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "f235dfe95eab1eb243d2b186a196d2cffb4778eaa454c6e075748adba6f2a0d2",
+        "verified": true
+      },
+      "heldout_examples": 128,
+      "parameter_digest_after": "9c20e45d6b1ec74eaa84080758f4185ab26c2461aa0d57ad83724301ac1dfd67",
+      "parameter_digest_before": "9c20e45d6b1ec74eaa84080758f4185ab26c2461aa0d57ad83724301ac1dfd67",
+      "patch_layer": 7,
+      "positions": [
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -6.591453552246094,
+              "correct_token_probability": 0.0010312519734725356,
+              "cross_entropy": 10.396514892578125,
+              "examples": 128,
+              "mean_target_rank": 12821.3203125,
+              "median_target_rank": 11836.0,
+              "top1_accuracy": 0.0078125
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -6.591453552246094,
+              "correct_token_probability": 0.0019365735352039337,
+              "cross_entropy": 9.575963973999023,
+              "examples": 128,
+              "mean_target_rank": 3282.03125,
+              "median_target_rank": 2995.0,
+              "top1_accuracy": 0.0078125
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.01595306396484375,
+            "correct_token_probability": 1.247331965714693e-05,
+            "cross_entropy": 0.010102272033691406,
+            "mean_target_rank": -4.1484375,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -6.6074066162109375,
+              "correct_token_probability": 0.0010433715069666505,
+              "cross_entropy": 10.399923324584961,
+              "examples": 128,
+              "mean_target_rank": 12800.8984375,
+              "median_target_rank": 11553.0,
+              "top1_accuracy": 0.0078125
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -6.6074066162109375,
+              "correct_token_probability": 0.0019490468548610806,
+              "cross_entropy": 9.586066246032715,
+              "examples": 128,
+              "mean_target_rank": 3277.8828125,
+              "median_target_rank": 2982.0,
+              "top1_accuracy": 0.0078125
+            }
+          },
+          "position": 1
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.387529373168945,
+              "correct_token_probability": 3.4681608667597175e-05,
+              "cross_entropy": 10.576988220214844,
+              "examples": 128,
+              "mean_target_rank": 14816.53125,
+              "median_target_rank": 14560.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.387529373168945,
+              "correct_token_probability": 0.00011929825996048748,
+              "cross_entropy": 9.365415573120117,
+              "examples": 128,
+              "mean_target_rank": 3760.6328125,
+              "median_target_rank": 3691.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.010779380798339844,
+            "correct_token_probability": 1.9507569959387183e-07,
+            "cross_entropy": 0.0007419586181640625,
+            "mean_target_rank": 0.6875,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.398308753967285,
+              "correct_token_probability": 3.4778513509081677e-05,
+              "cross_entropy": 10.577034950256348,
+              "examples": 128,
+              "mean_target_rank": 14816.5078125,
+              "median_target_rank": 14733.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.398308753967285,
+              "correct_token_probability": 0.00011949333566008136,
+              "cross_entropy": 9.366157531738281,
+              "examples": 128,
+              "mean_target_rank": 3761.3203125,
+              "median_target_rank": 3739.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 2
+        }
+      ],
+      "source_positions": [
+        3,
+        4
+      ],
+      "source_run": "results/runs/solvability_targetlength2_values8000_a1_seed17",
+      "state_metrics": {
+        "target_1": {
+          "examples": 128,
+          "original_mean_norm": 1.4347753524780273,
+          "replayed_mean_norm": 0.9195640087127686,
+          "replayed_vs_original_mean_cosine": 0.7281778454780579
+        },
+        "target_2": {
+          "examples": 128,
+          "original_mean_norm": 1.1957930326461792,
+          "replayed_mean_norm": 1.1195768117904663,
+          "replayed_vs_original_mean_cosine": 0.8888593912124634
+        }
+      },
+      "target_length": 2,
+      "target_positions": [
+        7,
+        8
+      ]
+    },
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength4_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "691d4d212d513fb53c5ac2519136f9db77f7f412f188fb2f547a763388b8cf31",
+        "verified": true
+      },
+      "heldout_examples": 128,
+      "parameter_digest_after": "345f4882e1384792415a0a8c464f7375be81e15e65135813a57b3243006b97de",
+      "parameter_digest_before": "345f4882e1384792415a0a8c464f7375be81e15e65135813a57b3243006b97de",
+      "patch_layer": 7,
+      "positions": [
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.615508556365967,
+              "correct_token_probability": 4.828621604247019e-05,
+              "cross_entropy": 10.389627456665039,
+              "examples": 128,
+              "mean_target_rank": 13010.3203125,
+              "median_target_rank": 13218.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.615508556365967,
+              "correct_token_probability": 0.00013217605010140687,
+              "cross_entropy": 9.360755920410156,
+              "examples": 128,
+              "mean_target_rank": 3434.0625,
+              "median_target_rank": 3459.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.03017282485961914,
+            "correct_token_probability": -1.8410792108625174e-06,
+            "cross_entropy": 0.017854690551757812,
+            "mean_target_rank": 4.5078125,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.645681381225586,
+              "correct_token_probability": 4.810783502762206e-05,
+              "cross_entropy": 10.396622657775879,
+              "examples": 128,
+              "mean_target_rank": 13027.03125,
+              "median_target_rank": 13264.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.645681381225586,
+              "correct_token_probability": 0.00013033497089054435,
+              "cross_entropy": 9.378610610961914,
+              "examples": 128,
+              "mean_target_rank": 3438.5703125,
+              "median_target_rank": 3521.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 1
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.182208061218262,
+              "correct_token_probability": 4.9010566726792604e-05,
+              "cross_entropy": 10.361156463623047,
+              "examples": 128,
+              "mean_target_rank": 13145.8203125,
+              "median_target_rank": 12341.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.182208061218262,
+              "correct_token_probability": 0.00017368370026815683,
+              "cross_entropy": 9.11237907409668,
+              "examples": 128,
+              "mean_target_rank": 3388.015625,
+              "median_target_rank": 3213.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.027968406677246094,
+            "correct_token_probability": 1.7787242541089654e-06,
+            "cross_entropy": 0.0027217864990234375,
+            "mean_target_rank": -0.828125,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.210176467895508,
+              "correct_token_probability": 4.975623232894577e-05,
+              "cross_entropy": 10.359047889709473,
+              "examples": 128,
+              "mean_target_rank": 13132.1875,
+              "median_target_rank": 12405.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.210176467895508,
+              "correct_token_probability": 0.0001754624245222658,
+              "cross_entropy": 9.115100860595703,
+              "examples": 128,
+              "mean_target_rank": 3387.1875,
+              "median_target_rank": 3240.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 2
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.96533727645874,
+              "correct_token_probability": 3.400830610189587e-05,
+              "cross_entropy": 10.796622276306152,
+              "examples": 128,
+              "mean_target_rank": 14348.8984375,
+              "median_target_rank": 14332.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 3,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.96533727645874,
+              "correct_token_probability": 0.00012692765449173748,
+              "cross_entropy": 9.628789901733398,
+              "examples": 128,
+              "mean_target_rank": 3643.0703125,
+              "median_target_rank": 3592.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.032418251037597656,
+            "correct_token_probability": 5.155015969648957e-07,
+            "cross_entropy": 0.00432586669921875,
+            "mean_target_rank": -1.3203125,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.997755527496338,
+              "correct_token_probability": 3.427617048146203e-05,
+              "cross_entropy": 10.797408103942871,
+              "examples": 128,
+              "mean_target_rank": 14325.78125,
+              "median_target_rank": 14308.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 3,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.997755527496338,
+              "correct_token_probability": 0.00012744315608870238,
+              "cross_entropy": 9.633115768432617,
+              "examples": 128,
+              "mean_target_rank": 3641.75,
+              "median_target_rank": 3599.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 3
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.2702317237854,
+              "correct_token_probability": 3.46947017533239e-05,
+              "cross_entropy": 10.594550132751465,
+              "examples": 128,
+              "mean_target_rank": 14445.3828125,
+              "median_target_rank": 12764.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 4,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.2702317237854,
+              "correct_token_probability": 0.00013003902859054506,
+              "cross_entropy": 9.345193862915039,
+              "examples": 128,
+              "mean_target_rank": 3676.0,
+              "median_target_rank": 3271.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.023185253143310547,
+            "correct_token_probability": 6.269401637837291e-07,
+            "cross_entropy": 0.00396728515625,
+            "mean_target_rank": 3.2265625,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.293416976928711,
+              "correct_token_probability": 3.495332566672005e-05,
+              "cross_entropy": 10.595608711242676,
+              "examples": 128,
+              "mean_target_rank": 14445.5625,
+              "median_target_rank": 12606.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 4,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.293416976928711,
+              "correct_token_probability": 0.0001306659687543288,
+              "cross_entropy": 9.349161148071289,
+              "examples": 128,
+              "mean_target_rank": 3679.2265625,
+              "median_target_rank": 3298.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 4
+        }
+      ],
+      "source_positions": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "source_run": "results/runs/solvability_targetlength4_values8000_a1_seed17",
+      "state_metrics": {
+        "target_1": {
+          "examples": 128,
+          "original_mean_norm": 1.618310570716858,
+          "replayed_mean_norm": 0.8790174722671509,
+          "replayed_vs_original_mean_cosine": 0.6586008071899414
+        },
+        "target_2": {
+          "examples": 128,
+          "original_mean_norm": 1.1421372890472412,
+          "replayed_mean_norm": 1.0109935998916626,
+          "replayed_vs_original_mean_cosine": 0.8689172863960266
+        },
+        "target_3": {
+          "examples": 128,
+          "original_mean_norm": 1.252277135848999,
+          "replayed_mean_norm": 1.1686382293701172,
+          "replayed_vs_original_mean_cosine": 0.8937126398086548
+        },
+        "target_4": {
+          "examples": 128,
+          "original_mean_norm": 1.4041048288345337,
+          "replayed_mean_norm": 1.3389334678649902,
+          "replayed_vs_original_mean_cosine": 0.9278316497802734
+        }
+      },
+      "target_length": 4,
+      "target_positions": [
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength8_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "9045fa017cf10c2b881e446e047a1ec46fb830cc867c18155e3eef69c52895bd",
+        "verified": true
+      },
+      "heldout_examples": 128,
+      "parameter_digest_after": "9d047aaf3466d04d95fe9b8874b6a02652575c1fd572ec8f27da6aa5a028dbe8",
+      "parameter_digest_before": "9d047aaf3466d04d95fe9b8874b6a02652575c1fd572ec8f27da6aa5a028dbe8",
+      "patch_layer": 7,
+      "positions": [
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.332910537719727,
+              "correct_token_probability": 6.143869541119784e-05,
+              "cross_entropy": 10.473613739013672,
+              "examples": 128,
+              "mean_target_rank": 14555.1484375,
+              "median_target_rank": 13409.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.332910537719727,
+              "correct_token_probability": 0.00015043586608953774,
+              "cross_entropy": 9.601393699645996,
+              "examples": 128,
+              "mean_target_rank": 3994.15625,
+              "median_target_rank": 3805.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.08667850494384766,
+            "correct_token_probability": -1.122738467529416e-06,
+            "cross_entropy": 0.04181480407714844,
+            "mean_target_rank": -1.8515625,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -5.419589042663574,
+              "correct_token_probability": 6.272093014558777e-05,
+              "cross_entropy": 10.486400604248047,
+              "examples": 128,
+              "mean_target_rank": 14535.71875,
+              "median_target_rank": 13625.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 1,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -5.419589042663574,
+              "correct_token_probability": 0.00014931312762200832,
+              "cross_entropy": 9.643208503723145,
+              "examples": 128,
+              "mean_target_rank": 3992.3046875,
+              "median_target_rank": 3856.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 1
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.8640899658203125,
+              "correct_token_probability": 3.595055022742599e-05,
+              "cross_entropy": 10.560409545898438,
+              "examples": 128,
+              "mean_target_rank": 14692.4375,
+              "median_target_rank": 14779.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.8640899658203125,
+              "correct_token_probability": 0.00011669583909679204,
+              "cross_entropy": 9.46336841583252,
+              "examples": 128,
+              "mean_target_rank": 3880.7265625,
+              "median_target_rank": 3955.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.0642995834350586,
+            "correct_token_probability": 1.0239455150440335e-06,
+            "cross_entropy": 0.01659393310546875,
+            "mean_target_rank": -5.625,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.928389549255371,
+              "correct_token_probability": 3.68186374544166e-05,
+              "cross_entropy": 10.561224937438965,
+              "examples": 128,
+              "mean_target_rank": 14623.7578125,
+              "median_target_rank": 14895.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 2,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.928389549255371,
+              "correct_token_probability": 0.00011771978461183608,
+              "cross_entropy": 9.479962348937988,
+              "examples": 128,
+              "mean_target_rank": 3875.1015625,
+              "median_target_rank": 3980.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 2
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.586263656616211,
+              "correct_token_probability": 3.2420819479739293e-05,
+              "cross_entropy": 10.594731330871582,
+              "examples": 128,
+              "mean_target_rank": 14511.8828125,
+              "median_target_rank": 14043.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 3,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.586263656616211,
+              "correct_token_probability": 0.00011058773088734597,
+              "cross_entropy": 9.451569557189941,
+              "examples": 128,
+              "mean_target_rank": 3804.703125,
+              "median_target_rank": 3748.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.05587339401245117,
+            "correct_token_probability": 3.7482823245227337e-07,
+            "cross_entropy": 0.010298728942871094,
+            "mean_target_rank": -10.0546875,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.642137050628662,
+              "correct_token_probability": 3.28933383570984e-05,
+              "cross_entropy": 10.592545509338379,
+              "examples": 128,
+              "mean_target_rank": 14411.59375,
+              "median_target_rank": 14031.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 3,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.642137050628662,
+              "correct_token_probability": 0.00011096255911979824,
+              "cross_entropy": 9.461868286132812,
+              "examples": 128,
+              "mean_target_rank": 3794.6484375,
+              "median_target_rank": 3771.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 3
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.591769218444824,
+              "correct_token_probability": 3.262511017965153e-05,
+              "cross_entropy": 10.626376152038574,
+              "examples": 128,
+              "mean_target_rank": 15546.15625,
+              "median_target_rank": 14426.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 4,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.591769218444824,
+              "correct_token_probability": 0.00011217130668228492,
+              "cross_entropy": 9.474838256835938,
+              "examples": 128,
+              "mean_target_rank": 4025.8984375,
+              "median_target_rank": 3838.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.061090946197509766,
+            "correct_token_probability": -5.687033990398049e-07,
+            "cross_entropy": 0.01439666748046875,
+            "mean_target_rank": 0.09375,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.652860164642334,
+              "correct_token_probability": 3.286337596364319e-05,
+              "cross_entropy": 10.628058433532715,
+              "examples": 128,
+              "mean_target_rank": 15492.234375,
+              "median_target_rank": 14488.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 4,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.652860164642334,
+              "correct_token_probability": 0.00011160260328324512,
+              "cross_entropy": 9.489234924316406,
+              "examples": 128,
+              "mean_target_rank": 4025.9921875,
+              "median_target_rank": 3775.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 4
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.706265449523926,
+              "correct_token_probability": 3.359209586051293e-05,
+              "cross_entropy": 10.536532402038574,
+              "examples": 128,
+              "mean_target_rank": 14302.296875,
+              "median_target_rank": 13106.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 5,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.706265449523926,
+              "correct_token_probability": 0.00011323751823510975,
+              "cross_entropy": 9.390630722045898,
+              "examples": 128,
+              "mean_target_rank": 3762.125,
+              "median_target_rank": 3506.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.05468034744262695,
+            "correct_token_probability": -8.601637091487646e-08,
+            "cross_entropy": 0.014408111572265625,
+            "mean_target_rank": 3.4609375,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.760945796966553,
+              "correct_token_probability": 3.3907152101164684e-05,
+              "cross_entropy": 10.539081573486328,
+              "examples": 128,
+              "mean_target_rank": 14270.828125,
+              "median_target_rank": 13088.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 5,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.760945796966553,
+              "correct_token_probability": 0.00011315150186419487,
+              "cross_entropy": 9.405038833618164,
+              "examples": 128,
+              "mean_target_rank": 3765.5859375,
+              "median_target_rank": 3537.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 5
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.1457109451293945,
+              "correct_token_probability": 3.587953688111156e-05,
+              "cross_entropy": 10.419756889343262,
+              "examples": 128,
+              "mean_target_rank": 14230.703125,
+              "median_target_rank": 13728.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 6,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.1457109451293945,
+              "correct_token_probability": 0.00011987832840532064,
+              "cross_entropy": 9.225480079650879,
+              "examples": 128,
+              "mean_target_rank": 3737.5390625,
+              "median_target_rank": 3684.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.053908348083496094,
+            "correct_token_probability": -4.710818757303059e-07,
+            "cross_entropy": 0.012781143188476562,
+            "mean_target_rank": 3.4921875,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.199619293212891,
+              "correct_token_probability": 3.6173943954054266e-05,
+              "cross_entropy": 10.420031547546387,
+              "examples": 128,
+              "mean_target_rank": 14200.6796875,
+              "median_target_rank": 13396.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 6,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.199619293212891,
+              "correct_token_probability": 0.00011940724652959034,
+              "cross_entropy": 9.238261222839355,
+              "examples": 128,
+              "mean_target_rank": 3741.03125,
+              "median_target_rank": 3653.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 6
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.85321044921875,
+              "correct_token_probability": 3.9365131669910625e-05,
+              "cross_entropy": 10.537083625793457,
+              "examples": 128,
+              "mean_target_rank": 15220.859375,
+              "median_target_rank": 15921.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 7,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.85321044921875,
+              "correct_token_probability": 0.0001299721043324098,
+              "cross_entropy": 9.413540840148926,
+              "examples": 128,
+              "mean_target_rank": 4004.4375,
+              "median_target_rank": 4180.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.05564594268798828,
+            "correct_token_probability": -2.06506229005754e-07,
+            "cross_entropy": 0.017240524291992188,
+            "mean_target_rank": 21.015625,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.908856391906738,
+              "correct_token_probability": 3.9698508771834895e-05,
+              "cross_entropy": 10.542618751525879,
+              "examples": 128,
+              "mean_target_rank": 15273.1328125,
+              "median_target_rank": 15914.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 7,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.908856391906738,
+              "correct_token_probability": 0.00012976559810340405,
+              "cross_entropy": 9.430781364440918,
+              "examples": 128,
+              "mean_target_rank": 4025.453125,
+              "median_target_rank": 4164.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 7
+        },
+        {
+          "baseline": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.21750545501709,
+              "correct_token_probability": 3.630890205386095e-05,
+              "cross_entropy": 10.535350799560547,
+              "examples": 128,
+              "mean_target_rank": 16138.1796875,
+              "median_target_rank": 17043.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 8,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.21750545501709,
+              "correct_token_probability": 0.0001282968878513202,
+              "cross_entropy": 9.31938362121582,
+              "examples": 128,
+              "mean_target_rank": 4142.6640625,
+              "median_target_rank": 4407.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "delta_value_candidate_range": {
+            "correct_token_logit_margin": -0.037668704986572266,
+            "correct_token_probability": 1.0012881830334663e-06,
+            "cross_entropy": 0.007636070251464844,
+            "mean_target_rank": -2.390625,
+            "top1_accuracy": 0.0
+          },
+          "patched": {
+            "full_vocabulary": {
+              "correct_token_logit_margin": -4.255174160003662,
+              "correct_token_probability": 3.6885357985738665e-05,
+              "cross_entropy": 10.533869743347168,
+              "examples": 128,
+              "mean_target_rank": 16086.2421875,
+              "median_target_rank": 16793.0,
+              "top1_accuracy": 0.0
+            },
+            "position": 8,
+            "value_candidate_range": {
+              "correct_token_logit_margin": -4.255174160003662,
+              "correct_token_probability": 0.00012929817603435367,
+              "cross_entropy": 9.327019691467285,
+              "examples": 128,
+              "mean_target_rank": 4140.2734375,
+              "median_target_rank": 4322.0,
+              "top1_accuracy": 0.0
+            }
+          },
+          "position": 8
+        }
+      ],
+      "source_positions": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "source_run": "results/runs/solvability_targetlength8_values8000_a1_seed17",
+      "state_metrics": {
+        "target_1": {
+          "examples": 128,
+          "original_mean_norm": 1.9582273960113525,
+          "replayed_mean_norm": 0.8377533555030823,
+          "replayed_vs_original_mean_cosine": 0.4455151855945587
+        },
+        "target_2": {
+          "examples": 128,
+          "original_mean_norm": 1.0758795738220215,
+          "replayed_mean_norm": 0.9789390563964844,
+          "replayed_vs_original_mean_cosine": 0.8415960669517517
+        },
+        "target_3": {
+          "examples": 128,
+          "original_mean_norm": 1.204867959022522,
+          "replayed_mean_norm": 1.1069345474243164,
+          "replayed_vs_original_mean_cosine": 0.8743679523468018
+        },
+        "target_4": {
+          "examples": 128,
+          "original_mean_norm": 1.3172162771224976,
+          "replayed_mean_norm": 1.2603200674057007,
+          "replayed_vs_original_mean_cosine": 0.8922479152679443
+        },
+        "target_5": {
+          "examples": 128,
+          "original_mean_norm": 1.4822652339935303,
+          "replayed_mean_norm": 1.4230023622512817,
+          "replayed_vs_original_mean_cosine": 0.92942214012146
+        },
+        "target_6": {
+          "examples": 128,
+          "original_mean_norm": 1.6370763778686523,
+          "replayed_mean_norm": 1.5447279214859009,
+          "replayed_vs_original_mean_cosine": 0.9395260810852051
+        },
+        "target_7": {
+          "examples": 128,
+          "original_mean_norm": 1.7356653213500977,
+          "replayed_mean_norm": 1.6835709810256958,
+          "replayed_vs_original_mean_cosine": 0.9480437636375427
+        },
+        "target_8": {
+          "examples": 128,
+          "original_mean_norm": 1.8673336505889893,
+          "replayed_mean_norm": 1.8217265605926514,
+          "replayed_vs_original_mean_cosine": 0.959039032459259
+        }
+      },
+      "target_length": 8,
+      "target_positions": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ]
+    }
+  ],
+  "seed": 17,
+  "source_protocol_commit": "e133e5279761b73b390f8d52feacd63c5289368c",
+  "source_protocol_path": "docs/A0_A1_SOLVABILITY_TARGET_LENGTH_VALUES8000_PROTOCOL.md",
+  "source_protocol_sha256": "ca92f1b5f44fd5c8e0ab07669fdad7babc6a56ef3f4533ab72779ab24a86fb4b",
+  "source_runner_path": "scripts/run_synthetic_overfit_calibration.py",
+  "source_runner_sha256": "2a1a1c84f1ebfabc11cf66f0defa2e2ad4db2d1741c89c3d12660d3ac066d3e5",
+  "status": "complete",
+  "target_lengths": [
+    2,
+    4,
+    8
+  ],
+  "value_count": 8000,
+  "verified_source_runs": [
+    {
+      "architecture": "A0",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength2_values8000_a0_seed17/checkpoint_step_002000.pt",
+        "sha256": "5e4b95596f7c3cf582e5b378c2e4f5ce354b2e445f5340b19ebfd71d9adfe393",
+        "verified": true
+      },
+      "target_length": 2
+    },
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength2_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "f235dfe95eab1eb243d2b186a196d2cffb4778eaa454c6e075748adba6f2a0d2",
+        "verified": true
+      },
+      "target_length": 2
+    },
+    {
+      "architecture": "A0",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength4_values8000_a0_seed17/checkpoint_step_002000.pt",
+        "sha256": "4e99dcb426ff422eb1ae0ac8637a9f49f64830f3ff45326510735ca0838b5358",
+        "verified": true
+      },
+      "target_length": 4
+    },
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength4_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "691d4d212d513fb53c5ac2519136f9db77f7f412f188fb2f547a763388b8cf31",
+        "verified": true
+      },
+      "target_length": 4
+    },
+    {
+      "architecture": "A0",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength8_values8000_a0_seed17/checkpoint_step_002000.pt",
+        "sha256": "75d307a5396a34a69fdd3bdbf3fe7e25684c0a94fae41b3ce7b717a50d06db64",
+        "verified": true
+      },
+      "target_length": 8
+    },
+    {
+      "architecture": "A1",
+      "checkpoint": {
+        "path": "results/runs/solvability_targetlength8_values8000_a1_seed17/checkpoint_step_002000.pt",
+        "sha256": "9045fa017cf10c2b881e446e047a1ec46fb830cc867c18155e3eef69c52895bd",
+        "verified": true
+      },
+      "target_length": 8
+    }
+  ],
+  "version": "state_replay_intervention_v1"
+}
