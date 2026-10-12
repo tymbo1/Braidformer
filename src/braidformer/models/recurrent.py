@@ -24,6 +24,48 @@ from braidformer.config import ExperimentConfig
 from braidformer.models.transformer import CausalLMOutput, FeedForward, ModelConfigError
 
 
+def initial_state_transition_decays(
+    hidden_size: int,
+    initialization: str = "uniform_0.9",
+    *,
+    initial_decay: float = 0.9,
+) -> Tensor:
+    """Return the deterministic per-channel decay schedule for a fresh A1 model.
+
+    ``uniform_0.9`` preserves the original A1 initialization.  The
+    ``tail_75_original_25_long_v1`` schedule reserves one quarter of each
+    layer's channels for characteristic initial time scales of 16, 32, 64,
+    and 128 tokens while leaving the other three quarters at the original
+    decay.  The schedule changes initialization only; the recurrence and
+    parameter count remain unchanged.
+    """
+
+    if hidden_size <= 0:
+        raise ModelConfigError("hidden_size must be positive")
+    if not 0.0 < initial_decay < 1.0:
+        raise ModelConfigError("initial_decay must be strictly between 0 and 1")
+    if initialization == "uniform_0.9":
+        return torch.full((hidden_size,), initial_decay, dtype=torch.float32)
+    if initialization != "tail_75_original_25_long_v1":
+        raise ModelConfigError(
+            "unknown state_transition_initialization: "
+            f"{initialization!r}"
+        )
+    if hidden_size % 16:
+        raise ModelConfigError(
+            "tail_75_original_25_long_v1 requires hidden_size divisible by 16"
+        )
+
+    original_channels = (hidden_size * 3) // 4
+    tail_channels = hidden_size - original_channels
+    channels_per_timescale = tail_channels // 4
+    long_decays = [math.exp(-1.0 / tau) for tau in (16.0, 32.0, 64.0, 128.0)]
+    values = [initial_decay] * original_channels
+    for decay in long_decays:
+        values.extend([decay] * channels_per_timescale)
+    return torch.tensor(values, dtype=torch.float32)
+
+
 class GatedDiagonalStateSpaceMixer(nn.Module):
     """A causal diagonal state-space recurrence with input/output gates.
 
@@ -43,6 +85,7 @@ class GatedDiagonalStateSpaceMixer(nn.Module):
         dropout: float,
         use_bias: bool = True,
         initial_decay: float = 0.9,
+        state_transition_initialization: str = "uniform_0.9",
         use_parallel_scan: bool = False,
     ) -> None:
         super().__init__()
@@ -57,8 +100,15 @@ class GatedDiagonalStateSpaceMixer(nn.Module):
         self.output_projection = nn.Linear(hidden_size, hidden_size, bias=use_bias)
         self.state_transition_logit = nn.Parameter(torch.empty(hidden_size))
         self.residual_dropout = nn.Dropout(dropout)
-        initial_logit = math.log(initial_decay / (1.0 - initial_decay))
-        nn.init.constant_(self.state_transition_logit, initial_logit)
+        initial_decays = initial_state_transition_decays(
+            hidden_size,
+            state_transition_initialization,
+            initial_decay=initial_decay,
+        )
+        with torch.no_grad():
+            self.state_transition_logit.copy_(
+                torch.log(initial_decays / (1.0 - initial_decays))
+            )
 
     def _sequential_scan(
         self,
@@ -155,6 +205,7 @@ class A1RecurrentStateSpaceBlock(nn.Module):
             hidden_size=config.hidden_size,
             dropout=config.dropout,
             use_bias=config.use_bias,
+            state_transition_initialization=config.state_transition_initialization,
             use_parallel_scan=use_parallel_scan,
         )
         self.feed_forward_norm = nn.LayerNorm(
@@ -283,4 +334,5 @@ __all__ = [
     "A1RecurrentStateSpaceBlock",
     "A1RecurrentStateSpaceLM",
     "GatedDiagonalStateSpaceMixer",
+    "initial_state_transition_decays",
 ]

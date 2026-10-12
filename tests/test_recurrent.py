@@ -9,6 +9,7 @@ from braidformer.models import (
     GatedDiagonalStateSpaceMixer,
     ModelConfigError,
 )
+from braidformer.models.recurrent import initial_state_transition_decays
 
 
 def tiny_a1_config(**overrides: object) -> ExperimentConfig:
@@ -145,6 +146,32 @@ def test_a1_has_recurrent_mixer_and_no_attention_module() -> None:
 
     assert all(isinstance(block.state_space, GatedDiagonalStateSpaceMixer) for block in model.blocks)
     assert not any(module.__class__.__name__ == "CausalSelfAttention" for module in model.modules())
+
+
+def test_decay_tail_initialization_has_expected_time_scale_tail() -> None:
+    decays = initial_state_transition_decays(
+        512,
+        "tail_75_original_25_long_v1",
+    )
+    taus = -1.0 / torch.log(decays)
+
+    assert decays.shape == (512,)
+    assert torch.allclose(decays[:384], torch.full((384,), 0.9))
+    for start, expected_tau in zip((384, 416, 448, 480), (16.0, 32.0, 64.0, 128.0)):
+        assert torch.allclose(
+            taus[start : start + 32],
+            torch.full((32,), expected_tau),
+            atol=1e-3,
+            rtol=0.0,
+        )
+
+
+def test_decay_tail_preserves_a1_parameter_count() -> None:
+    model = A1RecurrentStateSpaceLM(
+        tiny_a1_config(state_transition_initialization="tail_75_original_25_long_v1")
+    )
+
+    assert model.parameter_count() == A1RecurrentStateSpaceLM(tiny_a1_config()).parameter_count()
 
 
 def test_a1_rejects_a0_or_non_recurrent_configs() -> None:

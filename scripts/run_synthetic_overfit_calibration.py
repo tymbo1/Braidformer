@@ -69,6 +69,12 @@ DISTRACTOR_PROTOCOL_PATHS = {
     (8000, 1, 16): "docs/A0_A1_SOLVABILITY_DISTANCE16_VALUES8000_PROTOCOL.md",
     (8000, 1, 64): "docs/A0_A1_SOLVABILITY_DISTANCE64_VALUES8000_PROTOCOL.md",
 }
+DECAY_TAIL_INITIALIZATION = "tail_75_original_25_long_v1"
+DECAY_INTERVENTION_PROTOCOL_PATHS = {
+    (8000, 1, 4): "docs/A1_SOLVABILITY_DECAYTAIL_VALUES8000_PROTOCOL.md",
+    (8000, 1, 16): "docs/A1_SOLVABILITY_DECAYTAIL_VALUES8000_PROTOCOL.md",
+    (8000, 1, 64): "docs/A1_SOLVABILITY_DECAYTAIL_VALUES8000_PROTOCOL.md",
+}
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
 FIXED_EXAMPLES = 128
@@ -463,15 +469,30 @@ def run(
         raise RuntimeError("CUDA is unavailable in the host training process")
     if run_dir.exists() and any(run_dir.iterdir()):
         raise RuntimeError(f"run directory is not empty: {run_dir}")
+    config = load_config(config_path)
     version = generator_version(value_count, association_count, distractor_distance)
-    if distractor_distance != 0:
+    if config.state_transition_initialization == "uniform_0.9" and distractor_distance != 0:
         protocol_relative_path = DISTRACTOR_PROTOCOL_PATHS[
             (value_count, association_count, distractor_distance)
         ]
-    elif association_count == 1:
+    elif config.state_transition_initialization == "uniform_0.9" and association_count == 1:
         protocol_relative_path = PROTOCOL_PATHS[value_count]
-    else:
+    elif config.state_transition_initialization == "uniform_0.9":
         protocol_relative_path = ASSOCIATION_PROTOCOL_PATHS[(value_count, association_count)]
+    elif config.state_transition_initialization == DECAY_TAIL_INITIALIZATION:
+        if config.stage != "A1" or distractor_distance == 0 or association_count != 1:
+            raise RuntimeError(
+                "the decay-tail intervention is frozen to A1 one-association "
+                "distractor-distance arms"
+            )
+        protocol_relative_path = DECAY_INTERVENTION_PROTOCOL_PATHS[
+            (value_count, association_count, distractor_distance)
+        ]
+    else:
+        raise RuntimeError(
+            "unsupported state_transition_initialization: "
+            f"{config.state_transition_initialization!r}"
+        )
     current_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True
     ).strip()
@@ -480,7 +501,6 @@ def run(
             f"protocol commit mismatch: current={current_commit}, expected={protocol_commit}"
         )
 
-    config = load_config(config_path)
     current_sequence_length = sequence_length(association_count, distractor_distance)
     tokens_per_step = current_sequence_length * EFFECTIVE_BATCH_SIZE
     expected_tokens = MAX_STEPS * tokens_per_step
@@ -590,6 +610,7 @@ def run(
         "seed": seed,
         "seed_report": seed_report,
         "parameter_count": parameter_count,
+        "state_transition_initialization": config.state_transition_initialization,
         "device": torch.cuda.get_device_name(device),
         "torch_version": torch.__version__,
         "torch_cuda_build": torch.version.cuda,
@@ -606,6 +627,7 @@ def run(
             "warmup_steps": WARMUP_STEPS,
             "validation_interval_steps": EVAL_INTERVAL,
             "checkpoint_interval_steps": config.checkpoint_interval_steps,
+            "state_transition_initialization": config.state_transition_initialization,
         },
         "initial_step": initial_step,
         "initial_tokens": initial_tokens,
@@ -652,6 +674,7 @@ def run(
                 "metric_history": metric_history,
                 "last_train_loss": last_train_loss,
                 "gradient_checkpointing": False,
+                "state_transition_initialization": config.state_transition_initialization,
             },
             checkpoint_path,
             {
@@ -663,6 +686,7 @@ def run(
                 "checkpoint_kind": kind,
                 "parameter_count": parameter_count,
                 "protocol_commit": protocol_commit,
+                "state_transition_initialization": config.state_transition_initialization,
                 "synthetic_generator_version": version,
                 "value_count": value_count,
                 "association_count": association_count,
@@ -771,6 +795,7 @@ def run(
                 "experiment_id": run_dir.name,
                 "run_dir": str(run_dir),
                 "architecture": config.stage,
+                "state_transition_initialization": config.state_transition_initialization,
                 "config_path": str(config_path.relative_to(REPO_ROOT)),
                 "config_sha256": config_hash,
                 "protocol_commit": protocol_commit,
@@ -897,6 +922,7 @@ def main() -> int:
                     "status": "PLAN_VALID",
                     "config": str(config_path.relative_to(REPO_ROOT)),
                     "architecture": config.stage,
+                    "state_transition_initialization": config.state_transition_initialization,
                     "seed": args.seed,
                     "value_count": args.value_count,
                     "association_count": args.association_count,

@@ -21,6 +21,7 @@ class ExperimentConfig:
     stage: str = "A0"
     model_type: str = "transformer"
     recurrent_path: str = "sequential_reference"
+    state_transition_initialization: str = "uniform_0.9"
     seed: int = 17
     context_length: int = 512
     vocab_size: int = 32_000
@@ -71,6 +72,14 @@ class ExperimentConfig:
         if self.recurrent_path not in {"sequential_reference", "parallel_scan"}:
             errors.append(
                 "recurrent_path must be sequential_reference or parallel_scan"
+            )
+        if self.state_transition_initialization not in {
+            "uniform_0.9",
+            "tail_75_original_25_long_v1",
+        }:
+            errors.append(
+                "state_transition_initialization must be uniform_0.9 or "
+                "tail_75_original_25_long_v1"
             )
         if self.stage == "A0" and self.recurrent_path != "sequential_reference":
             errors.append("A0 must use recurrent_path=sequential_reference")
