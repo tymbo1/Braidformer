@@ -51,6 +51,20 @@ def test_values128_rung_changes_only_the_reserved_answer_pool_identity() -> None
     assert make_example(17, "train", 7, value_count=128) == example
 
 
+def test_values256_rung_changes_only_the_reserved_answer_pool_identity() -> None:
+    example = make_example(17, "train", 7, value_count=256)
+    spec = generator_spec(17, value_count=256)
+
+    assert generator_version(256) == "synthetic_solvability_values256_v1"
+    assert spec["version"] == "synthetic_solvability_values256_v1"
+    assert spec["value_count"] == 256
+    assert len(example.input_ids) == 8
+    assert example.input_ids[2] == example.input_ids[5]
+    assert example.input_ids[3] == example.input_ids[7] == example.target
+    assert 0 <= example.target - 8_000 < 256
+    assert make_example(17, "train", 7, value_count=256) == example
+
+
 def test_calibration_batch_repeats_fixed_training_set() -> None:
     first_inputs, first_labels = make_training_batch(17, 1)
     ninth_inputs, ninth_labels = make_training_batch(17, 9)
@@ -96,4 +110,24 @@ def test_values128_configs_keep_controls_and_use_recovery_checkpoint_cadence() -
         assert config.eval_interval_steps == 100
         assert config.checkpoint_interval_steps == 100
         assert config.data_and_tokenizer == "synthetic_solvability_values128_v1"
+        assert config.planned_only is True
+
+
+def test_values256_configs_keep_controls_and_use_recovery_checkpoint_cadence() -> None:
+    a0 = load_config(ROOT / "configs" / "braidnano_a0_solvability_values256.json")
+    a1 = load_config(ROOT / "configs" / "braidnano_a1_solvability_values256.json")
+
+    assert a0.stage == "A0"
+    assert a1.stage == "A1"
+    assert a1.recurrent_path == "parallel_scan"
+    for config in (a0, a1):
+        assert config.context_length == 512
+        assert config.vocab_size == 32_000
+        assert config.micro_batch_size == 2
+        assert config.gradient_accumulation_steps == 8
+        assert config.max_steps == 2_000
+        assert config.training_token_budget == 256_000
+        assert config.eval_interval_steps == 100
+        assert config.checkpoint_interval_steps == 100
+        assert config.data_and_tokenizer == "synthetic_solvability_values256_v1"
         assert config.planned_only is True

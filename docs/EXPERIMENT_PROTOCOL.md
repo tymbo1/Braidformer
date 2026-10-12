@@ -17,6 +17,7 @@ This protocol defines the minimum controls for testing BraidFormer-H1. The goal 
 | A6 | Later compressed/landmark memory | Later |
 | A7 | Later multi-token prediction | Later |
 | A8 | Later conditional/static memory | Later |
+| S0 | Synthetic-recall solvability ladder | 64/128 complete; 256-value rung frozen for execution |
 | T1 | Trajectory-aware predictive training-policy side track | Deferred proposal; no implementation or training authorized |
 
 The Phase 0 bootstrap did not begin training. The A0 and A1 controls were

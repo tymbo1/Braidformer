@@ -426,3 +426,21 @@ This entry authorizes no implementation, data reordering, training, model
 self-description, provenance-ledger integration, or architecture change. A
 future execution requires a versioned protocol, leakage audit, cheap synthetic
 validation, explicit quality/compute thresholds, and separate approval.
+
+## 2026-10-12 — D032: freeze the 256-value solvability-ladder rung
+
+The 64-value calibration and 128-value rung both passed the primary training
+memorization criterion, while A0 remained ahead of A1 on the diagnostic
+held-out copy/retrieve measure. The next test therefore continues the same
+calibrated synthetic-recall ladder: expand only the reserved answer-token pool
+from 128 to 256, preserving the one association, 128 fixed examples, model
+architectures, seed 17, optimizer, 2,000-step budget, 256,000 token
+positions, and evaluation/checkpoint cadence.
+
+The frozen configurations are
+`configs/braidnano_a0_solvability_values256.json` and
+`configs/braidnano_a1_solvability_values256.json`; the protocol is
+`docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md`. Only the two fresh seed-17
+arms are in scope. Values1024/8000, association-count changes,
+distractors, target-length changes, decay analysis, T1 predictive training,
+scaling, A2, and memory work remain outside this authorization boundary.
