@@ -1,6 +1,6 @@
 # Relational curriculum campaign status
 
-Status: **protocol frozen; execution pending**.
+Status: **complete; result adjudicated**.
 
 This is the continuation campaign selected by the completed mechanism
 adjudication. It is separate from, and does not reopen, the completed
@@ -32,10 +32,9 @@ Execution commit: **to be recorded from the exact pre-run commit**.
 
 ## Queue
 
-1. **Run and verify the four matched curriculum arms.**
-2. **Aggregate the frozen held-out retrieval results.**
-3. **Adjudicate H8 against H2/H4/H7, record nulls or gains, and select one
-   next experiment without changing frozen A0/A1.**
+1. **Complete.** Four matched curriculum arms ran and passed integrity checks.
+2. **Complete.** Frozen held-out retrieval results were aggregated.
+3. **Complete.** H8 was adjudicated against H2/H4/H7 in the result report.
 
 No A2, scaling, longer training, persistent memory, predictive-learning,
 inheritance, SNAIL, Woven Neural Fabric, post-training, or new-dataset work is
@@ -56,8 +55,16 @@ strongest supported mechanism and its alternatives documented in
 `docs/A0_A1_MECHANISM_ADJUDICATION_RESULT.md`. Its recommended next
 experiment is this campaign.
 
+The campaign result is documented in
+`docs/A0_A1_RELATIONAL_CURRICULUM_V1_RESULT.md`; the aggregate evidence is in
+`results/a0_a1_relational_curriculum_v1.json`. H8 is partially supported as a
+training-history modifier, but curriculum order did not repair A1's hard
+8,000-value or long-distance exact retrieval. H2 remains the leading composite
+mechanism and H4 remains strongly supported.
+
 ## Continuation log
 
 | state | commit | evidence |
 | --- | --- | --- |
-| protocol/code freeze | pending | this protocol, deterministic generator, runner, configs, and tests |
+| protocol/code freeze | `30488e4f6b95994f02e15de9fab5710ce9af2aa4` | frozen protocol, deterministic generator, runner, configs, and tests |
+| four-arm result | pending | four completed summaries, verified checkpoints, and aggregate result |
