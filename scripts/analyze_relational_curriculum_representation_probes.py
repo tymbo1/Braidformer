@@ -223,10 +223,12 @@ def _comparisons(summary_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for architecture in ("A1", "A0"):
         for target_length in TARGET_LENGTHS:
             paths = sorted(
-                row["path"]
-                for row in summary_rows
-                if row["architecture"] == architecture
-                and row["target_length"] == target_length
+                {
+                    row["path"]
+                    for row in summary_rows
+                    if row["architecture"] == architecture
+                    and row["target_length"] == target_length
+                }
             )
             for path in paths:
                 staged = by_key[(architecture, target_length, path, "staged")]
