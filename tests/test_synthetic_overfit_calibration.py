@@ -11,6 +11,7 @@ from scripts.run_synthetic_overfit_calibration import (
     generator_version,
     make_example,
     make_training_batch,
+    sequence_length,
 )
 
 
@@ -91,6 +92,28 @@ def test_values8000_rung_changes_only_the_reserved_answer_pool_identity() -> Non
     assert example.input_ids[3] == example.input_ids[7] == example.target
     assert 0 <= example.target - 8_000 < 8000
     assert make_example(17, "train", 7, value_count=8000) == example
+
+
+def test_associations2_rung_has_two_bindings_and_one_queried_answer() -> None:
+    example = make_example(17, "train", 7, value_count=8000, association_count=2)
+    spec = generator_spec(17, value_count=8000, association_count=2)
+
+    assert generator_version(8000, 2) == "synthetic_solvability_associations2_values8000_v1"
+    assert spec["version"] == "synthetic_solvability_associations2_values8000_v1"
+    assert spec["association_count"] == 2
+    assert spec["sequence_length"] == sequence_length(2) == 11
+    assert len(example.input_ids) == 11
+    assert example.input_ids[0] == 30_000
+    assert example.input_ids[1] == example.input_ids[4] == 30_001
+    assert example.input_ids[7] == 30_002
+    assert example.input_ids[9] == 30_003
+    keys = (example.input_ids[2], example.input_ids[5])
+    values = (example.input_ids[3], example.input_ids[6])
+    assert example.input_ids[8] in keys
+    assert example.target == example.input_ids[10] == values[keys.index(example.input_ids[8])]
+    assert example.labels[:-1] == (-100,) * 10
+    assert example.labels[-1] == example.target
+    assert make_example(17, "train", 7, value_count=8000, association_count=2) == example
 
 
 def test_calibration_batch_repeats_fixed_training_set() -> None:
@@ -198,4 +221,24 @@ def test_values8000_configs_keep_controls_and_use_recovery_checkpoint_cadence() 
         assert config.eval_interval_steps == 100
         assert config.checkpoint_interval_steps == 100
         assert config.data_and_tokenizer == "synthetic_solvability_values8000_v1"
+        assert config.planned_only is True
+
+
+def test_associations2_configs_keep_controls_and_use_expanded_sequence_budget() -> None:
+    a0 = load_config(ROOT / "configs" / "braidnano_a0_solvability_associations2_values8000.json")
+    a1 = load_config(ROOT / "configs" / "braidnano_a1_solvability_associations2_values8000.json")
+
+    assert a0.stage == "A0"
+    assert a1.stage == "A1"
+    assert a1.recurrent_path == "parallel_scan"
+    for config in (a0, a1):
+        assert config.context_length == 512
+        assert config.vocab_size == 32_000
+        assert config.micro_batch_size == 2
+        assert config.gradient_accumulation_steps == 8
+        assert config.max_steps == 2_000
+        assert config.training_token_budget == 352_000
+        assert config.eval_interval_steps == 100
+        assert config.checkpoint_interval_steps == 100
+        assert config.data_and_tokenizer == "synthetic_solvability_associations2_values8000_v1"
         assert config.planned_only is True

@@ -586,3 +586,25 @@ evidence is in `docs/A0_A1_SOLVABILITY_VALUES8000_RESULT.md`,
 checkpoints remain ignored. No association-count change, distractor-distance
 change, target-length change, decay analysis, predictive learning-state,
 competence-ledger, scaling, A2, or memory work started.
+
+## 2026-10-12 — D040: freeze the two-association 8000-value solvability rung
+
+The completed one-association ladder through 8,000 values still showed perfect
+training memorization but severe held-out collapse. The next controlled test
+therefore changes only the association count from one to two while retaining
+the 8,000-value pool, 128 examples, seed 17, model sizes, optimizer, 2,000
+optimizer steps, effective batch 16, and evaluation/checkpoint cadence.
+
+Two explicit records require an 11-token example rather than the prior
+8-token example. The resulting run processes 352,000 sequence-token positions
+at the same optimizer-step budget; this unavoidable sequence-length change is
+recorded as a limitation rather than treated as equal-token evidence.
+
+The frozen configurations are
+`configs/braidnano_a0_solvability_associations2_values8000.json` and
+`configs/braidnano_a1_solvability_associations2_values8000.json`; the protocol
+is `docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md`. Only the
+two fresh seed-17 arms are in scope. Four/eight associations, additional
+seeds, distractors, target-length changes, decay analysis, predictive
+learning-state/inheritance, scaling, A2, and memory work remain outside this
+authorization boundary.

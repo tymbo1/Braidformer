@@ -49,6 +49,12 @@ PROTOCOL_PATHS = {
     1024: "docs/A0_A1_SOLVABILITY_VALUES1024_PROTOCOL.md",
     8000: "docs/A0_A1_SOLVABILITY_VALUES8000_PROTOCOL.md",
 }
+ASSOCIATION_GENERATOR_VERSIONS = {
+    (8000, 2): "synthetic_solvability_associations2_values8000_v1",
+}
+ASSOCIATION_PROTOCOL_PATHS = {
+    (8000, 2): "docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_PROTOCOL.md",
+}
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
 FIXED_EXAMPLES = 128
@@ -76,12 +82,31 @@ class CalibrationExample:
 
     @property
     def prefix_length(self) -> int:
-        return SEQUENCE_LENGTH - 1
+        return len(self.input_ids) - 1
 
 
-def generator_version(value_count: int = VALUE_COUNT) -> str:
+def sequence_length(association_count: int = 1) -> int:
+    if association_count < 1:
+        raise ValueError(f"association_count must be positive: {association_count}")
+    return SEQUENCE_LENGTH + 3 * (association_count - 1)
+
+
+def generator_version(value_count: int = VALUE_COUNT, association_count: int = 1) -> str:
     """Return the immutable generator identity for a ladder value-pool size."""
 
+    if association_count != 1:
+        try:
+            return ASSOCIATION_GENERATOR_VERSIONS[(value_count, association_count)]
+        except KeyError as exc:
+            supported = ", ".join(
+                f"values={values}, associations={associations}"
+                for values, associations in sorted(ASSOCIATION_GENERATOR_VERSIONS)
+            )
+            raise ValueError(
+                "unsupported association rung "
+                f"value_count={value_count}, association_count={association_count}; "
+                f"expected one of {supported}"
+            ) from exc
     try:
         return GENERATOR_VERSIONS[value_count]
     except KeyError as exc:
@@ -94,8 +119,13 @@ def _derived_seed(
     split: str,
     index: int,
     value_count: int = VALUE_COUNT,
+    association_count: int = 1,
 ) -> int:
-    payload = f"{generator_version(value_count)}:{base_seed}:{split}:{index}".encode("utf-8")
+    version = generator_version(value_count, association_count)
+    if association_count == 1:
+        payload = f"{version}:{base_seed}:{split}:{index}".encode("utf-8")
+    else:
+        payload = f"{version}:{base_seed}:{split}:{index}:{association_count}".encode("utf-8")
     return int.from_bytes(hashlib.sha256(payload).digest()[:8], "little")
 
 
@@ -104,36 +134,67 @@ def make_example(
     split: str,
     index: int,
     value_count: int = VALUE_COUNT,
+    association_count: int = 1,
 ) -> CalibrationExample:
     if split not in SPLIT_OFFSETS:
         raise ValueError(f"unknown split: {split}")
     if not 0 <= index < FIXED_EXAMPLES:
         raise ValueError(f"index out of range: {index}")
-    generator_version(value_count)
+    generator_version(value_count, association_count)
     rng = random.Random(
-        _derived_seed(base_seed + SPLIT_OFFSETS[split], split, index, value_count)
+        _derived_seed(
+            base_seed + SPLIT_OFFSETS[split],
+            split,
+            index,
+            value_count,
+            association_count,
+        )
     )
     key_base = KEY_TRAIN_BASE if split == "train" else KEY_HELDOUT_BASE
-    key = key_base + index
-    value = VALUE_BASE + rng.randrange(value_count)
+    if association_count == 1:
+        key = key_base + index
+        value = VALUE_BASE + rng.randrange(value_count)
+        input_ids = (
+            MARKERS["task"],
+            MARKERS["record"],
+            key,
+            value,
+            MARKERS["query"],
+            key,
+            MARKERS["answer"],
+            value,
+        )
+        labels = (-100, -100, -100, -100, -100, -100, -100, value)
+        return CalibrationExample(split, index, input_ids, labels, value)
+    if association_count != 2:
+        raise ValueError(f"association generator does not implement count {association_count}")
+    keys = tuple(key_base + index * association_count + offset for offset in range(association_count))
+    values = tuple(VALUE_BASE + offset for offset in rng.sample(range(value_count), association_count))
+    query_index = rng.randrange(association_count)
+    query_key = keys[query_index]
+    target = values[query_index]
     input_ids = (
         MARKERS["task"],
         MARKERS["record"],
-        key,
-        value,
+        keys[0],
+        values[0],
+        MARKERS["record"],
+        keys[1],
+        values[1],
         MARKERS["query"],
-        key,
+        query_key,
         MARKERS["answer"],
-        value,
+        target,
     )
-    labels = (-100, -100, -100, -100, -100, -100, -100, value)
-    return CalibrationExample(split, index, input_ids, labels, value)
+    labels = (-100,) * (len(input_ids) - 1) + (target,)
+    return CalibrationExample(split, index, input_ids, labels, target)
 
 
 def make_training_batch(
     base_seed: int,
     optimizer_step: int,
     value_count: int = VALUE_COUNT,
+    association_count: int = 1,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     examples = [
         make_example(
@@ -141,6 +202,7 @@ def make_training_batch(
             "train",
             ((optimizer_step - 1) * EFFECTIVE_BATCH_SIZE + offset) % FIXED_EXAMPLES,
             value_count,
+            association_count,
         )
         for offset in range(EFFECTIVE_BATCH_SIZE)
     ]
@@ -154,18 +216,23 @@ def make_evaluation_examples(
     base_seed: int,
     split: str,
     value_count: int = VALUE_COUNT,
+    association_count: int = 1,
 ) -> list[CalibrationExample]:
     return [
-        make_example(base_seed, split, index, value_count)
+        make_example(base_seed, split, index, value_count, association_count)
         for index in range(FIXED_EXAMPLES)
     ]
 
 
-def generator_spec(base_seed: int, value_count: int = VALUE_COUNT) -> dict[str, Any]:
-    return {
-        "version": generator_version(value_count),
+def generator_spec(
+    base_seed: int,
+    value_count: int = VALUE_COUNT,
+    association_count: int = 1,
+) -> dict[str, Any]:
+    spec = {
+        "version": generator_version(value_count, association_count),
         "base_seed": base_seed,
-        "sequence_length": SEQUENCE_LENGTH,
+        "sequence_length": sequence_length(association_count),
         "fixed_examples": FIXED_EXAMPLES,
         "key_train_base": KEY_TRAIN_BASE,
         "key_heldout_base": KEY_HELDOUT_BASE,
@@ -174,6 +241,9 @@ def generator_spec(base_seed: int, value_count: int = VALUE_COUNT) -> dict[str, 
         "markers": MARKERS,
         "split_offsets": SPLIT_OFFSETS,
     }
+    if association_count != 1:
+        spec["association_count"] = association_count
+    return spec
 
 
 def _cpu_copy(value: Any) -> Any:
@@ -293,10 +363,16 @@ def _load_json(path: Path) -> dict[str, Any]:
     return payload
 
 
-def _data_hash(base_seed: int, value_count: int = VALUE_COUNT) -> str:
+def _data_hash(
+    base_seed: int,
+    value_count: int = VALUE_COUNT,
+    association_count: int = 1,
+) -> str:
     digest = hashlib.sha256()
     for split in ("train", "heldout"):
-        for example in make_evaluation_examples(base_seed, split, value_count):
+        for example in make_evaluation_examples(
+            base_seed, split, value_count, association_count
+        ):
             digest.update(split.encode("ascii"))
             digest.update(
                 b"".join(int(token).to_bytes(2, "little") for token in example.input_ids)
@@ -314,6 +390,7 @@ def run(
     protocol_commit: str,
     *,
     value_count: int = VALUE_COUNT,
+    association_count: int = 1,
     resume_path: Path | None = None,
 ) -> dict[str, Any]:
     """Run one fixed-set rung, checkpointing often enough for power-loss recovery.
@@ -327,8 +404,11 @@ def run(
         raise RuntimeError("CUDA is unavailable in the host training process")
     if run_dir.exists() and any(run_dir.iterdir()):
         raise RuntimeError(f"run directory is not empty: {run_dir}")
-    version = generator_version(value_count)
-    protocol_relative_path = PROTOCOL_PATHS[value_count]
+    version = generator_version(value_count, association_count)
+    if association_count == 1:
+        protocol_relative_path = PROTOCOL_PATHS[value_count]
+    else:
+        protocol_relative_path = ASSOCIATION_PROTOCOL_PATHS[(value_count, association_count)]
     current_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True
     ).strip()
@@ -338,7 +418,9 @@ def run(
         )
 
     config = load_config(config_path)
-    expected_tokens = MAX_STEPS * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE
+    current_sequence_length = sequence_length(association_count)
+    tokens_per_step = current_sequence_length * EFFECTIVE_BATCH_SIZE
+    expected_tokens = MAX_STEPS * tokens_per_step
     if config.context_length != 512 or config.micro_batch_size != MICRO_BATCH_SIZE:
         raise RuntimeError("calibration model geometry does not match the frozen protocol")
     if config.gradient_accumulation_steps != GRADIENT_ACCUMULATION_STEPS:
@@ -349,7 +431,8 @@ def run(
         raise RuntimeError("calibration schedule does not match the frozen protocol")
     if config.data_and_tokenizer != version:
         raise RuntimeError(
-            f"config data identity does not match value_count={value_count}: "
+            f"config data identity does not match value_count={value_count}, "
+            f"association_count={association_count}: "
             f"{config.data_and_tokenizer!r} != {version!r}"
         )
 
@@ -358,9 +441,9 @@ def run(
     script_hash = sha256_file(Path(__file__))
     protocol_path = REPO_ROOT / protocol_relative_path
     protocol_hash = sha256_file(protocol_path)
-    spec = generator_spec(seed, value_count)
+    spec = generator_spec(seed, value_count, association_count)
     generator_hash = sha256_json(spec)
-    data_hash = _data_hash(seed, value_count)
+    data_hash = _data_hash(seed, value_count, association_count)
     seed_report = set_reproducible_seed(seed, deterministic=True)
     device = torch.device("cuda")
     model = _build_model(config).to(device)
@@ -408,7 +491,7 @@ def run(
         initial_tokens = int(payload["tokens_processed"])
         if initial_step <= 0 or initial_step >= MAX_STEPS:
             raise RuntimeError("resume checkpoint must be an interior checkpoint")
-        if initial_tokens != initial_step * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE:
+        if initial_tokens != initial_step * tokens_per_step:
             raise RuntimeError("resume checkpoint progress is inconsistent")
         model.load_state_dict(payload["model_state_dict"])
         optimizer.load_state_dict(payload["optimizer_state_dict"])
@@ -423,8 +506,12 @@ def run(
         metric_history = list(payload.get("metric_history", []))
         last_train_loss = payload.get("last_train_loss")
 
-    train_examples = make_evaluation_examples(seed, "train", value_count)
-    heldout_examples = make_evaluation_examples(seed, "heldout", value_count)
+    train_examples = make_evaluation_examples(
+        seed, "train", value_count, association_count
+    )
+    heldout_examples = make_evaluation_examples(
+        seed, "heldout", value_count, association_count
+    )
     run_metadata = {
         "experiment_id": run_dir.name,
         "status": "running",
@@ -445,11 +532,12 @@ def run(
         "gradient_checkpointing": {"configured": True, "implemented": False, "enabled": False},
         "training": {
             "max_steps": MAX_STEPS,
-            "sequence_length": SEQUENCE_LENGTH,
-            "tokens_per_step": SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE,
+            "sequence_length": current_sequence_length,
+            "tokens_per_step": tokens_per_step,
             "tokens": expected_tokens,
             "fixed_training_examples": FIXED_EXAMPLES,
             "value_count": value_count,
+            "association_count": association_count,
             "warmup_steps": WARMUP_STEPS,
             "validation_interval_steps": EVAL_INTERVAL,
             "checkpoint_interval_steps": config.checkpoint_interval_steps,
@@ -463,7 +551,7 @@ def run(
     monitor = IntegrityMonitor(
         run_dir=run_dir,
         metadata=run_metadata,
-        tokens_per_step=SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE,
+        tokens_per_step=tokens_per_step,
         initial_step=initial_step,
         initial_tokens=initial_tokens,
     )
@@ -489,7 +577,7 @@ def run(
                 "model_state_dict": _cpu_copy(model.state_dict()),
                 "optimizer_state_dict": _cpu_copy(optimizer.state_dict()),
                 "step": step,
-                "tokens_processed": step * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE,
+                "tokens_processed": step * tokens_per_step,
                 "seed": seed,
                 "rng_state": _rng_state(),
                 "synthetic_generator": spec,
@@ -503,7 +591,7 @@ def run(
             checkpoint_path,
             {
                 "step": step,
-                "tokens_processed": step * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE,
+                "tokens_processed": step * tokens_per_step,
                 "seed": seed,
                 "config_sha256": config_hash,
                 "data_manifest_sha256": data_hash,
@@ -512,6 +600,7 @@ def run(
                 "protocol_commit": protocol_commit,
                 "synthetic_generator_version": version,
                 "value_count": value_count,
+                "association_count": association_count,
                 "gradient_checkpointing": False,
             },
         )
@@ -524,7 +613,9 @@ def run(
             step_started = time.perf_counter()
             learning_rate = _learning_rate(config.learning_rate, step)
             _set_learning_rate(optimizer, learning_rate)
-            cpu_inputs, cpu_labels = make_training_batch(seed, step, value_count)
+            cpu_inputs, cpu_labels = make_training_batch(
+                seed, step, value_count, association_count
+            )
             device_inputs = cpu_inputs.to(device)
             device_labels = cpu_labels.to(device)
             torch.cuda.synchronize(device)
@@ -567,12 +658,12 @@ def run(
                 validation_history.append({"step": step, "metrics": evaluation})
             monitor.record_step(
                 step=step,
-                tokens_processed=step * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE,
+                tokens_processed=step * tokens_per_step,
                 train_loss=train_loss,
                 validation_loss=None if evaluation is None else evaluation["heldout"]["target_loss"],
                 gradient_norm=gradient_norm,
                 learning_rate=learning_rate,
-                tokens_per_second=(SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE) / step_wall,
+                tokens_per_second=tokens_per_step / step_wall,
                 cuda_elapsed_seconds=cuda_seconds,
                 peak_allocated_vram_bytes=torch.cuda.max_memory_allocated(device),
                 peak_reserved_vram_bytes=torch.cuda.max_memory_reserved(device),
@@ -626,7 +717,8 @@ def run(
                 "parameter_count": parameter_count,
                 "optimizer_steps": MAX_STEPS,
                 "initial_step": initial_step,
-                "sequence_length": SEQUENCE_LENGTH,
+                "sequence_length": current_sequence_length,
+                "association_count": association_count,
                 "tokens_processed": expected_tokens,
                 "warmup_steps": WARMUP_STEPS,
                 "learning_rate": config.learning_rate,
@@ -680,6 +772,13 @@ def main() -> int:
         help="reserved answer-token pool for the selected solvability rung",
     )
     parser.add_argument(
+        "--association-count",
+        type=int,
+        default=1,
+        choices=(1, 2),
+        help="number of key/value associations in the selected solvability rung",
+    )
+    parser.add_argument(
         "--resume",
         type=Path,
         default=None,
@@ -702,11 +801,13 @@ def main() -> int:
     )
     if args.dry_run:
         config = load_config(config_path)
-        version = generator_version(args.value_count)
-        expected_tokens = MAX_STEPS * SEQUENCE_LENGTH * EFFECTIVE_BATCH_SIZE
+        version = generator_version(args.value_count, args.association_count)
+        current_sequence_length = sequence_length(args.association_count)
+        expected_tokens = MAX_STEPS * current_sequence_length * EFFECTIVE_BATCH_SIZE
         if config.data_and_tokenizer != version:
             raise SystemExit(
-                f"config data identity does not match value_count={args.value_count}: "
+                f"config data identity does not match value_count={args.value_count}, "
+                f"association_count={args.association_count}: "
                 f"{config.data_and_tokenizer!r} != {version!r}"
             )
         if config.max_steps != MAX_STEPS or config.training_token_budget != expected_tokens:
@@ -719,6 +820,8 @@ def main() -> int:
                     "architecture": config.stage,
                     "seed": args.seed,
                     "value_count": args.value_count,
+                    "association_count": args.association_count,
+                    "sequence_length": current_sequence_length,
                     "generator_version": version,
                     "max_steps": MAX_STEPS,
                     "training_token_budget": expected_tokens,
@@ -739,6 +842,7 @@ def main() -> int:
                 args.seed,
                 args.protocol_commit,
                 value_count=args.value_count,
+                association_count=args.association_count,
                 resume_path=resume_path,
             ),
             indent=2,
