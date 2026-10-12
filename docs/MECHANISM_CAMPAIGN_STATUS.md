@@ -148,4 +148,6 @@ item result commit. The next queued item is query/readout localization.
 | Item 1 result | `6d19ee4` | Frozen-checkpoint decomposition result/report and ledger update. |
 | Item 2 protocol | `9202c1d` | Frozen layerwise representation-forensics plan. |
 | Item 2 analyzer | `338a249` | Read-only layerwise capture/probe implementation. |
+| Item 2 result | `9856a8b` | Frozen-checkpoint layerwise result, caveats, and ledger update. |
+| Item 3 protocol | pending | Query/readout localization plan; commit before execution. |
 
