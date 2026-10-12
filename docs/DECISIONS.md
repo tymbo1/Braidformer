@@ -487,3 +487,20 @@ tested only after the single-generation normal/loss-gated/trajectory-gated
 comparison, with shuffled-order and withheld/scrambled-inheritance controls.
 This refinement authorizes no implementation, training, self-model, or
 cross-generation experiment.
+
+## 2026-10-12 — D035: freeze the 1024-value solvability-ladder rung
+
+The completed values256 rung preserved perfect training memorization for both
+models while reducing held-out exact match to `0.4297` for A0 and `0.3516` for
+A1. The next calibrated test therefore expands only the reserved answer-token
+pool from 256 to 1,024, keeping the one association, 128 fixed examples,
+architectures, seed 17, optimizer, 2,000-step budget, 256,000 token
+positions, and checkpoint/evaluation cadence unchanged.
+
+The frozen configurations are
+`configs/braidnano_a0_solvability_values1024.json` and
+`configs/braidnano_a1_solvability_values1024.json`; the protocol is
+`docs/A0_A1_SOLVABILITY_VALUES1024_PROTOCOL.md`. Only the two fresh seed-17
+arms are in scope. Values8000, association-count changes, distractors,
+target-length changes, decay analysis, predictive learning-state/inheritance,
+scaling, A2, and memory work remain outside this authorization boundary.

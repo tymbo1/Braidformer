@@ -38,12 +38,14 @@ GENERATOR_VERSIONS = {
     64: "synthetic_overfit_calibration_v1",
     128: "synthetic_solvability_values128_v1",
     256: "synthetic_solvability_values256_v1",
+    1024: "synthetic_solvability_values1024_v1",
 }
 GENERATOR_VERSION = GENERATOR_VERSIONS[64]
 PROTOCOL_PATHS = {
     64: "docs/A0_A1_SOLVABILITY_CALIBRATION_PROTOCOL.md",
     128: "docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md",
     256: "docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md",
+    1024: "docs/A0_A1_SOLVABILITY_VALUES1024_PROTOCOL.md",
 }
 PROTOCOL_COMMIT_REQUIRED = "pending"
 SEQUENCE_LENGTH = 8
