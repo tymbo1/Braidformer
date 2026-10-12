@@ -608,3 +608,31 @@ two fresh seed-17 arms are in scope. Four/eight associations, additional
 seeds, distractors, target-length changes, decay analysis, predictive
 learning-state/inheritance, scaling, A2, and memory work remain outside this
 authorization boundary.
+
+## 2026-10-12 — D041: complete the two-association 8000-value solvability rung
+
+The frozen protocol in commit `3079c74` was executed with fresh seed-17 A0 and
+A1 initialization. Both unchanged 42M models completed 2,000 optimizer steps
+and 352,000 sequence-token positions, reached `1.0000` autoregressive greedy
+exact match on the repeated 128-example training set, and produced finite
+values with SHA-256-verified final checkpoints and no CUDA/OOM failure.
+
+On the diagnostic held-out set, A0 reached `0.0156` exact match (`2/128`) and
+A1 reached `0.0000` (`0/128`). A0's target loss was `10.385956`; A1's was
+`10.544830`, for an A1 minus A0 delta of `+0.158875`. A0 therefore retained
+the diagnostic advantage. Relative to the one-association 8000-value rung,
+held-out exact match fell from `0.0391` to `0.0156` for A0 and from `0.0391`
+to `0.0000` for A1 under the same 2,000-optimizer-step recipe.
+
+This is a held-out retrieval/generalization effect, not a training-
+memorization boundary: both models still memorized the fixed training set.
+The two-association examples necessarily used 11 tokens, so the rung used
+352,000 token positions and is not an equal-token comparison with the
+one-association result. A1 used `1.736x` A0's CUDA time (`316.698` versus
+`182.455` seconds). The tracked evidence is in
+`docs/A0_A1_SOLVABILITY_ASSOCIATIONS2_VALUES8000_RESULT.md`,
+`results/a0_a1_solvability_associations2_values8000.json`, and the read-only
+verifier `scripts/analyze_synthetic_solvability_associations2_values8000.py`;
+raw logs and checkpoints remain ignored. Four/eight associations, distractors,
+target-length changes, decay analysis, predictive learning-state,
+competence-ledger, scaling, A2, and memory work remain unfrozen.
