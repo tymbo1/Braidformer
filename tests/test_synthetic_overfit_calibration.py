@@ -95,6 +95,37 @@ def test_values8000_rung_changes_only_the_reserved_answer_pool_identity() -> Non
     assert make_example(17, "train", 7, value_count=8000) == example
 
 
+def test_target_length_rungs_bind_and_reproduce_value_sequences() -> None:
+    for target_length in (2, 4, 8):
+        example = make_example(
+            17,
+            "train",
+            7,
+            value_count=8000,
+            target_length=target_length,
+        )
+        version = f"synthetic_solvability_targetlength{target_length}_values8000_v1"
+        expected_length = sequence_length(target_length=target_length)
+
+        assert generator_version(8000, target_length=target_length) == version
+        assert generator_spec(17, 8000, target_length=target_length)["version"] == version
+        assert generator_spec(17, 8000, target_length=target_length)["target_length"] == target_length
+        assert len(example.input_ids) == expected_length == 6 + 2 * target_length
+        assert isinstance(example.target, tuple)
+        assert len(example.target) == target_length
+        assert example.input_ids[3 : 3 + target_length] == example.target
+        assert example.input_ids[-target_length:] == example.target
+        assert example.labels[:-target_length] == (-100,) * (expected_length - target_length)
+        assert example.labels[-target_length:] == example.target
+        assert make_example(
+            17,
+            "train",
+            7,
+            value_count=8000,
+            target_length=target_length,
+        ) == example
+
+
 def test_distractor_distance_rungs_preserve_values8000_bindings() -> None:
     distances = (
         (4, "synthetic_solvability_distance4_values8000_v1"),
