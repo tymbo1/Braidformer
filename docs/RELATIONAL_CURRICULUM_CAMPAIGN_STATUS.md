@@ -1,6 +1,6 @@
 # Relational curriculum campaign status
 
-Status: **complete; result adjudicated; representation-probe continuation complete**.
+Status: **complete; result adjudicated; query/readout continuation complete**.
 
 This is the continuation campaign selected by the completed mechanism
 adjudication. It is separate from, and does not reopen, the completed
@@ -42,7 +42,10 @@ runner execution-commit field.
 4. **Complete.** Frozen layerwise representation probes ran on all four
    curriculum checkpoints at target lengths 2/4/8, A1 first, with all source
    checkpoint hashes verified.
-5. **Next.** Query/readout localization on these same frozen checkpoints.
+5. **Complete.** Four-fold cross-validated query/readout localization ran on
+   the same 12 checkpoint/length combinations, including native logits.
+6. **Next.** A reversible non-training causal state intervention with a
+   predeclared prediction.
 
 No A2, scaling, longer training, persistent memory, predictive-learning,
 inheritance, SNAIL, Woven Neural Fabric, post-training, or new-dataset work is
@@ -58,11 +61,11 @@ condition; it must be recorded and adjudicated.
 
 ## Next queued experiment
 
-Run the query/readout localization diagnostic on the frozen curriculum
-checkpoints. Compare value/key decodability and geometry before and after the
-query, then compare those representations with native output logits and
-correct-token rank. This is still read-only; it requires its own committed
-analysis plan before execution and must not modify A0/A1 checkpoints.
+Run one reversible inference-time state intervention on the frozen curriculum
+checkpoints. It must alter no trained weight, preserve the native architecture,
+and predeclare whether restoring/preserving the suspected representation should
+improve the corresponding native value rank or top-1 output. Treat it as
+mechanistic evidence only; it is not a production fix.
 
 ## Completed evidence
 
@@ -88,6 +91,13 @@ remain near floor. This supports a curriculum-sensitive recurrent
 representation/transformation effect without demonstrating a stable arbitrary
 binding coordinate.
 
+The query/readout continuation is documented in
+`docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_READOUT_LOCALIZATION_RESULT.md`; its
+machine-readable evidence is in
+`results/a0_a1_relational_curriculum_query_readout_localization.json`. Native
+staged A1 confidence improved, but four-fold fixed and site-specific value
+readouts remained near floor, weakening a pure final-readout explanation.
+
 ## Continuation log
 
 | state | commit | evidence |
@@ -98,3 +108,5 @@ binding coordinate.
 | checkpoint-digest correction | `ba3b48a0213a0809056d9dbf92cc5319f9c4f23f` | corrected A1-shuffled source digest; integrity gate stopped before loading on the earlier attempt |
 | unique-comparison correction | `19a2ef68db8ab6f43b725167dc4b63b961091ddc` | deduplicated aggregate comparison rows; tests passed |
 | representation-probe result | `4b3d4cdd859ac7711d8d3b1f67e08cc5bb4b4fe6` | 12 frozen analyses, verified aggregate, and result report |
+| query/readout plan/code freeze | `cc7d7cfbde079fc8af2bb25e588b11a913b34e9f` | frozen four-fold query/readout plan and curriculum wrapper |
+| query/readout result | `0e005577542bd1120c17368c834abd34856a0f9b` | 12 native-logit/probe analyses, verified aggregate, and result report |
