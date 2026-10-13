@@ -31,7 +31,9 @@ loss = native_causal_loss + 0.1 * cross_entropy(binding_logits, target_value)
 ```
 
 The query-key position is the token immediately following the unique query
-marker. The target is the final non-masked value label. The state is therefore
+marker. Each non-masked target value label is scored against the same
+query-conditioned state. For multi-token target-length curriculum examples,
+the query state is repeated once per target value. The state is therefore
 captured before the answer marker/target and cannot read the target token from
 the future. The existing tied token-embedding table supplies both key and
 candidate-value vectors; no auxiliary head or trainable parameter is added.

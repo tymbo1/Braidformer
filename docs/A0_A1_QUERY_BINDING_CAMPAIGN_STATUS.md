@@ -1,6 +1,6 @@
 # A0/A1 query-conditioned binding campaign status
 
-Status: **protocol frozen; training not yet executed**.
+Status: **protocol corrected and frozen; training not yet completed**.
 
 This is a new branch after the completed bounded mechanism campaign. It does
 not modify or reopen the frozen A0/A1 controls.
@@ -31,11 +31,19 @@ value-trace experiments. Native evaluation uses the existing battery.
 ## Queue
 
 1. **Complete.** Freeze protocol, runner, and CPU validation tests.
-2. **Queued.** Run fresh staged and shuffled A1 query-binding arms.
-3. **Queued.** Verify checkpoint/result integrity and compare native metrics with
+2. **Attempted and corrected.** The first gated staged run reached step 1,754
+   and stopped on an implementation guard that assumed one target label. The
+   existing stress curriculum legitimately contains target lengths 2/4/8; no
+   result was accepted. The partial raw run was moved to
+   `/tmp/braidformer_query_binding_failed_20261013_1809/` for preservation.
+   The corrected objective scores every target token against the same
+   pre-answer query-conditioned state, with no change to model, data, or
+   predeclared objective.
+3. **Queued.** Run fresh staged and shuffled A1 query-binding arms.
+4. **Queued.** Verify checkpoint/result integrity and compare native metrics with
    original A1 and unconditioned value-trace arms.
-4. **Queued.** Rerun the exact layerwise and query/readout diagnostics.
-5. **Queued.** Adjudicate whether exact retrieval and transferable binding
+5. **Queued.** Rerun the exact layerwise and query/readout diagnostics.
+6. **Queued.** Adjudicate whether exact retrieval and transferable binding
    improved; do not stack another auxiliary objective if the prediction fails.
 
 ## Controls and exclusions
@@ -56,5 +64,4 @@ inheritance, new dataset, or production architecture change is in scope.
 Protocol/code freeze commit: `e7259e7b56023d4f4e83e9e17b7eefe194b25da1`.
 Protocol sha256:
 `c47025b588d2b0341cda8f7f1a8cb6725abc323031eff4400f913dd99f184e22`.
-The execution commit will be recorded immediately before the gated training
-run.
+Correction commit: **pending commit of the multi-target implementation fix**.

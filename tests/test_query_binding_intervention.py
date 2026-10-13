@@ -55,3 +55,20 @@ def test_query_conditioned_binding_loss_requires_one_query_marker() -> None:
     embedding = torch.ones(16_000, 4)
     with pytest.raises(ValueError, match="exactly one query marker"):
         query_conditioned_binding_loss(states, input_ids, labels, embedding)
+
+
+def test_query_conditioned_binding_loss_supports_multi_token_targets() -> None:
+    embedding = torch.zeros(16_000, 4)
+    embedding[1_000] = torch.tensor([1.0, 0.0, 0.0, 0.0])
+    embedding[8_000] = torch.tensor([1.0, 0.0, 0.0, 0.0])
+    embedding[8_001] = torch.tensor([1.0, 0.0, 0.0, 0.0])
+    states = torch.zeros(1, 6, 4)
+    states[0, 4] = embedding[1_000]
+    input_ids = torch.tensor(
+        [[30_000, 30_001, 1_000, 30_002, 1_000, 8_000]], dtype=torch.long
+    )
+    labels = torch.tensor(
+        [[-100, -100, -100, -100, 8_000, 8_001]], dtype=torch.long
+    )
+    loss = query_conditioned_binding_loss(states, input_ids, labels, embedding)
+    assert torch.isfinite(loss)

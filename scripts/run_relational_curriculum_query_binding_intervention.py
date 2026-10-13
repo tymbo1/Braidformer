@@ -121,15 +121,14 @@ def query_conditioned_binding_loss(
     target_mask = (labels >= value_base) & (labels < value_base + value_count)
     target_positions = target_mask.nonzero(as_tuple=False)
     target_counts = torch.bincount(target_positions[:, 0], minlength=batch_size)
-    if target_positions.shape[0] != batch_size or not bool(torch.all(target_counts == 1)):
-        raise ValueError("each training example must contain exactly one value target")
-    target_indices = torch.empty(batch_size, dtype=torch.long, device=labels.device)
-    target_indices[target_positions[:, 0]] = target_positions[:, 1]
+    if target_positions.shape[0] == 0 or not bool(torch.all(target_counts >= 1)):
+        raise ValueError("each training example must contain at least one value target")
 
-    rows = torch.arange(batch_size, device=input_ids.device)
-    query_key_ids = input_ids[rows, query_positions]
-    query_states = states[rows, query_positions].float()
-    target_ids = labels[rows, target_indices].long() - value_base
+    target_rows = target_positions[:, 0]
+    query_key_positions = query_positions[target_rows]
+    query_key_ids = input_ids[target_rows, query_key_positions]
+    query_states = states[target_rows, query_key_positions].float()
+    target_ids = labels[target_positions[:, 0], target_positions[:, 1]].long() - value_base
     key_vectors = token_embedding_weight[query_key_ids].float()
     value_vectors = token_embedding_weight[value_base : value_base + value_count].float()
     joint = F.normalize(query_states, dim=-1) * F.normalize(key_vectors, dim=-1)
