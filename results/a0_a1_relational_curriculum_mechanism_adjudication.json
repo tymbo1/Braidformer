@@ -1,0 +1,72 @@
+{
+  "status": "complete",
+  "version": "relational_curriculum_mechanism_adjudication_v1",
+  "read_only": true,
+  "evidence_chain": [
+    {
+      "id": "behavioural_ladder",
+      "evidence": "perfect training memorization with collapsing held-out binding/generalization",
+      "report": "docs/A0_A1_MECHANISM_ADJUDICATION_RESULT.md",
+      "commit": "040736a536ab9b8e41f6e42fcd4748ed50fa1c29"
+    },
+    {
+      "id": "decay_and_state_forensics",
+      "evidence": "distance-sensitive A1 degradation, short time constants, long-tail negative",
+      "report": "docs/A0_A1_MECHANISM_ADJUDICATION_RESULT.md",
+      "commit": "ebbcddb7681b2d793af69146a2c6d44b2c534b89"
+    },
+    {
+      "id": "decay_tail_intervention",
+      "evidence": "long-lived channels did not restore long-distance probe/task performance",
+      "report": "docs/A0_A1_MECHANISM_ADJUDICATION_RESULT.md",
+      "commit": "bc880d8db5ee29fd8b73997315d5ee8ceeb5e91b"
+    },
+    {
+      "id": "curriculum",
+      "evidence": "staged A1 improves CE/easier retrieval but not hard exact retrieval",
+      "report": "docs/A0_A1_RELATIONAL_CURRICULUM_V1_RESULT.md",
+      "aggregate": "results/a0_a1_relational_curriculum_v1.json",
+      "commit": "73898c8cc0e1b16e2dd77ec8ab38a3692ee442ab"
+    },
+    {
+      "id": "layerwise_curriculum_probes",
+      "evidence": "staged A1 later-state held-out-fitted ceiling separates, fixed/train-fitted transfer remains near floor",
+      "report": "docs/A0_A1_RELATIONAL_CURRICULUM_REPRESENTATION_PROBE_RESULT.md",
+      "aggregate": "results/a0_a1_relational_curriculum_representation_probes.json",
+      "commit": "4b3d4cdd859ac7711d8d3b1f67e08cc5bb4b4fe6"
+    },
+    {
+      "id": "query_readout",
+      "evidence": "four-fold fixed/site-specific target readouts near floor",
+      "report": "docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_READOUT_LOCALIZATION_RESULT.md",
+      "aggregate": "results/a0_a1_relational_curriculum_query_readout_localization.json",
+      "commit": "0e005577542bd1120c17368c834abd34856a0f9b"
+    },
+    {
+      "id": "state_replay",
+      "evidence": "layer-7 stored-value state replay changed state but did not rescue native retrieval",
+      "report": "docs/A0_A1_RELATIONAL_CURRICULUM_STATE_REPLAY_INTERVENTION_RESULT.md",
+      "aggregate": "results/a0_a1_relational_curriculum_state_replay_intervention.json",
+      "commit": "5900a8c6538e6022b3376ca6f7f91fc593103156"
+    }
+  ],
+  "hypotheses": {
+    "H1_temporal_decay": "partial",
+    "H2_recurrent_transformation_interference": "leading",
+    "H3_query_conditioned_corruption": "surviving_unlocalized",
+    "H4_binding_generalization": "strongly_supported",
+    "H5_pure_readout": "weakened_as_sole_cause",
+    "H6_autoregressive_accumulation_only": "rejected",
+    "H7_optimization_dynamics": "partial_modifier",
+    "H8_curriculum_history": "partial_modifier"
+  },
+  "unlocked_intervention": {
+    "status": "unlocked",
+    "name": "A1 layer7 value-trace auxiliary objective",
+    "architecture_change": false,
+    "new_parameters": false,
+    "mechanism": "train the existing layer7 recurrent state to rank the correct target value against the existing 8000-value embedding range",
+    "controls": "existing matched A1 staged and shuffled curriculum checkpoints",
+    "stop_rule": "if native held-out retrieval does not improve, record null and authorize no second intervention"
+  }
+}
