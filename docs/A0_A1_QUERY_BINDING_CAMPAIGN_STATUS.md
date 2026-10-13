@@ -1,6 +1,6 @@
 # A0/A1 query-conditioned binding campaign status
 
-Status: **protocol corrected and frozen; training not yet completed**.
+Status: **training complete; postdiagnostics frozen and queued**.
 
 This is a new branch after the completed bounded mechanism campaign. It does
 not modify or reopen the frozen A0/A1 controls.
@@ -39,10 +39,12 @@ value-trace experiments. Native evaluation uses the existing battery.
    The corrected objective scores every target token against the same
    pre-answer query-conditioned state, with no change to model, data, or
    predeclared objective.
-3. **Queued.** Run fresh staged and shuffled A1 query-binding arms.
-4. **Queued.** Verify checkpoint/result integrity and compare native metrics with
-   original A1 and unconditioned value-trace arms.
-5. **Queued.** Rerun the exact layerwise and query/readout diagnostics.
+3. **Complete.** Fresh staged and shuffled A1 query-binding arms completed
+   under the corrected protocol. Native hard-task loss improved in the staged
+   arm and mixed in the shuffled arm; hard exact retrieval remained at floor.
+4. **Complete.** Checkpoint sidecars, parameter count, aggregate status, and
+   native comparisons against original A1 and value-trace controls passed.
+5. **Queued.** Run the exact layerwise and query/readout diagnostics.
 6. **Queued.** Adjudicate whether exact retrieval and transferable binding
    improved; do not stack another auxiliary objective if the prediction fails.
 
@@ -65,5 +67,17 @@ Protocol/code freeze commit: `e7259e7b56023d4f4e83e9e17b7eefe194b25da1`.
 Protocol sha256:
 `bd0a8c0af7d34d8dcc21469edcd1e4bec68c647a1991e117afc594a04817edc7`.
 Correction commit: `8484cd608f4a5ac6860fb4e7f8a23c2149563512`.
-The corrected execution commit will be recorded immediately before the gated
-training rerun.
+The corrected execution commit is recorded below.
+
+Corrected execution commit: `4ca85c7ac389d91f164874e6e80914b322da2357`.
+Intervention aggregate:
+`results/a0_a1_relational_curriculum_query_binding_intervention.json`
+(sha256 `5f63c688985ac049047f5e8b34b6c359b1eeeea28de5069728d71a80dcbad9a2`).
+New checkpoint hashes: staged
+`baf6af6f6653e71578246cffff3103a086baa1bcbbbc1b21c98ba3370ad359c2`;
+shuffled
+`d453b5014de1933b51fff9b5a014c7d5a108147d76fbf47ac78594376d56ce8f`.
+Postdiagnostic plan/code freeze commit:
+`ed55b28f4b29dd4ec7cb3ad5c0a61ba68e7fc0ef`.
+Postdiagnostic plan sha256:
+`0f8b561b186ee0be1bf89a74201fc9cda5d35869adb94aff8aab82e41cd1bf52`.
