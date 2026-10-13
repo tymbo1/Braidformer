@@ -85,6 +85,8 @@ Postdiagnostic plan sha256:
 Postdiagnostic aggregate:
 `results/a0_a1_relational_curriculum_query_binding_postdiagnostics.json`
 (sha256 `03ddd4e90b8cbe78fd264180b99669a36d33bf9ae707e667ef71981509bcbeb9`).
+Postdiagnostic result/report commit:
+`c335b96853804e46ca4b260f40185869aa5e80bb`.
 Result reports:
 `docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_BINDING_INTERVENTION_RESULT.md` and
 `docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_BINDING_POSTDIAGNOSTIC_RESULT.md`.
