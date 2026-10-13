@@ -1,6 +1,6 @@
 # A0/A1 query-conditioned binding campaign status
 
-Status: **training complete; postdiagnostics frozen and queued**.
+Status: **complete; postdiagnostics adjudicated and branch stopped**.
 
 This is a new branch after the completed bounded mechanism campaign. It does
 not modify or reopen the frozen A0/A1 controls.
@@ -44,9 +44,10 @@ value-trace experiments. Native evaluation uses the existing battery.
    arm and mixed in the shuffled arm; hard exact retrieval remained at floor.
 4. **Complete.** Checkpoint sidecars, parameter count, aggregate status, and
    native comparisons against original A1 and value-trace controls passed.
-5. **Queued.** Run the exact layerwise and query/readout diagnostics.
-6. **Queued.** Adjudicate whether exact retrieval and transferable binding
-   improved; do not stack another auxiliary objective if the prediction fails.
+5. **Complete.** Exact layerwise and query/readout diagnostics reran on all
+   six checkpoint/target-length combinations.
+6. **Complete.** Native loss improved selectively, but exact retrieval and
+   transferable binding did not; no second auxiliary objective is authorized.
 
 ## Controls and exclusions
 
@@ -81,3 +82,9 @@ Postdiagnostic plan/code freeze commit:
 `ed55b28f4b29dd4ec7cb3ad5c0a61ba68e7fc0ef`.
 Postdiagnostic plan sha256:
 `0f8b561b186ee0be1bf89a74201fc9cda5d35869adb94aff8aab82e41cd1bf52`.
+Postdiagnostic aggregate:
+`results/a0_a1_relational_curriculum_query_binding_postdiagnostics.json`
+(sha256 `03ddd4e90b8cbe78fd264180b99669a36d33bf9ae707e667ef71981509bcbeb9`).
+Result reports:
+`docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_BINDING_INTERVENTION_RESULT.md` and
+`docs/A0_A1_RELATIONAL_CURRICULUM_QUERY_BINDING_POSTDIAGNOSTIC_RESULT.md`.
