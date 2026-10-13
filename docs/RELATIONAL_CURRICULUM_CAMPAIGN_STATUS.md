@@ -1,6 +1,6 @@
 # Relational curriculum campaign status
 
-Status: **complete; mechanism adjudicated; one minimal intervention unlocked**.
+Status: **complete; bounded campaign stopped after the authorized intervention and postdiagnostics**.
 
 This is the continuation campaign selected by the completed mechanism
 adjudication. It is separate from, and does not reopen, the completed
@@ -48,8 +48,12 @@ runner execution-commit field.
    staged/shuffled curriculum checkpoints; it failed its rescue prediction.
 7. **Complete.** Mechanism adjudication combined the evidence and unlocked one
    minimal no-new-parameter A1 training intervention.
-8. **Next.** Freeze and run the layer-7 value-trace auxiliary-objective
-   intervention against the existing matched A1 curriculum controls.
+8. **Complete.** The layer-7 value-trace auxiliary objective ran on staged and
+   shuffled A1 with matched controls; native hard-task loss improved but exact
+   retrieval remained at floor.
+9. **Complete.** The exact layerwise and query/readout diagnostics were rerun;
+   no stable transferable binding code appeared. The bounded campaign is now
+   stopped with no second intervention authorized.
 
 No A2, scaling, longer training, persistent memory, predictive-learning,
 inheritance, SNAIL, Woven Neural Fabric, post-training, or new-dataset work is
@@ -63,13 +67,13 @@ architectures/config controls drift, or the results cannot be compared because
 the exposure hash differs. A positive or negative result alone is not a stop
 condition; it must be recorded and adjudicated.
 
-## Next queued experiment
+## Next experiment outside this campaign
 
-Freeze and run the single unlocked A1 layer-7 value-trace auxiliary-objective
-intervention. It may add no parameters and may not redefine A0 or original A1;
-the auxiliary term is training-only and must be compared with the existing
-matched staged/shuffled A1 controls. If native held-out retrieval does not
-improve, record the null result and stop this intervention branch.
+The single best next test is a fresh, pre-registered comparison of a
+**query-conditioned key→value auxiliary objective** against the unconditioned
+value-trace objective. It should explicitly score the query key and target
+value jointly on the same sealed held-out battery; do not stack it onto the
+completed branch without a new protocol.
 
 ## Completed evidence
 
@@ -109,6 +113,21 @@ machine-readable evidence is in
 the leading supported mechanism pair, while decay, curriculum, and
 optimization remain modifiers rather than sufficient explanations.
 
+The authorized intervention is documented in
+`docs/A0_A1_RELATIONAL_CURRICULUM_VALUE_TRACE_INTERVENTION_RESULT.md`; its
+aggregate is
+`results/a0_a1_relational_curriculum_value_trace_intervention.json`. Native
+hard-target loss improved in both arms, but exact match remained zero and the
+auxiliary branch cost more CUDA time.
+
+The required postdiagnostics are documented in
+`docs/A0_A1_RELATIONAL_CURRICULUM_VALUE_TRACE_POSTDIAGNOSTIC_RESULT.md`; the
+aggregate is
+`results/a0_a1_relational_curriculum_value_trace_postdiagnostics.json`. The
+shuffled branch's held-out-fitted representation ceiling rose, but fixed and
+site-specific cross-validated transfer remained near floor; staged A1 showed
+no material transferable-code repair.
+
 ## Continuation log
 
 | state | commit | evidence |
@@ -123,3 +142,7 @@ optimization remain modifiers rather than sufficient explanations.
 | query/readout result | `0e005577542bd1120c17368c834abd34856a0f9b` | 12 native-logit/probe analyses, verified aggregate, and result report |
 | state-replay result | `5900a8c6538e6022b3376ca6f7f91fc593103156` | six reversible A1 interventions; parameter digests unchanged; rescue prediction failed |
 | mechanism adjudication | `29f4f6f3b04a93e5b34249b3058b2b34a526c881` | H2/H4 leading; one no-new-parameter training intervention unlocked |
+| value-trace plan/code freeze | `fdcd032d640053084b84c204b8e737fe72242464` | frozen no-new-parameter A1 auxiliary-objective protocol and runner |
+| value-trace run result | `1657da5ec8d3c20ae71eb6bcd0c49f7ff3789083` | staged/shuffled runs completed with verified checkpoints and native deltas |
+| value-trace postdiagnostic plan | `1ac08489939275b0571f1c626e82060632ae79a3` | frozen rerun of layerwise and query/readout diagnostics |
+| value-trace postdiagnostic result | `0e66fa3e7faeb3718d24599cb2ec084fdaaed13a` | exact diagnostics rerun; no stable transferable binding repair |
