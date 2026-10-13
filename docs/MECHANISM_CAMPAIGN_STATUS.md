@@ -40,9 +40,9 @@ target-state degradation, or optimization.
 
 | ID | Hypothesis | Current status |
 | --- | --- | --- |
-| H1 | Temporal decay erases the required value trace. | Partially supported but insufficient: distance, taus, and probe collapse support a temporal component; long-tail and layer-7 replay reject simple decay/state preservation as sufficient. |
-| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Leading composite hypothesis, but no single layer/state rule was isolated; layer-7 replay was null. |
-| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Surviving alternative; not separated from H2/H4. |
+| H1 | Temporal decay erases the required value trace. | Partially supported but insufficient: distance, taus, probe collapse, and the full-freeze partial distance-64 gain support a temporal component; long-tail initialization and native retrieval results reject decay alone as sufficient. |
+| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Strengthened: suppressing distractor writes preserves fixed-probe value decodability through the distractor interval, but does not coherently restore native retrieval. |
+| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Strengthened: protected traces still lose transfer after the query and target sites, leaving query-conditioned/downstream transformation as a surviving component. |
 | H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Strongly supported shared failure; it does not alone explain A1's extra distance sensitivity. |
 | H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
 | H6 | Multi-token autoregressive target state degrades after the first output. | Weakened: A1 is already impaired on the first teacher-forced target at lengths 4 and 8, so autoregressive feedback is not the sole cause. |
@@ -235,6 +235,45 @@ campaign diagnostics were read-only; source/checkpoint hashes were preserved;
 the full test suite passed after each item (`67 passed`); `git diff --check`
 passed; raw logs/checkpoints remain ignored; A0 and original A1 definitions
 remain untouched; no GitHub push occurred.
+
+## Post-campaign follow-up — distractor-interval interference isolation
+
+Status: **complete; inference-only causal diagnostic; no training intervention
+unlocked**.
+
+The committed protocol tested the original seed-17 A1 checkpoints at distances
+0, 4, 16, and 64 with one association and 8,000 values. During distractors
+only, every recurrent layer was run under native recurrence, decay-only
+write-protection, or full state freezing. Query/key/answer processing remained
+native. The distance-zero protected variants reproduced native output and
+state metrics exactly within tolerance; functional native logits matched the
+model forward; all outputs were finite; parameter digests were unchanged; no
+checkpoint was written.
+
+The intervention produced a useful separation. Native A1 lost the fixed
+layer-7 value probe through the distractor interval, while both protected
+variants preserved it at distances 4, 16, and 64. Therefore ongoing
+distractor-state transformation causally contributes to intermediate trace
+loss. However, the protected trace still degraded after the query. Native
+retrieval was not coherently rescued: write-protection worsened distance-4 and
+distance-64 value cross-entropy, improved distance-16 cross-entropy only
+slightly without rank/top-1 rescue, and full freezing produced only a partial
+distance-64 cross-entropy/top-1 improvement with worse mean rank.
+
+The strongest current mechanism is therefore a composite:
+
+```text
+weak compositional key/value binding
+        + distractor-state transformation/interference
+        + query-conditioned/downstream transformation
+```
+
+This follow-up does not justify another stacked inference patch or a training
+intervention. The complete aggregate and report are
+`results/a0_a1_interference_isolation_values8000.json` and
+`docs/A0_A1_INTERFERENCE_ISOLATION_RESULT.md`. The protocol is
+`docs/A0_A1_INTERFERENCE_ISOLATION_DESIGN.md`; the analyzer was frozen before
+execution and its source hash is recorded in the aggregate.
 
 ## Commit ledger
 

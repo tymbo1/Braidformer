@@ -848,3 +848,36 @@ ignored. The next experiment should be a narrowly controlled causal decay
 intervention, with the original A1 and distance benchmark retained as the
 untouched control. Target-length testing and relational-curriculum/broader
 language branches remain later work.
+
+## 2026-10-14 — D049: isolate distractor-state interference without training
+
+The next causal diagnostic was frozen in
+`docs/A0_A1_INTERFERENCE_ISOLATION_DESIGN.md` and executed read-only by
+`scripts/analyze_a1_interference_isolation.py` at analyzer commit `1e88deb`.
+It used the original seed-17 one-association/8,000-value A1 checkpoints at
+distances 0, 4, 16, and 64. At distractor positions only, the analyzer
+compared native recurrence, decay-only write protection, and full state
+freezing across all eight recurrent layers. Query/key/answer processing and
+all trained weights remained unchanged.
+
+The distance-zero no-op control passed exactly within tolerance; source
+checkpoint and protocol hashes, finite tensors, and unchanged parameter
+digests all passed. Both protected variants preserved the fixed layer-7 value
+probe through the distractor interval at distances 4, 16, and 64, while
+native A1 lost that transfer. This is causal evidence that ongoing
+distractor-state transformation contributes to value-trace loss. It is not a
+sufficient retrieval repair: the probe still degrades after the query, and
+native output metrics do not improve coherently. Write protection worsened
+distance-4 and distance-64 value CE; its small distance-16 CE improvement had
+no rank/top-1 rescue. Full freezing gave a partial distance-64 CE/top-1 gain
+but worsened mean rank, with no robust exact-retrieval recovery.
+
+The evidence therefore strengthens a composite mechanism—weak compositional
+binding plus distractor-state interference plus query-conditioned/downstream
+transformation—rather than isolating passive decay or a final readout defect.
+No additional inference patch or training intervention is authorized by this
+result. The aggregate is
+`results/a0_a1_interference_isolation_values8000.json` (sha256
+`d86247e643bcc02f62bf6938446ffb2d5f4fbd3d19cc47a63fb78a96c2d79b86`), with
+the concise report in
+`docs/A0_A1_INTERFERENCE_ISOLATION_RESULT.md`.
