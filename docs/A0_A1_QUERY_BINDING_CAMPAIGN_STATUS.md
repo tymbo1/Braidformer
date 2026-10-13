@@ -53,4 +53,8 @@ inheritance, new dataset, or production architecture change is in scope.
 - Unit tests:
   `tests/test_query_binding_intervention.py`
 
-The exact freeze and execution commits will be appended before training.
+Protocol/code freeze commit: `e7259e7b56023d4f4e83e9e17b7eefe194b25da1`.
+Protocol sha256:
+`c47025b588d2b0341cda8f7f1a8cb6725abc323031eff4400f913dd99f184e22`.
+The execution commit will be recorded immediately before the gated training
+run.
