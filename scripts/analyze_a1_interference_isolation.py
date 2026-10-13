@@ -59,6 +59,7 @@ from scripts.run_synthetic_overfit_calibration import (
 
 
 ANALYSIS_PLAN_PATH = "docs/A0_A1_INTERFERENCE_ISOLATION_DESIGN.md"
+ANALYSIS_SCRIPT_PATH = "scripts/analyze_a1_interference_isolation.py"
 DISTANCE_RESULT_PATH = "results/a0_a1_solvability_distances_values8000.json"
 DISTANCE_RESULT_SHA256 = "3a40736a783fd1ac977fe2b6651a6e015891d85699f6fee2e3698cc0917a8261"
 RUNNER_PATH = "scripts/run_synthetic_overfit_calibration.py"
@@ -641,6 +642,58 @@ def _reference_a0(aggregate: dict[str, Any], distance: int) -> dict[str, Any]:
     }
 
 
+def _build_adjudication(runs: list[dict[str, Any]]) -> dict[str, Any]:
+    by_distance = {int(run["distance"]): run for run in runs}
+    observations = []
+    for distance in (4, 16, 64):
+        run = by_distance[distance]
+        observation = {
+            "distance": distance,
+            "value_ce_delta_write_protected": run["deltas_from_native"][
+                "write_protected"
+            ]["value_candidate_range"]["cross_entropy"],
+            "value_ce_delta_fully_frozen": run["deltas_from_native"][
+                "fully_frozen"
+            ]["value_candidate_range"]["cross_entropy"],
+            "value_top1_delta_write_protected": run["deltas_from_native"][
+                "write_protected"
+            ]["value_candidate_range"]["top1_accuracy"],
+            "value_top1_delta_fully_frozen": run["deltas_from_native"][
+                "fully_frozen"
+            ]["value_candidate_range"]["top1_accuracy"],
+            "layer7_fixed_probe_top1": {
+                variant: {
+                    site: run["fixed_probe_metrics"][variant]["layers"]["layer_7"][site][
+                        "top1_accuracy"
+                    ]
+                    for site in ("post_distractor", "query", "target_logit")
+                }
+                for variant in VARIANTS
+            },
+        }
+        observations.append(observation)
+    return {
+        "active_distractor_writes": (
+            "supported as a causal contributor to intermediate value-trace loss: "
+            "write protection and full freezing preserve fixed-probe value "
+            "decodability through the distractor interval at long distances"
+        ),
+        "passive_decay": (
+            "supported as a contributor but not sufficient: full freezing gives "
+            "a partial distance-64 native-loss/top-1 improvement, while the "
+            "distance-4 and distance-16 native output effects are not a coherent rescue"
+        ),
+        "query_conditioned_downstream_transformation": (
+            "strengthened: after protected distractor intervals, fixed-probe "
+            "transfer still drops from post-distractor state through query and "
+            "target sites, and native retrieval remains near floor"
+        ),
+        "native_retrieval_repair": "not demonstrated",
+        "training_intervention_unlocked": False,
+        "observations": observations,
+    }
+
+
 def _report(result: dict[str, Any]) -> str:
     lines = [
         "# A0/A1 inference-only interference-isolation result",
@@ -648,6 +701,7 @@ def _report(result: dict[str, Any]) -> str:
         "Status: **complete; reversible inference-only intervention**.",
         "",
         f"Protocol: `{result['analysis_plan_path']}` (sha256 `{result['analysis_plan_sha256']}`).",
+        f"Analyzer: `{result['analysis_script_path']}` (sha256 `{result['analysis_script_sha256']}`).",
         f"Source distance aggregate sha256: `{result['source_distance_result_sha256']}`.",
         "",
         "The write-protected variant suppressed new recurrent writes only between the stored value and query. The fully frozen variant additionally suppressed passive decay during that interval. Query/key/answer processing remained native.",
@@ -683,6 +737,10 @@ def _report(result: dict[str, Any]) -> str:
             "## Predeclared interpretation",
             "",
             "The machine-readable deltas are authoritative. Write-protected improvement at distances 16/64 supports active distractor-write interference; improvement only under full freezing supports a decay or decay/update interaction; a null result leaves query-conditioned corruption, pre-query binding/generalisation, and other recurrent transformations as the leading explanations.",
+            "",
+            "## Observed adjudication",
+            "",
+            "The protected variants preserve the fixed layer-7 value probe through the distractor interval at distances 4, 16, and 64, whereas native A1 loses that transfer. This is causal evidence that ongoing distractor-state transformation contributes to trace loss. However, the preserved trace is still degraded after the query, and native output retrieval is not coherently restored: write protection worsens distance 4 and 64 value CE, improves distance 16 CE only slightly without rank/top-1 rescue, and full freezing produces a partial distance-64 CE/top-1 improvement with worse mean rank. The result therefore supports a composite mechanism—distractor interference plus query-conditioned/downstream transformation—not a sufficient production repair.",
             "",
             "## Integrity",
             "",
@@ -726,6 +784,8 @@ def main() -> int:
         "analysis_device": str(device),
         "analysis_plan_path": ANALYSIS_PLAN_PATH,
         "analysis_plan_sha256": provenance["analysis_plan_sha256"],
+        "analysis_script_path": ANALYSIS_SCRIPT_PATH,
+        "analysis_script_sha256": sha256_file(REPO_ROOT / ANALYSIS_SCRIPT_PATH),
         "source_distance_result_path": DISTANCE_RESULT_PATH,
         "source_distance_result_sha256": provenance["distance_result_sha256"],
         "source_runner_path": RUNNER_PATH,
@@ -754,6 +814,7 @@ def main() -> int:
             str(distance): records[distance]
             for distance in (0, *DISTANCES)
         },
+        "adjudication": _build_adjudication(runs),
         "runs": runs,
     }
     output = args.output if args.output.is_absolute() else REPO_ROOT / args.output
