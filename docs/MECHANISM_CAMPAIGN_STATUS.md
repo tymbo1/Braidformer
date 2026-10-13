@@ -295,4 +295,7 @@ execution and its source hash is recorded in the aggregate.
 | Item 5 protocol | `cddcd83` | Frozen evidence-synthesis and intervention-gate rubric. |
 | Item 5 analyzer | `861854b` | Read-only evidence audit and hypothesis synthesis. |
 | Item 5 result | `ebbcddb` | Final adjudication result and completed-campaign handoff. |
+| Follow-up protocol/design | `665c614` | Inference-only distractor-interval interference-isolation design. |
+| Follow-up analyzer freeze | `1e88deb` | Hash-complete read-only analyzer with no-op and parameter-digest controls. |
+| Follow-up result | `31fafd0` | Protected-state causal result, aggregate, report, and evidence update. |
 
