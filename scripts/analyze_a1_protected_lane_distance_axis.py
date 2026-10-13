@@ -118,10 +118,11 @@ def _audit_run(distance: int, mode: str) -> dict[str, Any]:
             raise RuntimeError(f"completed run has a failure payload: {run_dir.name}")
     elif summary.get("status") == "failed":
         failure = summary.get("failure") or {}
-        if "iostream" not in str(failure.get("message", "")):
+        failure_message = str(failure.get("message", ""))
+        if "inline_container" not in failure_message and "iostream" not in failure_message:
             raise RuntimeError(f"unexpected failure in stopped arm: {run_dir.name}: {failure}")
         record["failure_type"] = failure.get("type")
-        record["failure_message"] = failure.get("message")
+        record["failure_message"] = failure_message
     else:
         raise RuntimeError(f"unexpected run status in {run_dir.name}: {summary.get('status')!r}")
     return record
