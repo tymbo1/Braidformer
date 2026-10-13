@@ -321,16 +321,35 @@ failure in `results/a1_protected_lane_distance_axis_interrupted.json`; its
 report is `docs/A1_PROTECTED_ASSOCIATIVE_LANE_STOP_RESULT.md`.
 
 The follow-up is therefore stopped by the campaign integrity gate, not by a
-scientific null or positive result. A future continuation requires explicit
-storage remediation and a fresh protocol review before any training resumes.
+scientific null or positive result. Storage remediation is now complete, but a
+fresh protocol review is still required before any training resumes.
 
 ## Current continuation point
 
 Do not start the four unstarted lane arms, interpret the partial distance
 curve, or begin A2/scaling/persistent-memory/predictive-learning work. The
-next authorized action is to resolve the full-filesystem condition without
-deleting research artifacts, then review whether the preserved run directories
-can be resumed or whether a fresh reproducible lane campaign is preferable.
+full-filesystem condition has been resolved without discarding research
+artifacts. The next authorized action is a fresh protocol review to decide
+whether the preserved run directories can be resumed or whether a fresh
+reproducible lane campaign is preferable.
+
+## Storage remediation — 2026-10-14
+
+The mounted second NVMe (`/dev/sda2` at `/mnt/ssd2`) now holds the redundant
+checkpoint archive at
+`/mnt/ssd2/braidformer_checkpoint_archive_20261014/`. The committed retention
+tool (`11ac56d`) planned and executed a hash-verified move of 808 redundant
+checkpoint/sidecar pairs, totaling `459082746849` bytes. It retained 140
+checkpoints on the root filesystem: the newest valid checkpoint in each run and
+every checkpoint referenced by a tracked report or result. All result files,
+logs, configs, reports, and provenance remain in the repository; no checkpoint
+was discarded. The machine-readable retention record is
+`results/checkpoint_retention_manifest.json`.
+
+Post-move verification found 140 root checkpoints, 808 archive checkpoints,
+zero missing sidecars, zero partial archive files, and approximately 429 GiB
+free on `/`. This is storage housekeeping only and does not change the
+protected-lane scientific status or authorize resuming training.
 
 ## Protected-lane commit ledger
 
@@ -340,5 +359,6 @@ can be resumed or whether a fresh reproducible lane campaign is preferable.
 | Protected-lane implementation | `d6358bf` | New A1P model, configs, runner, and tests; original A0/A1 untouched. |
 | Runner correction | `b48ddc2` | Fixed provenance seed typo; `78 passed`. |
 | Stop audit | `8bef743`, `36f5aa9` | Read-only checkpoint audit and exact failure classifier. |
-| Stop result | pending this commit | Partial-arm report, interruption aggregate, and ledger update. |
+| Stop result | `2f14a30` | Partial-arm report, interruption aggregate, and ledger update. |
+| Retention tool | `11ac56d` | Hash-verified checkpoint archiver retaining latest/referenced root checkpoints. |
 

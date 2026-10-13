@@ -899,3 +899,22 @@ was stacked. The machine-readable interruption record is
 `results/a1_protected_lane_distance_axis_interrupted.json`; the report is
 `docs/A1_PROTECTED_ASSOCIATIVE_LANE_STOP_RESULT.md`. The next action requires
 storage remediation and a fresh protocol review before training resumes.
+
+## 2026-10-14 — D051: remediate checkpoint storage without discarding provenance
+
+The second NVMe was mounted at `/mnt/ssd2` and a retention plan was frozen in
+`scripts/archive_redundant_checkpoints.py` before execution. The tool retained
+the newest valid checkpoint in every run and every checkpoint referenced by a
+tracked report or result. It hash-verified and moved 808 redundant
+checkpoint/sidecar pairs (`459082746849` bytes) to
+`/mnt/ssd2/braidformer_checkpoint_archive_20261014/`, leaving 140 retained
+checkpoint pairs on the root filesystem. All result files, logs, configs,
+reports, and provenance remain in the repository; no checkpoint was discarded.
+
+The machine-readable record is
+`results/checkpoint_retention_manifest.json`. Post-move verification found no
+missing retained or archived files, no partial archive files, 140 root
+checkpoints, 808 archive checkpoints, and approximately 429 GiB free on `/`.
+This is storage remediation only: the protected-lane follow-up remains stopped,
+and no training resume or scientific interpretation is authorized without a
+fresh protocol review.
