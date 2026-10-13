@@ -63,5 +63,7 @@ inheritance, new dataset, or production architecture change is in scope.
 
 Protocol/code freeze commit: `e7259e7b56023d4f4e83e9e17b7eefe194b25da1`.
 Protocol sha256:
-`c47025b588d2b0341cda8f7f1a8cb6725abc323031eff4400f913dd99f184e22`.
-Correction commit: **pending commit of the multi-target implementation fix**.
+`bd0a8c0af7d34d8dcc21469edcd1e4bec68c647a1991e117afc594a04817edc7`.
+Correction commit: `8484cd608f4a5ac6860fb4e7f8a23c2149563512`.
+The corrected execution commit will be recorded immediately before the gated
+training rerun.
