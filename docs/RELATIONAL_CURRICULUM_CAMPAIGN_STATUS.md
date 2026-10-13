@@ -1,6 +1,6 @@
 # Relational curriculum campaign status
 
-Status: **complete; result adjudicated; query/readout continuation complete**.
+Status: **complete; mechanism adjudicated; one minimal intervention unlocked**.
 
 This is the continuation campaign selected by the completed mechanism
 adjudication. It is separate from, and does not reopen, the completed
@@ -44,8 +44,12 @@ runner execution-commit field.
    checkpoint hashes verified.
 5. **Complete.** Four-fold cross-validated query/readout localization ran on
    the same 12 checkpoint/length combinations, including native logits.
-6. **Next.** A reversible non-training causal state intervention with a
-   predeclared prediction.
+6. **Complete.** One reversible layer-7 state-replay intervention ran on A1
+   staged/shuffled curriculum checkpoints; it failed its rescue prediction.
+7. **Complete.** Mechanism adjudication combined the evidence and unlocked one
+   minimal no-new-parameter A1 training intervention.
+8. **Next.** Freeze and run the layer-7 value-trace auxiliary-objective
+   intervention against the existing matched A1 curriculum controls.
 
 No A2, scaling, longer training, persistent memory, predictive-learning,
 inheritance, SNAIL, Woven Neural Fabric, post-training, or new-dataset work is
@@ -61,11 +65,11 @@ condition; it must be recorded and adjudicated.
 
 ## Next queued experiment
 
-Run one reversible inference-time state intervention on the frozen curriculum
-checkpoints. It must alter no trained weight, preserve the native architecture,
-and predeclare whether restoring/preserving the suspected representation should
-improve the corresponding native value rank or top-1 output. Treat it as
-mechanistic evidence only; it is not a production fix.
+Freeze and run the single unlocked A1 layer-7 value-trace auxiliary-objective
+intervention. It may add no parameters and may not redefine A0 or original A1;
+the auxiliary term is training-only and must be compared with the existing
+matched staged/shuffled A1 controls. If native held-out retrieval does not
+improve, record the null result and stop this intervention branch.
 
 ## Completed evidence
 
@@ -98,6 +102,13 @@ machine-readable evidence is in
 staged A1 confidence improved, but four-fold fixed and site-specific value
 readouts remained near floor, weakening a pure final-readout explanation.
 
+The mechanism adjudication is documented in
+`docs/A0_A1_RELATIONAL_CURRICULUM_MECHANISM_ADJUDICATION_RESULT.md`; its
+machine-readable evidence is in
+`results/a0_a1_relational_curriculum_mechanism_adjudication.json`. H2/H4 are
+the leading supported mechanism pair, while decay, curriculum, and
+optimization remain modifiers rather than sufficient explanations.
+
 ## Continuation log
 
 | state | commit | evidence |
@@ -110,3 +121,5 @@ readouts remained near floor, weakening a pure final-readout explanation.
 | representation-probe result | `4b3d4cdd859ac7711d8d3b1f67e08cc5bb4b4fe6` | 12 frozen analyses, verified aggregate, and result report |
 | query/readout plan/code freeze | `cc7d7cfbde079fc8af2bb25e588b11a913b34e9f` | frozen four-fold query/readout plan and curriculum wrapper |
 | query/readout result | `0e005577542bd1120c17368c834abd34856a0f9b` | 12 native-logit/probe analyses, verified aggregate, and result report |
+| state-replay result | `5900a8c6538e6022b3376ca6f7f91fc593103156` | six reversible A1 interventions; parameter digests unchanged; rescue prediction failed |
+| mechanism adjudication | `29f4f6f3b04a93e5b34249b3058b2b34a526c881` | H2/H4 leading; one no-new-parameter training intervention unlocked |
