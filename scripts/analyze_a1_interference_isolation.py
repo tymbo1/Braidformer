@@ -54,7 +54,6 @@ from scripts.analyze_synthetic_solvability_distances_values8000 import (
 from scripts.run_synthetic_overfit_calibration import (
     FIXED_EXAMPLES,
     VALUE_BASE,
-    VALUE_COUNT,
     make_evaluation_examples,
 )
 
@@ -68,6 +67,7 @@ DISTANCE_VERIFIER_PATH = "scripts/analyze_synthetic_solvability_distances_values
 DISTANCE_VERIFIER_SHA256 = "79b3abd5f40fab4646c3308b1b8daf6ec54b44653b08ce81ef471e435d386ff3"
 EXPECTED_PARAMS = 41_870_336
 SEED = 17
+VALUE_COUNT = 8_000
 BATCH_SIZE = 16
 VARIANTS = ("native", "write_protected", "fully_frozen")
 SITES = ("post_value", "post_distractor", "query", "target_logit")
