@@ -1,0 +1,2125 @@
+{
+  "arms": [
+    {
+      "checkpoint_count": 20,
+      "checkpoint_records": [
+        {
+          "bytes": 569331675,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000100.pt",
+          "sha256": "130a020c907b36c9e78d0b8f803ad4cf552f45be43597eb54531116f7ecc32f1",
+          "sidecar_complete": true,
+          "step": 100
+        },
+        {
+          "bytes": 569339547,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000200.pt",
+          "sha256": "db9c5e8a3309107486b3bc8b5cf45061b57fb81b3fa39cdc246b1023ab7f4892",
+          "sidecar_complete": true,
+          "step": 200
+        },
+        {
+          "bytes": 569347419,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000300.pt",
+          "sha256": "16e9b3116dc5f1af6c9c168d6f63d70d1608e1d43838320a66c55ac3306ff126",
+          "sidecar_complete": true,
+          "step": 300
+        },
+        {
+          "bytes": 569355355,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000400.pt",
+          "sha256": "8923e4439902281ed9746e7f0e741f5aa4b31048f479dae6c989db2193e013f5",
+          "sidecar_complete": true,
+          "step": 400
+        },
+        {
+          "bytes": 569363355,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000500.pt",
+          "sha256": "c352a5b00bdecf020cf3af979416314723894c43c4f173900b10976051e56cd0",
+          "sidecar_complete": true,
+          "step": 500
+        },
+        {
+          "bytes": 569371291,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000600.pt",
+          "sha256": "5ae10638bfb782872a741e1b36a8185d2fcf94c11116bb47fd85863e26339cb8",
+          "sidecar_complete": true,
+          "step": 600
+        },
+        {
+          "bytes": 569379291,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000700.pt",
+          "sha256": "fa7641283fdc67bbd589f6bea01e58a961d01ae6bac06b902290bb569f4ea6ff",
+          "sidecar_complete": true,
+          "step": 700
+        },
+        {
+          "bytes": 569387227,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000800.pt",
+          "sha256": "717d8284534bc8c99aa0dcc5592361eddf345c6b57be3c64011c42317606c31b",
+          "sidecar_complete": true,
+          "step": 800
+        },
+        {
+          "bytes": 569395163,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_000900.pt",
+          "sha256": "93e58005cfc1deda74275dd641efdb146ca417cc2531148eb439065e6838c46a",
+          "sidecar_complete": true,
+          "step": 900
+        },
+        {
+          "bytes": 569403099,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001000.pt",
+          "sha256": "c499cbe72c584ee5b9b8994935e27469e9500dc7bdfaf62e5d90cd491b5af369",
+          "sidecar_complete": true,
+          "step": 1000
+        },
+        {
+          "bytes": 569411099,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001100.pt",
+          "sha256": "9bde2aef9e0dc24ba970fa3661989d26575dcd587c3500aa5c14a2515bf079a7",
+          "sidecar_complete": true,
+          "step": 1100
+        },
+        {
+          "bytes": 569419035,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001200.pt",
+          "sha256": "b5341bfc4a6507dddb206b09e226efd577e4cb3fca6dd2f60bc10deea53e2e32",
+          "sidecar_complete": true,
+          "step": 1200
+        },
+        {
+          "bytes": 569427035,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001300.pt",
+          "sha256": "8e9ef00b90f6e6016cad92c7acdf7630be10823d125171f7480dbacbe6e47e92",
+          "sidecar_complete": true,
+          "step": 1300
+        },
+        {
+          "bytes": 569434971,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001400.pt",
+          "sha256": "01ac64b690fec517e211550fc4e7e7ad63668171375f625f1e227b97165b1968",
+          "sidecar_complete": true,
+          "step": 1400
+        },
+        {
+          "bytes": 569442907,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001500.pt",
+          "sha256": "455e44b79ef63ccc0b7ed27bc8871f3d643d3cd11134a4ade3110f4f6d2bd3ef",
+          "sidecar_complete": true,
+          "step": 1500
+        },
+        {
+          "bytes": 569450843,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001600.pt",
+          "sha256": "d2591a15065fda3add12571d2f1a2ee7f1a4cb2ac99e506f45ef916d35f2bb22",
+          "sidecar_complete": true,
+          "step": 1600
+        },
+        {
+          "bytes": 569458843,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001700.pt",
+          "sha256": "b04e29cff6c514164e69933364c520532ce609cb6e54522e4352d2b56c274171",
+          "sidecar_complete": true,
+          "step": 1700
+        },
+        {
+          "bytes": 569466779,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001800.pt",
+          "sha256": "fc3410ab2d498a96aa1a8f85638b1b36f8fc6517e10c7fe41f8d606620fc154f",
+          "sidecar_complete": true,
+          "step": 1800
+        },
+        {
+          "bytes": 569474715,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_001900.pt",
+          "sha256": "420ac1fcf4b718974380aed899a924a80cc48d4f5922fefd65a4579000fccf9b",
+          "sidecar_complete": true,
+          "step": 1900
+        },
+        {
+          "bytes": 569482715,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_002000.pt",
+          "sha256": "423395450b4d31f8ee8b25adcd338fd3a78dc7017b8ba9e0fba70ea93d73e9e0",
+          "sidecar_complete": true,
+          "step": 2000
+        }
+      ],
+      "checkpoint_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000,
+        1100,
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+        1700,
+        1800,
+        1900,
+        2000
+      ],
+      "distance": 0,
+      "metadata": {
+        "architecture": "A1P",
+        "base_parameter_count": 41870336,
+        "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+        "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+        "cuda_timing_scope": "CUDA event from optimizer.zero_grad through optimizer.step; evaluation excluded",
+        "experiment_id": "a1_protected_lane_distance0_seed17_protected",
+        "initial_step": 0,
+        "initial_tokens": 0,
+        "integrity_schema_version": 1,
+        "lane_mode": "protected",
+        "lane_width": 64,
+        "loss_ceiling": 100.0,
+        "parameter_count": 41969346,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "seed_report": {
+          "deterministic_algorithms_requested": true,
+          "numpy": true,
+          "python": true,
+          "seed": 17,
+          "torch": true
+        },
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "running",
+        "synthetic_data_sha256": "bf361a9dd1519f5441bff61a5e26f854adfd72ee4650f3c9525170ab0af376b1",
+        "synthetic_generator_sha256": "ceb2489942142d698c3ee1db2c4fd1c95905e7a0cc20c6bdb521727280964f08",
+        "synthetic_generator_version": "synthetic_solvability_values8000_v1",
+        "tokens_per_step": 128,
+        "training": {
+          "association_count": 1,
+          "checkpoint_interval_steps": 100,
+          "distractor_distance": 0,
+          "fixed_training_examples": 128,
+          "max_steps": 2000,
+          "sequence_length": 8,
+          "target_length": 1,
+          "tokens": 256000,
+          "tokens_per_step": 128,
+          "validation_interval_steps": 100,
+          "value_count": 8000,
+          "warmup_steps": 20
+        }
+      },
+      "mode": "protected",
+      "run_dir": "results/runs/a1_protected_lane_distance0_seed17_protected",
+      "status": "completed",
+      "summary": {
+        "architecture": "A1P",
+        "association_count": 1,
+        "average_cuda_tokens_per_second": 566.3689837599538,
+        "average_tokens_per_second": 565.587317713758,
+        "base_parameter_count": 41870336,
+        "checkpoint": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_002000.pt",
+        "checkpoint_integrity_verified": true,
+        "checkpoint_interval_steps": 100,
+        "checkpoint_sha256": "423395450b4d31f8ee8b25adcd338fd3a78dc7017b8ba9e0fba70ea93d73e9e0",
+        "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+        "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+        "cuda_training_seconds": 452.00215290832625,
+        "distractor_distance": 0,
+        "elapsed_wall_seconds": 494.8342041529977,
+        "experiment_id": "a1_protected_lane_distance0_seed17_protected",
+        "failure": null,
+        "final_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0390625,
+          "greedy_exact_match": 0.0390625,
+          "target_loss": 10.24886703491211
+        },
+        "final_lane_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0390625,
+          "greedy_exact_match": 0.0390625,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9404607033357024,
+            "answer_lane_delta_norm": 0.16218331758864224,
+            "answer_memory_key_norm": 0.38666825951077044,
+            "answer_memory_value_norm": 0.3380429847165942,
+            "answer_read_gate": 0.9756181384436786,
+            "post_distractor_memory_key_norm": 0.38666825951077044,
+            "post_distractor_memory_value_norm": 0.3380429847165942,
+            "post_value_memory_key_norm": 0.38666825951077044,
+            "post_value_memory_value_norm": 0.3380429847165942
+          },
+          "target_loss": 10.248802185058594,
+          "value_candidate_target_loss": 9.494253396987915
+        },
+        "final_lane_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9032197860069573,
+            "answer_lane_delta_norm": 0.18243602698203176,
+            "answer_memory_key_norm": 0.37523475498892367,
+            "answer_memory_value_norm": 0.3763123620301485,
+            "answer_read_gate": 0.9717898098751903,
+            "post_distractor_memory_key_norm": 0.37523475498892367,
+            "post_distractor_memory_value_norm": 0.3763123620301485,
+            "post_value_memory_key_norm": 0.37523475498892367,
+            "post_value_memory_value_norm": 0.3763123620301485
+          },
+          "target_loss": 0.0006258711218833923,
+          "value_candidate_target_loss": 0.00018352236111240927
+        },
+        "final_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "target_loss": 0.0006257276982069016
+        },
+        "lane_mode": "protected",
+        "lane_width": 64,
+        "learning_rate": 0.0003,
+        "lr_schedule": "cosine",
+        "numerical_instability": false,
+        "optimizer_steps": 2000,
+        "parameter_count": 41969346,
+        "peak_allocated_vram_bytes": 869261824,
+        "peak_reserved_vram_bytes": 1006632960,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "run_dir": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance0_seed17_protected",
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "sequence_length": 8,
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "completed",
+        "synthetic_data_sha256": "bf361a9dd1519f5441bff61a5e26f854adfd72ee4650f3c9525170ab0af376b1",
+        "synthetic_generator_sha256": "ceb2489942142d698c3ee1db2c4fd1c95905e7a0cc20c6bdb521727280964f08",
+        "synthetic_generator_version": "synthetic_solvability_values8000_v1",
+        "target_length": 1,
+        "tokens_processed": 256000,
+        "train_loss": 0.0006103515625,
+        "training_wall_seconds": 452.626839361983,
+        "validation_history": [
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.03125,
+                "greedy_exact_match": 0.03125,
+                "target_loss": 11.298263549804688
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.02452951669692993
+              }
+            },
+            "step": 100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.432899475097656
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.007502913475036621
+              }
+            },
+            "step": 200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.224105834960938
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.004849568009376526
+              }
+            },
+            "step": 300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.212135314941406
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0030399784445762634
+              }
+            },
+            "step": 400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.21670913696289
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.002162110060453415
+              }
+            },
+            "step": 500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.224063873291016
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0016641728579998016
+              }
+            },
+            "step": 600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.230449676513672
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0013549961149692535
+              }
+            },
+            "step": 700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.234050750732422
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0011510364711284637
+              }
+            },
+            "step": 800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.23642349243164
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0010073184967041016
+              }
+            },
+            "step": 900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.239280700683594
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0009031333029270172
+              }
+            },
+            "step": 1000
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.241249084472656
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0008246526122093201
+              }
+            },
+            "step": 1100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.243099212646484
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0007654577493667603
+              }
+            },
+            "step": 1200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.244697570800781
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0007204301655292511
+              }
+            },
+            "step": 1300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.245819091796875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006874985992908478
+              }
+            },
+            "step": 1400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.247322082519531
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006623324006795883
+              }
+            },
+            "step": 1500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.247993469238281
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.000645441934466362
+              }
+            },
+            "step": 1600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.248249053955078
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006346851587295532
+              }
+            },
+            "step": 1700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.248733520507812
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.000629158690571785
+              }
+            },
+            "step": 1800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.248737335205078
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.00062604621052742
+              }
+            },
+            "step": 1900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.24886703491211
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006257276982069016
+              }
+            },
+            "step": 2000
+          }
+        ],
+        "value_count": 8000,
+        "warmup_steps": 20
+      }
+    },
+    {
+      "checkpoint_count": 20,
+      "checkpoint_records": [
+        {
+          "bytes": 569331675,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000100.pt",
+          "sha256": "5b00a3ace423d8d098a74781b7048bffae03a7cf4bb24a2746ad2fdde5e8a237",
+          "sidecar_complete": true,
+          "step": 100
+        },
+        {
+          "bytes": 569339547,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000200.pt",
+          "sha256": "a38a5c858ba07724d1ce1475568fea6756ac9a94191f88c9be7a6bd77780a8fc",
+          "sidecar_complete": true,
+          "step": 200
+        },
+        {
+          "bytes": 569347419,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000300.pt",
+          "sha256": "6516d5022fba98d9610a19b6200e5cd29f095bbe19088d10e6decff9509bd12a",
+          "sidecar_complete": true,
+          "step": 300
+        },
+        {
+          "bytes": 569355355,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000400.pt",
+          "sha256": "047b250f39e2921618bb3c86059dad3a50f7f251e819ff9cee24a605825af190",
+          "sidecar_complete": true,
+          "step": 400
+        },
+        {
+          "bytes": 569363355,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000500.pt",
+          "sha256": "f5ec294a3eccc6f0f9e768be01e032771456e35c03e0c7482da1f313d666c604",
+          "sidecar_complete": true,
+          "step": 500
+        },
+        {
+          "bytes": 569371291,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000600.pt",
+          "sha256": "344d231b6ea7f31c30c14929ab06c1dc3ca07412af17eabdd27d4739b729b102",
+          "sidecar_complete": true,
+          "step": 600
+        },
+        {
+          "bytes": 569379227,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000700.pt",
+          "sha256": "6fe03352b268038a87cdb6c5f5cff031a3dcc867c3e1848e246706e55e757572",
+          "sidecar_complete": true,
+          "step": 700
+        },
+        {
+          "bytes": 569387227,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000800.pt",
+          "sha256": "0d44e5cc9f60e4323206fd71ba7920a6b09a8b096215058e79fbdc4ba294d2e2",
+          "sidecar_complete": true,
+          "step": 800
+        },
+        {
+          "bytes": 569395163,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_000900.pt",
+          "sha256": "8c812745bb811e8beaefa62a6535bc0e76637473da9e4ffb252ac8cd13bde797",
+          "sidecar_complete": true,
+          "step": 900
+        },
+        {
+          "bytes": 569403099,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001000.pt",
+          "sha256": "6dc752effe14098ddbb1856d04039395de4f1deba4545a9ae6aac12b159c0769",
+          "sidecar_complete": true,
+          "step": 1000
+        },
+        {
+          "bytes": 569411099,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001100.pt",
+          "sha256": "7f35ceae5c734d00a9ea6f58fcc4562916d652d7bbee4e6520d3b2aa41b0560b",
+          "sidecar_complete": true,
+          "step": 1100
+        },
+        {
+          "bytes": 569419035,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001200.pt",
+          "sha256": "3a0634c6128d1505f18784382bd9f8fd51656b555e4d1b89edef2e07e45edc15",
+          "sidecar_complete": true,
+          "step": 1200
+        },
+        {
+          "bytes": 569426971,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001300.pt",
+          "sha256": "d218c6a3c4a328ed6631599b10ea4db033426b539cfc560db027bcf98630132b",
+          "sidecar_complete": true,
+          "step": 1300
+        },
+        {
+          "bytes": 569434971,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001400.pt",
+          "sha256": "cb1fe6ea3f27e08afb4c0bf458df6f532669b60f224e66dc9703b77d48bf3a7d",
+          "sidecar_complete": true,
+          "step": 1400
+        },
+        {
+          "bytes": 569442907,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001500.pt",
+          "sha256": "c4b707ff4b708f60533a9a070b76e56d5db3d1ba9e86c318a603218608236ed3",
+          "sidecar_complete": true,
+          "step": 1500
+        },
+        {
+          "bytes": 569450843,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001600.pt",
+          "sha256": "d2f4b2c265a48f534b13edcfda09b509d0f6e9a19f7d8fddff03ebc9f0ff8fc2",
+          "sidecar_complete": true,
+          "step": 1600
+        },
+        {
+          "bytes": 569458843,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001700.pt",
+          "sha256": "9b7a48d1b6359e92839376d004f1e6e58aeeb800dd2abf01f8cb8240d3d0e79e",
+          "sidecar_complete": true,
+          "step": 1700
+        },
+        {
+          "bytes": 569466779,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001800.pt",
+          "sha256": "f0c67d6f7c6a451aa0f6bf3fc1990ea58e68c6b60715b0d0b85dd57262bfc9d4",
+          "sidecar_complete": true,
+          "step": 1800
+        },
+        {
+          "bytes": 569474715,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_001900.pt",
+          "sha256": "c9df8f5cd0cbbe6debbe27f230f51bbb9493a70b2bbec262517119c82fdc12c1",
+          "sidecar_complete": true,
+          "step": 1900
+        },
+        {
+          "bytes": 569482715,
+          "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_002000.pt",
+          "sha256": "2cb89720d938962072a7b0cf8bcbcd00b321a76ab151fd82a80de0bb386c320f",
+          "sidecar_complete": true,
+          "step": 2000
+        }
+      ],
+      "checkpoint_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000,
+        1100,
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+        1700,
+        1800,
+        1900,
+        2000
+      ],
+      "distance": 0,
+      "metadata": {
+        "architecture": "A1P",
+        "base_parameter_count": 41870336,
+        "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+        "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+        "cuda_timing_scope": "CUDA event from optimizer.zero_grad through optimizer.step; evaluation excluded",
+        "experiment_id": "a1_protected_lane_distance0_seed17_ordinary",
+        "initial_step": 0,
+        "initial_tokens": 0,
+        "integrity_schema_version": 1,
+        "lane_mode": "ordinary",
+        "lane_width": 64,
+        "loss_ceiling": 100.0,
+        "parameter_count": 41969346,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "seed_report": {
+          "deterministic_algorithms_requested": true,
+          "numpy": true,
+          "python": true,
+          "seed": 17,
+          "torch": true
+        },
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "running",
+        "synthetic_data_sha256": "bf361a9dd1519f5441bff61a5e26f854adfd72ee4650f3c9525170ab0af376b1",
+        "synthetic_generator_sha256": "ceb2489942142d698c3ee1db2c4fd1c95905e7a0cc20c6bdb521727280964f08",
+        "synthetic_generator_version": "synthetic_solvability_values8000_v1",
+        "tokens_per_step": 128,
+        "training": {
+          "association_count": 1,
+          "checkpoint_interval_steps": 100,
+          "distractor_distance": 0,
+          "fixed_training_examples": 128,
+          "max_steps": 2000,
+          "sequence_length": 8,
+          "target_length": 1,
+          "tokens": 256000,
+          "tokens_per_step": 128,
+          "validation_interval_steps": 100,
+          "value_count": 8000,
+          "warmup_steps": 20
+        }
+      },
+      "mode": "ordinary",
+      "run_dir": "results/runs/a1_protected_lane_distance0_seed17_ordinary",
+      "status": "completed",
+      "summary": {
+        "architecture": "A1P",
+        "association_count": 1,
+        "average_cuda_tokens_per_second": 571.6343408066988,
+        "average_tokens_per_second": 570.8369229376149,
+        "base_parameter_count": 41870336,
+        "checkpoint": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_002000.pt",
+        "checkpoint_integrity_verified": true,
+        "checkpoint_interval_steps": 100,
+        "checkpoint_sha256": "2cb89720d938962072a7b0cf8bcbcd00b321a76ab151fd82a80de0bb386c320f",
+        "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+        "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+        "cuda_training_seconds": 447.83873487853975,
+        "distractor_distance": 0,
+        "elapsed_wall_seconds": 490.30381845199736,
+        "experiment_id": "a1_protected_lane_distance0_seed17_ordinary",
+        "failure": null,
+        "final_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0390625,
+          "greedy_exact_match": 0.0390625,
+          "target_loss": 10.265777587890625
+        },
+        "final_lane_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0390625,
+          "greedy_exact_match": 0.0390625,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9215547773055732,
+            "answer_lane_delta_norm": 0.3972243226598948,
+            "answer_memory_key_norm": 0.9466797397471964,
+            "answer_memory_value_norm": 0.8902955939993262,
+            "answer_read_gate": 0.972904508933425,
+            "post_distractor_memory_key_norm": 0.7394242589361966,
+            "post_distractor_memory_value_norm": 0.7296349969692528,
+            "post_value_memory_key_norm": 0.7394242589361966,
+            "post_value_memory_value_norm": 0.7296349969692528
+          },
+          "target_loss": 10.265907406806946,
+          "value_candidate_target_loss": 9.520559906959534
+        },
+        "final_lane_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9384514354169369,
+            "answer_lane_delta_norm": 0.5089247771538794,
+            "answer_memory_key_norm": 1.1629907549358904,
+            "answer_memory_value_norm": 1.1490327115170658,
+            "answer_read_gate": 0.9745401032269001,
+            "post_distractor_memory_key_norm": 0.7191669507883489,
+            "post_distractor_memory_value_norm": 0.6948705338872969,
+            "post_value_memory_key_norm": 0.7191669507883489,
+            "post_value_memory_value_norm": 0.6948705338872969
+          },
+          "target_loss": 0.0006264001131057739,
+          "value_candidate_target_loss": 0.0001838194039009977
+        },
+        "final_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "target_loss": 0.0006262417882680893
+        },
+        "lane_mode": "ordinary",
+        "lane_width": 64,
+        "learning_rate": 0.0003,
+        "lr_schedule": "cosine",
+        "numerical_instability": false,
+        "optimizer_steps": 2000,
+        "parameter_count": 41969346,
+        "peak_allocated_vram_bytes": 869261824,
+        "peak_reserved_vram_bytes": 1006632960,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "run_dir": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance0_seed17_ordinary",
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "sequence_length": 8,
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "completed",
+        "synthetic_data_sha256": "bf361a9dd1519f5441bff61a5e26f854adfd72ee4650f3c9525170ab0af376b1",
+        "synthetic_generator_sha256": "ceb2489942142d698c3ee1db2c4fd1c95905e7a0cc20c6bdb521727280964f08",
+        "synthetic_generator_version": "synthetic_solvability_values8000_v1",
+        "target_length": 1,
+        "tokens_processed": 256000,
+        "train_loss": 0.0006068646907806396,
+        "training_wall_seconds": 448.46433318045456,
+        "validation_history": [
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.03125,
+                "greedy_exact_match": 0.03125,
+                "target_loss": 11.239547729492188
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.025132834911346436
+              }
+            },
+            "step": 100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.442497253417969
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0074852705001831055
+              }
+            },
+            "step": 200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.236968994140625
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.004838868975639343
+              }
+            },
+            "step": 300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.226333618164062
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0030373260378837585
+              }
+            },
+            "step": 400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.230850219726562
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.002159036695957184
+              }
+            },
+            "step": 500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.238655090332031
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.001664530485868454
+              }
+            },
+            "step": 600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.244335174560547
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0013554282486438751
+              }
+            },
+            "step": 700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.249492645263672
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0011506415903568268
+              }
+            },
+            "step": 800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.252246856689453
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0010074228048324585
+              }
+            },
+            "step": 900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.2547607421875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0009025800973176956
+              }
+            },
+            "step": 1000
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.257369995117188
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0008247699588537216
+              }
+            },
+            "step": 1100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.259590148925781
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.000765463337302208
+              }
+            },
+            "step": 1200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.261199951171875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0007206369191408157
+              }
+            },
+            "step": 1300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.262672424316406
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006873533129692078
+              }
+            },
+            "step": 1400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.263851165771484
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006630122661590576
+              }
+            },
+            "step": 1500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.264507293701172
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006458442658185959
+              }
+            },
+            "step": 1600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.265216827392578
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006346758455038071
+              }
+            },
+            "step": 1700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.265556335449219
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006287544965744019
+              }
+            },
+            "step": 1800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.266021728515625
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006266925483942032
+              }
+            },
+            "step": 1900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0390625,
+                "greedy_exact_match": 0.0390625,
+                "target_loss": 10.265777587890625
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006262417882680893
+              }
+            },
+            "step": 2000
+          }
+        ],
+        "value_count": 8000,
+        "warmup_steps": 20
+      }
+    },
+    {
+      "checkpoint_count": 20,
+      "checkpoint_records": [
+        {
+          "bytes": 569331739,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000100.pt",
+          "sha256": "3cc85fbd691fcc1406045e9340118f6528c126cd2f8c68cb4abd1d520afd41ba",
+          "sidecar_complete": true,
+          "step": 100
+        },
+        {
+          "bytes": 569339611,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000200.pt",
+          "sha256": "a80c1cb08aa2f299b99ee5925aa81651893e5586d2a4114c9972985c0c4dffd5",
+          "sidecar_complete": true,
+          "step": 200
+        },
+        {
+          "bytes": 569347483,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000300.pt",
+          "sha256": "8f2724eeb54808208facbe3588ef5edd114e1b0ee354283ba7694fad720a2f6c",
+          "sidecar_complete": true,
+          "step": 300
+        },
+        {
+          "bytes": 569355483,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000400.pt",
+          "sha256": "3baeabec570caa962c753479cdbe7e628bf32b5728d95f0c74317b9cdf177016",
+          "sidecar_complete": true,
+          "step": 400
+        },
+        {
+          "bytes": 569363419,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000500.pt",
+          "sha256": "2b0d726690ba7b1eda663c587bd3ad4d575ed06caee3cb85487e26854e8f77ee",
+          "sidecar_complete": true,
+          "step": 500
+        },
+        {
+          "bytes": 569371355,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000600.pt",
+          "sha256": "3c0e80fa633c4df295d554b9eaf3a53e786af1dfacbbe7d7f40b920104057038",
+          "sidecar_complete": true,
+          "step": 600
+        },
+        {
+          "bytes": 569379355,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000700.pt",
+          "sha256": "a2ec5270ee13e6e01c820a3d46d761e698574970243019c4ee2fe3b73fc27bd1",
+          "sidecar_complete": true,
+          "step": 700
+        },
+        {
+          "bytes": 569387291,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000800.pt",
+          "sha256": "4b0d57f19912e718e5b1f684775e95565fc3f285631b6b9e0d04675b6a21d30b",
+          "sidecar_complete": true,
+          "step": 800
+        },
+        {
+          "bytes": 569395227,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_000900.pt",
+          "sha256": "055709b257ffed858d434b8ce9275ab6589c3956396db8e163b7cea37bbc2d3c",
+          "sidecar_complete": true,
+          "step": 900
+        },
+        {
+          "bytes": 569403227,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001000.pt",
+          "sha256": "f9b27beacdf29a1e07dc9979a2a35b77e86ece6a9e3f8f68e20da1d4e6f710c0",
+          "sidecar_complete": true,
+          "step": 1000
+        },
+        {
+          "bytes": 569411163,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001100.pt",
+          "sha256": "74d04d5a8e7959cf86b04f54643f459338c7cf7e215e819f4b8ca354132d2170",
+          "sidecar_complete": true,
+          "step": 1100
+        },
+        {
+          "bytes": 569419099,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001200.pt",
+          "sha256": "5204034158fb162ad78c4fb0f2c8f73099d4a1f05e4b8990767adbfca3573d7e",
+          "sidecar_complete": true,
+          "step": 1200
+        },
+        {
+          "bytes": 569427099,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001300.pt",
+          "sha256": "b22690bada1ab706ec3eb7cc4fcd2f2dceadc8a9453ad300a2594d8c1024dbe8",
+          "sidecar_complete": true,
+          "step": 1300
+        },
+        {
+          "bytes": 569435035,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001400.pt",
+          "sha256": "43549c7bafd2acb16cb5f1444ef9ab820ecd1098c866bb90a6947336bd9843ef",
+          "sidecar_complete": true,
+          "step": 1400
+        },
+        {
+          "bytes": 569442971,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001500.pt",
+          "sha256": "deac4f1687555a42915c9a748186912edcad5cc51aa16c56b40515e335e61826",
+          "sidecar_complete": true,
+          "step": 1500
+        },
+        {
+          "bytes": 569450971,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001600.pt",
+          "sha256": "9b8aaee177ffbc8b210275c6b00ca2adbacd5f944e34b2f92ab75ccbaabac880",
+          "sidecar_complete": true,
+          "step": 1600
+        },
+        {
+          "bytes": 569458907,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001700.pt",
+          "sha256": "a7e72fc682ed4459fe96b25dda8224babfd059b43e9bb9cb6c4dacd64f62f33b",
+          "sidecar_complete": true,
+          "step": 1700
+        },
+        {
+          "bytes": 569466843,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001800.pt",
+          "sha256": "6f2e2b9b92eebe431f80b8a1143438f9785b31e28e4b5a3ee8e1abce83dec5fd",
+          "sidecar_complete": true,
+          "step": 1800
+        },
+        {
+          "bytes": 569474843,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_001900.pt",
+          "sha256": "a62c4e5ae2c22ee8a06d416371e885cc1877bffccb5fbf64b30b55b3e47a89a0",
+          "sidecar_complete": true,
+          "step": 1900
+        },
+        {
+          "bytes": 569482779,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_002000.pt",
+          "sha256": "8eebd2bc2cb830e6a53260adbe016dbcba70f5b7a13b85a9d47f7a4a992f89cd",
+          "sidecar_complete": true,
+          "step": 2000
+        }
+      ],
+      "checkpoint_steps": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900,
+        1000,
+        1100,
+        1200,
+        1300,
+        1400,
+        1500,
+        1600,
+        1700,
+        1800,
+        1900,
+        2000
+      ],
+      "distance": 4,
+      "metadata": {
+        "architecture": "A1P",
+        "base_parameter_count": 41870336,
+        "config_path": "configs/braidnano_a1_protected_lane_distance4_values8000.json",
+        "config_sha256": "939f512733ffd219560fcaef0c5fc015b19b1b4fa3e12da6fe3d990fe4ae4715",
+        "cuda_timing_scope": "CUDA event from optimizer.zero_grad through optimizer.step; evaluation excluded",
+        "experiment_id": "a1_protected_lane_distance4_seed17_protected",
+        "initial_step": 0,
+        "initial_tokens": 0,
+        "integrity_schema_version": 1,
+        "lane_mode": "protected",
+        "lane_width": 64,
+        "loss_ceiling": 100.0,
+        "parameter_count": 41969346,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "seed_report": {
+          "deterministic_algorithms_requested": true,
+          "numpy": true,
+          "python": true,
+          "seed": 17,
+          "torch": true
+        },
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "running",
+        "synthetic_data_sha256": "156f4f713ac86e59b78fed23b528601e1de254636c92055656b61d7e1de8e220",
+        "synthetic_generator_sha256": "d64e431072089ac7d04ea967dca6e2062eeab64b5013199ceef2f387aee4801d",
+        "synthetic_generator_version": "synthetic_solvability_distance4_values8000_v1",
+        "tokens_per_step": 192,
+        "training": {
+          "association_count": 1,
+          "checkpoint_interval_steps": 100,
+          "distractor_distance": 4,
+          "fixed_training_examples": 128,
+          "max_steps": 2000,
+          "sequence_length": 12,
+          "target_length": 1,
+          "tokens": 384000,
+          "tokens_per_step": 192,
+          "validation_interval_steps": 100,
+          "value_count": 8000,
+          "warmup_steps": 20
+        }
+      },
+      "mode": "protected",
+      "run_dir": "results/runs/a1_protected_lane_distance4_seed17_protected",
+      "status": "completed",
+      "summary": {
+        "architecture": "A1P",
+        "association_count": 1,
+        "average_cuda_tokens_per_second": 675.2864859048548,
+        "average_tokens_per_second": 674.4944437652118,
+        "base_parameter_count": 41870336,
+        "checkpoint": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_002000.pt",
+        "checkpoint_integrity_verified": true,
+        "checkpoint_interval_steps": 100,
+        "checkpoint_sha256": "8eebd2bc2cb830e6a53260adbe016dbcba70f5b7a13b85a9d47f7a4a992f89cd",
+        "config_path": "configs/braidnano_a1_protected_lane_distance4_values8000.json",
+        "config_sha256": "939f512733ffd219560fcaef0c5fc015b19b1b4fa3e12da6fe3d990fe4ae4715",
+        "cuda_training_seconds": 568.647541473389,
+        "distractor_distance": 4,
+        "elapsed_wall_seconds": 611.5025410969974,
+        "experiment_id": "a1_protected_lane_distance4_seed17_protected",
+        "failure": null,
+        "final_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0078125,
+          "greedy_exact_match": 0.0078125,
+          "target_loss": 10.4141845703125
+        },
+        "final_lane_heldout": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 0.0078125,
+          "greedy_exact_match": 0.0078125,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9182543084025383,
+            "answer_lane_delta_norm": 0.17874456942081451,
+            "answer_memory_key_norm": 0.32309564226306975,
+            "answer_memory_value_norm": 0.3386668290477246,
+            "answer_read_gate": 0.9733447195030749,
+            "post_distractor_memory_key_norm": 0.32309564226306975,
+            "post_distractor_memory_value_norm": 0.3386668290477246,
+            "post_value_memory_key_norm": 0.32309564226306975,
+            "post_value_memory_value_norm": 0.3386668290477246
+          },
+          "target_loss": 10.413699388504028,
+          "value_candidate_target_loss": 9.684740662574768
+        },
+        "final_lane_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "lane_diagnostics": {
+            "answer_key_query_cosine": 0.9075704752467573,
+            "answer_lane_delta_norm": 0.2088040333474055,
+            "answer_memory_key_norm": 0.34782516211271286,
+            "answer_memory_value_norm": 0.40705183637328446,
+            "answer_read_gate": 0.9721361082047224,
+            "post_distractor_memory_key_norm": 0.34782516211271286,
+            "post_distractor_memory_value_norm": 0.40705183637328446,
+            "post_value_memory_key_norm": 0.34782516211271286,
+            "post_value_memory_value_norm": 0.40705183637328446
+          },
+          "target_loss": 0.0006565973162651062,
+          "value_candidate_target_loss": 0.00020211735500197392
+        },
+        "final_train": {
+          "examples": 128,
+          "greedy_answer_token_accuracy": 1.0,
+          "greedy_exact_match": 1.0,
+          "target_loss": 0.0006564073264598846
+        },
+        "lane_mode": "protected",
+        "lane_width": 64,
+        "learning_rate": 0.0003,
+        "lr_schedule": "cosine",
+        "numerical_instability": false,
+        "optimizer_steps": 2000,
+        "parameter_count": 41969346,
+        "peak_allocated_vram_bytes": 869811712,
+        "peak_reserved_vram_bytes": 1006632960,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "run_dir": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance4_seed17_protected",
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "sequence_length": 12,
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "completed",
+        "synthetic_data_sha256": "156f4f713ac86e59b78fed23b528601e1de254636c92055656b61d7e1de8e220",
+        "synthetic_generator_sha256": "d64e431072089ac7d04ea967dca6e2062eeab64b5013199ceef2f387aee4801d",
+        "synthetic_generator_version": "synthetic_solvability_distance4_values8000_v1",
+        "target_length": 1,
+        "tokens_processed": 384000,
+        "train_loss": 0.0006457269191741943,
+        "training_wall_seconds": 569.3152902141155,
+        "validation_history": [
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.015625,
+                "greedy_exact_match": 0.015625,
+                "target_loss": 11.21795654296875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.058312296867370605
+              }
+            },
+            "step": 100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.57977294921875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.00807073712348938
+              }
+            },
+            "step": 200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.361480712890625
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.005340486764907837
+              }
+            },
+            "step": 300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.347640991210938
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0033428147435188293
+              }
+            },
+            "step": 400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.351043701171875
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0023739486932754517
+              }
+            },
+            "step": 500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.360969543457031
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0018168874084949493
+              }
+            },
+            "step": 600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.372703552246094
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0014660842716693878
+              }
+            },
+            "step": 700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.381996154785156
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0012325942516326904
+              }
+            },
+            "step": 800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.389480590820312
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0010702051222324371
+              }
+            },
+            "step": 900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.394813537597656
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0009543336927890778
+              }
+            },
+            "step": 1000
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.400146484375
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0008677486330270767
+              }
+            },
+            "step": 1100
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.403900146484375
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.000804118812084198
+              }
+            },
+            "step": 1200
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.407073974609375
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0007560886442661285
+              }
+            },
+            "step": 1300
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.409286499023438
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0007206350564956665
+              }
+            },
+            "step": 1400
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.410789489746094
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006946083158254623
+              }
+            },
+            "step": 1500
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.412788391113281
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006771478801965714
+              }
+            },
+            "step": 1600
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.41265869140625
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006651859730482101
+              }
+            },
+            "step": 1700
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.413414001464844
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006589610129594803
+              }
+            },
+            "step": 1800
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.414085388183594
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006568394601345062
+              }
+            },
+            "step": 1900
+          },
+          {
+            "metrics": {
+              "heldout": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 0.0078125,
+                "greedy_exact_match": 0.0078125,
+                "target_loss": 10.4141845703125
+              },
+              "train": {
+                "examples": 128,
+                "greedy_answer_token_accuracy": 1.0,
+                "greedy_exact_match": 1.0,
+                "target_loss": 0.0006564073264598846
+              }
+            },
+            "step": 2000
+          }
+        ],
+        "value_count": 8000,
+        "warmup_steps": 20
+      }
+    },
+    {
+      "checkpoint_count": 3,
+      "checkpoint_records": [
+        {
+          "bytes": 569331739,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_ordinary/checkpoint_step_000100.pt",
+          "sha256": "7c1e8f0bed5b8131ef9ef9ea67af0598073c1c832e3c64f93f81c28b29c580ef",
+          "sidecar_complete": true,
+          "step": 100
+        },
+        {
+          "bytes": 569339611,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_ordinary/checkpoint_step_000200.pt",
+          "sha256": "6ec624c8fea3acc38b26bbd19c99e4be1a1416726df5af4600ab6fffd0c4ec7f",
+          "sidecar_complete": true,
+          "step": 200
+        },
+        {
+          "bytes": 569347483,
+          "path": "results/runs/a1_protected_lane_distance4_seed17_ordinary/checkpoint_step_000300.pt",
+          "sha256": "7cefc141194cbfcea68950b30bc90cc3291e5c7347389ddcaa6234d6e982bf32",
+          "sidecar_complete": true,
+          "step": 300
+        }
+      ],
+      "checkpoint_steps": [
+        100,
+        200,
+        300
+      ],
+      "distance": 4,
+      "failure_message": "[enforce fail at inline_container.cc:672] . unexpected pos 524370752 vs 524370644",
+      "failure_type": "RuntimeError",
+      "metadata": {
+        "architecture": "A1P",
+        "base_parameter_count": 41870336,
+        "config_path": "configs/braidnano_a1_protected_lane_distance4_values8000.json",
+        "config_sha256": "939f512733ffd219560fcaef0c5fc015b19b1b4fa3e12da6fe3d990fe4ae4715",
+        "cuda_timing_scope": "CUDA event from optimizer.zero_grad through optimizer.step; evaluation excluded",
+        "experiment_id": "a1_protected_lane_distance4_seed17_ordinary",
+        "initial_step": 0,
+        "initial_tokens": 0,
+        "integrity_schema_version": 1,
+        "lane_mode": "ordinary",
+        "lane_width": 64,
+        "loss_ceiling": 100.0,
+        "parameter_count": 41969346,
+        "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+        "protocol_sha256": "d5e754621ebfeec73d67c7d72cb5a6b4dbd496b6ca1d5507dbae819c5893e583",
+        "resume_checkpoint": null,
+        "script_sha256": "d45ea13b7dc3d33087665c125c2d0e98d64955e821f20624f50aee1925e0d2ff",
+        "seed": 17,
+        "seed_report": {
+          "deterministic_algorithms_requested": true,
+          "numpy": true,
+          "python": true,
+          "seed": 17,
+          "torch": true
+        },
+        "source_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+        "status": "running",
+        "synthetic_data_sha256": "156f4f713ac86e59b78fed23b528601e1de254636c92055656b61d7e1de8e220",
+        "synthetic_generator_sha256": "d64e431072089ac7d04ea967dca6e2062eeab64b5013199ceef2f387aee4801d",
+        "synthetic_generator_version": "synthetic_solvability_distance4_values8000_v1",
+        "tokens_per_step": 192,
+        "training": {
+          "association_count": 1,
+          "checkpoint_interval_steps": 100,
+          "distractor_distance": 4,
+          "fixed_training_examples": 128,
+          "max_steps": 2000,
+          "sequence_length": 12,
+          "target_length": 1,
+          "tokens": 384000,
+          "tokens_per_step": 192,
+          "validation_interval_steps": 100,
+          "value_count": 8000,
+          "warmup_steps": 20
+        }
+      },
+      "mode": "ordinary",
+      "run_dir": "results/runs/a1_protected_lane_distance4_seed17_ordinary",
+      "status": "failed",
+      "summary": {
+        "architecture": "A1P",
+        "checkpoint": "/home/timbushnell/braidformer_lab/results/runs/a1_protected_lane_distance4_seed17_ordinary/checkpoint_step_000400.pt",
+        "cuda_training_seconds": 112.49001110839853,
+        "failure": {
+          "message": "[enforce fail at inline_container.cc:672] . unexpected pos 524370752 vs 524370644",
+          "type": "RuntimeError"
+        },
+        "final_step": 400,
+        "lane_mode": "ordinary",
+        "seed": 17,
+        "status": "failed"
+      }
+    },
+    {
+      "checkpoint_records": [],
+      "checkpoint_steps": [],
+      "distance": 16,
+      "mode": "protected",
+      "run_dir": "results/runs/a1_protected_lane_distance16_seed17_protected",
+      "status": "unstarted"
+    },
+    {
+      "checkpoint_records": [],
+      "checkpoint_steps": [],
+      "distance": 16,
+      "mode": "ordinary",
+      "run_dir": "results/runs/a1_protected_lane_distance16_seed17_ordinary",
+      "status": "unstarted"
+    },
+    {
+      "checkpoint_records": [],
+      "checkpoint_steps": [],
+      "distance": 64,
+      "mode": "protected",
+      "run_dir": "results/runs/a1_protected_lane_distance64_seed17_protected",
+      "status": "unstarted"
+    },
+    {
+      "checkpoint_records": [],
+      "checkpoint_steps": [],
+      "distance": 64,
+      "mode": "ordinary",
+      "run_dir": "results/runs/a1_protected_lane_distance64_seed17_ordinary",
+      "status": "unstarted"
+    }
+  ],
+  "completed_arm_count": 3,
+  "expected_base_parameter_count": 41870336,
+  "expected_lane_width": 64,
+  "expected_parameter_count": 41969346,
+  "failed_arm_count": 1,
+  "implementation_commit": "b48ddc24658eacfd93a98f4a3c97c66bc6ca7f0d",
+  "initialized_arm_count": 4,
+  "integrity": {
+    "initialized_checkpoint_sidecars_verified": 63,
+    "source_checkpoint_mutation": false,
+    "training_restarted_after_failure": false,
+    "worktree_status_at_audit": []
+  },
+  "planned_arm_count": 8,
+  "protocol_commit": "32fd4d052d6ff1c5783472b9a673885c4e61985b",
+  "scientific_status": {
+    "distance_0_protected_and_ordinary_completed": true,
+    "distance_16_and_64_not_started": true,
+    "distance_4_ordinary_is_not_a_scientific_result": true,
+    "distance_4_protected_completed": true,
+    "interpretation_deferred": true
+  },
+  "status": "stopped_integrity_failure",
+  "stop_reason": {
+    "available_bytes_at_audit": 518545408,
+    "category": "checkpoint_write_failure",
+    "failed_checkpoint_bytes": 569347483,
+    "filesystem_used_percent_at_audit": 94.8899,
+    "message": "[enforce fail at inline_container.cc:672] . unexpected pos 524370752 vs 524370644",
+    "type": "RuntimeError"
+  },
+  "unstarted_arm_count": 4,
+  "version": "a1_protected_lane_distance_axis_interrupted_v1"
+}

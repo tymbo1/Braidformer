@@ -1,6 +1,6 @@
 # BraidFormer A0/A1 Mechanism Campaign Status
 
-Status: **complete**
+Status: **stopped on checkpoint-integrity failure; protected-lane follow-up incomplete**
 
 This ledger is the authoritative continuation point for the bounded mechanism
 campaign. It is updated and committed after every queue item. The campaign
@@ -298,4 +298,47 @@ execution and its source hash is recorded in the aggregate.
 | Follow-up protocol/design | `665c614` | Inference-only distractor-interval interference-isolation design. |
 | Follow-up analyzer freeze | `1e88deb` | Hash-complete read-only analyzer with no-op and parameter-digest controls. |
 | Follow-up result | `31fafd0` | Protected-state causal result, aggregate, report, and evidence update. |
+
+## Protected associative lane follow-up — stopped on integrity failure
+
+The fresh architectural falsification branch was frozen in
+`docs/A1_PROTECTED_ASSOCIATIVE_LANE_PROTOCOL.md`. It added a separate 64-wide
+protected/ordinary associative lane around an unchanged A1 base; original A0
+and A1 remained untouched controls. The implementation and four distance
+configs were committed before training. Three of the eight predeclared arms
+completed: protected and ordinary at distance 0, and protected at distance 4.
+All three reached 100% train EM; held-out EM was `3.90625%`, `3.90625%`, and
+`0.78125%`, respectively. These partial numbers are not sufficient to
+adjudicate the protected-lane prediction because the ordinary distance-4
+comparator failed before completion.
+
+The ordinary distance-4 arm stopped at a checkpoint serialization error after
+valid checkpoints through step 300. The filesystem had only about 497 MB free,
+less than the approximately 569 MB atomic checkpoint. Distances 16 and 64
+were never started. No retry, deletion, or storage workaround was performed.
+The read-only audit verified 63 intact checkpoint sidecars and recorded the
+failure in `results/a1_protected_lane_distance_axis_interrupted.json`; its
+report is `docs/A1_PROTECTED_ASSOCIATIVE_LANE_STOP_RESULT.md`.
+
+The follow-up is therefore stopped by the campaign integrity gate, not by a
+scientific null or positive result. A future continuation requires explicit
+storage remediation and a fresh protocol review before any training resumes.
+
+## Current continuation point
+
+Do not start the four unstarted lane arms, interpret the partial distance
+curve, or begin A2/scaling/persistent-memory/predictive-learning work. The
+next authorized action is to resolve the full-filesystem condition without
+deleting research artifacts, then review whether the preserved run directories
+can be resumed or whether a fresh reproducible lane campaign is preferable.
+
+## Protected-lane commit ledger
+
+| State | Commit | Evidence |
+| --- | --- | --- |
+| Protected-lane protocol | `32fd4d0` | Frozen protocol and predeclared prediction. |
+| Protected-lane implementation | `d6358bf` | New A1P model, configs, runner, and tests; original A0/A1 untouched. |
+| Runner correction | `b48ddc2` | Fixed provenance seed typo; `78 passed`. |
+| Stop audit | `8bef743`, `36f5aa9` | Read-only checkpoint audit and exact failure classifier. |
+| Stop result | pending this commit | Partial-arm report, interruption aggregate, and ledger update. |
 

@@ -881,3 +881,21 @@ result. The aggregate is
 `d86247e643bcc02f62bf6938446ffb2d5f4fbd3d19cc47a63fb78a96c2d79b86`), with
 the concise report in
 `docs/A0_A1_INTERFERENCE_ISOLATION_RESULT.md`.
+
+## 2026-10-14 — D050: stop protected-lane follow-up on filesystem integrity failure
+
+The fresh protected-associative-lane branch was frozen before training with
+unchanged original A0/A1 controls. Protected and ordinary distance-0 arms and
+the protected distance-4 arm completed with valid checkpoint series. The
+ordinary distance-4 arm failed during an atomic checkpoint write after valid
+checkpoints through step 300; the filesystem had only about 497 MB free while
+one checkpoint was about 569 MB. Distances 16 and 64 were not started.
+
+The stop audit verified all 63 intact checkpoint sidecars and found no source
+checkpoint mutation. Because the parameter-matched distance-4 comparator is
+missing, the partial metrics cannot adjudicate the protected-lane hypothesis.
+No checkpoint was deleted, no retry was attempted, and no architecture work
+was stacked. The machine-readable interruption record is
+`results/a1_protected_lane_distance_axis_interrupted.json`; the report is
+`docs/A1_PROTECTED_ASSOCIATIVE_LANE_STOP_RESULT.md`. The next action requires
+storage remediation and a fresh protocol review before training resumes.
