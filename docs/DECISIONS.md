@@ -1032,3 +1032,30 @@ results/a1_scan_compile_preflight.json (sha256
 b511f7a5e101ae0fe2b9843443eb093c1883fb94e5be3bddfb3cec22bf2db7d5); the
 report is docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md; the source hashes are
 recorded in the aggregate.
+
+## 2026-10-15 — D056: compiled A1 path passes ten-update stability
+
+The frozen stability protocol
+docs/A1_SCAN_COMPILE_STABILITY_PROTOCOL.md and runner
+scripts/compare_a1_scan_compile_stability.py were executed on host CUDA with
+fresh seed-17 initialization for eager and torch.compile default paths. Both
+completed ten in-memory optimizer updates with finite losses and gradients;
+no checkpoint, model artifact, or quality-training result was written.
+
+Across updates 2 through 10, compiled steady-state CUDA time was 0.176296
+seconds/update versus 0.364185 for eager, a 2.066x speedup, with throughput
+of 46,467 versus 22,494 tokens/second. The largest relative loss difference
+was about 1.4e-5; the largest relative gradient-norm difference was about
+2.4e-3; final-parameter relative L2 difference was 0.006791.
+
+The compiled path therefore passes the predeclared operational and 10%
+performance gates. Its peak reserved VRAM, including compiler warm-up, was
+2,099,249,152 bytes versus 1,931,476,992 for eager, so memory adoption is
+not claimed. The result supports an optional compiled runner path but does
+not authorize changing the default runner; integration requires a separate
+implementation review and remains default-off.
+
+The aggregate is
+results/a1_scan_compile_stability.json; the report is
+docs/A1_SCAN_COMPILE_STABILITY_RESULT.md; protocol and runner source hashes
+are recorded in the aggregate.
