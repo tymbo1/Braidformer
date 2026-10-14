@@ -648,6 +648,10 @@ def _run_arm(arm: dict[str, Any], device: torch.device) -> dict[str, Any]:
     heldout_examples = make_evaluation_examples(
         SEED, "heldout", VALUE_COUNT, 1, distance, 1
     )
+    train_values = {int(example.target) for example in train_examples}
+    heldout_values = {int(example.target) for example in heldout_examples}
+    train_keys = {int(example.input_ids[2]) for example in train_examples}
+    heldout_keys = {int(example.input_ids[2]) for example in heldout_examples}
     train = _capture_split(model, train_examples, distance, device)
     heldout = _capture_split(model, heldout_examples, distance, device)
     embedding_weight = model.base.token_embedding.weight.detach().float().cpu()
@@ -678,6 +682,13 @@ def _run_arm(arm: dict[str, Any], device: torch.device) -> dict[str, Any]:
         **metadata,
         "source_train_examples": len(train_examples),
         "source_heldout_examples": len(heldout_examples),
+        "probe_reference_overlap": {
+            "train_heldout_value_token_overlap_count": len(train_values & heldout_values),
+            "train_heldout_value_token_overlap_floor": len(train_values & heldout_values)
+            / len(heldout_examples),
+            "train_heldout_key_token_overlap_count": len(train_keys & heldout_keys),
+            "value_candidate_top1_chance": 1.0 / VALUE_COUNT,
+        },
         "stage_positions": heldout["stage_positions"],
         "native_output": native_metrics,
         "base_only_output": base_metrics,
@@ -753,6 +764,7 @@ def _report(result: dict[str, Any]) -> str:
         f"Source aggregate: `{SOURCE_AGGREGATE_PATH}` (sha256 `{result['source_aggregate_sha256']}`).",
         "",
         "The primary stages are post-value, post-distractor, post-query-key, and answer-marker. Fixed probes are fit on the 128-example training split and evaluated on the disjoint held-out split; within-held-out cross-validation is retained as a local decodability diagnostic.",
+        "The train and held-out value draws share 6 of 128 value tokens, so 6/128 is an explicit fixed-probe overlap floor; the fixed top-1 columns are not interpreted as transfer above that floor. The key ranges are disjoint.",
         "",
         "## Summary",
         "",
