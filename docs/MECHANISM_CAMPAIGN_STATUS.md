@@ -363,6 +363,7 @@ protected-lane scientific status or authorize resuming training.
 | Stop result | `2f14a30` | Partial-arm report, interruption aggregate, and ledger update. |
 | Retention tool | `11ac56d` | Hash-verified checkpoint archiver retaining latest/referenced root checkpoints. |
 | Continuation protocol | `289b397` | Storage-resume protocol; original scientific settings unchanged. |
+| Continuation analysis/result | `6a2f35c` | Complete eight-arm axis aggregate, report, and negative adjudication. |
 
 ## Protected-lane continuation result — complete negative
 
