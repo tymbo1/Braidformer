@@ -915,6 +915,31 @@ The machine-readable record is
 `results/checkpoint_retention_manifest.json`. Post-move verification found no
 missing retained or archived files, no partial archive files, 140 root
 checkpoints, 808 archive checkpoints, and approximately 429 GiB free on `/`.
-This is storage remediation only: the protected-lane follow-up remains stopped,
-and no training resume or scientific interpretation is authorized without a
-fresh protocol review.
+At the time of this decision the protected-lane follow-up remained stopped;
+the later continuation and scientific result are recorded in D052.
+
+## 2026-10-14 — D052: close the protected associative lane as a negative result
+
+After storage remediation, the continuation protocol in
+`docs/A1_PROTECTED_ASSOCIATIVE_LANE_CONTINUATION_PROTOCOL.md` resumed the
+ordinary distance-4 comparator from its verified step-300 checkpoint into a
+fresh directory, then completed fresh protected/ordinary arms at distances 16
+and 64. The eight-arm one-association/8,000-value axis is complete. All arms
+reached 100% training EM; protected held-out EM was identical to ordinary at
+every distance, and protected target loss was better only at distances 0 and 4,
+then worse at distances 16 and 64.
+
+The protected lane did preserve its own memory norms through the long
+distractor intervals, but that state did not produce transferable held-out
+retrieval. The minimal protected-persistence hypothesis is therefore closed
+negative. The result supports retaining a composite mechanism: preservation
+alone is insufficient, while binding formation and query-conditioned/downstream
+integration remain live hypotheses. No second lane modification is stacked.
+
+The machine-readable aggregate is
+`results/a1_protected_lane_distance_axis_values8000.json`; the report is
+`docs/A1_PROTECTED_ASSOCIATIVE_LANE_RESULT.md`. Its read-only analyzer
+structurally verified 158 checkpoint records, including the separately
+retained step-300 source checkpoint for the resumed arm. Original A0/A1
+definitions and source checkpoints remain untouched; the full test suite and
+`git diff --check` remain required before the result commit.

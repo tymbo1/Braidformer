@@ -1,6 +1,6 @@
 # BraidFormer A0/A1 Mechanism Campaign Status
 
-Status: **stopped on checkpoint-integrity failure; protected-lane follow-up incomplete**
+Status: **mechanism campaign complete; protected-lane follow-up complete negative**
 
 This ledger is the authoritative continuation point for the bounded mechanism
 campaign. It is updated and committed after every queue item. The campaign
@@ -41,10 +41,10 @@ target-state degradation, or optimization.
 | ID | Hypothesis | Current status |
 | --- | --- | --- |
 | H1 | Temporal decay erases the required value trace. | Partially supported but insufficient: distance, taus, probe collapse, and the full-freeze partial distance-64 gain support a temporal component; long-tail initialization and native retrieval results reject decay alone as sufficient. |
-| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Strengthened: suppressing distractor writes preserves fixed-probe value decodability through the distractor interval, but does not coherently restore native retrieval. |
-| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Strengthened: protected traces still lose transfer after the query and target sites, leaving query-conditioned/downstream transformation as a surviving component. |
+| H2 | Recurrent-state transformation/interference destroys the binding while the sequence advances. | Partially supported but insufficient: suppressing distractor writes preserves fixed-probe value decodability, and the protected lane preserves its own state, yet neither restores held-out retrieval. |
+| H3 | Query-conditioned processing corrupts or overwrites a retained binding. | Strengthened: protected traces/lane state survive distractors but native output remains at floor, leaving query-conditioned/downstream transformation as a surviving component. |
 | H4 | Binding/key-value identity is not represented compositionally under the synthetic load. | Strongly supported shared failure; it does not alone explain A1's extra distance sensitivity. |
-| H5 | The required value survives internally but the output route/readout fails. | Weakened: cross-validated site-specific probes did not reveal a strong retained value code or a diagnostic readout advantage. |
+| H5 | The required value survives internally but the output route/readout fails. | Reopened for the protected lane: its stored state and read gate survive long distance, but the output does not recover. This is not sufficient to explain native A1 alone. |
 | H6 | Multi-token autoregressive target state degrades after the first output. | Weakened: A1 is already impaired on the first teacher-forced target at lengths 4 and 8, so autoregressive feedback is not the sole cause. |
 | H7 | A1 needs more optimization steps or a different optimization trajectory. | Unresolved background factor; not enough evidence to justify a training intervention. |
 
@@ -299,7 +299,7 @@ execution and its source hash is recorded in the aggregate.
 | Follow-up analyzer freeze | `1e88deb` | Hash-complete read-only analyzer with no-op and parameter-digest controls. |
 | Follow-up result | `31fafd0` | Protected-state causal result, aggregate, report, and evidence update. |
 
-## Protected associative lane follow-up — stopped on integrity failure
+## Protected associative lane follow-up — initial integrity stop
 
 The fresh architectural falsification branch was frozen in
 `docs/A1_PROTECTED_ASSOCIATIVE_LANE_PROTOCOL.md`. It added a separate 64-wide
@@ -320,18 +320,19 @@ The read-only audit verified 63 intact checkpoint sidecars and recorded the
 failure in `results/a1_protected_lane_distance_axis_interrupted.json`; its
 report is `docs/A1_PROTECTED_ASSOCIATIVE_LANE_STOP_RESULT.md`.
 
-The follow-up is therefore stopped by the campaign integrity gate, not by a
-scientific null or positive result. Storage remediation is now complete, but a
-fresh protocol review is still required before any training resumes.
+The initial execution stopped by the campaign integrity gate, not by a
+scientific null or positive result. Storage remediation and the continuation
+protocol are recorded below; the initial partial metrics remain non-results.
 
 ## Current continuation point
 
-Do not start the four unstarted lane arms, interpret the partial distance
-curve, or begin A2/scaling/persistent-memory/predictive-learning work. The
-full-filesystem condition has been resolved without discarding research
-artifacts. The next authorized action is a fresh protocol review to decide
-whether the preserved run directories can be resumed or whether a fresh
-reproducible lane campaign is preferable.
+The protected-lane distance axis is now complete and closed negative. Do not
+begin A2, scaling, persistent-memory, predictive-learning, curriculum,
+post-training, or unrelated architecture work under this campaign. The single
+best next experiment is a separately frozen read-only lane-state/query-output
+diagnostic that tests whether the preserved lane value is decodable and
+correctly transformed at the answer marker before authorizing any new training
+architecture.
 
 ## Storage remediation — 2026-10-14
 
@@ -361,4 +362,34 @@ protected-lane scientific status or authorize resuming training.
 | Stop audit | `8bef743`, `36f5aa9` | Read-only checkpoint audit and exact failure classifier. |
 | Stop result | `2f14a30` | Partial-arm report, interruption aggregate, and ledger update. |
 | Retention tool | `11ac56d` | Hash-verified checkpoint archiver retaining latest/referenced root checkpoints. |
+| Continuation protocol | `289b397` | Storage-resume protocol; original scientific settings unchanged. |
+
+## Protected-lane continuation result — complete negative
+
+The continuation resumed the ordinary distance-4 comparator from its verified
+step-300 checkpoint into a fresh directory, then completed fresh protected and
+ordinary arms at distances 16 and 64. The eight-arm axis is now complete:
+
+| Distance | Protected held-out EM | Ordinary held-out EM | Protected loss | Ordinary loss |
+| ---: | ---: | ---: | ---: | ---: |
+| 0 | 3.90625% | 3.90625% | 10.248867 | 10.265778 |
+| 4 | 0.78125% | 0.78125% | 10.414185 | 10.554665 |
+| 16 | 0% | 0% | 10.949066 | 10.671906 |
+| 64 | 0% | 0% | 10.891357 | 10.842102 |
+
+All eight arms reached 100% training EM. Protected never improved held-out EM;
+its target-loss advantage at distances 0 and 4 reversed at distances 16 and
+64. The lane diagnostics confirm that protected state itself was held through
+the long distractor intervals, so the null is not a simple persistence failure.
+The preserved state nevertheless did not yield transferable retrieval. The
+minimal protected-lane hypothesis is therefore closed negative: protected
+state alone is insufficient, with binding formation and query-conditioned
+integration/use remaining the leading loci.
+
+The aggregate is `results/a1_protected_lane_distance_axis_values8000.json` and
+the report is `docs/A1_PROTECTED_ASSOCIATIVE_LANE_RESULT.md`. The aggregate
+structurally verified 158 checkpoint records (18 for the resumed arm, whose
+step-300 source checkpoint is separately retained, and 20 for each other
+completed arm). No A0/original-A1 source changed and no checkpoint was
+discarded by this continuation.
 
