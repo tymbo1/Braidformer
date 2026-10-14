@@ -394,3 +394,9 @@ step-300 source checkpoint is separately retained, and 20 for each other
 completed arm). No A0/original-A1 source changed and no checkpoint was
 discarded by this continuation.
 
+The continuation added 97 new root checkpoint files for its completed arms;
+they remain on root because the aggregate records each checkpoint path for
+provenance. Current post-campaign storage is approximately 377 GiB free on
+root and 597 GiB free on `/mnt/ssd2`; the verified 428 GiB redundant archive
+remains intact.
+
