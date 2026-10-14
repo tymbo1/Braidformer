@@ -162,8 +162,16 @@ def _stage_positions(distance: int) -> dict[str, int]:
         "post_query_key": 5 + distance,
         "answer_marker": 6 + distance,
     }
-    if sorted(set(positions.values())) != sorted(positions.values()):
-        raise ValueError(f"stage positions overlap unexpectedly at distance {distance}")
+    if positions["post_distractor"] < positions["post_value"]:
+        raise ValueError(f"distractor stage precedes value stage at distance {distance}")
+    if len(
+        {
+            positions["post_query_marker"],
+            positions["post_query_key"],
+            positions["answer_marker"],
+        }
+    ) != 3:
+        raise ValueError(f"query/output stages overlap unexpectedly at distance {distance}")
     return positions
 
 
