@@ -984,12 +984,12 @@ equality. It retained the frozen memory value, trained lane readout, base A1
 hidden state, output head, and all other recurrence. All eight held-out
 protected/ordinary arms passed source, checkpoint, finite-value, native
 forward-equivalence, and unchanged-parameter checks; no checkpoint was
-written. CUDA was unavailable, so the identical read-only computation ran on
-CPU.
+written. The initial sandboxed CPU fallback was superseded by a successful
+host-CUDA rerun on the visible RTX 3060 Ti, which is the authoritative result.
 
 Protected value-range top-1 remained `3.90625%`, `0.78125%`, `0%`, and `0%`
 at distances 0, 4, 16, and 64. Exact-address value CE changed by only
-`-0.0002`, `+0.0001`, `-0.0005`, and `-0.0019`, while the protected stored
+`-0.0002`, `+0.0000`, `-0.0006`, and `-0.0019`, while the protected stored
 value retained cosine `1.0000` and every exact gate was one. Ordinary exact
 addressing produced no top-1 recovery and worsened CE at distances 4, 16,
 and 64. Therefore the learned address gate is not the dominant blocker

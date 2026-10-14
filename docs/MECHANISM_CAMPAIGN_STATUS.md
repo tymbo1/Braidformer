@@ -489,23 +489,24 @@ token equality. The stored protected value, trained lane readout, base hidden
 state, output head, and all other recurrence remained unchanged.
 
 The eight verified protected/ordinary checkpoints were evaluated on the
-held-out 8,000-value battery. CUDA was unavailable in the execution runtime,
-so the identical inference-only computation ran on CPU; no checkpoint or
-weight was written. Source hashes, checkpoint sidecars, canonical exact-key
-assertions, native-forward equivalence, finite tensors/metrics, and unchanged
-parameter digests all passed.
+held-out 8,000-value battery with host CUDA on the visible RTX 3060 Ti; no
+checkpoint or weight was written. An earlier sandboxed CPU fallback was
+superseded by this CUDA execution before the result was treated as final.
+Source hashes, checkpoint sidecars, canonical exact-key assertions,
+native-forward equivalence, finite tensors/metrics, and unchanged parameter
+digests all passed.
 
 Exact addressing did not rescue protected retrieval. Protected value-range
 top-1 remained `3.90625%`, `0.78125%`, `0%`, and `0%` at distances 0, 4, 16,
 and 64. Its value cross-entropy deltas (exact minus native) were only
-`-0.0002`, `+0.0001`, `-0.0005`, and `-0.0019`, with mean-rank changes of at
+`-0.0002`, `+0.0000`, `-0.0006`, and `-0.0019`, with mean-rank changes of at
 most one rank and no long-distance top-1 recovery. Protected memory-value
 cosine remained `1.0000` and the exact gate was one for every example, so this
 null is not explained by failed storage persistence or missing exact key
 matches.
 
 The ordinary lane also had no top-1 recovery; exact addressing worsened value
-cross-entropy at distances 4, 16, and 64 by `+0.0073`, `+0.1176`, and
+cross-entropy at distances 4, 16, and 64 by `+0.0072`, `+0.1175`, and
 `+0.1630`. The intervention therefore closes the narrow learned-address-gate
 hypothesis: even an exact address oracle does not make the preserved value
 usable. Weak binding/representation plus query-conditioned or downstream
@@ -514,7 +515,7 @@ training run, or architecture change is authorized by this result.
 
 The machine-readable result is
 `results/a1_protected_lane_exact_address_intervention.json` (sha256
-`4faf4f6dacc32bfc9e381a9e9866c335745fce15b3edbd2e43a8efd550762fe5`); the
+`f9f1bca66c3e25a9c2a8c402d108aa8a0e6c27a7b29675e36b60146fe6918220`); the
 report is
 `docs/A1_PROTECTED_LANE_EXACT_ADDRESS_INTERVENTION_RESULT.md`; the analyzer
 source hash is
