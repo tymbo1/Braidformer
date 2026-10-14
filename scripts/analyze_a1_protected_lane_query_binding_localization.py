@@ -795,7 +795,8 @@ def main() -> int:
         raise RuntimeError("CUDA requested but unavailable")
     aggregate = _verify_sources()
     arms = sorted(
-        aggregate["arms"], key=lambda arm: (int(arm["distance"]), str(arm["mode"]))
+        aggregate["arms"],
+        key=lambda arm: (int(arm["distance"]), MODES.index(str(arm["mode"]))),
     )
     if [(int(arm["distance"]), arm["mode"]) for arm in arms] != [
         (distance, mode) for distance in DISTANCES for mode in MODES
