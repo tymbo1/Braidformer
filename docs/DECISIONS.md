@@ -975,3 +975,29 @@ The machine-readable result is
 `results/a1_protected_lane_query_binding_localization.json`; the report is
 `docs/A1_PROTECTED_LANE_QUERY_BINDING_LOCALIZATION_RESULT.md`; the ledger is
 `docs/MECHANISM_CAMPAIGN_STATUS.md`. No training intervention is unlocked.
+
+## 2026-10-14 — D054: exact-address oracle does not rescue protected retrieval
+
+The frozen exact-address intervention replaced only the learned protected-lane
+key-similarity/read gate at the answer marker with exact record-key/query-key
+equality. It retained the frozen memory value, trained lane readout, base A1
+hidden state, output head, and all other recurrence. All eight held-out
+protected/ordinary arms passed source, checkpoint, finite-value, native
+forward-equivalence, and unchanged-parameter checks; no checkpoint was
+written. CUDA was unavailable, so the identical read-only computation ran on
+CPU.
+
+Protected value-range top-1 remained `3.90625%`, `0.78125%`, `0%`, and `0%`
+at distances 0, 4, 16, and 64. Exact-address value CE changed by only
+`-0.0002`, `+0.0001`, `-0.0005`, and `-0.0019`, while the protected stored
+value retained cosine `1.0000` and every exact gate was one. Ordinary exact
+addressing produced no top-1 recovery and worsened CE at distances 4, 16,
+and 64. Therefore the learned address gate is not the dominant blocker
+conditional on protected storage; weak binding/representation and
+query-conditioned or downstream value integration remain the supported
+targets. No training or architecture change is authorized.
+
+The aggregate is
+`results/a1_protected_lane_exact_address_intervention.json`; its report is
+`docs/A1_PROTECTED_LANE_EXACT_ADDRESS_INTERVENTION_RESULT.md`; the analyzer
+was frozen at `9e97ec2` after the protocol freeze `f9badbf`.

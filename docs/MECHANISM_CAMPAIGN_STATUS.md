@@ -1,6 +1,6 @@
 # BraidFormer A0/A1 Mechanism Campaign Status
 
-Status: **mechanism campaign complete; protected-lane localization complete; no training intervention unlocked**
+Status: **mechanism campaign complete; protected-lane localization and exact-address intervention complete; no training intervention unlocked**
 
 This ledger is the authoritative continuation point for the bounded mechanism
 campaign. It is updated and committed after every queue item. The campaign
@@ -326,10 +326,11 @@ protocol are recorded below; the initial partial metrics remain non-results.
 
 ## Current continuation point
 
-The protected-lane distance axis and the follow-up lane-state/query-output
-localization are now complete. The localization confirms that protected state
-survives but does not become a transferable query-conditioned binding or a
-usable answer representation. Do not begin A2, scaling, persistent-memory,
+The protected-lane distance axis, lane-state/query-output localization, and
+the exact-address intervention are now complete. The localization confirms
+that protected state survives but does not become a transferable
+query-conditioned binding or a usable answer representation; exact record-key
+addressing does not rescue it. Do not begin A2, scaling, persistent-memory,
 predictive-learning, curriculum, post-training, or unrelated architecture work
 under this campaign. A new training or architectural intervention would
 require a separately frozen protocol outside this completed queue.
@@ -477,4 +478,45 @@ tensor, probe, logit, and metric was finite; all eight parameter digests were
 unchanged; no checkpoint was written; no A0 or original-A1 definition changed.
 The full test suite, `git diff --check`, and untracked-artifact audit are
 required before the result commit.
+
+## 2026-10-14 — D054: exact address does not make preserved value usable
+
+The exact-address protocol was frozen in
+`docs/A1_PROTECTED_LANE_EXACT_ADDRESS_PROTOCOL.md` at commit `f9badbf`; the
+read-only analyzer was committed at `9e97ec2`. It replaced only the learned
+key-similarity/read gate at the answer marker with exact record-key/query-key
+token equality. The stored protected value, trained lane readout, base hidden
+state, output head, and all other recurrence remained unchanged.
+
+The eight verified protected/ordinary checkpoints were evaluated on the
+held-out 8,000-value battery. CUDA was unavailable in the execution runtime,
+so the identical inference-only computation ran on CPU; no checkpoint or
+weight was written. Source hashes, checkpoint sidecars, canonical exact-key
+assertions, native-forward equivalence, finite tensors/metrics, and unchanged
+parameter digests all passed.
+
+Exact addressing did not rescue protected retrieval. Protected value-range
+top-1 remained `3.90625%`, `0.78125%`, `0%`, and `0%` at distances 0, 4, 16,
+and 64. Its value cross-entropy deltas (exact minus native) were only
+`-0.0002`, `+0.0001`, `-0.0005`, and `-0.0019`, with mean-rank changes of at
+most one rank and no long-distance top-1 recovery. Protected memory-value
+cosine remained `1.0000` and the exact gate was one for every example, so this
+null is not explained by failed storage persistence or missing exact key
+matches.
+
+The ordinary lane also had no top-1 recovery; exact addressing worsened value
+cross-entropy at distances 4, 16, and 64 by `+0.0073`, `+0.1176`, and
+`+0.1630`. The intervention therefore closes the narrow learned-address-gate
+hypothesis: even an exact address oracle does not make the preserved value
+usable. Weak binding/representation plus query-conditioned or downstream
+value integration remain the stronger loci. No second inference patch,
+training run, or architecture change is authorized by this result.
+
+The machine-readable result is
+`results/a1_protected_lane_exact_address_intervention.json` (sha256
+`4faf4f6dacc32bfc9e381a9e9866c335745fce15b3edbd2e43a8efd550762fe5`); the
+report is
+`docs/A1_PROTECTED_LANE_EXACT_ADDRESS_INTERVENTION_RESULT.md`; the analyzer
+source hash is
+`7a57101badf7130c3b14c49bb977e83bf8fe88fa58031d0eb437fd3d43c7f894`.
 

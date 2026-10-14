@@ -1,0 +1,630 @@
+{
+  "analysis_script": "scripts/analyze_a1_protected_lane_exact_address_intervention.py",
+  "analysis_script_sha256": "7a57101badf7130c3b14c49bb977e83bf8fe88fa58031d0eb437fd3d43c7f894",
+  "distances": [
+    0,
+    4,
+    16,
+    64
+  ],
+  "integrity": {
+    "all_exact_gates_one": true,
+    "all_final_checkpoints_verified": true,
+    "all_native_reference_checks_finite": true,
+    "all_parameter_digests_unchanged": true,
+    "checkpoints_written_by_analysis": false,
+    "source_verified": true,
+    "weights_modified_by_analysis": false
+  },
+  "localization_path": "results/a1_protected_lane_query_binding_localization.json",
+  "localization_sha256": "97d2b0ecf6659dffec052a1a31cc83b3af57fc50a6cbbe32fb391c2d6124f5c0",
+  "modes": [
+    "protected",
+    "ordinary"
+  ],
+  "protected_lane_model_sha256": "d776dea620662187c2698e604b8aa171a52e5b911adaa738daea7ffca13f421c",
+  "protocol_commit": "f9badbf69dc016f1bd2a29ccae5e9ca30dbb86ee",
+  "protocol_path": "docs/A1_PROTECTED_LANE_EXACT_ADDRESS_PROTOCOL.md",
+  "protocol_sha256": "9a7a7b0105eeefe8032e2b77d24b2e382876445c444ee269fece2d2bdd95cc43",
+  "runner_sha256": "2a1a1c84f1ebfabc11cf66f0defa2e2ad4db2d1741c89c3d12660d3ac066d3e5",
+  "runs": [
+    {
+      "answer_position": 6,
+      "checkpoint": {
+        "bytes": 569482715,
+        "path": "results/runs/a1_protected_lane_distance0_seed17_protected/checkpoint_step_002000.pt",
+        "sha256": "423395450b4d31f8ee8b25adcd338fd3a78dc7017b8ba9e0fba70ea93d73e9e0",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+      "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -0.6328125,
+        "mean_target_logit": 0.00023086159490048885,
+        "value_cross_entropy": -0.000202178955078125,
+        "value_mean_target_rank": -0.0625,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 0,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.248688697814941,
+          "mean_target_margin": -7.384060859680176,
+          "mean_target_probability": 0.007413260638713837,
+          "mean_target_rank": 10802.6484375,
+          "top1_accuracy": 0.0390625
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.494104385375977,
+          "mean_target_margin": -7.384060859680176,
+          "mean_target_probability": 0.01194992009550333,
+          "mean_target_rank": 2749.0,
+          "top1_accuracy": 0.0390625
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 0.1660396922379732,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 1.0000000074505806,
+        "mean_memory_value_norm": 0.33802277385257185,
+        "mean_native_lane_delta_norm": 0.16217193333432078,
+        "mean_native_learned_gate": 0.9756174050271511
+      },
+      "heldout_examples": 128,
+      "mode": "protected",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.248818397521973,
+          "mean_target_margin": -7.384365081787109,
+          "mean_target_probability": 0.007411062717437744,
+          "mean_target_rank": 10803.28125,
+          "top1_accuracy": 0.0390625
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.494306564331055,
+          "mean_target_margin": -7.384365081787109,
+          "mean_target_probability": 0.01194646768271923,
+          "mean_target_rank": 2749.0625,
+          "top1_accuracy": 0.0390625
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "7dd363e63ee3b556270faa5406ac8a05bb85f9f7fb4ab2f9951917a43ac51c9d",
+      "parameter_digest_before": "7dd363e63ee3b556270faa5406ac8a05bb85f9f7fb4ab2f9951917a43ac51c9d",
+      "query_key_position": 5,
+      "run_name": "a1_protected_lane_distance0_seed17_protected",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 6,
+      "checkpoint": {
+        "bytes": 569482715,
+        "path": "results/runs/a1_protected_lane_distance0_seed17_ordinary/checkpoint_step_002000.pt",
+        "sha256": "2cb89720d938962072a7b0cf8bcbcd00b321a76ab151fd82a80de0bb386c320f",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance0_values8000.json",
+      "config_sha256": "07adc2227672cfbc06d6af4b1fa08527b36195c4c4793f89d608ca0b1822d09e",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -0.0625,
+        "mean_target_logit": 0.0008067649323493242,
+        "value_cross_entropy": -0.0006532669067382812,
+        "value_mean_target_rank": -0.09375,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 0,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.265593528747559,
+          "mean_target_margin": -7.429398059844971,
+          "mean_target_probability": 0.006674632430076599,
+          "mean_target_rank": 10787.1484375,
+          "top1_accuracy": 0.0390625
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.519862174987793,
+          "mean_target_margin": -7.429398059844971,
+          "mean_target_probability": 0.011109531857073307,
+          "mean_target_rank": 2746.9140625,
+          "top1_accuracy": 0.0390625
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 0.4083051613997668,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.7055232098791748,
+        "mean_memory_value_norm": 0.8903002669103444,
+        "mean_native_lane_delta_norm": 0.39722537342458963,
+        "mean_native_learned_gate": 0.9729054314084351
+      },
+      "heldout_examples": 128,
+      "mode": "ordinary",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.265901565551758,
+          "mean_target_margin": -7.430479049682617,
+          "mean_target_probability": 0.006677157711237669,
+          "mean_target_rank": 10787.2109375,
+          "top1_accuracy": 0.0390625
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.520515441894531,
+          "mean_target_margin": -7.430479049682617,
+          "mean_target_probability": 0.0111115463078022,
+          "mean_target_rank": 2747.0078125,
+          "top1_accuracy": 0.0390625
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "123c5877cc4698c3ff62f85e390567897cb262a6158e727b38e987b939c34ecd",
+      "parameter_digest_before": "123c5877cc4698c3ff62f85e390567897cb262a6158e727b38e987b939c34ecd",
+      "query_key_position": 5,
+      "run_name": "a1_protected_lane_distance0_seed17_ordinary",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 10,
+      "checkpoint": {
+        "bytes": 569482779,
+        "path": "results/runs/a1_protected_lane_distance4_seed17_protected/checkpoint_step_002000.pt",
+        "sha256": "8eebd2bc2cb830e6a53260adbe016dbcba70f5b7a13b85a9d47f7a4a992f89cd",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance4_values8000.json",
+      "config_sha256": "939f512733ffd219560fcaef0c5fc015b19b1b4fa3e12da6fe3d990fe4ae4715",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -1.109375,
+        "mean_target_logit": -0.00014429911971092224,
+        "value_cross_entropy": 0.00010204315185546875,
+        "value_mean_target_rank": -0.3046875,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 4,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.413705825805664,
+          "mean_target_margin": -7.671240329742432,
+          "mean_target_probability": 0.002750721527263522,
+          "mean_target_rank": 12213.015625,
+          "top1_accuracy": 0.0078125
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.684829711914062,
+          "mean_target_margin": -7.671240329742432,
+          "mean_target_probability": 0.004544664174318314,
+          "mean_target_rank": 3098.8984375,
+          "top1_accuracy": 0.0078125
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 0.18318249739240855,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 1.0000000018626451,
+        "mean_memory_value_norm": 0.33865654841065407,
+        "mean_native_lane_delta_norm": 0.17874200257938355,
+        "mean_native_learned_gate": 0.9733445765450597
+      },
+      "heldout_examples": 128,
+      "mode": "protected",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.413702011108398,
+          "mean_target_margin": -7.671045780181885,
+          "mean_target_probability": 0.0027494514361023903,
+          "mean_target_rank": 12214.125,
+          "top1_accuracy": 0.0078125
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.684727668762207,
+          "mean_target_margin": -7.671045780181885,
+          "mean_target_probability": 0.004542920272797346,
+          "mean_target_rank": 3099.203125,
+          "top1_accuracy": 0.0078125
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "e8db0bbf9b304af602d4f9f00b44419b21a74888563eee781b402bb34c52d8a3",
+      "parameter_digest_before": "e8db0bbf9b304af602d4f9f00b44419b21a74888563eee781b402bb34c52d8a3",
+      "query_key_position": 9,
+      "run_name": "a1_protected_lane_distance4_seed17_protected",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 10,
+      "checkpoint": {
+        "bytes": 569482971,
+        "path": "results/runs/a1_protected_lane_distance4_seed17_ordinary_resume300/checkpoint_step_002000.pt",
+        "sha256": "0f8c8fdb59c3b17be06ffad5440bbcffa41776b11db9a89f0e48cef000831ca5",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance4_values8000.json",
+      "config_sha256": "939f512733ffd219560fcaef0c5fc015b19b1b4fa3e12da6fe3d990fe4ae4715",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -0.6953125,
+        "mean_target_logit": -0.007926377467811108,
+        "value_cross_entropy": 0.007330894470214844,
+        "value_mean_target_rank": -0.28125,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 4,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.558757781982422,
+          "mean_target_margin": -8.06635856628418,
+          "mean_target_probability": 0.002963306149467826,
+          "mean_target_rank": 12206.4765625,
+          "top1_accuracy": 0.0078125
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.965932846069336,
+          "mean_target_margin": -8.06635856628418,
+          "mean_target_probability": 0.004767166916280985,
+          "mean_target_rank": 3093.734375,
+          "top1_accuracy": 0.0078125
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 0.5089564621448517,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.5225255729164928,
+        "mean_memory_value_norm": 1.0569063848815858,
+        "mean_native_lane_delta_norm": 0.43025546660646796,
+        "mean_native_learned_gate": 0.8401429201476276
+      },
+      "heldout_examples": 128,
+      "mode": "ordinary",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.554770469665527,
+          "mean_target_margin": -8.057308197021484,
+          "mean_target_probability": 0.002953906310722232,
+          "mean_target_rank": 12207.171875,
+          "top1_accuracy": 0.0078125
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.958601951599121,
+          "mean_target_margin": -8.057308197021484,
+          "mean_target_probability": 0.004760561976581812,
+          "mean_target_rank": 3094.015625,
+          "top1_accuracy": 0.0078125
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "53187c2a7c65a25bd9755c2bdb5d767588c6793c5c84124e9039f865091f086b",
+      "parameter_digest_before": "53187c2a7c65a25bd9755c2bdb5d767588c6793c5c84124e9039f865091f086b",
+      "query_key_position": 9,
+      "run_name": "a1_protected_lane_distance4_seed17_ordinary_resume300",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 22,
+      "checkpoint": {
+        "bytes": 569482779,
+        "path": "results/runs/a1_protected_lane_distance16_seed17_protected/checkpoint_step_002000.pt",
+        "sha256": "6ba3aad5c729e5e9e6383c7aa5452a57ea42c3a1ef007a5c038e469613991a77",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance16_values8000.json",
+      "config_sha256": "60c9d0774396d210301ec7da6f40bc1384212053f5a4cc7a68bda347d06c5cbd",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -3.6484375,
+        "mean_target_logit": 0.0005784175591543317,
+        "value_cross_entropy": -0.000545501708984375,
+        "value_mean_target_rank": -0.953125,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 16,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.948700904846191,
+          "mean_target_margin": -8.508213996887207,
+          "mean_target_probability": 6.996878801146522e-05,
+          "mean_target_rank": 15623.671875,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.410197257995605,
+          "mean_target_margin": -8.508213996887207,
+          "mean_target_probability": 0.0001202855200972408,
+          "mean_target_rank": 3952.0078125,
+          "top1_accuracy": 0.0
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 0.6606392464600503,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.999999990221113,
+        "mean_memory_value_norm": 0.668995430925861,
+        "mean_native_lane_delta_norm": 0.6403878330020234,
+        "mean_native_learned_gate": 0.9690521252341568
+      },
+      "heldout_examples": 128,
+      "mode": "protected",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.949135780334473,
+          "mean_target_margin": -8.508724212646484,
+          "mean_target_probability": 6.98882358847186e-05,
+          "mean_target_rank": 15627.3203125,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.41074275970459,
+          "mean_target_margin": -8.508724212646484,
+          "mean_target_probability": 0.00012012755905743688,
+          "mean_target_rank": 3952.9609375,
+          "top1_accuracy": 0.0
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "195d1bfa19b17903ba099a93bd1c1ed27cf83c36e337a451a8501b6bfd35d450",
+      "parameter_digest_before": "195d1bfa19b17903ba099a93bd1c1ed27cf83c36e337a451a8501b6bfd35d450",
+      "query_key_position": 21,
+      "run_name": "a1_protected_lane_distance16_seed17_protected",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 22,
+      "checkpoint": {
+        "bytes": 569482779,
+        "path": "results/runs/a1_protected_lane_distance16_seed17_ordinary/checkpoint_step_002000.pt",
+        "sha256": "5e72eecb02232d0cee4bb6eee4ea506c8060f634a1e89d547bf620c058f07781",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance16_values8000.json",
+      "config_sha256": "60c9d0774396d210301ec7da6f40bc1384212053f5a4cc7a68bda347d06c5cbd",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -14.6875,
+        "mean_target_logit": -0.14666761457920074,
+        "value_cross_entropy": 0.11759471893310547,
+        "value_mean_target_rank": -2.125,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 16,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.72435474395752,
+          "mean_target_margin": -7.9626922607421875,
+          "mean_target_probability": 0.00012815595255233347,
+          "mean_target_rank": 15210.6640625,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.022385597229004,
+          "mean_target_margin": -7.9626922607421875,
+          "mean_target_probability": 0.00027113594114780426,
+          "mean_target_rank": 3841.875,
+          "top1_accuracy": 0.0
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 1.1071397745981812,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.1819890080660116,
+        "mean_memory_value_norm": 2.201746817678213,
+        "mean_native_lane_delta_norm": 0.07633043848909438,
+        "mean_native_learned_gate": 0.04277472509420477
+      },
+      "heldout_examples": 128,
+      "mode": "ordinary",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.671689987182617,
+          "mean_target_margin": -7.781467437744141,
+          "mean_target_probability": 0.00011767825344577432,
+          "mean_target_rank": 15225.3515625,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 9.904790878295898,
+          "mean_target_margin": -7.781467437744141,
+          "mean_target_probability": 0.00026675299159251153,
+          "mean_target_rank": 3844.0,
+          "top1_accuracy": 0.0
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "ad6eef430ac2f322ac7ef93f06cbbb690107144c08c4ecf23a9efec68f5f3595",
+      "parameter_digest_before": "ad6eef430ac2f322ac7ef93f06cbbb690107144c08c4ecf23a9efec68f5f3595",
+      "query_key_position": 21,
+      "run_name": "a1_protected_lane_distance16_seed17_ordinary",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 70,
+      "checkpoint": {
+        "bytes": 569482779,
+        "path": "results/runs/a1_protected_lane_distance64_seed17_protected/checkpoint_step_002000.pt",
+        "sha256": "5cfc36e8fe2f0061aff8d3fc7e4202cbe712d2482f0eba921e9cdb975857f907",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance64_values8000.json",
+      "config_sha256": "8ddd7901d11654d713a9379bfad6710a923636668f8250fb2cba1fe3b32c4333",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": -3.71875,
+        "mean_target_logit": 0.002845811191946268,
+        "value_cross_entropy": -0.00194549560546875,
+        "value_mean_target_rank": -0.859375,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 64,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.889935493469238,
+          "mean_target_margin": -8.42884635925293,
+          "mean_target_probability": 7.93344879639335e-05,
+          "mean_target_rank": 15807.65625,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.317159652709961,
+          "mean_target_margin": -8.42884635925293,
+          "mean_target_probability": 0.00013860057515557855,
+          "mean_target_rank": 4003.3984375,
+          "top1_accuracy": 0.0
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 1.9184833788312972,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.9999999990686774,
+        "mean_memory_value_norm": 1.4310935230460018,
+        "mean_native_lane_delta_norm": 1.8503448873525485,
+        "mean_native_learned_gate": 0.964389250613749
+      },
+      "heldout_examples": 128,
+      "mode": "protected",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.891386985778809,
+          "mean_target_margin": -8.43017578125,
+          "mean_target_probability": 7.844973151804879e-05,
+          "mean_target_rank": 15811.375,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.31910514831543,
+          "mean_target_margin": -8.43017578125,
+          "mean_target_probability": 0.0001370747631881386,
+          "mean_target_rank": 4004.2578125,
+          "top1_accuracy": 0.0
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "4488ca244d4af08cb1483084608c7506e1fbdac135deb2417b1424021b45aa59",
+      "parameter_digest_before": "4488ca244d4af08cb1483084608c7506e1fbdac135deb2417b1424021b45aa59",
+      "query_key_position": 69,
+      "run_name": "a1_protected_lane_distance64_seed17_protected",
+      "weights_unchanged": true
+    },
+    {
+      "answer_position": 70,
+      "checkpoint": {
+        "bytes": 569482779,
+        "path": "results/runs/a1_protected_lane_distance64_seed17_ordinary/checkpoint_step_002000.pt",
+        "sha256": "b5e815f8d66e9afb073d184f129117df3a9234eed79a2826c88a54f76fedab50",
+        "sidecar_complete": true,
+        "source": "run_directory",
+        "step": 2000
+      },
+      "checkpoint_written": false,
+      "config_path": "configs/braidnano_a1_protected_lane_distance64_values8000.json",
+      "config_sha256": "8ddd7901d11654d713a9379bfad6710a923636668f8250fb2cba1fe3b32c4333",
+      "deltas_exact_minus_native": {
+        "full_mean_target_rank": 33.8515625,
+        "mean_target_logit": -0.180363729596138,
+        "value_cross_entropy": 0.16299057006835938,
+        "value_mean_target_rank": 8.4765625,
+        "value_top1_accuracy": 0.0
+      },
+      "distance": 64,
+      "exact_address_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.928909301757812,
+          "mean_target_margin": -8.560470581054688,
+          "mean_target_probability": 6.287138239713386e-05,
+          "mean_target_rank": 15639.921875,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.35662841796875,
+          "mean_target_margin": -8.560470581054688,
+          "mean_target_probability": 0.00011180618457728997,
+          "mean_target_rank": 3955.5625,
+          "top1_accuracy": 0.0
+        }
+      },
+      "gate_and_state": {
+        "exact_gate_all_one": true,
+        "mean_exact_address_delta_norm": 1.1258455589413643,
+        "mean_exact_address_gate": 1.0,
+        "mean_memory_value_cosine_to_post_value": 0.06593020883155987,
+        "mean_memory_value_norm": 2.323990512639284,
+        "mean_native_lane_delta_norm": 0.0704200827749446,
+        "mean_native_learned_gate": 0.0366181498975493
+      },
+      "heldout_examples": 128,
+      "mode": "ordinary",
+      "native_output": {
+        "examples": 128,
+        "full_vocabulary": {
+          "cross_entropy": 10.842122077941895,
+          "mean_target_margin": -8.337650299072266,
+          "mean_target_probability": 5.568630149355158e-05,
+          "mean_target_rank": 15606.0703125,
+          "top1_accuracy": 0.0
+        },
+        "value_candidate_range": {
+          "cross_entropy": 10.19363784790039,
+          "mean_target_margin": -8.337650299072266,
+          "mean_target_probability": 0.00010680360719561577,
+          "mean_target_rank": 3947.0859375,
+          "top1_accuracy": 0.0
+        }
+      },
+      "native_reference_max_abs_difference": 0.0,
+      "parameter_count": 41969346,
+      "parameter_digest_after": "590500989012cb5a4cc3944e40ce3b8db95d34836165cf4a2a6e53d3b8cf12a8",
+      "parameter_digest_before": "590500989012cb5a4cc3944e40ce3b8db95d34836165cf4a2a6e53d3b8cf12a8",
+      "query_key_position": 69,
+      "run_name": "a1_protected_lane_distance64_seed17_ordinary",
+      "weights_unchanged": true
+    }
+  ],
+  "seed": 17,
+  "source_aggregate_path": "results/a1_protected_lane_distance_axis_values8000.json",
+  "source_aggregate_sha256": "afdeeb42b2379f38ac7a592b805dcad1b2acadbeace0eaa57c43472f4472a158",
+  "status": "complete",
+  "value_count": 8000,
+  "version": "a1_protected_lane_exact_address_intervention_v1"
+}
