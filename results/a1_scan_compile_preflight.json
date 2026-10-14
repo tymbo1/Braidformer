@@ -1,0 +1,107 @@
+{
+  "all_values_finite": true,
+  "checkpoint_written": false,
+  "conditions": {
+    "context_length": 512,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0003,
+    "measured_updates": 3,
+    "micro_batch_size": 2,
+    "optimizer": "AdamW",
+    "precision": "fp16",
+    "tokens_per_update": 8192,
+    "warmup_updates": 1,
+    "weight_decay": 0.1
+  },
+  "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+  "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+  "device": "NVIDIA GeForce RTX 3060 Ti",
+  "device_capability": [
+    8,
+    6
+  ],
+  "final_parameter_difference": {
+    "candidate_l2": 211.8332061767578,
+    "max_absolute": 0.0023297567386180162,
+    "mean_absolute": 3.3549044019309804e-05,
+    "reference_l2": 211.8334503173828,
+    "relative_l2": 0.003980894107371569
+  },
+  "interpretation": "engineering preflight only; separate ten-update stability validation required before runner integration",
+  "mean_gradient_norm_delta_compiled_minus_eager": -0.0022762616475422437,
+  "mean_loss_delta_compiled_minus_eager": -0.00016073385874371127,
+  "parameter_count": 41870336,
+  "paths": {
+    "compiled_default": {
+      "compile_mode": "default",
+      "compiled": true,
+      "gradient_norm_trajectory": [
+        1.450002670288086,
+        1.683212161064148,
+        1.7261176109313965
+      ],
+      "loss_trajectory": [
+        9.926298975944519,
+        9.400458097457886,
+        9.013569116592407
+      ],
+      "mean_measured_gradient_norm": 1.6197774807612102,
+      "mean_measured_loss": 9.446775396664938,
+      "mean_measured_update_cuda_seconds": 0.17134065755208336,
+      "measured_cuda_seconds": 0.51402197265625,
+      "measured_updates": 3,
+      "path": "compiled_default",
+      "peak_allocated_vram_bytes": 1460631552,
+      "peak_reserved_vram_bytes": 1537212416,
+      "tokens_per_second_measured": 47811.185722278635,
+      "tokens_processed_measured": 24576,
+      "warmup_updates": 1,
+      "warmup_wall_seconds": 23.26523749399348
+    },
+    "eager_parallel_scan": {
+      "compile_mode": null,
+      "compiled": false,
+      "gradient_norm_trajectory": [
+        1.4530611038208008,
+        1.6908081769943237,
+        1.7222919464111328
+      ],
+      "loss_trajectory": [
+        9.92535412311554,
+        9.40143370628357,
+        9.014020562171936
+      ],
+      "mean_measured_gradient_norm": 1.6220537424087524,
+      "mean_measured_loss": 9.446936130523682,
+      "mean_measured_update_cuda_seconds": 0.3616253255208333,
+      "measured_cuda_seconds": 1.0848759765625,
+      "measured_updates": 3,
+      "path": "eager_parallel_scan",
+      "peak_allocated_vram_bytes": 1653483008,
+      "peak_reserved_vram_bytes": 1931476992,
+      "tokens_per_second_measured": 22653.280679945234,
+      "tokens_processed_measured": 24576,
+      "warmup_updates": 1,
+      "warmup_wall_seconds": 0.6615630510204937
+    }
+  },
+  "protocol_path": "docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md",
+  "protocol_sha256": "f3324fe3020f0aee81f88522d603feb3970db226d74eba7a2f6066572729e51b",
+  "script_path": "scripts/benchmark_a1_scan_compile_preflight.py",
+  "script_sha256": "99f446644159ccd4370f96fc72f567c53eaf3e0be8001cfc17cd2a2a7da4814e",
+  "seed": 17,
+  "seed_report": {
+    "deterministic_algorithms_requested": true,
+    "numpy": true,
+    "python": true,
+    "seed": 17,
+    "torch": true
+  },
+  "speedup_compiled_over_eager": 2.1105634277778353,
+  "status": "complete",
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.12.0+cu130",
+  "training_pilot_started": false,
+  "version": "a1_scan_compile_preflight_v1",
+  "weights_written": false
+}

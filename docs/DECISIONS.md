@@ -1001,3 +1001,34 @@ The aggregate is
 `results/a1_protected_lane_exact_address_intervention.json`; its report is
 `docs/A1_PROTECTED_LANE_EXACT_ADDRESS_INTERVENTION_RESULT.md`; the analyzer
 was frozen at `9e97ec2` after the protocol freeze `f9badbf`.
+
+## 2026-10-15 — D055: A1 compiler preflight passes, adoption remains gated
+
+The engineering-only preflight was frozen in
+docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md with runner
+scripts/benchmark_a1_scan_compile_preflight.py at commit 594df1f. It wrapped
+the unchanged 42M-parameter A1 parallel-scan model in
+torch.compile(mode="default"), with one warm-up and three measured in-memory
+AdamW updates on host CUDA. No checkpoint, model artifact, or training result
+was written.
+
+On the RTX 3060 Ti, default compilation reduced steady-state CUDA time from
+0.361625 to 0.171341 seconds/update, a 2.111x speedup, and reduced peak
+reserved VRAM from 1,931,476,992 to 1,537,212,416 bytes. All losses and
+gradients were finite; the mean loss delta was -0.000161, and the short
+final-parameter relative-L2 difference was 0.003981. The exploratory 10%
+engineering threshold therefore passed.
+
+The reduce-overhead CUDA-graph mode is not accepted: under the existing
+eight-microbatch accumulation pattern it overwrote compiled outputs before
+autograd consumed them. Default mode avoids that failure but has a
+23.265-second compiler warm-up and measurable short-horizon trajectory drift.
+A separate frozen ten-update eager-versus-compiled stability protocol is
+required before any normal-runner integration; no quality training or
+architecture change is authorized by this decision.
+
+The aggregate is
+results/a1_scan_compile_preflight.json (sha256
+b511f7a5e101ae0fe2b9843443eb093c1883fb94e5be3bddfb3cec22bf2db7d5); the
+report is docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md; the source hashes are
+recorded in the aggregate.

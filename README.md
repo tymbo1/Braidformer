@@ -41,7 +41,8 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md`](docs/A0_A1_LONGER_EQUAL_CUDA_REPLICATION_RESULT.md): measured 4× seeds 17/23/29 replication result.
 - [`docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md`](docs/A0_A1_EIGHT_EQUAL_CUDA_PROTOCOL.md): frozen 8× matched-CUDA-time protocol for seeds 17/23/29.
 - [`docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md`](docs/A0_A1_EIGHT_EQUAL_CUDA_RESULT.md): measured 8× seeds 17/23/29 replication and curve/AUC analysis.
-- [`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md`](docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md): frozen schedule-control protocol; execution pending authorization.
+- [`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md`](docs/A0_A1_SCHEDULE_DISENTANGLEMENT_PROTOCOL.md): frozen schedule-control protocol; see the completed [`docs/A0_A1_SCHEDULE_DISENTANGLEMENT_RESULT.md`](docs/A0_A1_SCHEDULE_DISENTANGLEMENT_RESULT.md).
+- [`docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md`](docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md) and [`docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md`](docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md): engineering-only A1 compiler preflight; runner integration remains pending stability validation.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md): frozen protocol for the completed seed-17 128-value solvability-ladder rung.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md): measured seed-17 128-value solvability-ladder result.
 - [`docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md): frozen protocol for the completed seed-17 256-value solvability-ladder rung.
