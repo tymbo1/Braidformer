@@ -70,6 +70,28 @@ def build_model(config: ExperimentConfig) -> LanguageModel:
     return model_class(config)
 
 
+def build_forward_model(
+    model: LanguageModel,
+    *,
+    compile_model: bool,
+) -> torch.nn.Module:
+    """Return the forward module, preserving the base model for checkpoints."""
+
+    if not compile_model:
+        return model
+    compiler = getattr(torch, "compile", None)
+    if compiler is None:
+        raise TrainingConfigurationError(
+            "compile_model=true requires a PyTorch build with torch.compile"
+        )
+    try:
+        return compiler(model, mode="default")
+    except Exception as exc:
+        raise TrainingConfigurationError(
+            "torch.compile(mode='default') could not wrap the A1 model"
+        ) from exc
+
+
 def cosine_warmup_learning_rate(
     base_learning_rate: float,
     step: int,
@@ -434,6 +456,12 @@ class TrainingRunner:
                 "validation_evaluation": True,
                 "durable_step_metric_logging": True,
                 "bounded_integrity_circuit_breakers": True,
+                "compiled_forward_path": True,
+            },
+            "model_execution": {
+                "compile_model": self.config.compile_model,
+                "compile_mode": "default" if self.config.compile_model else None,
+                "default_is_eager": True,
             },
             "gradient_checkpointing": {
                 "configured": self.config.gradient_checkpointing,
@@ -483,6 +511,12 @@ class TrainingRunner:
             "device_capability": list(torch.cuda.get_device_capability(device)),
             "torch_version": torch.__version__,
             "torch_cuda_build": torch.version.cuda,
+            "model_execution": {
+                "compile_model": self.config.compile_model,
+                "compiler": "torch.compile" if self.config.compile_model else None,
+                "compile_mode": "default" if self.config.compile_model else None,
+                "checkpoint_model": "unwrapped_base_model",
+            },
             "gradient_checkpointing": {
                 "configured": self.config.gradient_checkpointing,
                 "implemented": False,
@@ -620,7 +654,7 @@ class TrainingRunner:
     def _evaluate(
         self,
         *,
-        model: LanguageModel,
+        model: torch.nn.Module,
         stream: PackedTokenStream,
         device: torch.device,
     ) -> float:
@@ -663,6 +697,10 @@ class TrainingRunner:
         seed_report = set_reproducible_seed(self.seed, deterministic=True)
         device = torch.device("cuda")
         model = build_model(self.config).to(device)
+        forward_model = build_forward_model(
+            model,
+            compile_model=self.config.compile_model,
+        )
         parameter_count = model.parameter_count()
         optimizer = torch.optim.AdamW(
             model.parameters(),
@@ -771,7 +809,7 @@ class TrainingRunner:
                                 self.config.micro_batch_size * self.config.context_length,
                             ).view(self.config.micro_batch_size, self.config.context_length).to(device)
                         with torch.autocast(device_type="cuda", dtype=amp_dtype, enabled=amp_enabled):
-                            output = model(batch, labels=batch)
+                            output = forward_model(batch, labels=batch)
                             loss = output.loss
                         if loss is None or not bool(torch.isfinite(loss).item()):
                             monitor.fail(
@@ -815,7 +853,7 @@ class TrainingRunner:
                     validation_loss = None
                     if step % self.config.eval_interval_steps == 0 or step == self.max_steps:
                         validation_loss = self._evaluate(
-                            model=model,
+                            model=forward_model,
                             stream=validation_stream,
                             device=device,
                         )
@@ -910,6 +948,12 @@ class TrainingRunner:
             "tokenizer_sha256": self.artifacts.tokenizer_sha256,
             "seed": self.seed,
             "parameter_count": parameter_count,
+            "model_execution": {
+                "compile_model": self.config.compile_model,
+                "compiler": "torch.compile" if self.config.compile_model else None,
+                "compile_mode": "default" if self.config.compile_model else None,
+                "checkpoint_model": "unwrapped_base_model",
+            },
             "gradient_checkpointing": {
                 "configured": self.config.gradient_checkpointing,
                 "implemented": False,
@@ -1048,6 +1092,7 @@ __all__ = [
     "PackedTokenStream",
     "TrainingRunner",
     "TrainingConfigurationError",
+    "build_forward_model",
     "build_model",
     "cosine_warmup_learning_rate",
     "cosine_warmup_learning_rate_at_progress",

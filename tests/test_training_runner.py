@@ -9,6 +9,7 @@ from braidformer.models import A0TransformerLM, A1RecurrentStateSpaceLM
 from braidformer.training.runner import (
     PackedTokenStream,
     TrainingConfigurationError,
+    build_forward_model,
     build_model,
     cosine_warmup_learning_rate,
     cosine_warmup_learning_rate_at_progress,
@@ -31,7 +32,33 @@ def _model_config(
         num_layers=1,
         num_attention_heads=4,
         intermediate_size=32,
+        compile_model=False,
     )
+
+
+def test_forward_model_compilation_is_default_off_and_uses_default_mode(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    config = _model_config("A1", "recurrent_state_space", "parallel_scan")
+    model = build_model(config)
+    calls: list[tuple[object, str]] = []
+    compiled_sentinel = object()
+
+    def fake_compile(module: object, *, mode: str) -> object:
+        calls.append((module, mode))
+        return compiled_sentinel
+
+    monkeypatch.setattr(torch, "compile", fake_compile)
+
+    assert build_forward_model(model, compile_model=False) is model
+    assert calls == []
+
+    compiled = build_forward_model(
+        model,
+        compile_model=True,
+    )
+    assert compiled is compiled_sentinel
+    assert calls == [(model, "default")]
 
 
 def test_model_factory_selects_only_explicit_a0_or_a1() -> None:

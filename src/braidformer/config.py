@@ -21,6 +21,7 @@ class ExperimentConfig:
     stage: str = "A0"
     model_type: str = "transformer"
     recurrent_path: str = "sequential_reference"
+    compile_model: bool = False
     state_transition_initialization: str = "uniform_0.9"
     seed: int = 17
     context_length: int = 512
@@ -72,6 +73,17 @@ class ExperimentConfig:
         if self.recurrent_path not in {"sequential_reference", "parallel_scan"}:
             errors.append(
                 "recurrent_path must be sequential_reference or parallel_scan"
+            )
+        if not isinstance(self.compile_model, bool):
+            errors.append("compile_model must be a boolean")
+        elif self.compile_model and not (
+            self.stage == "A1"
+            and self.model_type == "recurrent_state_space"
+            and self.recurrent_path == "parallel_scan"
+        ):
+            errors.append(
+                "compile_model is only supported for the A1 recurrent_state_space "
+                "parallel_scan configuration"
             )
         if self.state_transition_initialization not in {
             "uniform_0.9",

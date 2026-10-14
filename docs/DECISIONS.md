@@ -1059,3 +1059,25 @@ The aggregate is
 results/a1_scan_compile_stability.json; the report is
 docs/A1_SCAN_COMPILE_STABILITY_RESULT.md; protocol and runner source hashes
 are recorded in the aggregate.
+
+## 2026-10-15 — D057: A1 compiled runner path is available default-off
+
+The frozen runner-integration protocol was implemented with a boolean
+compile_model field that defaults to false and is accepted only for the A1
+recurrent_state_space parallel_scan configuration. The compiled wrapper is
+used only for forward and evaluation calls; the unwrapped base model remains
+the owner of optimizer parameters, checkpoint state, parameter accounting, and
+resume loading. Existing configurations and the default runner remain eager.
+
+A separate planned-only compiled proposal was exercised in a one-update
+host-CUDA smoke on the RTX 3060 Ti. It completed with finite train and
+validation losses, emitted ordinary unwrapped model-state keys, and resumed
+cleanly from its checkpoint with the same config hash. The smoke wrote only
+temporary files under /tmp and produced no quality-training result.
+
+The full test suite passed with 80 tests. This decision exposes an optional
+engineering capability but does not authorize quality training or change the
+default A1 path. The implementation result is
+docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md and the explicit opt-in
+configuration is
+configs/braidnano_a1_recurrent_state_space_compiled_proposal.json.

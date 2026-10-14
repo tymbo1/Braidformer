@@ -45,6 +45,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md`](docs/A1_SCAN_COMPILE_PREFLIGHT_PROTOCOL.md) and [`docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md`](docs/A1_SCAN_COMPILE_PREFLIGHT_RESULT.md): engineering-only A1 compiler preflight; runner integration remains pending stability validation.
 - [`docs/A1_SCAN_COMPILE_STABILITY_PROTOCOL.md`](docs/A1_SCAN_COMPILE_STABILITY_PROTOCOL.md) and [`docs/A1_SCAN_COMPILE_STABILITY_RESULT.md`](docs/A1_SCAN_COMPILE_STABILITY_RESULT.md): ten-update eager-versus-compiled stability result; normal-runner adoption remains separately gated.
 - [`docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_PROTOCOL.md`](docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_PROTOCOL.md): frozen default-off runner integration scope; no quality training is authorized by the implementation.
+- [`docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md`](docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md): default-off runner integration and bounded checkpoint/resume smoke result.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md): frozen protocol for the completed seed-17 128-value solvability-ladder rung.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md): measured seed-17 128-value solvability-ladder result.
 - [`docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md): frozen protocol for the completed seed-17 256-value solvability-ladder rung.
@@ -73,6 +74,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`configs/braidnano_a0_data.json`](configs/braidnano_a0_data.json): approved data/tokenizer preparation specification.
 - [`configs/braidnano_a0_integrity_policy.json`](configs/braidnano_a0_integrity_policy.json): bounded pilot safeguards.
 - [`configs/braidnano_a1_recurrent_state_space_proposal.json`](configs/braidnano_a1_recurrent_state_space_proposal.json): planned-only A1 comparison configuration.
+- [`configs/braidnano_a1_recurrent_state_space_compiled_proposal.json`](configs/braidnano_a1_recurrent_state_space_compiled_proposal.json): planned-only, default-off A1 compile integration configuration.
 - [`src/braidformer/models/transformer.py`](src/braidformer/models/transformer.py): A0 control model.
 - [`src/braidformer/models/recurrent.py`](src/braidformer/models/recurrent.py): A1 recurrent/state-space-majority model.
 - [`scripts/verify_a0.py`](scripts/verify_a0.py): construction and parameter-accounting verification.

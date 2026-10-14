@@ -14,6 +14,7 @@ def test_phase0_config_loads_and_validates() -> None:
     assert config.stage == "A0"
     assert config.model_type == "transformer"
     assert config.recurrent_path == "sequential_reference"
+    assert config.compile_model is False
     assert config.target_parameters_min == 40_000_000
     assert config.target_parameters_max == 60_000_000
     assert config.planned_only is True
@@ -37,6 +38,28 @@ def test_a1_proposal_selects_the_verified_parallel_scan() -> None:
 
     assert config.stage == "A1"
     assert config.recurrent_path == "parallel_scan"
+    assert config.compile_model is False
+
+
+def test_compile_model_is_an_explicit_a1_parallel_scan_opt_in() -> None:
+    config = ExperimentConfig(
+        stage="A1",
+        model_type="recurrent_state_space",
+        recurrent_path="parallel_scan",
+        compile_model=True,
+    )
+    config.validate()
+
+    with pytest.raises(ConfigError, match="compile_model"):
+        ExperimentConfig(compile_model=True).validate()
+
+    with pytest.raises(ConfigError, match="compile_model"):
+        ExperimentConfig(
+            stage="A1",
+            model_type="recurrent_state_space",
+            recurrent_path="sequential_reference",
+            compile_model=True,
+        ).validate()
 
 
 def test_cuda_referenced_schedule_requires_calibration() -> None:
