@@ -1,6 +1,6 @@
 # BraidFormer A0/A1 Mechanism Campaign Status
 
-Status: **mechanism campaign complete; protected-lane follow-up complete negative**
+Status: **mechanism campaign complete; protected-lane localization complete; no training intervention unlocked**
 
 This ledger is the authoritative continuation point for the bounded mechanism
 campaign. It is updated and committed after every queue item. The campaign
@@ -326,13 +326,13 @@ protocol are recorded below; the initial partial metrics remain non-results.
 
 ## Current continuation point
 
-The protected-lane distance axis is now complete and closed negative. Do not
-begin A2, scaling, persistent-memory, predictive-learning, curriculum,
-post-training, or unrelated architecture work under this campaign. The single
-best next experiment is a separately frozen read-only lane-state/query-output
-diagnostic that tests whether the preserved lane value is decodable and
-correctly transformed at the answer marker before authorizing any new training
-architecture.
+The protected-lane distance axis and the follow-up lane-state/query-output
+localization are now complete. The localization confirms that protected state
+survives but does not become a transferable query-conditioned binding or a
+usable answer representation. Do not begin A2, scaling, persistent-memory,
+predictive-learning, curriculum, post-training, or unrelated architecture work
+under this campaign. A new training or architectural intervention would
+require a separately frozen protocol outside this completed queue.
 
 ## Storage remediation — 2026-10-14
 
@@ -399,4 +399,82 @@ they remain on root because the aggregate records each checkpoint path for
 provenance. Current post-campaign storage is approximately 377 GiB free on
 root and 597 GiB free on `/mnt/ssd2`; the verified 428 GiB redundant archive
 remains intact.
+
+## 2026-10-14 — D053: localize protected-lane binding and query use
+
+The read-only protocol was frozen in
+`docs/A1_PROTECTED_LANE_QUERY_BINDING_LOCALIZATION_PROTOCOL.md` at commit
+`5d60713`; the analyzer was committed before execution and then corrected only
+for source-arm ordering and the intentional distance-zero stage alias in
+commits `6bfd0a6`, `79416f6`, and `8cfe0d2`. The final analyzer also records the
+train/held-out value overlap caveat in `90ca381`. It loaded the eight verified
+final protected/ordinary lane checkpoints at distances 0, 4, 16, and 64.
+No weights or checkpoints were modified.
+
+The primary stages were post-value, post-distractor, post-query-key, and
+answer-marker, with the query-marker stage retained as an auxiliary site. The
+protected lane's memory-value cosine to its post-value state was `1.0000` at
+all later stages and all distances. Its answer read gate stayed high
+(`0.9644`–`0.9756`), yet native value-range exact retrieval remained at the
+existing floor: `3.90625%` at distance 0, `0.78125%` at distance 4, and `0%`
+at distances 16 and 64. This rejects storage persistence as a sufficient
+repair.
+
+The ordinary lane showed the expected destructive state evolution: at distance
+64 its memory-value cosine to post-value was `-0.0636` after distractors,
+`0.0192` after the query key, and `0.0661` at the answer marker; its answer
+read gate fell to `0.0366`. Thus the diagnostic independently reproduces the
+distractor/interference contribution without confusing it with the protected
+lane's failure.
+
+The stronger within-held-out cross-validated probes show what survives in the
+protected state but is not usable as a binding. At the answer marker, the
+protected memory-value readout had mean target ranks `896.7`, `974.9`,
+`1,082.6`, and `1,070.2` at distances 0, 4, 16, and 64, respectively, while
+the query-conditioned readout ranks were `3,078.3`, `2,973.4`, `3,592.8`, and
+`3,503.6`. Adding the stored key (`pair_state`) worsened the corresponding
+ranks to `1,967.3`, `2,315.9`, `2,365.6`, and `1,900.7`. The native/final
+answer representation remained weak, with answer readout ranks from about
+`3,315` to `4,333` and zero top-1 in the long-distance protected arms.
+
+The fixed train-to-held-out top-1 probe is not treated as transfer above its
+floor: the deterministic train and held-out value draws share 6 of 128 values
+(`0.046875`), while the key ranges are disjoint. The machine-readable result
+records this overlap explicitly. The local rank/cosine pattern, exact state
+cosine, native output, and ordinary-mode comparison are the primary evidence.
+
+### Adjudication
+
+| Hypothesis | Status after D053 |
+| --- | --- |
+| Passive temporal decay alone | Rejected as sufficient: protected state survives unchanged while retrieval remains poor. |
+| Distractor recurrent-state interference | Supported for ordinary A1/lane evolution; not the complete protected-lane explanation. |
+| Query-conditioned transformation corrupts or misuses the state | Strengthened: protected value survives the query, while query-conditioned selection becomes substantially less decodable than value-only state. |
+| Weak compositional key/value binding or associative addressing | Strongly supported: pair and query-conditioned probes do not produce a transferable/useful value selection. |
+| Pure final-head/readout failure | Weakened as the sole explanation: the stored value is not converted into a strong final answer representation, so the failure is upstream-plus-downstream rather than only the final head. |
+| Autoregressive target feedback | Not implicated by this one-token lane diagnostic; prior target-position work already rejects it as the sole cause. |
+| Optimization trajectory | Remains a background alternative, not isolated by this frozen analysis. |
+
+The protected-lane branch is therefore closed as a composite negative:
+
+```text
+protected storage succeeds
+        -> transferable key/value binding is weak
+        -> query-conditioned selection degrades the usable code
+        -> answer integration does not restore retrieval
+```
+
+No training intervention was unlocked. A new architectural or training test
+would require a separately frozen protocol outside this completed campaign.
+The aggregate is
+`results/a1_protected_lane_query_binding_localization.json`, the report is
+`docs/A1_PROTECTED_LANE_QUERY_BINDING_LOCALIZATION_RESULT.md`, and the
+read-only analyzer is
+`scripts/analyze_a1_protected_lane_query_binding_localization.py`.
+
+Integrity: all eight final checkpoint sidecars and hashes verified; every
+tensor, probe, logit, and metric was finite; all eight parameter digests were
+unchanged; no checkpoint was written; no A0 or original-A1 definition changed.
+The full test suite, `git diff --check`, and untracked-artifact audit are
+required before the result commit.
 

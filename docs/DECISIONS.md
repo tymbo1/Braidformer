@@ -943,3 +943,35 @@ structurally verified 158 checkpoint records, including the separately
 retained step-300 source checkpoint for the resumed arm. Original A0/A1
 definitions and source checkpoints remain untouched; the full test suite and
 `git diff --check` remain required before the result commit.
+
+## 2026-10-14 — D053: protected-lane state survives, but query-conditioned binding does not
+
+The read-only protocol
+`docs/A1_PROTECTED_LANE_QUERY_BINDING_LOCALIZATION_PROTOCOL.md` was frozen
+before execution. The analyzer captured post-value, post-distractor,
+post-query-key, and answer-marker representations from all eight completed
+protected/ordinary lane checkpoints. Sidecars, SHA-256 hashes, finite tensors,
+and unchanged parameter digests passed; no checkpoint or model weight was
+written.
+
+Protected memory-value state retained cosine `1.0000` to its post-write state
+through every distractor and query stage, with high answer read gates, but
+native held-out value-range exact match remained at `3.90625%`, `0.78125%`,
+`0%`, and `0%` at distances 0, 4, 16, and 64. The ordinary lane's state
+degraded strongly at long distance, reproducing the interference contribution.
+
+Within-held-out cross-validated readouts found a locally decodable protected
+value trace (answer-marker mean target ranks `896.7`–`1,082.6`), but the
+query-conditioned readout was much weaker (`2,973.4`–`3,592.8`) and the final
+answer representation remained weak. Pair-state probes also worsened relative
+to value-only probes. Therefore storage persistence is necessary but
+insufficient: weak transferable key/value binding plus query-conditioned
+selection/use and downstream integration remain the supported composite
+mechanism. Passive decay alone and a pure final-head explanation are not
+sufficient. The deterministic train/held-out value overlap of 6/128 is
+recorded as a fixed-probe floor and is not treated as transfer.
+
+The machine-readable result is
+`results/a1_protected_lane_query_binding_localization.json`; the report is
+`docs/A1_PROTECTED_LANE_QUERY_BINDING_LOCALIZATION_RESULT.md`; the ledger is
+`docs/MECHANISM_CAMPAIGN_STATUS.md`. No training intervention is unlocked.
