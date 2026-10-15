@@ -1,0 +1,482 @@
+{
+  "all_values_finite": true,
+  "checkpoint_written": false,
+  "comparisons": {
+    "full_compiled": {
+      "final_parameters": {
+        "candidate_l2": 211.83090209960938,
+        "max_absolute": 0.0033147362992167473,
+        "mean_absolute": 5.2712191973114386e-05,
+        "reference_l2": 211.83106994628906,
+        "relative_l2": 0.0053060646168887615
+      },
+      "gradient_norm": {
+        "max_absolute": 0.0011974573135375977,
+        "max_relative": 0.0018877241085107793,
+        "mean_absolute": 0.0005363583564758301
+      },
+      "loss": {
+        "max_absolute": 0.00018656253814697266,
+        "max_relative": 1.781738491998702e-05,
+        "mean_absolute": 0.00011546611785888672
+      }
+    },
+    "isolated_forward": {
+      "candidate_l2": 21.652942657470703,
+      "max_absolute": 6.103515625e-05,
+      "mean_absolute": 6.119244972069282e-06,
+      "reference_l2": 21.652923583984375,
+      "relative_l2": 0.00036506852484308183
+    },
+    "isolated_training": {
+      "final_parameters": {
+        "candidate_l2": 56.17236328125,
+        "max_absolute": 0.0032256804406642914,
+        "mean_absolute": 0.00039574908441863954,
+        "reference_l2": 56.17011642456055,
+        "relative_l2": 0.01072858925908804
+      },
+      "gradient_norm": {
+        "max_absolute": 4.6009430661797523e-05,
+        "max_relative": 0.018636799486560114,
+        "mean_absolute": 4.5467400923371315e-05
+      },
+      "loss": {
+        "max_absolute": 9.387731552124023e-07,
+        "max_relative": 9.372957476349946e-07,
+        "mean_absolute": 6.824731826782226e-07
+      }
+    },
+    "mixers_compiled": {
+      "final_parameters": {
+        "candidate_l2": 211.83114624023438,
+        "max_absolute": 0.0032626446336507797,
+        "mean_absolute": 5.246128421276808e-05,
+        "reference_l2": 211.83106994628906,
+        "relative_l2": 0.005300445947796106
+      },
+      "gradient_norm": {
+        "max_absolute": 0.0008858442306518555,
+        "max_relative": 0.0016589492305638077,
+        "mean_absolute": 0.0006088316440582275
+      },
+      "loss": {
+        "max_absolute": 0.00013005733489990234,
+        "max_relative": 1.2409790293994757e-05,
+        "mean_absolute": 7.102489471435546e-05
+      }
+    }
+  },
+  "conditions": {
+    "context_length": 512,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0003,
+    "measured_updates": 5,
+    "micro_batch_size": 2,
+    "mixer_batch_seed": 4017,
+    "optimizer": "AdamW",
+    "precision": "fp16",
+    "token_batch_seed": 3017,
+    "tokens_per_update": 8192,
+    "warmup_updates": 1,
+    "weight_decay": 0.1
+  },
+  "config_path": "configs/braidnano_a1_recurrent_state_space_proposal.json",
+  "config_sha256": "0ddd4e1aa69e24dc33bd6846aaed645199ef26990d5eee33dfa911098056e7ab",
+  "device": "NVIDIA GeForce RTX 3060 Ti",
+  "device_capability": [
+    8,
+    6
+  ],
+  "interpretation": "engineering-only isolated and end-to-end compile comparison",
+  "isolated_mixer_parameter_count": 1051136,
+  "numerical_tolerance": {
+    "gradient_relative_tolerance": 0.01,
+    "loss_relative_tolerance": 0.0001,
+    "max_compiled_gradient_relative": 0.0018877241085107793,
+    "max_compiled_loss_relative": 1.781738491998702e-05,
+    "max_compiled_parameter_relative_l2": 0.0053060646168887615,
+    "parameter_relative_l2_tolerance": 0.02,
+    "pass": true
+  },
+  "parameter_count": 41870336,
+  "paths": {
+    "eager_full": {
+      "all_values_finite": true,
+      "compile_mode": null,
+      "compiled": false,
+      "gradient_norm_trajectory": [
+        0.6343391537666321,
+        0.5300970077514648,
+        0.43612605333328247,
+        0.3877426087856293,
+        0.350471168756485
+      ],
+      "loss_trajectory": [
+        10.480220198631287,
+        10.473023176193237,
+        10.470814824104309,
+        10.480212688446045,
+        10.477662324905396
+      ],
+      "mean_measured_cuda_seconds": 0.374571826171875,
+      "measured_updates": 5,
+      "optimizer_structure": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "path": "eager_full",
+      "peak_allocated_vram_bytes_all": 1519728128,
+      "peak_allocated_vram_bytes_measured": 1859954176,
+      "peak_reserved_vram_bytes_all": 1725956096,
+      "peak_reserved_vram_bytes_measured": 2141192192,
+      "state_key_count": 109,
+      "state_key_digest": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091",
+      "tokens_per_second_measured": 21870.304778985275,
+      "warmup_update": {
+        "cuda_seconds": 0.3755795593261719,
+        "gradient_norm": 0.7450617551803589,
+        "loss": 10.476582527160645,
+        "wall_seconds": 0.3756122759950813
+      },
+      "wrapped_state_key_present": false
+    },
+    "full_compiled": {
+      "all_values_finite": true,
+      "compile_mode": "default",
+      "compiled": true,
+      "gradient_norm_trajectory": [
+        0.6331416964530945,
+        0.5293816328048706,
+        0.43583419919013977,
+        0.3877800405025482,
+        0.3500314950942993
+      ],
+      "loss_trajectory": [
+        10.480127930641174,
+        10.47294819355011,
+        10.470628261566162,
+        10.48028564453125,
+        10.477812886238098
+      ],
+      "mean_measured_cuda_seconds": 0.1830196533203125,
+      "measured_updates": 5,
+      "optimizer_structure": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "path": "full_compiled",
+      "peak_allocated_vram_bytes_all": 1327646720,
+      "peak_allocated_vram_bytes_measured": 1663920128,
+      "peak_reserved_vram_bytes_all": 1423966208,
+      "peak_reserved_vram_bytes_measured": 1746927616,
+      "state_key_count": 109,
+      "state_key_digest": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091",
+      "tokens_per_second_measured": 44760.22028990921,
+      "warmup_update": {
+        "cuda_seconds": 1.459239501953125,
+        "gradient_norm": 0.7447508573532104,
+        "loss": 10.47658085823059,
+        "wall_seconds": 1.459269804006908
+      },
+      "wrapped_state_key_present": false
+    },
+    "isolated_mixer_compiled_forward": {
+      "all_values_finite": true,
+      "compile_mode": "reduce-overhead",
+      "compiled": true,
+      "mean_measured_cuda_seconds": 0.005412249755859375,
+      "measured_calls": 5,
+      "measured_cuda_seconds": 0.027061248779296877,
+      "path": "isolated_mixer_compiled_forward",
+      "peak_allocated_vram_bytes": 220737536,
+      "peak_reserved_vram_bytes": 257949696,
+      "state_key_count": 5,
+      "state_key_digest": "9fc53a3dcf41374f49b111ea38f32feff979d740d514c9babf61cb3ed32256f2",
+      "warmup_cuda_seconds": 4.1635390625,
+      "warmup_wall_seconds": 4.163566612987779
+    },
+    "isolated_mixer_compiled_training": {
+      "all_values_finite": true,
+      "compile_mode": "default",
+      "compiled": true,
+      "gradient_norm_trajectory": [
+        0.0025526070967316628,
+        0.002462648320943117,
+        0.002484424039721489,
+        0.002424150239676237,
+        0.0023867355193942785
+      ],
+      "loss_trajectory": [
+        1.0007489621639252,
+        1.0006988197565079,
+        1.0015771836042404,
+        1.0007244497537613,
+        1.0019462555646896
+      ],
+      "mean_measured_cuda_seconds": 0.11528238525390626,
+      "measured_updates": 5,
+      "optimizer_structure": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          5
+        ],
+        "state_entry_count": 5,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "path": "isolated_mixer_compiled_training",
+      "peak_allocated_vram_bytes_all": 246568448,
+      "peak_allocated_vram_bytes_measured": 256943616,
+      "peak_reserved_vram_bytes_all": 268435456,
+      "peak_reserved_vram_bytes_measured": 270532608,
+      "state_key_count": 5,
+      "state_key_digest": "9fc53a3dcf41374f49b111ea38f32feff979d740d514c9babf61cb3ed32256f2",
+      "tokens_per_second_not_applicable": true,
+      "warmup_update": {
+        "cuda_seconds": 120.72646875,
+        "gradient_norm": 0.002592883538454771,
+        "loss": 1.0005979090929031,
+        "wall_seconds": 120.72623406499042
+      }
+    },
+    "isolated_mixer_eager_forward": {
+      "all_values_finite": true,
+      "compile_mode": null,
+      "compiled": false,
+      "mean_measured_cuda_seconds": 0.023058029174804685,
+      "measured_calls": 5,
+      "measured_cuda_seconds": 0.11529014587402343,
+      "path": "isolated_mixer_eager_forward",
+      "peak_allocated_vram_bytes": 229127168,
+      "peak_reserved_vram_bytes": 236978176,
+      "state_key_count": 5,
+      "state_key_digest": "9fc53a3dcf41374f49b111ea38f32feff979d740d514c9babf61cb3ed32256f2",
+      "warmup_cuda_seconds": 0.11426509094238281,
+      "warmup_wall_seconds": 0.11431173500022851
+    },
+    "isolated_mixer_eager_training": {
+      "all_values_finite": true,
+      "compile_mode": null,
+      "compiled": false,
+      "gradient_norm_trajectory": [
+        0.002598075196146965,
+        0.0025086577516049147,
+        0.002529234392568469,
+        0.002469873521476984,
+        0.0024320613592863083
+      ],
+      "loss_trajectory": [
+        1.000748559832573,
+        1.0006982535123825,
+        1.0015762448310852,
+        1.0007237493991852,
+        1.0019454509019852
+      ],
+      "mean_measured_cuda_seconds": 0.97097109375,
+      "measured_updates": 5,
+      "optimizer_structure": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          5
+        ],
+        "state_entry_count": 5,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "path": "isolated_mixer_eager_training",
+      "peak_allocated_vram_bytes_all": 256928256,
+      "peak_allocated_vram_bytes_measured": 265337344,
+      "peak_reserved_vram_bytes_all": 283115520,
+      "peak_reserved_vram_bytes_measured": 285212672,
+      "state_key_count": 5,
+      "state_key_digest": "9fc53a3dcf41374f49b111ea38f32feff979d740d514c9babf61cb3ed32256f2",
+      "tokens_per_second_not_applicable": true,
+      "warmup_update": {
+        "cuda_seconds": 1.1669644775390624,
+        "gradient_norm": 0.0026380219496786594,
+        "loss": 1.0005979388952255,
+        "wall_seconds": 1.1669937419937924
+      }
+    },
+    "mixers_compiled": {
+      "all_values_finite": true,
+      "compile_mode": "default",
+      "compiled": true,
+      "gradient_norm_trajectory": [
+        0.6334533095359802,
+        0.5296080112457275,
+        0.4354025423526764,
+        0.38733500242233276,
+        0.3499329686164856
+      ],
+      "loss_trajectory": [
+        10.480350255966187,
+        10.472980499267578,
+        10.47075080871582,
+        10.480172753334045,
+        10.47774076461792
+      ],
+      "mean_measured_cuda_seconds": 0.2233332763671875,
+      "measured_updates": 5,
+      "optimizer_structure": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "path": "mixers_compiled",
+      "peak_allocated_vram_bytes_all": 1492403712,
+      "peak_allocated_vram_bytes_measured": 1828677120,
+      "peak_reserved_vram_bytes_all": 1684013056,
+      "peak_reserved_vram_bytes_measured": 1967128576,
+      "state_key_count": 109,
+      "state_key_digest": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091",
+      "tokens_per_second_measured": 36680.60637113181,
+      "warmup_update": {
+        "cuda_seconds": 0.37399371337890625,
+        "gradient_norm": 0.744692862033844,
+        "loss": 10.476552963256836,
+        "wall_seconds": 0.3740250160044525
+      },
+      "wrapped_state_key_present": false
+    }
+  },
+  "protocol_path": "docs/A1_END_TO_END_COMPILE_BENCHMARK_PROTOCOL.md",
+  "protocol_sha256": "cef238b6d8695cb7b2f6ca02030883e49833260f173d8a62c04e01292332873d",
+  "script_path": "scripts/benchmark_a1_end_to_end_compile.py",
+  "script_sha256": "bb02601ba85523b76e89d0c9b694600fcb4ed519c21ac12f218ada9ed124fa77",
+  "seed": 17,
+  "seed_report": {
+    "deterministic_algorithms_requested": true,
+    "numpy": true,
+    "python": true,
+    "seed": 17,
+    "torch": true
+  },
+  "speedups": {
+    "full_compiled_end_to_end": 2.046620782940271,
+    "full_compiled_forward_retention": 0.4803889677140645,
+    "isolated_forward": 4.260340933055011,
+    "isolated_training": 8.422545140885688,
+    "mixers_compiled_end_to_end": 1.6771877091707224,
+    "mixers_compiled_forward_retention": 0.39367452875843956
+  },
+  "state_invariants": {
+    "compiled_paths_wrapped_state_key_present": {
+      "full_compiled": false,
+      "mixers_compiled": false
+    },
+    "model_state_key_digests": {
+      "eager_full": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091",
+      "full_compiled": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091",
+      "mixers_compiled": "41abe06165b87eb14c75c8d5fe9a3d2573da3eeab9ecdbca2a02a03c6f7e3091"
+    },
+    "model_state_keys_match": true,
+    "optimizer_structures": {
+      "eager_full": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "full_compiled": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      },
+      "mixers_compiled": {
+        "param_group_count": 1,
+        "parameters_per_group": [
+          108
+        ],
+        "state_entry_count": 108,
+        "state_value_keys": [
+          "exp_avg",
+          "exp_avg_sq",
+          "step"
+        ],
+        "top_level_keys": [
+          "param_groups",
+          "state"
+        ]
+      }
+    },
+    "optimizer_structures_match": true
+  },
+  "status": "complete",
+  "torch_cuda_build": "13.0",
+  "torch_version": "2.12.0+cu130",
+  "training_pilot_started": false,
+  "version": "a1_end_to_end_compile_benchmark_v1",
+  "weights_written": false
+}

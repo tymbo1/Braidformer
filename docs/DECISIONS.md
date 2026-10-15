@@ -1081,3 +1081,36 @@ default A1 path. The implementation result is
 docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md and the explicit opt-in
 configuration is
 configs/braidnano_a1_recurrent_state_space_compiled_proposal.json.
+
+## 2026-10-15 — D058: end-to-end compile retention is positive but not mixer-only isolated speed
+
+The frozen engineering-only benchmark in
+docs/A1_END_TO_END_COMPILE_BENCHMARK_PROTOCOL.md compared eager A1 against an
+isolated mixer, eight compiled mixers inside the complete model, and a fully
+compiled forward. It used seed 17, the unchanged A1 configuration, eight-way
+gradient accumulation, five measured updates after one warm-up, and no
+checkpoint or quality-training artifact.
+
+On the RTX 3060 Ti, the isolated mixer forward measured a 4.260x speedup and
+the isolated accumulated-training update measured 8.423x. Inside the complete
+A1 update, compiling only the eight mixers retained a 1.677x speedup, or
+0.394 of the isolated-forward speedup. Compiling the complete forward reached
+2.047x, or 0.480 of the isolated-forward speedup. The mixer-only path reached
+36,681 tokens/second versus 21,870 eager; the full compiled path reached
+44,760 tokens/second.
+
+All values were finite. The compiled complete-model paths remained within the
+declared short-horizon tolerances: maximum relative loss difference
+1.7817e-5, maximum relative gradient-norm difference 1.8877e-3, and final
+parameter relative L2 0.005306 for the full compiled path. Model state-key
+digests and optimizer-state structures matched the eager reference, with no
+wrapped state keys. This supports retaining the optional default-off compiled
+runner path for further engineering measurement; it does not authorize
+quality training, default-runner adoption, or an architectural claim.
+
+The aggregate is
+results/a1_end_to_end_compile_benchmark.json (sha256
+b7657433f2acddfb66c26fda6d8c0956575ae051e12c65a58a9fb323d5ce1e38); the
+report is docs/A1_END_TO_END_COMPILE_BENCHMARK_RESULT.md; the runner is
+scripts/benchmark_a1_end_to_end_compile.py. No checkpoint, model artifact, or
+quality-training result was written.

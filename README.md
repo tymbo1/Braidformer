@@ -47,6 +47,7 @@ seed-17 A0 pilot has now completed. No Qwen distillation is used.
 - [`docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_PROTOCOL.md`](docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_PROTOCOL.md): frozen default-off runner integration scope; no quality training is authorized by the implementation.
 - [`docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md`](docs/A1_SCAN_COMPILE_RUNNER_INTEGRATION_RESULT.md): default-off runner integration and bounded checkpoint/resume smoke result.
 - [`docs/A1_END_TO_END_COMPILE_BENCHMARK_PROTOCOL.md`](docs/A1_END_TO_END_COMPILE_BENCHMARK_PROTOCOL.md): frozen isolated-mixer versus end-to-end compile-retention benchmark; no quality training is authorized.
+- [`docs/A1_END_TO_END_COMPILE_BENCHMARK_RESULT.md`](docs/A1_END_TO_END_COMPILE_BENCHMARK_RESULT.md): measured compile-retention result; mixer-only end-to-end speedup is 1.677× and full-forward speedup is 2.047×.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES128_PROTOCOL.md): frozen protocol for the completed seed-17 128-value solvability-ladder rung.
 - [`docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md`](docs/A0_A1_SOLVABILITY_VALUES128_RESULT.md): measured seed-17 128-value solvability-ladder result.
 - [`docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md`](docs/A0_A1_SOLVABILITY_VALUES256_PROTOCOL.md): frozen protocol for the completed seed-17 256-value solvability-ladder rung.
