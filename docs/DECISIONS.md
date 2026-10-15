@@ -1114,3 +1114,21 @@ b7657433f2acddfb66c26fda6d8c0956575ae051e12c65a58a9fb323d5ce1e38); the
 report is docs/A1_END_TO_END_COMPILE_BENCHMARK_RESULT.md; the runner is
 scripts/benchmark_a1_end_to_end_compile.py. No checkpoint, model artifact, or
 quality-training result was written.
+
+## 2026-10-15 — D059: prepare a longer matched compiled-trajectory audit; execution gated
+
+The next execution audit is frozen and prepared in
+docs/A1_COMPILED_TRAJECTORY_AUDIT_PROTOCOL.md with runner
+scripts/audit_a1_compiled_trajectory.py. It will compare the unchanged eager
+A1 reference with the default-mode compiled forward for 50 matched optimizer
+updates, using the same seed-17 initialization, the same pre-generated
+seed-5017 batch sequence, the same eight-microbatch accumulation geometry, and
+fresh AdamW optimizers with identical initial state. It will record raw
+per-update loss, gradient, timing, parameter-probe, finite-value, state-key,
+and optimizer-step trajectories, plus the final full-parameter difference.
+
+The script requires an explicit `--execute-approved` flag and has not been
+executed because the GPU is reserved. It writes no checkpoint, model artifact,
+validation result, or quality-training result; the planned audit remains
+default-off and does not authorize normal-runner adoption or any architectural
+change.
