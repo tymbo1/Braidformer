@@ -10,16 +10,21 @@ change the A1 architecture, equations, optimizer, data, or normal runner.
 
 For the same A1 parallel-scan model and update geometry, compare:
 
-1. an isolated mixer update with eager execution;
-2. an isolated mixer update with the mixer forward compiled;
-3. the complete A1 model with eager execution;
-4. the complete A1 model with only its eight state-space mixer forwards
+1. an isolated mixer forward with eager execution;
+2. an isolated mixer forward with the mixer forward compiled;
+3. an isolated mixer accumulated training update with eager execution;
+4. an isolated mixer accumulated training update with the mixer forward
+   compiled;
+5. the complete A1 model with eager execution;
+6. the complete A1 model with only its eight state-space mixer forwards
    compiled; and
-5. the complete A1 model with the whole forward compiled in default mode.
+7. the complete A1 model with the whole forward compiled in default mode.
 
-The key outputs are isolated mixer speedup, mixer-only end-to-end speedup,
-full-model end-to-end speedup, and the ratios of end-to-end speedups to the
-isolated reference.
+The forward-only pair anchors the earlier approximately 3x mixer claim. The
+accumulated-update pair checks the same component under backward and optimizer
+semantics. The key end-to-end outputs are mixer-only end-to-end speedup,
+full-model end-to-end speedup, and the ratios of those speedups to the
+corresponding isolated references.
 
 ## Frozen conditions
 
@@ -33,6 +38,8 @@ isolated reference.
   FP16 autocast, AdamW, existing learning rate, weight decay, and gradient
   clipping.
 - Each path performs one warm-up update and five measured updates.
+- Each isolated forward path performs one warm-up forward and five measured
+  forwards. The forward-only path is not treated as a training result.
 - All batches are device-resident before CUDA-event timing. Timing covers
   zero_grad through optimizer.step and excludes host preparation, compiler
   warm-up, checkpoint I/O, and unrelated synchronization.
