@@ -43,11 +43,14 @@ corresponding isolated references.
 - All batches are device-resident before CUDA-event timing. Timing covers
   zero_grad through optimizer.step and excludes host preparation, compiler
   warm-up, checkpoint I/O, and unrelated synchronization.
-- The eager complete-model path is the reference. The mixer-only complete
-  path compiles each state-space mixer forward with torch.compile default mode
-  and leaves embeddings, normalization, feed-forward layers, and language
-  head eager. The full path compiles the complete forward module with default
-  mode.
+- The eager complete-model path is the reference. The isolated forward anchor
+  uses torch.compile reduce-overhead mode to reproduce the earlier component
+  measurement; it is inference-only and is not an approved training mode. The
+  isolated training pair, mixer-only complete path, and full path use
+  torch.compile default mode with CUDA graphs disabled. The mixer-only
+  complete path compiles each state-space mixer forward and leaves embeddings,
+  normalization, feed-forward layers, and language head eager. The full path
+  compiles the complete forward module.
 - The original complete-model module remains the parameter and state owner for
   every path. Optimizers use its parameters; no compiled wrapper is
   checkpointed.
